@@ -166,6 +166,11 @@ export function HeroInteractiveDots() {
     let h = 0;
     let heroVisible = true;
 
+    /** Bodky s „repulse“ len na šírku lg+ (myš); na mobile statická mriežka. */
+    const mqDesktop = window.matchMedia("(min-width: 1024px)");
+    let pointerDesktop = mqDesktop.matches;
+    const repulseOff = () => reducedMotion || !pointerDesktop;
+
     const rebuildGlyphMask = () => {
       const shell = wrap.parentElement;
       const cluster = shell?.querySelector(
@@ -200,7 +205,7 @@ export function HeroInteractiveDots() {
 
       for (let x = GRID / 2; x < w; x += GRID) {
         for (let y = GRID / 2; y < h; y += GRID) {
-          const { ox, oy } = getRepulsed(x, y, mx, my, reducedMotion);
+          const { ox, oy } = getRepulsed(x, y, mx, my, repulseOff());
           if (isOverGlyph(ox, oy, mask)) continue;
           ctx.beginPath();
           ctx.arc(ox, oy, DOT_RADIUS, 0, Math.PI * 2);
@@ -229,7 +234,7 @@ export function HeroInteractiveDots() {
     };
 
     const scheduleLoop = () => {
-      if (cancelled || reducedMotion || !heroVisible) return;
+      if (cancelled || repulseOff() || !heroVisible) return;
       cancelLoop();
       lastFrameTimeRef.current = 0;
       rafRef.current = requestAnimationFrame(loop);
@@ -249,6 +254,19 @@ export function HeroInteractiveDots() {
         };
       } else {
         mouseRef.current = { x: -99999, y: -99999 };
+      }
+    };
+
+    const onPointerModeChange = () => {
+      pointerDesktop = mqDesktop.matches;
+      mouseRef.current = { x: -99999, y: -99999 };
+      if (!pointerDesktop) {
+        window.removeEventListener("mousemove", onMove);
+        cancelLoop();
+        draw();
+      } else {
+        window.addEventListener("mousemove", onMove, { passive: true });
+        if (!reducedMotion && heroVisible) scheduleLoop();
       }
     };
 
@@ -273,7 +291,10 @@ export function HeroInteractiveDots() {
       draw();
     });
 
-    window.addEventListener("mousemove", onMove, { passive: true });
+    if (pointerDesktop) {
+      window.addEventListener("mousemove", onMove, { passive: true });
+    }
+    mqDesktop.addEventListener("change", onPointerModeChange);
 
     let io: IntersectionObserver | null = null;
     if (shell) {
@@ -284,7 +305,7 @@ export function HeroInteractiveDots() {
           heroVisible = e.isIntersecting;
           if (heroVisible) {
             draw();
-            if (!reducedMotion) scheduleLoop();
+            if (!repulseOff()) scheduleLoop();
           } else {
             cancelLoop();
           }
@@ -296,12 +317,15 @@ export function HeroInteractiveDots() {
 
     if (reducedMotion) {
       draw();
-    } else if (heroVisible) {
+    } else if (heroVisible && !repulseOff()) {
       scheduleLoop();
+    } else {
+      draw();
     }
 
     return () => {
       cancelled = true;
+      mqDesktop.removeEventListener("change", onPointerModeChange);
       window.removeEventListener("mousemove", onMove);
       ro.disconnect();
       io?.disconnect();

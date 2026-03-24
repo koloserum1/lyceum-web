@@ -13,14 +13,27 @@ export function SmoothScroll() {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const lenis = new Lenis({
-      autoRaf: true,
-      smoothWheel: true,
-      lerp: 0.09,
-    });
+    /** Lenis + touch často „seka“ a skáče; na mobile nech je natívny scroll (PC bez zmeny). */
+    const mqDesktop = window.matchMedia("(min-width: 1024px)");
+    let lenis: Lenis | null = null;
+
+    const sync = () => {
+      lenis?.destroy();
+      lenis = null;
+      if (!mqDesktop.matches) return;
+      lenis = new Lenis({
+        autoRaf: true,
+        smoothWheel: true,
+        lerp: 0.09,
+      });
+    };
+
+    sync();
+    mqDesktop.addEventListener("change", sync);
 
     return () => {
-      lenis.destroy();
+      mqDesktop.removeEventListener("change", sync);
+      lenis?.destroy();
     };
   }, []);
 

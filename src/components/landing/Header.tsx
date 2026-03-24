@@ -40,17 +40,17 @@ export function Header() {
           open ? "rounded-b-none lg:rounded-b-[24px]" : ""
         }`}
       >
-        <div className="flex flex-wrap items-center justify-between gap-4 py-[clamp(1rem,3vw,1.35rem)] lg:flex-nowrap">
+        <div className="flex flex-nowrap items-center justify-between gap-2 py-3 sm:gap-3 lg:gap-4 lg:py-[clamp(1rem,3vw,1.35rem)]">
           <Link
             href="/#domov"
-            className="relative block shrink-0 leading-none no-underline"
+            className="relative block min-w-0 shrink leading-none no-underline"
           >
             <Image
               src="/logo.svg"
               alt="Lýceum C. S. Lewisa"
               width={300}
               height={80}
-              className="h-11 w-auto max-w-[min(320px,82vw)] object-contain object-left sm:h-12 lg:h-14"
+              className="h-9 w-auto max-w-[min(42vw,200px)] object-contain object-left sm:h-10 sm:max-w-[min(46vw,240px)] lg:h-14 lg:max-w-[min(320px,82vw)]"
               unoptimized
               priority
             />
@@ -69,16 +69,16 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
             <a
               href="#zaujemca"
-              className="btn-secondary-site hidden !py-2.5 text-[clamp(15px,0.9rem+0.35vw,17px)] md:inline-flex"
+              className="btn-secondary-site inline-flex max-w-[min(46vw,11rem)] shrink-0 truncate whitespace-nowrap !py-2.5 !text-[clamp(10px,2.8vw,12px)] !px-[0.55rem] !pb-[0.45rem] sm:!px-3 sm:!text-xs lg:max-w-none lg:!px-[clamp(1.5rem,1.75vw,3.5rem)] lg:!py-[0.7rem] lg:!pb-[0.6rem] lg:!text-[clamp(15px,0.9rem+0.35vw,17px)]"
             >
               Záujem o štúdium
             </a>
             <button
               type="button"
-              className="rounded-lg p-2 lg:hidden"
+              className="shrink-0 rounded-lg p-1.5 sm:p-2 lg:hidden"
               aria-label="Menu"
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
