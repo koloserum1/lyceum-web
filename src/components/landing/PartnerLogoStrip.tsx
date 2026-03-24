@@ -15,17 +15,18 @@ function LogoItem({ p }: { p: PartnerBrand }) {
   const md = p.medium === true && !lg;
   const svg = p.logoSrc.endsWith(".svg");
 
+  /** Na mobile menšie logá + užší riadok, aby sa zmestili vedľa seba. */
   const spanClass = lg
-    ? "inline-flex h-14 max-w-[240px] shrink-0 items-center justify-center opacity-90 transition hover:opacity-100 sm:h-16 sm:max-w-[300px]"
+    ? "inline-flex h-8 max-w-[min(26vw,104px)] shrink-0 items-center justify-center opacity-90 transition hover:opacity-100 sm:h-12 sm:max-w-[200px] md:h-14 md:max-w-[240px] lg:h-16 lg:max-w-[300px]"
     : md
-      ? "inline-flex h-11 max-w-[190px] shrink-0 items-center justify-center opacity-90 transition hover:opacity-100 sm:h-12 sm:max-w-[220px]"
-      : "inline-flex h-10 max-w-[160px] shrink-0 items-center justify-center opacity-90 transition hover:opacity-100";
+      ? "inline-flex h-7 max-w-[min(22vw,88px)] shrink-0 items-center justify-center opacity-90 transition hover:opacity-100 sm:h-10 sm:max-w-[180px] md:h-12 md:max-w-[220px]"
+      : "inline-flex h-6 max-w-[min(18vw,72px)] shrink-0 items-center justify-center opacity-90 transition hover:opacity-100 sm:h-9 sm:max-w-[140px] md:h-10 md:max-w-[160px]";
 
   const imgClass = lg
-    ? "h-14 w-auto max-w-[240px] object-contain object-center sm:h-16 sm:max-w-[300px]"
+    ? "h-8 w-auto max-w-[min(26vw,104px)] object-contain object-center sm:h-12 sm:max-w-[200px] md:h-14 md:max-w-[240px] lg:h-16 lg:max-w-[300px]"
     : md
-      ? "h-11 w-auto max-w-[190px] object-contain object-center sm:h-12 sm:max-w-[220px]"
-      : "h-10 w-auto max-w-[160px] object-contain object-center";
+      ? "h-7 w-auto max-w-[min(22vw,88px)] object-contain object-center sm:h-10 sm:max-w-[180px] md:h-11 md:max-w-[220px]"
+      : "h-6 w-auto max-w-[min(18vw,72px)] object-contain object-center sm:h-9 sm:max-w-[140px] md:h-10 md:max-w-[160px]";
 
   const width = lg ? LOGO_LG_W : md ? LOGO_MD_W : LOGO_W;
   const height = lg ? LOGO_LG_H : md ? LOGO_MD_H : LOGO_H;
@@ -47,7 +48,7 @@ function LogoItem({ p }: { p: PartnerBrand }) {
 export function PartnerLogoStrip({ partners }: { partners: PartnerBrand[] }) {
   return (
     <div className="no-scrollbar w-full overflow-x-auto overflow-y-hidden overscroll-x-contain md:overflow-visible">
-      <div className="flex w-max max-w-none flex-nowrap items-center gap-x-9 pr-4 md:mx-auto md:w-full md:max-w-full md:flex-wrap md:justify-center md:gap-x-10 md:gap-y-5 md:pr-0 lg:gap-x-12">
+      <div className="flex w-max max-w-[100vw] flex-nowrap items-center justify-center gap-x-1.5 px-1 sm:gap-x-4 sm:px-2 md:mx-auto md:w-full md:max-w-full md:flex-wrap md:gap-x-10 md:gap-y-5 md:px-0 lg:gap-x-12">
         {partners.map((p) => (
           <LogoItem key={p.name} p={p} />
         ))}

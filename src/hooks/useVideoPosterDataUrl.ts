@@ -5,15 +5,28 @@ import { useEffect, useState } from "react";
 /** Zdieľaná cache — jeden skrytý fetch na URL, nie päť paralelných. */
 const posterCache = new Map<string, string>();
 
+/** Pre záložný odber z hlavného `<video>` (napr. iOS). */
+export function cacheVideoPoster(src: string, dataUrl: string) {
+  posterCache.set(src, dataUrl);
+}
+
 type Options = {
   enabled?: boolean;
   /** Odložiť generovanie (rozloženie sieťovej záťaže) */
   delayMs?: number;
 };
 
+function prefersAggressiveVideoLoad(): boolean {
+  if (typeof window === "undefined") return false;
+  return (
+    window.matchMedia("(max-width: 1023px)").matches ||
+    (typeof navigator !== "undefined" && navigator.maxTouchPoints > 0)
+  );
+}
+
 /**
  * Vygeneruje JPEG poster (data URL) z prvého snímku videa cez skrytý `<video>`.
- * Hlavné `<video>` môže mať `preload="none"` — používateľ vidí poster, dáta sa stiahnu pri play().
+ * Na mobile/iOS sa používa agresívnejšie `preload` a viac udalostí, aby prvý frame naozaj dekódoval.
  */
 export function useVideoPosterDataUrl(
   src: string | null,
@@ -36,23 +49,34 @@ export function useVideoPosterDataUrl(
     }
 
     let cancelled = false;
+    const effectiveDelay = prefersAggressiveVideoLoad() ? 0 : delayMs;
 
     const start = (): (() => void) => {
       const v = document.createElement("video");
       v.muted = true;
       v.playsInline = true;
-      v.preload = "metadata";
+      v.setAttribute("playsinline", "true");
+      v.setAttribute("webkit-playsinline", "true");
+      v.preload = prefersAggressiveVideoLoad() ? "auto" : "metadata";
       v.src = src;
 
       let finished = false;
+      let seekScheduled = false;
+      let fallbackTimer: number | null = null;
 
       const cleanupVideo = () => {
+        if (fallbackTimer !== null) {
+          clearTimeout(fallbackTimer);
+          fallbackTimer = null;
+        }
         v.removeAttribute("src");
         v.load();
       };
 
       const detach = () => {
+        v.removeEventListener("loadedmetadata", onLoadedMetadata);
         v.removeEventListener("loadeddata", onLoadedData);
+        v.removeEventListener("canplay", onCanPlay);
         v.removeEventListener("seeked", onSeeked);
         v.removeEventListener("error", onError);
       };
@@ -90,15 +114,8 @@ export function useVideoPosterDataUrl(
         cleanupVideo();
       };
 
-      let seekScheduled = false;
-
-      const onSeeked = () => {
-        if (!seekScheduled || cancelled || finished) return;
-        capture();
-      };
-
-      const onLoadedData = () => {
-        if (cancelled || finished || v.videoWidth === 0) return;
+      const scheduleSeek = () => {
+        if (cancelled || finished || seekScheduled || v.videoWidth === 0) return;
         seekScheduled = true;
         const dur = v.duration && Number.isFinite(v.duration) ? v.duration : 1;
         const t = Math.min(0.12, Math.max(dur * 0.02, 0.04));
@@ -110,6 +127,30 @@ export function useVideoPosterDataUrl(
         }
       };
 
+      const onSeeked = () => {
+        if (!seekScheduled || cancelled || finished) return;
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => capture());
+        });
+      };
+
+      const kickDecode = () => {
+        if (cancelled || finished || v.videoWidth === 0) return;
+        scheduleSeek();
+      };
+
+      const onLoadedMetadata = () => {
+        kickDecode();
+      };
+
+      const onLoadedData = () => {
+        kickDecode();
+      };
+
+      const onCanPlay = () => {
+        if (!seekScheduled) kickDecode();
+      };
+
       const onError = () => {
         if (finished) return;
         finished = true;
@@ -117,9 +158,22 @@ export function useVideoPosterDataUrl(
         cleanupVideo();
       };
 
+      v.addEventListener("loadedmetadata", onLoadedMetadata);
       v.addEventListener("loadeddata", onLoadedData);
+      v.addEventListener("canplay", onCanPlay);
       v.addEventListener("seeked", onSeeked);
       v.addEventListener("error", onError);
+
+      fallbackTimer = window.setTimeout(() => {
+        fallbackTimer = null;
+        if (cancelled || finished) return;
+        if (v.videoWidth > 0 && !seekScheduled) {
+          scheduleSeek();
+        } else if (v.videoWidth > 0 && seekScheduled) {
+          /* seeked niekedy nedorazí na iOS */
+          capture();
+        }
+      }, 2500);
 
       return () => {
         if (!finished) {
@@ -131,11 +185,11 @@ export function useVideoPosterDataUrl(
 
     let innerCleanup: (() => void) | undefined;
 
-    if (delayMs > 0) {
+    if (effectiveDelay > 0) {
       const tid = window.setTimeout(() => {
         if (cancelled) return;
         innerCleanup = start();
-      }, delayMs);
+      }, effectiveDelay);
       return () => {
         cancelled = true;
         window.clearTimeout(tid);

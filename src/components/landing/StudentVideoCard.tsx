@@ -9,7 +9,10 @@ import {
   useState,
 } from "react";
 import type { StudentVideo } from "@/content/studentVideos";
-import { useVideoPosterDataUrl } from "@/hooks/useVideoPosterDataUrl";
+import {
+  cacheVideoPoster,
+  useVideoPosterDataUrl,
+} from "@/hooks/useVideoPosterDataUrl";
 
 export type StudentVideoCardHandle = {
   pauseFromCarousel: () => void;
@@ -64,6 +67,89 @@ export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
   const posterUrl = useVideoPosterDataUrl(item.src, {
     delayMs: index * 140,
   });
+
+  /** Záloha (iOS / skrytý video): prvý frame z tohto istého `<video>` po načítaní metadát. */
+  const [fallbackPoster, setFallbackPoster] = useState<string | null>(null);
+  const posterResolved = posterUrl ?? fallbackPoster;
+
+  useEffect(() => {
+    setFallbackPoster(null);
+  }, [item.src]);
+
+  useEffect(() => {
+    if (posterUrl) setFallbackPoster(null);
+  }, [posterUrl]);
+
+  useLayoutEffect(() => {
+    if (!item.src || posterUrl) return;
+    const v = videoRef.current;
+    if (!v) return;
+
+    let cancelled = false;
+    let seekScheduled = false;
+
+    const captureFromElement = () => {
+      if (cancelled || v.videoWidth < 2) return;
+      const maxW = 960;
+      const scale = Math.min(1, maxW / v.videoWidth);
+      const cw = Math.round(v.videoWidth * scale);
+      const ch = Math.round(v.videoHeight * scale);
+      const canvas = document.createElement("canvas");
+      canvas.width = cw;
+      canvas.height = ch;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      try {
+        ctx.drawImage(v, 0, 0, cw, ch);
+        const dataUrl = canvas.toDataURL("image/jpeg", 0.82);
+        cacheVideoPoster(item.src!, dataUrl);
+        setFallbackPoster(dataUrl);
+      } catch {
+        /* canvas */
+      }
+    };
+
+    const onSeeked = () => {
+      v.removeEventListener("seeked", onSeeked);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(captureFromElement);
+      });
+    };
+
+    const kick = () => {
+      if (cancelled || seekScheduled || v.videoWidth < 2) return;
+      seekScheduled = true;
+      const dur = v.duration && Number.isFinite(v.duration) ? v.duration : 1;
+      const t = Math.min(0.12, Math.max(dur * 0.02, 0.04));
+      v.addEventListener("seeked", onSeeked);
+      try {
+        v.currentTime = t;
+      } catch {
+        v.removeEventListener("seeked", onSeeked);
+        seekScheduled = false;
+        captureFromElement();
+      }
+    };
+
+    const onReady = () => {
+      if (cancelled) return;
+      kick();
+    };
+
+    if (v.readyState >= 2 && v.videoWidth > 0) {
+      kick();
+    } else {
+      v.addEventListener("loadeddata", onReady, { once: true });
+      v.addEventListener("loadedmetadata", onReady, { once: true });
+    }
+
+    return () => {
+      cancelled = true;
+      v.removeEventListener("seeked", onSeeked);
+      v.removeEventListener("loadeddata", onReady);
+      v.removeEventListener("loadedmetadata", onReady);
+    };
+  }, [item.src, posterUrl]);
 
   showEndScreenRef.current = showEndScreen;
   isActiveRef.current = isActive;
@@ -336,8 +422,10 @@ export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
         ref={videoRef}
         className="h-full w-full object-cover"
         playsInline
-        poster={posterUrl ?? undefined}
-        preload={isFirst ? "metadata" : "none"}
+        poster={posterResolved ?? undefined}
+        preload={
+          isFirst ? "metadata" : posterResolved ? "none" : "metadata"
+        }
         muted={videoMuted}
         loop={showEndScreen || (isFirst && !soundOn)}
       >
