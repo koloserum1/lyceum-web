@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { Header } from "@/components/landing/Header";
+import { HeroInteractiveDots } from "@/components/landing/HeroInteractiveDots";
 import { HeroProjektyBubble } from "@/components/landing/HeroProjektyBubble";
 import { TestimonialsStrip } from "@/components/landing/TestimonialsStrip";
 import { PartnerLogoStrip } from "@/components/landing/PartnerLogoStrip";
@@ -77,8 +78,8 @@ export default function Home() {
           <div
             className={`${CX} home-hero-top-shell relative overflow-hidden rounded-[24px] bg-brand-bg2 pb-6 pt-6 md:pb-8 md:pt-8`}
           >
-            <div className="home-hero-top-grid" aria-hidden={true} />
-            <div className="home-hero-top-cols relative z-[2]">
+            <HeroInteractiveDots />
+            <div className="home-hero-top-cols relative z-[1]">
               <div className="hero-top-col-photo">
                 <figure className="m-0 overflow-hidden rounded-2xl shadow-md ring-1 ring-black/[0.04]">
                   <Image
@@ -93,25 +94,27 @@ export default function Home() {
                 </figure>
               </div>
               <div className="hero-top-col-copy">
-                <h1 className="home-hero-top-heading font-heading">
-                  <span className="leading-[1.1]">
-                    Moderná stredná škola, kde sa učíš cez{" "}
-                    <HeroProjektyBubble />
-                  </span>
-                </h1>
-                <p className="home-hero-top-copy hero-top-lead m-0 w-full max-w-full font-sans text-brand-fg1/78">
-                  Lýceum C. S. Lewisa je škola zameraná na digitálne zručnosti,
-                  podnikavosť a charakter. Pracuješ v tíme, prezentuješ, dostávaš
-                  spätnú väzbu a učíš sa na reálnych zadaniach v prostredí, kde ťa
-                  berú vážne.
-                </p>
-                <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
-                  <a href="#ako-funguje" className="btn-primary-site justify-center">
-                    Pozrieť, ako to u nás funguje
-                  </a>
-                  <a href="#prijimacky" className="btn-secondary-site justify-center">
-                    Prijímačky
-                  </a>
+                <div className="hero-top-text-cluster">
+                  <h1 className="home-hero-top-heading font-heading">
+                    <span className="leading-[1.1]">
+                      Moderná stredná škola, kde sa učíš cez{" "}
+                      <HeroProjektyBubble />
+                    </span>
+                  </h1>
+                  <p className="home-hero-top-copy hero-top-lead m-0 w-full max-w-full font-sans text-brand-fg1">
+                    Lýceum C. S. Lewisa je škola zameraná na digitálne zručnosti,
+                    podnikavosť a charakter. Pracuješ v tíme, prezentuješ, dostávaš
+                    spätnú väzbu a učíš sa na reálnych zadaniach v prostredí, kde ťa
+                    berú vážne.
+                  </p>
+                  <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+                    <a href="#ako-funguje" className="btn-primary-site justify-center">
+                      Pozrieť, ako to u nás funguje
+                    </a>
+                    <a href="#prijimacky" className="btn-secondary-site justify-center">
+                      Prijímačky
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

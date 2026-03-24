@@ -21,25 +21,23 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 72);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const bubbleRadius = "rounded-[24px]";
-  const bubbleBase =
-    "overflow-hidden bg-brand-bg2/95 ring-1 ring-black/[0.04] backdrop-blur-md transition-[box-shadow,background-color] duration-200";
+  /** Pri scrolli: jemnejší blur (ľahší na GPU) + jednoduchšie pozadie */
+  const glassDesktop = scrolled
+    ? "bg-white/[0.55] ring-1 ring-black/[0.06] backdrop-blur-md backdrop-saturate-125 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.08)]"
+    : "bg-white/[0.82] ring-1 ring-black/[0.05] backdrop-blur-sm backdrop-saturate-120 shadow-[0_1px_0_rgba(0,0,0,0.05)]";
 
   return (
     <header className="site-header sticky top-0 z-50 w-full pt-2 sm:pt-3">
       <div
-        className={`${SHELL} ${bubbleBase} ${bubbleRadius} ${
+        className={`${SHELL} overflow-hidden transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out ${glassDesktop} ${bubbleRadius} ${
           open ? "rounded-b-none lg:rounded-b-[24px]" : ""
-        } ${
-          scrolled
-            ? "shadow-[0_8px_32px_-8px_rgba(27,22,36,0.12)]"
-            : "shadow-[0_1px_0_rgba(0,0,0,0.04)]"
         }`}
       >
         <div className="flex flex-wrap items-center justify-between gap-4 py-[clamp(1rem,3vw,1.35rem)] lg:flex-nowrap">
@@ -97,7 +95,7 @@ export function Header() {
 
       {open ? (
         <div
-          className={`${SHELL} ${bubbleRadius} rounded-t-none border-t border-black/8 bg-brand-bg2/98 shadow-[0_8px_32px_-8px_rgba(27,22,36,0.1)] backdrop-blur-md lg:hidden`}
+          className={`${SHELL} ${bubbleRadius} rounded-t-none border-t border-black/[0.07] bg-white/[0.55] shadow-[0_12px_40px_-12px_rgba(0,0,0,0.1)] backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 lg:hidden`}
         >
           <nav className="flex flex-col gap-1 py-4">
             {navLinks.map((l) => (

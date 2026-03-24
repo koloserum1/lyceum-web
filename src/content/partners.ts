@@ -4,6 +4,8 @@ export type PartnerBrand = {
   logoSrc: string;
   /** Väčšie zobrazenie v páse partnerov. */
   emphasize?: boolean;
+  /** O niečo väčšie ako štandard (medzi default a emphasize). */
+  medium?: boolean;
 };
 
 export const partnerBrands: PartnerBrand[] = [
@@ -12,5 +14,5 @@ export const partnerBrands: PartnerBrand[] = [
   { name: "O2", logoSrc: "/partners/o2.svg" },
   { name: "Curaprox", logoSrc: "/partners/curaprox.png" },
   { name: "Accace", logoSrc: "/partners/accace.png" },
-  { name: "Titans", logoSrc: "/partners/titans.svg" },
+  { name: "Titans", logoSrc: "/partners/titans.svg", medium: true },
 ];

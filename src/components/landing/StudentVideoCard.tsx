@@ -1,66 +1,279 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import type { StudentVideo } from "@/content/studentVideos";
+
+export type StudentVideoCardHandle = {
+  pauseFromCarousel: () => void;
+  playFromCarousel: () => void;
+};
 
 type Props = {
   item: StudentVideo;
   index: number;
+  /** Karusel: len aktívna karta posiela priebeh do bodkového indikátora */
+  isActive?: boolean;
+  onPlaybackProgress?: (index: number, fraction: number) => void;
+  /** Klik na video — synchronizácia s bodkovým indikátorom (karusel) */
+  onCarouselInteract?: (index: number) => void;
 };
 
-const bubbleYellow =
-  "inline-flex items-center justify-center rounded-full border border-black/[0.08] bg-brand-secondary px-5 py-2.5 text-center font-heading text-sm font-bold tracking-tight text-brand-fg1 shadow-[0_3px_14px_-3px_rgba(27,22,36,0.22)] transition-transform hover:bg-brand-tertiary active:scale-[0.98] sm:px-6 sm:text-[0.95rem]";
+const TAIL_SEC = 2;
 
-export function StudentVideoCard({ item, index }: Props) {
-  const ref = useRef<HTMLVideoElement>(null);
+function remainInTail(el: HTMLVideoElement) {
+  if (!el.duration || !Number.isFinite(el.duration)) return false;
+  const remain = el.duration - el.currentTime;
+  return remain <= TAIL_SEC && remain >= 0;
+}
+
+export const endScreenPlayCta =
+  "inline-flex items-center justify-center rounded-full border border-black/[0.08] bg-brand-secondary px-7 py-3.5 text-center font-heading text-base font-bold tracking-tight text-brand-fg1 shadow-[0_3px_14px_-3px_rgba(27,22,36,0.22)] transition-[transform,background-color] hover:bg-brand-tertiary active:scale-[0.98] sm:px-9 sm:py-4 sm:text-lg";
+
+export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
+  function StudentVideoCard(
+    {
+      item,
+      index,
+      isActive = true,
+      onPlaybackProgress,
+      onCarouselInteract,
+    },
+    forwardedRef,
+  ) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const showEndScreenRef = useRef(false);
+  const isActiveRef = useRef(isActive);
+  const onPlaybackProgressRef = useRef(onPlaybackProgress);
+  const soundOnRef = useRef(false);
   const isFirst = index === 0;
   const [soundOn, setSoundOn] = useState(false);
   const [paused, setPaused] = useState(!isFirst);
   const [showEndScreen, setShowEndScreen] = useState(false);
+  const [tailProgress, setTailProgress] = useState(0);
+  const tailRafRef = useRef(0);
+
+  showEndScreenRef.current = showEndScreen;
+  isActiveRef.current = isActive;
+  onPlaybackProgressRef.current = onPlaybackProgress;
+  soundOnRef.current = soundOn;
+
+  useImperativeHandle(forwardedRef, () => ({
+    pauseFromCarousel: () => {
+      const v = videoRef.current;
+      if (!v || !item.src) return;
+      v.pause();
+    },
+    playFromCarousel: () => {
+      const v = videoRef.current;
+      if (!v || !item.src) return;
+      if (showEndScreenRef.current) return;
+
+      if (isFirst) {
+        if (!soundOnRef.current) {
+          v.currentTime = 0;
+          v.loop = false;
+          v.muted = false;
+          v.volume = 1;
+          setSoundOn(true);
+          void v.play();
+          return;
+        }
+        v.muted = false;
+        v.volume = 1;
+        if (v.paused) void v.play();
+        return;
+      }
+
+      v.muted = false;
+      v.volume = 1;
+      if (v.paused) void v.play();
+    },
+  }));
 
   useEffect(() => {
-    const v = ref.current;
+    const v = videoRef.current;
     if (!v || !item.src) return;
 
-    const onPause = () => setPaused(true);
-    const onPlay = () => setPaused(false);
-    const onEnded = () => {
-      v.muted = true;
-      v.currentTime = 0;
-      v.loop = true;
-      setSoundOn(false);
-      void v.play().catch(() => {});
+    const cancelTailRaf = () => {
+      if (tailRafRef.current) {
+        cancelAnimationFrame(tailRafRef.current);
+        tailRafRef.current = 0;
+      }
+    };
+
+    const runTailFrame = () => {
+      if (showEndScreenRef.current) {
+        cancelTailRaf();
+        return;
+      }
+      const el = videoRef.current;
+      if (!el || !el.duration || !Number.isFinite(el.duration)) {
+        cancelTailRaf();
+        return;
+      }
+      const remain = el.duration - el.currentTime;
+      if (remain > TAIL_SEC || remain < 0) {
+        setTailProgress(0);
+        if (!el.muted) el.volume = 1;
+        cancelTailRaf();
+        return;
+      }
+      const t = 1 - remain / TAIL_SEC;
+      setTailProgress(t);
+      if (!el.muted) {
+        el.volume = Math.max(0, 1 - t);
+      }
+      tailRafRef.current = requestAnimationFrame(runTailFrame);
+    };
+
+    const onPause = () => {
+      setPaused(true);
+      cancelTailRaf();
+    };
+
+    const onPlay = () => {
       setPaused(false);
+      cancelTailRaf();
+      const el = videoRef.current;
+      if (el && remainInTail(el)) {
+        tailRafRef.current = requestAnimationFrame(runTailFrame);
+      }
+    };
+
+    const onEnded = () => {
+      cancelTailRaf();
+      if (isFirst && !soundOnRef.current) {
+        const el = videoRef.current;
+        if (el) {
+          el.currentTime = 0;
+          void el.play().catch(() => {});
+        }
+        return;
+      }
+      setSoundOn(false);
+      setPaused(false);
+      setTailProgress(0);
       setShowEndScreen(true);
+    };
+
+    const onTimeUpdate = () => {
+      if (showEndScreenRef.current) return;
+      const el = videoRef.current;
+      if (!el || !el.duration || !Number.isFinite(el.duration)) return;
+      const remain = el.duration - el.currentTime;
+      if (remain <= TAIL_SEC && remain >= 0 && !tailRafRef.current) {
+        tailRafRef.current = requestAnimationFrame(runTailFrame);
+      }
+      if (remain > TAIL_SEC) {
+        setTailProgress(0);
+        if (!el.muted) el.volume = 1;
+      }
     };
 
     v.addEventListener("pause", onPause);
     v.addEventListener("play", onPlay);
     v.addEventListener("ended", onEnded);
+    v.addEventListener("timeupdate", onTimeUpdate);
 
     if (isFirst) {
       v.muted = true;
-      v.loop = false;
+      v.loop = !soundOnRef.current;
       void v.play().catch(() => {});
       setPaused(false);
     }
 
     return () => {
+      cancelTailRaf();
       v.removeEventListener("pause", onPause);
       v.removeEventListener("play", onPlay);
       v.removeEventListener("ended", onEnded);
+      v.removeEventListener("timeupdate", onTimeUpdate);
     };
-  }, [item.src, isFirst]);
+  }, [item.src, index, isFirst]);
+
+  /** Prvé video: ticho = nekonečný loop; po zapnutí zvuku loop vypnúť, aby sa dal ukončiť a zobraziť CTA. */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !item.src || !isFirst || showEndScreen) return;
+    v.loop = !soundOn;
+    if (!soundOn) v.muted = true;
+  }, [item.src, isFirst, soundOn, showEndScreen]);
+
+  /** ~60 fps: priebeh z currentTime/duration — končí s videom; pri pause len seek/play obnoví kreslenie */
+  useEffect(() => {
+    if (!item.src || !isActive) return;
+    const v = videoRef.current;
+    if (!v) return;
+    let raf = 0;
+    const tick = () => {
+      const el = videoRef.current;
+      if (!el || !isActiveRef.current) return;
+      if (showEndScreenRef.current) {
+        onPlaybackProgressRef.current?.(index, 1);
+        return;
+      }
+      if (!el.duration || !Number.isFinite(el.duration)) {
+        raf = requestAnimationFrame(tick);
+        return;
+      }
+      const frac = Math.min(1, Math.max(0, el.currentTime / el.duration));
+      onPlaybackProgressRef.current?.(index, frac);
+      if (el.paused) return;
+      raf = requestAnimationFrame(tick);
+    };
+    const schedule = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(tick);
+    };
+    schedule();
+    v.addEventListener("play", schedule);
+    v.addEventListener("seeked", schedule);
+    return () => {
+      v.removeEventListener("play", schedule);
+      v.removeEventListener("seeked", schedule);
+      cancelAnimationFrame(raf);
+    };
+  }, [item.src, index, isActive]);
+
+  /** Po konci prehrania: vždy znova od začiatku, stíšené, loop — po commite DOM (muted/loop props). */
+  useLayoutEffect(() => {
+    if (!showEndScreen) return;
+    const v = videoRef.current;
+    if (!v || !item.src) return;
+
+    const startMutedLoop = () => {
+      v.muted = true;
+      v.loop = true;
+      v.volume = 1;
+      v.currentTime = 0;
+      void v.play().catch(() => {});
+    };
+
+    startMutedLoop();
+    const id = requestAnimationFrame(startMutedLoop);
+    return () => cancelAnimationFrame(id);
+  }, [showEndScreen, item.src]);
 
   const handleRootClick = () => {
     if (showEndScreen) return;
-    const v = ref.current;
+    const v = videoRef.current;
     if (!v || !item.src) return;
+
+    onCarouselInteract?.(index);
 
     if (isFirst) {
       if (!soundOn) {
         v.currentTime = 0;
+        v.loop = false;
         v.muted = false;
+        v.volume = 1;
         setSoundOn(true);
         void v.play();
         return;
@@ -71,6 +284,7 @@ export function StudentVideoCard({ item, index }: Props) {
     }
 
     v.muted = false;
+    v.volume = 1;
     if (v.paused) void v.play();
     else v.pause();
   };
@@ -83,6 +297,9 @@ export function StudentVideoCard({ item, index }: Props) {
   const showSoundHint = isFirst && !soundOn && !showEndScreen;
 
   const videoMuted = showEndScreen || (isFirst && !soundOn);
+
+  const overlayFactor = showEndScreen ? 1 : tailProgress;
+  const showTailOrEndOverlay = tailProgress > 0 || showEndScreen;
 
   return (
     <div
@@ -110,36 +327,45 @@ export function StudentVideoCard({ item, index }: Props) {
       }}
     >
       <video
-        ref={ref}
-        className={`h-full w-full object-cover transition-[filter] duration-500 ${showEndScreen ? "scale-[1.02] blur-[3px]" : ""}`}
+        ref={videoRef}
+        className="h-full w-full object-cover"
         playsInline
-        preload={isFirst ? "auto" : "metadata"}
+        preload={isFirst ? "metadata" : "none"}
         muted={videoMuted}
-        loop={showEndScreen}
+        loop={showEndScreen || (isFirst && !soundOn)}
       >
         <source src={item.src} type="video/mp4" />
       </video>
 
-      {showEndScreen ? (
+      {showTailOrEndOverlay ? (
         <div
-          className="student-video-end-overlay absolute inset-0 z-30 flex flex-col items-center justify-center gap-6 bg-black/30 px-5 backdrop-blur-md backdrop-saturate-75 sm:gap-7"
-          role="dialog"
-          aria-label="Koniec ukážky"
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-6 px-5 sm:gap-7"
+          style={{
+            backgroundColor: `rgba(0,0,0,${0.35 * overlayFactor})`,
+            backdropFilter: `blur(${10 * overlayFactor}px) saturate(${1 - 0.2 * overlayFactor})`,
+            WebkitBackdropFilter: `blur(${10 * overlayFactor}px) saturate(${1 - 0.2 * overlayFactor})`,
+            pointerEvents: showEndScreen ? "auto" : "none",
+          }}
+          role={showEndScreen ? "dialog" : undefined}
+          aria-hidden={!showEndScreen}
+          aria-label={showEndScreen ? "Koniec ukážky" : undefined}
         >
-          <div className="student-video-end-cta flex max-w-[min(100%,18rem)] flex-col items-center gap-6 text-center sm:max-w-[20rem] sm:gap-7">
-            <p className="font-heading text-[clamp(1.2rem,4vw,1.65rem)] leading-[1.15] font-bold tracking-tight text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.65)]">
-              Dopožeraj celé video
-            </p>
-            <a
-              href={item.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={bubbleYellow}
-              onClick={(e) => e.stopPropagation()}
-            >
-              Prehrať
-            </a>
-          </div>
+          {showEndScreen ? (
+            <div className="student-video-end-cta flex max-w-[min(100%,18rem)] flex-col items-center justify-center gap-6 text-center sm:max-w-[20rem] sm:gap-7">
+              <p className="font-heading text-[clamp(1.2rem,4vw,1.65rem)] leading-[1.15] font-bold tracking-tight text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.65)]">
+                Dopozeraj celé video
+              </p>
+              <a
+                href={item.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={endScreenPlayCta}
+                onClick={(e) => e.stopPropagation()}
+              >
+                Prehrať
+              </a>
+            </div>
+          ) : null}
         </div>
       ) : null}
 
@@ -169,4 +395,4 @@ export function StudentVideoCard({ item, index }: Props) {
       ) : null}
     </div>
   );
-}
+});

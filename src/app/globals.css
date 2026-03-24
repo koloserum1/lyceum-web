@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Kotvy pod fixným menu + plynulý skok (ak nie je prefers-reduced-motion) */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-padding-top: 5.75rem;
+  }
+}
+
 @theme inline {
   /* Inter / Bricolage Grotesque: CSS premenné z next/font v layout.tsx */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -10,7 +17,8 @@
   --color-brand-tertiary: #fceca8;
   --color-brand-accent: #d8c6f0;
   --color-brand-bg1: #ffffff;
-  --color-brand-bg2: #f3f2f6;
+  /* Jemnejšie ako predtým (#f3f2f6) — bližšie k bielej, stále jemný „papier“ */
+  --color-brand-bg2: #faf9fc;
   --color-brand-fg1: #1d1d1f;
   --color-brand-fg3: #6e6e73;
   --color-brand-fg4: #8e8e93;
@@ -35,15 +43,7 @@ body {
   letter-spacing: -0.02em;
 }
 
-/* Koniec ukážky študentského videa: prekryv + fade CTA */
-@keyframes student-video-end-overlay-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+/* Koniec ukážky študentského videa: fade CTA (prekryv sa animuje v komponente) */
 @keyframes student-video-end-cta-in {
   from {
     opacity: 0;
@@ -53,9 +53,6 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-}
-.student-video-end-overlay {
-  animation: student-video-end-overlay-in 0.45s ease-out forwards;
 }
 .student-video-end-cta {
   opacity: 0;
@@ -225,53 +222,11 @@ body {
 .home-hero-top-copy a:hover {
   text-decoration: none;
 }
-/* Hero: redšia štvorcová mriežka (tmavšie línie ako bg-brand-bg2), len vpravo, šikmo */
+
+/* Hero: jemná bodková textúra na celej ploche (ako „dot grid“ na svetlom pozadí) */
 .home-hero-top-shell {
   isolation: isolate;
 }
-.home-hero-top-grid {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  inset: 0;
-  left: 34%;
-  overflow: hidden;
-  border-radius: inherit;
-}
-.home-hero-top-grid::before {
-  content: "";
-  position: absolute;
-  left: -40%;
-  top: -35%;
-  width: 180%;
-  height: 170%;
-  transform: rotate(-11deg);
-  transform-origin: 55% 45%;
-  /* Priesvitné = #f3f2f6; línie tmavá sivá */
-  background-color: transparent;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0,
-      transparent 167px,
-      #5f5f6c 167px,
-      #5f5f6c 168px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 167px,
-      #5f5f6c 167px,
-      #5f5f6c 168px
-    );
-  background-size: 168px 168px;
-}
-@media screen and (max-width: 600px) {
-  .home-hero-top-grid {
-    left: 42%;
-  }
-}
-
 /* PC: fotka vľavo (42 %), text vpravo (58 %) — grid, aby gap nezlomil riadok */
 .home-hero-top-cols {
   display: grid;

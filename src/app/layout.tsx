@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Inter } from "next/font/google";
 import "./globals.css";
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 /** Regular 400, Regular Italic, Bold 700, Bold Italic */
 const inter = Inter({
@@ -35,7 +36,10 @@ export default function RootLayout({
       lang="sk"
       className={`h-full scroll-smooth ${inter.variable} ${bricolageGrotesque.variable} ${bricolageGrotesque.className}`}
     >
-      <body className="min-h-full font-sans antialiased">{children}</body>
+      <body className="min-h-full font-sans antialiased">
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }
