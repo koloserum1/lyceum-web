@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import type { StudentVideo } from "@/content/studentVideos";
+import { useVideoPosterDataUrl } from "@/hooks/useVideoPosterDataUrl";
 
 export type StudentVideoCardHandle = {
   pauseFromCarousel: () => void;
@@ -58,6 +59,11 @@ export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
   const [showEndScreen, setShowEndScreen] = useState(false);
   const [tailProgress, setTailProgress] = useState(0);
   const tailRafRef = useRef(0);
+
+  /** Náhľad z prvého snímku; hlavné video môže zostať `preload="none"`. */
+  const posterUrl = useVideoPosterDataUrl(item.src, {
+    delayMs: index * 140,
+  });
 
   showEndScreenRef.current = showEndScreen;
   isActiveRef.current = isActive;
@@ -303,7 +309,7 @@ export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
 
   return (
     <div
-      className={`relative aspect-[9/16] w-full ${showEndScreen ? "cursor-default" : "cursor-pointer"}`}
+      className={`relative aspect-[9/16] w-full overflow-hidden bg-brand-bg2 ${showEndScreen ? "cursor-default" : "cursor-pointer"}`}
       role="button"
       tabIndex={showEndScreen ? -1 : 0}
       aria-label={
@@ -330,6 +336,7 @@ export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
         ref={videoRef}
         className="h-full w-full object-cover"
         playsInline
+        poster={posterUrl ?? undefined}
         preload={isFirst ? "metadata" : "none"}
         muted={videoMuted}
         loop={showEndScreen || (isFirst && !soundOn)}

@@ -13,6 +13,7 @@ import {
   endScreenPlayCta,
   type StudentVideoCardHandle,
 } from "@/components/landing/StudentVideoCard";
+import { useVideoPosterDataUrl } from "@/hooks/useVideoPosterDataUrl";
 
 const LYCEUM_INSTAGRAM_URL =
   "https://www.instagram.com/lyceumcsl?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==";
@@ -31,6 +32,7 @@ function InstagramMoreCta({
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const posterUrl = useVideoPosterDataUrl(videoSrc, { delayMs: 200 });
 
   useLayoutEffect(() => {
     const v = videoRef.current;
@@ -72,7 +74,8 @@ function InstagramMoreCta({
           playsInline
           muted
           loop
-          preload="metadata"
+          poster={posterUrl ?? undefined}
+          preload={posterUrl ? "none" : "metadata"}
         >
           <source src={videoSrc} type="video/mp4" />
         </video>
