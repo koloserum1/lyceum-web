@@ -1,26 +1,371 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Inter / Bricolage Grotesque: CSS premenné z next/font v layout.tsx */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  /* Školské farby: #fdb913 · #562082 — výraznejšie pastelové; text ~ Apple black */
+  --color-brand-primary: #b9a0e0;
+  --color-brand-secondary: #f2d56e;
+  --color-brand-tertiary: #fceca8;
+  --color-brand-accent: #d8c6f0;
+  --color-brand-bg1: #ffffff;
+  --color-brand-bg2: #f3f2f6;
+  --color-brand-fg1: #1d1d1f;
+  --color-brand-fg3: #6e6e73;
+  --color-brand-fg4: #8e8e93;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-brand-bg1 text-brand-fg1 font-sans text-[clamp(1rem,1rem+((1vw-0.2rem)*0.227),1.125rem)] font-normal antialiased;
+  line-height: 1.6;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Koniec ukážky študentského videa: prekryv + fade CTA */
+@keyframes student-video-end-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes student-video-end-cta-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.student-video-end-overlay {
+  animation: student-video-end-overlay-in 0.45s ease-out forwards;
+}
+.student-video-end-cta {
+  opacity: 0;
+  animation: student-video-end-cta-in 0.6s ease-out forwards;
+  animation-delay: 0.42s;
+}
+
+/* Hero underline + circle highlight (from theme main.css) */
+.has-double-underline {
+  position: relative;
+}
+.has-double-underline::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 82%;
+  left: 0;
+  background: url("https://aliabdaal.com/wp-content/themes/ali-abdaal/assets/images/icons/double-underline-blue.svg")
+    no-repeat;
+  background-size: contain;
+}
+
+.has-circle-blue {
+  position: relative;
+  z-index: 1;
+}
+.has-circle-blue::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: calc(100% + 0.05em);
+  height: calc(100% + 0.35em);
+  top: 0;
+  right: 0.05em;
+  background: url("https://aliabdaal.com/wp-content/themes/ali-abdaal/assets/images/icons/circle-blue.svg")
+    no-repeat;
+  background-size: contain;
+  z-index: -1;
+}
+
+.cta-box {
+  box-shadow: 0px 50px 80px -15px rgba(86, 32, 130, 0.08);
+}
+
+@media screen and (min-width: 1100px) {
+  .has-orange-arrow--top-right {
+    position: relative;
+  }
+  .has-orange-arrow--top-right::before {
+    content: "";
+    position: absolute;
+    top: -4em;
+    right: 1.5em;
+    width: 3.55em;
+    height: 7.5em;
+    background: url("https://aliabdaal.com/wp-content/themes/ali-abdaal/assets/images/icons/orange-arrow.svg")
+      center / contain no-repeat;
+  }
+}
+
+/* Clickable cards */
+.clickable-card {
+  @apply relative cursor-pointer rounded-[20px] bg-brand-bg2 transition-all duration-200 ease-in-out;
+  padding: clamp(1.5rem, 6.5vw, 4rem);
+}
+.clickable-card:hover {
+  @apply -translate-y-3;
+  box-shadow: 0px 30px 40px -15px rgba(86, 32, 130, 0.12);
+}
+.card-hover-orange:hover {
+  background-color: #e8c85c !important;
+}
+.card-hover-orange:hover .ali-icon-highlight {
+  fill: #1d1d1f;
+}
+.card-hover-purple:hover {
+  background-color: #b9a0e0 !important;
+}
+.card-hover-purple:hover .ali-icon-highlight {
+  fill: #1d1d1f;
+}
+.card-hover-yellow:hover {
+  background-color: #fceca8 !important;
+}
+.card-hover-yellow:hover .ali-icon-highlight {
+  fill: #1d1d1f;
+}
+.card-hover-blue:hover {
+  background-color: #c4b5e5 !important;
+}
+.card-hover-blue:hover .ali-icon-highlight {
+  fill: #1d1d1f;
+}
+
+/* Text + arrow link */
+.link-text-arrow {
+  @apply relative inline-flex items-center gap-4 bg-transparent py-2 pl-0 pr-0 font-normal text-brand-fg1 underline decoration-solid underline-offset-4 transition-all duration-200;
+}
+.link-text-arrow:hover {
+  @apply no-underline;
+  gap: 1.5rem;
+}
+.link-text-arrow::after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask: url("https://aliabdaal.com/wp-content/themes/ali-abdaal/assets/images/icons/arrow-right.svg")
+    center / cover no-repeat;
+  -webkit-mask: url("https://aliabdaal.com/wp-content/themes/ali-abdaal/assets/images/icons/arrow-right.svg")
+    center / cover no-repeat;
+  transform: scale(0.85);
+  transition: transform 0.2s ease-in-out;
+}
+.link-text-arrow:hover::after {
+  transform: scale(0.85) translateX(6px);
+}
+
+.btn-primary-site {
+  @apply inline-flex items-center justify-center rounded-full border-0 bg-brand-primary px-[clamp(1.5rem,1.75vw,3.5rem)] py-[0.7rem] pb-[0.6rem] font-bold text-brand-fg1 no-underline transition-colors;
+}
+.btn-primary-site:hover {
+  @apply bg-brand-fg1 text-brand-bg1;
+}
+
+.btn-secondary-site {
+  @apply inline-flex items-center justify-center rounded-full border-0 bg-brand-secondary px-[clamp(1.5rem,1.75vw,3.5rem)] py-[0.7rem] pb-[0.6rem] font-bold text-brand-fg1 no-underline transition-colors;
+}
+.btn-secondary-site:hover {
+  @apply bg-brand-tertiary text-brand-fg1;
+}
+
+/* Top hero (Hey Friends) */
+.home-hero-top-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 2rem + ((1vw - 0.2rem) * 3.636), 4rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.home-hero-top-copy {
+  font-weight: 400;
+  line-height: 1.55;
+  margin-top: clamp(0.45rem, 1vw, 0.85rem);
+}
+
+/* Hero lead: výrazne väčší ako body (1–1.125rem); špecifickejší selektor kvôli poradiu Tailwind vrstiev */
+.hero-top-lead {
+  line-height: 1.55 !important;
+}
+.hero-top-col-copy > p.home-hero-top-copy.hero-top-lead {
+  font-size: clamp(1rem, 0.93rem + ((1vw - 0.2rem) * 0.88), 1.4375rem) !important;
+  line-height: 1.55 !important;
+  max-width: 100% !important;
+}
+
+.home-hero-top-copy a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.home-hero-top-copy a:hover {
+  text-decoration: none;
+}
+/* Hero: redšia štvorcová mriežka (tmavšie línie ako bg-brand-bg2), len vpravo, šikmo */
+.home-hero-top-shell {
+  isolation: isolate;
+}
+.home-hero-top-grid {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  inset: 0;
+  left: 34%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+.home-hero-top-grid::before {
+  content: "";
+  position: absolute;
+  left: -40%;
+  top: -35%;
+  width: 180%;
+  height: 170%;
+  transform: rotate(-11deg);
+  transform-origin: 55% 45%;
+  /* Priesvitné = #f3f2f6; línie tmavá sivá */
+  background-color: transparent;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 167px,
+      #5f5f6c 167px,
+      #5f5f6c 168px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 167px,
+      #5f5f6c 167px,
+      #5f5f6c 168px
+    );
+  background-size: 168px 168px;
+}
+@media screen and (max-width: 600px) {
+  .home-hero-top-grid {
+    left: 42%;
+  }
+}
+
+/* PC: fotka vľavo (42 %), text vpravo (58 %) — grid, aby gap nezlomil riadok */
+.home-hero-top-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+.home-hero-top-cols .hero-top-col-photo {
+  min-width: 0;
+}
+.home-hero-top-cols .hero-top-col-photo figure {
+  display: flex;
+  justify-content: flex-start;
+}
+.home-hero-top-cols .hero-top-col-copy {
+  min-width: 0;
+  text-align: left;
+}
+@media screen and (max-width: 600px) {
+  .home-hero-top-cols {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .home-hero-top-cols .hero-top-col-copy {
+    text-align: center;
+  }
+  .home-hero-top-cols .hero-top-col-photo figure {
+    justify-content: center;
+  }
+}
+
+/* Hero column tweaks from main.css */
+@media screen and (max-width: 780px) {
+  .home-hero-cols {
+    flex-wrap: nowrap !important;
+  }
+  .home-hero-cols .hero-col-photo {
+    flex-basis: 30% !important;
+    align-self: flex-start;
+  }
+  .home-hero-cols .hero-col-copy {
+    flex-basis: 70% !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .home-hero-cols {
+    flex-wrap: wrap !important;
+  }
+  .home-hero-cols .hero-col-photo {
+    flex-basis: 30% !important;
+    align-self: center;
+  }
+  .home-hero-cols .hero-col-photo figure {
+    @apply flex justify-center;
+  }
+  .home-hero-cols .hero-col-photo img {
+    max-width: 200px;
+  }
+  .home-hero-cols .hero-col-copy {
+    flex-basis: 70% !important;
+  }
+  .home-hero-heading {
+    font-size: clamp(2rem, 2rem + ((1vw - 0.2rem) * 3.636), 4rem) !important;
+    text-align: center;
+  }
+  .home-hero-copy {
+    font-size: 22px !important;
+    margin-top: 10px !important;
+    text-align: center;
+    line-height: 1.45;
+  }
+}
+
+@media screen and (min-width: 781px) and (max-width: 1099px) {
+  .home-hero-heading {
+    font-size: clamp(2rem, 2rem + ((1vw - 0.2rem) * 3.636), 4rem) !important;
+  }
+  .home-hero-copy {
+    font-size: 28px !important;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .home-hero-heading {
+    font-size: clamp(2rem, 2rem + ((1vw - 0.2rem) * 3.636), 4rem) !important;
+  }
+  .home-hero-copy {
+    font-size: 28px !important;
+  }
+}
+
+/* Menu: Bricolage Grotesque Regular — priamo --font-bricolage (next/font na <html>), !important cez dedený font-sans z body */
+header.site-header nav a[data-nav-link] {
+  font-family: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02em;
 }
