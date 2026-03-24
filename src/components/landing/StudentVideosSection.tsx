@@ -18,6 +18,21 @@ import { useVideoPosterDataUrl } from "@/hooks/useVideoPosterDataUrl";
 const LYCEUM_INSTAGRAM_URL =
   "https://www.instagram.com/lyceumcsl?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==";
 
+/** Len horizontálny posun v karuseli — bez `scrollIntoView`, ktoré posúva aj okno stránky. */
+function scrollCarouselItemIntoCenter(
+  root: HTMLDivElement,
+  el: HTMLElement,
+  behavior: ScrollBehavior,
+) {
+  const rootRect = root.getBoundingClientRect();
+  const elRect = el.getBoundingClientRect();
+  const delta =
+    elRect.left + elRect.width / 2 - (rootRect.left + rootRect.width / 2);
+  const max = Math.max(0, root.scrollWidth - root.clientWidth);
+  const next = Math.max(0, Math.min(max, root.scrollLeft + delta));
+  root.scrollTo({ left: next, behavior });
+}
+
 type Props = {
   items: StudentVideo[];
 };
@@ -175,7 +190,7 @@ export function StudentVideosSection({ items }: Props) {
   const playAfterScrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   /** Bodky = posledné explicitne zvolené video (klik na kartu / bodku), nie podľa scrollu ani resize */
   const userChoseCarouselRef = useRef(false);
-  /** Ignorovať scroll z programového scrollIntoView hneď po mounte */
+  /** Ignorovať synchronizáciu so scrollom hneď po programovom posune karuselu */
   const suppressScrollSyncRef = useRef(false);
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -183,12 +198,19 @@ export function StudentVideosSection({ items }: Props) {
 
   activeIndexRef.current = activeIndex;
 
+  const scrollCarouselToIndex = useCallback(
+    (index: number, behavior: ScrollBehavior) => {
+      const root = scrollRef.current;
+      const el = itemRefs.current[index];
+      if (!root || !el) return;
+      scrollCarouselItemIntoCenter(root, el, behavior);
+    },
+    [],
+  );
+
   const centerFirstItemInCarousel = useCallback(() => {
-    const root = scrollRef.current;
-    const el = itemRefs.current[0];
-    if (!root || !el) return;
-    el.scrollIntoView({ inline: "center", block: "nearest", behavior: "auto" });
-  }, []);
+    scrollCarouselToIndex(0, "auto");
+  }, [scrollCarouselToIndex]);
 
   /** Pri načítaní vycentrovať prvé video — inak je „v strede“ iná karta (napr. Matúš) */
   useLayoutEffect(() => {
@@ -234,14 +256,12 @@ export function StudentVideosSection({ items }: Props) {
     };
   }, [centerFirstItemInCarousel]);
 
-  const scrollToIndex = useCallback((i: number) => {
-    const el = itemRefs.current[i];
-    el?.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest",
-    });
-  }, []);
+  const scrollToIndex = useCallback(
+    (i: number) => {
+      scrollCarouselToIndex(i, "smooth");
+    },
+    [scrollCarouselToIndex],
+  );
 
   const handleVideoCarouselInteract = useCallback(
     (i: number) => {
