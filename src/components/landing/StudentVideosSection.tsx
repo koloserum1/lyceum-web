@@ -196,7 +196,9 @@ export function StudentVideosSection({ items }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeFraction, setActiveFraction] = useState(0);
 
-  activeIndexRef.current = activeIndex;
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  });
 
   const scrollCarouselToIndex = useCallback(
     (index: number, behavior: ScrollBehavior) => {

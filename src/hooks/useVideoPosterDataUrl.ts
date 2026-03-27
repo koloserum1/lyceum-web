@@ -39,7 +39,6 @@ export function useVideoPosterDataUrl(
 
   useEffect(() => {
     if (!src || !enabled) {
-      if (!src) setPoster(null);
       return;
     }
     const cached = posterCache.get(src);
@@ -204,5 +203,6 @@ export function useVideoPosterDataUrl(
     };
   }, [src, enabled, delayMs]);
 
+  if (!src) return null;
   return poster;
 }

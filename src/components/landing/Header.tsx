@@ -5,13 +5,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  { href: "#domov", label: "Domov" },
   { href: "#o-skole", label: "O škole" },
   { href: "#studium", label: "Štúdium" },
-  { href: "#otestuj-sa", label: "Otestuj sa" },
-  { href: "#skolsky-poriadok", label: "Školský poriadok" },
-  { href: "#pridaj-sa", label: "Do tímu" },
+  { href: "#pre-studentov", label: "Pre študentov" },
+  { href: "#kontakt", label: "Kontakt" },
   { href: "#prijimacky", label: "Prijímačky" },
+  { href: "#dva-percenta", label: "2 %" },
+  { href: "#pridaj-sa", label: "Pridaj sa do tímu" },
+  { href: "#dod", label: "DOD" },
 ] as const;
 
 const SHELL = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";

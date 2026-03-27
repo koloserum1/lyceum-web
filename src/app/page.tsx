@@ -314,7 +314,10 @@ export default function Home() {
               subtitle="Prax a projekty. Rozbaľ blok, ktorý ťa zaujíma."
             />
             <SubjectsAccordion />
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+            <div
+              id="dod"
+              className="mt-6 flex flex-wrap items-center gap-3 scroll-mt-24"
+            >
               <a href="#zaujemca" className="btn-primary-site">
                 Deň otvorených dverí
               </a>
@@ -375,8 +378,8 @@ export default function Home() {
         {/* Placeholdery */}
         <Sec className="!pt-0">
           <div className="grid gap-4 md:grid-cols-3">
-            <div id="skolsky-poriadok" className="scroll-mt-24">
-              <PlaceholderMini title="Školský poriadok" />
+            <div id="pre-studentov" className="scroll-mt-24">
+              <PlaceholderMini title="Pre študentov · školský poriadok" />
             </div>
             <div id="pridaj-sa" className="scroll-mt-24">
               <PlaceholderMini title="Pridaj sa do tímu" />
@@ -385,16 +388,27 @@ export default function Home() {
               <PlaceholderMini title="Prijímačky a termíny" />
             </div>
           </div>
+          <div id="dva-percenta" className="mt-4 scroll-mt-24">
+            <PlaceholderMini title="2 % z dane" />
+          </div>
           <div id="stipendia" className="mt-4 scroll-mt-24">
             <PlaceholderMini title="Štipendiá" />
           </div>
         </Sec>
 
-        <footer className="border-t border-black/[0.06] bg-brand-bg2 py-8">
+        <footer
+          id="kontakt"
+          className="scroll-mt-24 border-t border-black/[0.06] bg-brand-bg2 py-8"
+        >
           <div
             className={`${CX} flex flex-col gap-2 text-xs text-brand-fg3 sm:flex-row sm:items-center sm:justify-between`}
           >
-            <p className="m-0 font-bold text-brand-fg1">Lýceum C. S. Lewisa</p>
+            <div>
+              <p className="m-0 font-bold text-brand-fg1">Lýceum C. S. Lewisa</p>
+              <p className="mt-1 mb-0 text-[13px] font-normal text-brand-fg2">
+                Kontakt doplníme (e-mail, adresa, telefón).
+              </p>
+            </div>
             <p className="m-0">© {new Date().getFullYear()}</p>
           </div>
         </footer>

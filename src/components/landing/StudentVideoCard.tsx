@@ -151,10 +151,12 @@ export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
     };
   }, [item.src, posterUrl]);
 
-  showEndScreenRef.current = showEndScreen;
-  isActiveRef.current = isActive;
-  onPlaybackProgressRef.current = onPlaybackProgress;
-  soundOnRef.current = soundOn;
+  useEffect(() => {
+    showEndScreenRef.current = showEndScreen;
+    isActiveRef.current = isActive;
+    onPlaybackProgressRef.current = onPlaybackProgress;
+    soundOnRef.current = soundOn;
+  });
 
   useImperativeHandle(forwardedRef, () => ({
     pauseFromCarousel: () => {
