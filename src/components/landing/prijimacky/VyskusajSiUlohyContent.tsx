@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LINK_TERMINY_VYSLEDKY_ZAPIS } from "@/data/prijimacky-nav";
 import {
   PRIJIMACIE_ULOHY_PDF,
   ukazkyUlohKategorie,
@@ -7,7 +8,7 @@ import {
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
 
 const LINK_CO = "/prijimacky/co-te-caka-na-prijimackach";
-const LINK_TERM = "/prijimacky/terminy-a-kapacita";
+const LINK_TERM = LINK_TERMINY_VYSLEDKY_ZAPIS;
 
 const sectionGap = "py-16 md:py-20 lg:py-24";
 const h2Class =

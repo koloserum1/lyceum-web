@@ -15,7 +15,8 @@ export function generateStaticParams() {
     "detail-prijimaciek",
     "lycejna-vyzva",
     "vyskusaj-si-ulohy",
-    "terminy-a-kapacita",
+    "terminy-vysledky-a-zapis",
+    "skolne-a-stipendia",
   ]);
   return prijimackyPages
     .filter((p) => !staticSlugs.has(p.slug))

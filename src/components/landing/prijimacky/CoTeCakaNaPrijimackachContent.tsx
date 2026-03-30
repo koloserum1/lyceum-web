@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { LINK_TERMINY_VYSLEDKY_ZAPIS } from "@/data/prijimacky-nav";
 
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
 
 const LINK_ULOHY = "/prijimacky/vyskusaj-si-ulohy";
-const LINK_TERMINY = "/prijimacky/terminy-a-kapacita";
+const LINK_TERMINY = LINK_TERMINY_VYSLEDKY_ZAPIS;
 const LINK_AKO = "/prijimacky/ako-sa-dostat-na-lyceum";
 
 const sectionGap = "py-16 md:py-20 lg:py-24";
