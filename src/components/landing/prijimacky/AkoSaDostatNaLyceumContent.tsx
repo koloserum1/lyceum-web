@@ -147,30 +147,40 @@ export function AkoSaDostatNaLyceumContent() {
         </div>
       </section>
 
-      {/* 4. Koľko berieme */}
+      {/* 4. Základné informácie o prijatí */}
       <section
         className={`${CX} ${sectionGap}`}
-        aria-labelledby="heading-kolko"
+        aria-labelledby="heading-zakladne-info"
       >
-        <h2 id="heading-kolko" className={`${h2Class} mb-10 md:mb-12`}>
-          Koľko študentov berieme
+        <h2 id="heading-zakladne-info" className={`${h2Class} mb-10 md:mb-12`}>
+          Základné informácie o prijatí
         </h2>
-        <div className="grid gap-4 sm:grid-cols-3 sm:gap-5">
-          {[
-            { title: "Triedy", text: "3 triedy 1. ročníka" },
-            { title: "Počet žiakov", text: "51 žiakov" },
-            { title: "Odbor", text: "3918 M Technické lýceum" },
-          ].map((c) => (
-            <div
-              key={c.title}
-              className="rounded-2xl border border-black/[0.06] bg-white px-5 py-6 text-center md:px-6 md:py-8"
-            >
-              <p className="m-0 text-xs font-semibold uppercase tracking-wide text-brand-fg3">
-                {c.title}
-              </p>
-              <p className="font-heading m-0 mt-3 text-[clamp(1rem,0.9rem+0.5vw,1.2rem)] font-bold leading-snug text-brand-fg1">
-                {c.text}
-              </p>
+        <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-3 sm:gap-5 md:gap-8">
+          {(
+            [
+              { title: "Triedy", value: "3 triedy 1. ročníka" },
+              { title: "Počet žiakov", value: "51 žiakov" },
+              { title: "Odbor", value: "3918 M Technické lýceum" },
+            ] as const
+          ).map((row) => (
+            <div key={row.title} className="relative isolate px-1 pb-1 pt-2 sm:px-0">
+              {/* Jemná fialová aura za kartou — rozptýlený blur, nie tvrdý tieň */}
+              <div
+                className="pointer-events-none absolute left-1/2 top-[58%] -z-10 h-[72%] w-[92%] max-w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-[48px] bg-brand-primary/[0.11] blur-[28px] sm:max-w-none md:blur-[32px]"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute left-1/2 top-[70%] -z-10 h-[45%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-accent/[0.14] blur-[22px] md:blur-[26px]"
+                aria-hidden
+              />
+              <div className="relative rounded-[20px] border border-black/[0.05] bg-white/85 px-6 py-8 text-center shadow-[0_1px_0_0_rgba(255,255,255,0.8)_inset] backdrop-blur-[4px] md:py-10">
+                <p className="m-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-fg3">
+                  {row.title}
+                </p>
+                <p className="font-heading m-0 mt-5 text-[clamp(1.2rem,0.95rem+1.1vw,1.65rem)] font-bold leading-snug tracking-tight text-brand-fg1">
+                  {row.value}
+                </p>
+              </div>
             </div>
           ))}
         </div>
