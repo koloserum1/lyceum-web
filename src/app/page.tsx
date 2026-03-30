@@ -388,9 +388,6 @@ export default function Home() {
               <PlaceholderMini title="Prijímačky a termíny" />
             </div>
           </div>
-          <div id="dva-percenta" className="mt-4 scroll-mt-24">
-            <PlaceholderMini title="2 % z dane" />
-          </div>
           <div id="stipendia" className="mt-4 scroll-mt-24">
             <PlaceholderMini title="Štipendiá" />
           </div>
