@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Header } from "@/components/landing/Header";
 import { HeroInteractiveDots } from "@/components/landing/HeroInteractiveDots";
 import { HeroProjektyBubble } from "@/components/landing/HeroProjektyBubble";
@@ -432,7 +433,21 @@ export default function Home() {
             <div>
               <p className="m-0 font-bold text-brand-fg1">Lýceum C. S. Lewisa</p>
               <p className="mt-1 mb-0 text-[13px] font-normal text-brand-fg2">
-                Kontakt doplníme (e-mail, adresa, telefón).
+                <a
+                  href="mailto:info@lyceum.sk"
+                  className="font-medium text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"
+                >
+                  info@lyceum.sk
+                </a>
+                {" · "}
+                +421 901 788 744 · Haanova 28, 851 04 Bratislava —{" "}
+                <Link
+                  href="/kontakt"
+                  className="font-medium text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"
+                >
+                  kontaktná stránka
+                </Link>
+                .
               </p>
             </div>
             <p className="m-0">© {new Date().getFullYear()}</p>

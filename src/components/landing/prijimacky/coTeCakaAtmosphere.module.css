@@ -1,0 +1,73 @@
+/* Jemný drift pre floating labels — pomalé, neagresívne */
+@keyframes coTeCakaDriftA {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+@keyframes coTeCakaDriftB {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 2.5px, 0);
+  }
+}
+
+@keyframes coTeCakaDriftC {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+@keyframes coTeCakaDriftD {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 3px, 0);
+  }
+}
+
+.driftA {
+  animation: coTeCakaDriftA 7.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.driftB {
+  animation: coTeCakaDriftB 8.5s ease-in-out infinite;
+  animation-delay: -1.2s;
+  will-change: transform;
+}
+
+.driftC {
+  animation: coTeCakaDriftC 7s ease-in-out infinite;
+  animation-delay: -2.4s;
+  will-change: transform;
+}
+
+.driftD {
+  animation: coTeCakaDriftD 8s ease-in-out infinite;
+  animation-delay: -0.6s;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .driftA,
+  .driftB,
+  .driftC,
+  .driftD {
+    animation: none;
+    will-change: auto;
+  }
+}

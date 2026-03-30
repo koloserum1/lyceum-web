@@ -1,0 +1,39 @@
+/* Jemný vertikálny drift — kľúčové snímky majú iné názvy ako triedy (spoľahlivejšie v bundleri) */
+@keyframes prijimackyPillDriftUp {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes prijimackyPillDriftDown {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 7px, 0);
+  }
+}
+
+.pillDriftA {
+  animation: prijimackyPillDriftUp 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.pillDriftB {
+  animation: prijimackyPillDriftDown 7.25s ease-in-out infinite;
+  animation-delay: -1.15s;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillDriftA,
+  .pillDriftB {
+    animation: none;
+    will-change: auto;
+  }
+}
