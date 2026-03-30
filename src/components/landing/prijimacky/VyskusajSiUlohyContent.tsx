@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LINK_TERMINY_VYSLEDKY_ZAPIS } from "@/data/prijimacky-nav";
 import {
   PRIJIMACIE_ULOHY_PDF,
   ukazkyUlohKategorie,
@@ -7,7 +8,6 @@ import {
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
 
 const LINK_CO = "/prijimacky/co-te-caka-na-prijimackach";
-const LINK_TERM = "/prijimacky/terminy-a-kapacita";
 
 const sectionGap = "py-16 md:py-20 lg:py-24";
 const h2Class =
@@ -69,10 +69,10 @@ export function VyskusajSiUlohyContent() {
                 Čo ťa čaká na prijímačkách
               </Link>
               <Link
-                href={LINK_TERM}
+                href={LINK_TERMINY_VYSLEDKY_ZAPIS}
                 className="btn-secondary-site justify-center px-8 py-3.5 text-[15px] md:px-10 md:text-base"
               >
-                Termíny a kapacita
+                Termíny, výsledky a zápis
               </Link>
             </div>
           </div>
@@ -233,8 +233,8 @@ export function VyskusajSiUlohyContent() {
               Chceš vedieť, čo bude nasledovať ďalej?
             </h2>
             <p className="m-0 mt-4 text-[15px] leading-relaxed text-brand-fg1/90 md:mt-5 md:text-[17px]">
-              Pozri si, čo ťa čaká na prijímačkách, alebo si prejdi termíny a
-              kapacitu.
+              Pozri si, čo ťa čaká na prijímačkách, alebo si prejdi termíny,
+              výsledky a zápis.
             </p>
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4 md:mt-10">
               <Link
@@ -244,10 +244,10 @@ export function VyskusajSiUlohyContent() {
                 Čo ťa čaká na prijímačkách
               </Link>
               <Link
-                href={LINK_TERM}
+                href={LINK_TERMINY_VYSLEDKY_ZAPIS}
                 className="btn-secondary-site justify-center px-8 py-3.5 text-[15px] md:px-10"
               >
-                Termíny a kapacita
+                Termíny, výsledky a zápis
               </Link>
             </div>
           </div>

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
 
-const LINK_DETAIL = "/prijimacky/detail-prijimaciek";
+const LINK_CO = "/prijimacky/co-te-caka-na-prijimackach";
 const LINK_AKO = "/prijimacky/ako-sa-dostat-na-lyceum";
 
 const sectionGap = "py-16 md:py-20 lg:py-24";
@@ -46,10 +46,10 @@ export function LycejnaVyzvaContent() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4">
               <Link
-                href={LINK_DETAIL}
+                href={LINK_CO}
                 className="btn-primary-site justify-center px-8 py-3.5 text-[15px] md:px-10 md:text-base"
               >
-                Pozrieť detail prijímačiek
+                Čo ťa čaká na prijímačkách
               </Link>
               <Link
                 href={LINK_AKO}
@@ -229,10 +229,10 @@ export function LycejnaVyzvaContent() {
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
             <Link
-              href={LINK_DETAIL}
+              href={LINK_CO}
               className="btn-primary-site justify-center px-8 py-3.5 text-[15px]"
             >
-              Pozrieť detail prijímačiek
+              Čo ťa čaká na prijímačkách
             </Link>
             <Link
               href={LINK_AKO}
@@ -263,10 +263,10 @@ export function LycejnaVyzvaContent() {
             </p>
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4 md:mt-10">
               <Link
-                href={LINK_DETAIL}
+                href={LINK_CO}
                 className="btn-primary-site justify-center px-8 py-3.5 text-[15px] md:px-10"
               >
-                Pozrieť detail prijímačiek
+                Čo ťa čaká na prijímačkách
               </Link>
               <Link
                 href={LINK_AKO}

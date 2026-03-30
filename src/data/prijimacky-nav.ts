@@ -15,12 +15,8 @@ export const prijimackyPages = [
     label: "Vyskúšaj si úlohy",
   },
   {
-    slug: "terminy-a-kapacita",
-    label: "Termíny a kapacita",
-  },
-  {
-    slug: "vysledky-a-zapis",
-    label: "Výsledky a zápis",
+    slug: "terminy-vysledky-a-zapis",
+    label: "Termíny, výsledky a zápis",
   },
   {
     slug: "skolne-a-stipendia",
@@ -29,3 +25,6 @@ export const prijimackyPages = [
 ] as const;
 
 export type PrijimackySlug = (typeof prijimackyPages)[number]["slug"];
+
+/** Jedna stránka namiesto bývalých „Termíny a kapacita“ + „Výsledky a zápis“. */
+export const LINK_TERMINY_VYSLEDKY_ZAPIS = "/prijimacky/terminy-vysledky-a-zapis";

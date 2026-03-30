@@ -1,9 +1,9 @@
 import Link from "next/link";
+import { LINK_TERMINY_VYSLEDKY_ZAPIS } from "@/data/prijimacky-nav";
 
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
 
 const LINK_ULOHY = "/prijimacky/vyskusaj-si-ulohy";
-const LINK_TERMINY = "/prijimacky/terminy-a-kapacita";
 const LINK_AKO = "/prijimacky/ako-sa-dostat-na-lyceum";
 
 const sectionGap = "py-16 md:py-20 lg:py-24";
@@ -64,12 +64,20 @@ export function CoTeCakaNaPrijimackachContent() {
                 Vyskúšaj si úlohy
               </Link>
               <Link
-                href={LINK_TERMINY}
+                href={LINK_TERMINY_VYSLEDKY_ZAPIS}
                 className="btn-secondary-site justify-center px-8 py-3.5 text-[15px] md:px-10 md:text-base"
               >
-                Termíny a kapacita
+                Termíny, výsledky a zápis
               </Link>
             </div>
+            <p className="m-0 mt-6 text-[13px] text-brand-fg3 md:text-sm">
+              <Link
+                href={LINK_AKO}
+                className="font-medium text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"
+              >
+                ← Ako sa dostať na Lýceum
+              </Link>
+            </p>
           </div>
         </section>
       </div>
@@ -180,7 +188,7 @@ export function CoTeCakaNaPrijimackachContent() {
         </h2>
         <div className="mx-auto max-w-xl rounded-2xl bg-gradient-to-br from-white to-brand-bg2/70 px-6 py-8 text-center ring-1 ring-black/[0.08] md:px-10 md:py-10">
           <p className="m-0 text-[15px] leading-relaxed text-brand-fg2 md:text-base">
-            Pozri si ukážky úloh alebo termíny a kapacitu.
+            Pozri si ukážky úloh alebo termíny, výsledky a zápis.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
             <Link
@@ -190,10 +198,10 @@ export function CoTeCakaNaPrijimackachContent() {
               Vyskúšaj si úlohy
             </Link>
             <Link
-              href={LINK_TERMINY}
+              href={LINK_TERMINY_VYSLEDKY_ZAPIS}
               className="btn-secondary-site justify-center px-8 py-3.5 text-[15px]"
             >
-              Termíny a kapacita
+              Termíny, výsledky a zápis
             </Link>
           </div>
         </div>
