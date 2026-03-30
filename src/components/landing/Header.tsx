@@ -9,7 +9,7 @@ const navBeforePrijimacky = [
   { href: "/#tri-piliere", label: "O škole" },
   { href: "/#studium", label: "Štúdium" },
   { href: "/#pre-studentov", label: "Pre študentov" },
-  { href: "/#kontakt", label: "Kontakt" },
+  { href: "/kontakt", label: "Kontakt" },
 ] as const;
 
 const navAfterPrijimacky = [
