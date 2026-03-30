@@ -209,15 +209,6 @@ export const teamMembers: TeamMember[] = [
       "Má rád energiu, nápady a ochotu robiť veci spolu. Lýceum je miesto, kde si sám za seba, ale nikdy nie sám — pri úspechoch aj nezdaroch, aby sme z nich vyťažili maximum.",
   },
   {
-    id: "hojnosova",
-    name: "Vanda Hojnošová",
-    role: "Školská psychologička",
-    bioBefore:
-      "Psychológia a francúzština na Masarykovej univerzite. Chatové poradenstvo, neziskovka, dobrovoľníctvo, krízová intervencia.",
-    bioLyceum:
-      "Vníma prácu psychológa ako podporu pri prežívaní aj pri hľadaní nových perspektív. Do Lýcea prináša témy duševného zdravia, odolnosti a citlivosti k rozmanitosti.",
-  },
-  {
     id: "matulova",
     name: "Milina Matulová",
     role: "Pilier podnikavosti",

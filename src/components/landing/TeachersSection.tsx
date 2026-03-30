@@ -1,8 +1,60 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import type { TeacherReference } from "@/content/teacherReferences";
+
+function TeacherPhoto({
+  name,
+  imageSrc,
+  photoKey,
+}: {
+  name: string;
+  imageSrc: string | null;
+  /** Pri zmene učiteľa resetuje stav chyby načítania obrázka */
+  photoKey: string;
+}) {
+  const initial = name.trim().charAt(0) || "?";
+  const [loadError, setLoadError] = useState(false);
+
+  useEffect(() => {
+    setLoadError(false);
+  }, [photoKey]);
+
+  const showImage = Boolean(imageSrc) && !loadError;
+
+  return (
+    <div
+      className="relative z-0 w-full overflow-hidden rounded-[20px] bg-brand-bg2 ring-1 ring-black/[0.06] shadow-[0_12px_40px_-20px_rgba(27,22,36,0.2)] transition-shadow duration-300 group-hover:shadow-[0_16px_48px_-18px_rgba(27,22,36,0.25)]"
+    >
+      <div className="relative aspect-[3/4] w-full">
+        {showImage ? (
+          // eslint-disable-next-line @next/next/no-img-element -- lokálne JPEG z public; next/image + Sharp často zlyhá pri niektorých exportoch
+          <img
+            src={imageSrc!}
+            alt={`Portrét — ${name}`}
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            loading="lazy"
+            decoding="async"
+            onError={() => setLoadError(true)}
+          />
+        ) : (
+          <div
+            className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-brand-bg2 via-brand-bg2 to-brand-primary/[0.18]
+              px-4 text-center"
+            aria-hidden
+          >
+            <span className="font-heading text-[clamp(2.5rem,12vw,4rem)] font-bold leading-none text-brand-fg1/[0.22]">
+              {initial}
+            </span>
+            <span className="mt-3 max-w-[12rem] text-[11px] font-medium uppercase tracking-[0.12em] text-brand-fg3">
+              {imageSrc ? "Foto sa nenašlo — skontroluj názov súboru" : "Foto doplníme"}
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 function ChevronLeft({ className }: { className?: string }) {
   return (
@@ -35,47 +87,6 @@ function ChevronRight({ className }: { className?: string }) {
     >
       <path d="M9 6l6 6-6 6" />
     </svg>
-  );
-}
-
-function TeacherPhoto({
-  name,
-  imageSrc,
-}: {
-  name: string;
-  imageSrc: string | null;
-}) {
-  const initial = name.trim().charAt(0) || "?";
-
-  return (
-    <div
-      className="relative z-0 w-full overflow-hidden rounded-[20px] bg-brand-bg2 ring-1 ring-black/[0.06] shadow-[0_12px_40px_-20px_rgba(27,22,36,0.2)] transition-shadow duration-300 group-hover:shadow-[0_16px_48px_-18px_rgba(27,22,36,0.25)]"
-    >
-      <div className="relative aspect-[3/4] w-full">
-        {imageSrc ? (
-          <Image
-            src={imageSrc}
-            alt={`Portrét — ${name}`}
-            fill
-            className="object-cover object-center"
-            sizes="(max-width: 768px) 100vw, 280px"
-          />
-        ) : (
-          <div
-            className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-brand-bg2 via-brand-bg2 to-brand-primary/[0.18]
-              px-4 text-center"
-            aria-hidden
-          >
-            <span className="font-heading text-[clamp(2.5rem,12vw,4rem)] font-bold leading-none text-brand-fg1/[0.22]">
-              {initial}
-            </span>
-            <span className="mt-3 max-w-[12rem] text-[11px] font-medium uppercase tracking-[0.12em] text-brand-fg3">
-              Foto doplníme
-            </span>
-          </div>
-        )}
-      </div>
-    </div>
   );
 }
 
@@ -136,7 +147,11 @@ export function TeachersSection({ items }: Props) {
         {/* Portrét + žltý štítok s menom (ako pri videách so študentmi) */}
         <div className="relative isolate mx-auto w-full max-w-[min(78vw,280px)] shrink-0 pt-7 pr-5 sm:max-w-[min(78vw,300px)] sm:pt-8 sm:pr-6 md:mx-0">
           <div className="group">
-            <TeacherPhoto name={current.name} imageSrc={current.imageSrc} />
+            <TeacherPhoto
+              name={current.name}
+              imageSrc={current.imageSrc}
+              photoKey={current.id}
+            />
           </div>
           <div
             className="pointer-events-none absolute top-0 right-0 z-50 origin-bottom-left translate-x-[26%] -translate-y-[11%] rotate-[9deg] rounded-full bg-brand-secondary px-3.5 py-1.5 shadow-[0_3px_14px_-3px_rgba(27,22,36,0.22)] sm:translate-x-[22%] sm:-translate-y-[9%] sm:rotate-[8deg] sm:px-4 sm:py-2"
@@ -171,7 +186,7 @@ export function TeachersSection({ items }: Props) {
             >
               <p
                 key={current.id}
-                className={`m-0 text-[13px] font-normal leading-relaxed text-brand-fg1 sm:text-[14px] md:text-[15px] ${
+                className={`m-0 text-[14px] font-normal leading-relaxed text-brand-fg1 sm:text-[15px] md:text-[16px] md:leading-[1.65] ${
                   motionOk ? "animate-teachers-quote-in" : ""
                 }`}
               >

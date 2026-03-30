@@ -3,20 +3,20 @@ import Image from "next/image";
 import { Header } from "@/components/landing/Header";
 import { HeroInteractiveDots } from "@/components/landing/HeroInteractiveDots";
 import { HeroProjektyBubble } from "@/components/landing/HeroProjektyBubble";
-import { TestimonialsStrip } from "@/components/landing/TestimonialsStrip";
 import { PartnerLogoStrip } from "@/components/landing/PartnerLogoStrip";
 import { StudentVideosSection } from "@/components/landing/StudentVideosSection";
 import { SchoolComparisonSection } from "@/components/landing/SchoolComparisonSection";
 import { TeachersSection } from "@/components/landing/TeachersSection";
+import { PartnerReferencesSection } from "@/components/landing/PartnerReferencesSection";
 import { ThreePillarsSection } from "@/components/landing/ThreePillarsSection";
 import { FitQuiz } from "@/components/landing/FitQuiz";
 import { SubjectsAccordion } from "@/components/landing/SubjectsAccordion";
-import { TeamSection } from "@/components/landing/TeamSection";
 import { InterestForm } from "@/components/landing/InterestForm";
 import { partnerBrands } from "@/content/partners";
 import { studentVideos } from "@/content/studentVideos";
 import { teacherReferences } from "@/content/teacherReferences";
-import { stevoQuote, teamMembers, testimonials } from "@/content/lyceum";
+import { partnerReferences } from "@/content/partnerReferences";
+import { SiteContactFooter } from "@/components/landing/SiteContactFooter";
 
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
 const HERO_IMG = "/hero-lyceum.jpg";
@@ -167,13 +167,31 @@ export default function Home() {
               id="ucitelia-heading"
               className="font-heading m-0 max-w-[min(100%,42rem)] text-[clamp(1.85rem,1.15rem+2.5vw,2.85rem)] leading-[1.1] tracking-tight text-brand-fg1"
             >
-              Učitelia
+              Učitelia na Lýceu
             </h2>
             <p className="mt-3 mb-0 max-w-2xl text-sm font-normal leading-relaxed text-brand-fg3 md:mt-4 md:text-[15px]">
               Referencie z výučby — celý text naraz, prepínanie šípkami alebo bodkami.
             </p>
             <div className="mt-8 md:mt-10">
               <TeachersSection items={teacherReferences} />
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="partneri-referencie"
+          aria-labelledby="partneri-referencie-heading"
+          className="scroll-mt-24 bg-brand-bg1 py-10 md:scroll-mt-28 md:py-12"
+        >
+          <div className={CX}>
+            <h2
+              id="partneri-referencie-heading"
+              className="font-heading m-0 max-w-[min(100%,42rem)] text-[clamp(1.85rem,1.15rem+2.5vw,2.85rem)] leading-[1.1] tracking-tight text-brand-fg1"
+            >
+              Čo o nás hovoria partneri
+            </h2>
+            <div className="mt-8 md:mt-10">
+              <PartnerReferencesSection items={partnerReferences} />
             </div>
           </div>
         </section>
@@ -219,58 +237,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </Sec>
-
-        {/* Referencie — úzky pás */}
-        <Sec id="referencie" className="bg-brand-bg2/70">
-          <H2
-            title="Čo hovoria partneri"
-            subtitle="Krátke výstrižky · celý text po kliknutí."
-          />
-          <TestimonialsStrip items={testimonials} />
-        </Sec>
-
-        {/* O škole — 3 piliere kompakt */}
-        <Sec id="o-skole" className="bg-brand-bg1">
-          <H2
-            title="Tri piliere Lýcea"
-            subtitle="Všetko sa prepája v projektoch počas štúdia."
-          />
-          <div className="grid gap-5 lg:grid-cols-3">
-            {[
-              {
-                t: "Podnikavosť",
-                d: "Nápad → plán → tímový výstup. Zodpovednosť a iniciatíva.",
-                a: "from-[#fdb913]/18",
-              },
-              {
-                t: "Digitál",
-                d: "Nástroje, dáta, tvorba — bezpečne a zmysluplne v praxi.",
-                a: "from-[#1d1d1f]/0a",
-              },
-              {
-                t: "Charakter",
-                d: "Väzby, feedback, dôvera. Rastieš ako človek, nie len žiak.",
-                a: "from-[#562082]/15",
-              },
-            ].map((p) => (
-              <div
-                key={p.t}
-                className={`rounded-2xl bg-gradient-to-b ${p.a} to-brand-bg2/40 p-6 ring-1 ring-black/[0.04]`}
-              >
-                <h3 className="font-heading m-0 text-xl">{p.t}</h3>
-                <p className="mt-3 mb-0 text-[13px] font-normal leading-snug text-brand-fg1">
-                  {p.d}
-                </p>
-              </div>
-            ))}
-          </div>
-          <blockquote className="mt-8 border-l-4 border-brand-secondary pl-5 text-sm italic leading-relaxed text-brand-fg3">
-            „{stevoQuote.text}”
-            <cite className="mt-2 block not-italic text-xs font-bold uppercase tracking-wide text-brand-fg4">
-              {stevoQuote.attribution}
-            </cite>
-          </blockquote>
         </Sec>
 
         {/* Realita — pás */}
@@ -326,15 +292,6 @@ export default function Home() {
           </div>
         </Sec>
 
-        {/* Tím */}
-        <Sec id="tim" className="bg-brand-bg2/50">
-          <H2
-            title="Ľudia z Lýcea"
-            subtitle="Potiahni kartami — rozšír profil, ak chceš viac."
-          />
-          <TeamSection members={teamMembers} />
-        </Sec>
-
         {/* Štúdium / predmety */}
         <Sec id="studium" className="bg-brand-bg1">
           <div id="predmety" className="scroll-mt-24">
@@ -356,11 +313,7 @@ export default function Home() {
         </Sec>
 
         {/* Quiz */}
-        <Sec id="otestuj-sa" className="bg-brand-bg2/40">
-          <H2
-            title="Sadlo by ti Lýceum?"
-            subtitle="Rýchly check — 10 otázok, bez klamstva."
-          />
+        <Sec id="otestuj-sa" className="bg-brand-bg1">
           <FitQuiz />
         </Sec>
 
@@ -422,22 +375,7 @@ export default function Home() {
           </div>
         </Sec>
 
-        <footer
-          id="kontakt"
-          className="scroll-mt-24 border-t border-black/[0.06] bg-brand-bg2 py-8"
-        >
-          <div
-            className={`${CX} flex flex-col gap-2 text-xs text-brand-fg3 sm:flex-row sm:items-center sm:justify-between`}
-          >
-            <div>
-              <p className="m-0 font-bold text-brand-fg1">Lýceum C. S. Lewisa</p>
-              <p className="mt-1 mb-0 text-[13px] font-normal text-brand-fg2">
-                Kontakt doplníme (e-mail, adresa, telefón).
-              </p>
-            </div>
-            <p className="m-0">© {new Date().getFullYear()}</p>
-          </div>
-        </footer>
+        <SiteContactFooter />
       </main>
     </>
   );

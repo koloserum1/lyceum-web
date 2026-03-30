@@ -75,6 +75,54 @@ body {
   animation: teachers-quote-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+@keyframes fit-quiz-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fit-quiz-step-in {
+  animation: fit-quiz-step-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Pás partnerov pod hero — nekonečný horizontálny posuv (dva rovnaké bloky) */
+@keyframes partner-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+/* contain + žiadne will-change — menšia záťaž GPU/pamäte pri nekonečnej animácii */
+.partner-marquee-wrap {
+  overflow: hidden;
+  contain: layout paint;
+}
+.partner-marquee-track {
+  animation: partner-marquee var(--partner-marquee-duration, 42s) linear infinite;
+}
+.partner-marquee-wrap.is-marquee-paused .partner-marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .partner-marquee-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .partner-marquee-track {
+    animation: none;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.partner-marquee-wrap:hover .partner-marquee-track {
+  animation-play-state: paused;
+}
+
 /* Hero underline + circle highlight (from theme main.css) */
 .has-double-underline {
   position: relative;

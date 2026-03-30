@@ -17,11 +17,35 @@ function quoteFromMember(m: TeamMember): string {
   return parts.join(" ");
 }
 
+/**
+ * Cesty k fotkám v `public/teachers/`.
+ * Predvolene `{id}.jpg` (napr. fabrici.jpg = Zuzka Mikloš Fabrici).
+ * Ak máš iný názov súboru, doplníš ho sem.
+ */
+const TEACHER_IMAGE_FILE: Record<string, string> = {
+  fabrici: "/teachers/fabrici.jpg",
+  horvath: "/teachers/horvath.jpg",
+  zvarik: "/teachers/zvarik.jpg",
+  miklasova: "/teachers/miklasova.jpg",
+  sumska: "/teachers/sumska.jpg",
+  laco: "/teachers/laco.jpg",
+  coyle: "/teachers/coyle.jpg",
+  stasko: "/teachers/stasko.jpg",
+  matulova: "/teachers/matulova.jpg",
+};
+
+export function teacherImagePath(id: string): string {
+  if (Object.prototype.hasOwnProperty.call(TEACHER_IMAGE_FILE, id)) {
+    return TEACHER_IMAGE_FILE[id];
+  }
+  return `/teachers/${id}.jpg`;
+}
+
 /** Rovnakí ľudia a texty ako v `teamMembers` / sekcia „Ľudia z Lýcea“. */
 export const teacherReferences: TeacherReference[] = teamMembers.map((m) => ({
   id: m.id,
   name: m.name,
   role: m.role,
-  imageSrc: null,
+  imageSrc: teacherImagePath(m.id),
   quote: quoteFromMember(m),
 }));
