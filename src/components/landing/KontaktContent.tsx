@@ -77,14 +77,25 @@ function IconPin({ className }: { className?: string }) {
   );
 }
 
-const MAP_EMBED_SRC =
-  "https://www.openstreetmap.org/export/embed.html?bbox=17.1040%2C48.1210%2C17.1145%2C48.1275&layer=mapnik&marker=48.12425%2C17.10925";
+/** Embed centrum: Haanova 28 / Lýceum (OSM Nominatim ~48.1230, 17.1239). */
+const MAP_LAT = 48.1230061;
+const MAP_LON = 17.1239325;
+const MAP_EMBED_SRC = `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(
+  `${MAP_LON - 0.005},${MAP_LAT - 0.004},${MAP_LON + 0.005},${MAP_LAT + 0.004}`,
+)}&layer=mapnik&marker=${MAP_LAT}%2C${MAP_LON}`;
 
 /** Otvorenie adresy v mapách (presmerovanie). */
 const MAPS_OPEN_URL =
   "https://www.google.com/maps/search/?api=1&query=Haanova+28%2C+851+04+Bratislava";
 
 const LINK_DVA_PERCENTA = "/dva-percenta";
+const LINK_PRIJIMACKY_PREHLAD = "/prijimacky/co-te-caka-na-prijimackach";
+
+const ADDRESS_BLOCK = `${STREET}, ${CITY_ZIP}`;
+
+/** Sekundárne CTA v lycejnom „pill“ štýle (nie generický outline). */
+const ctaPillLavender =
+  "inline-flex items-center justify-center rounded-full border border-brand-primary/42 bg-white px-6 py-2.5 text-[14px] font-bold text-brand-fg1 no-underline shadow-[0_6px_22px_-10px_rgba(120,95,170,0.18)] transition-[border-color,background-color,box-shadow] hover:border-brand-primary/55 hover:bg-brand-accent/25 hover:shadow-[0_10px_28px_-12px_rgba(185,160,224,0.22)] md:px-8 md:py-3 md:text-[15px]";
 
 export function KontaktContent() {
   return (
@@ -101,13 +112,12 @@ export function KontaktContent() {
         aria-hidden
       />
 
-      {/* BLOK 1: Hero + dvojblok v jednom celku */}
-      <section className={`${CX} relative z-[1] pt-6 pb-10 md:pt-8 md:pb-12`} aria-labelledby="kontakt-hero-heading">
+      {/* BLOK 1 — jednoduchý svetlý úvod (bez fotky, bez prekrytia) */}
+      <section className={`${CX} relative z-[1] pt-6 pb-2 md:pt-8 md:pb-4`} aria-labelledby="kontakt-hero-heading">
         <div className="rounded-[1.5rem] bg-gradient-to-br from-white/90 via-[#faf8fc] to-brand-bg2/90 px-5 py-7 ring-1 ring-black/[0.05] sm:px-7 sm:py-8 md:rounded-[1.75rem] md:px-9 md:py-9">
-          {/* Hero — len eyebrow, nadpis, lead */}
           <header className="max-w-2xl">
             <p className="m-0 text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-fg3 md:text-[13px]">
-              Kontakt
+              KONTAKT
             </p>
             <h1
               id="kontakt-hero-heading"
@@ -115,129 +125,140 @@ export function KontaktContent() {
             >
               Ozvi sa nám
             </h1>
-            <p className="m-0 mt-3 text-[15px] leading-relaxed text-brand-fg2 md:mt-4 md:text-[16px]">
+            <p className="m-0 mt-3 max-w-xl text-[15px] leading-relaxed text-brand-fg2 md:mt-4 md:text-[16px]">
               Radi odpovieme na otázky o štúdiu, prijímačkách alebo návšteve školy.
             </p>
+            <div className="mt-5 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:flex-wrap sm:items-center">
+              <a href="#napiste-nam" className={`${ctaYellow} justify-center sm:w-auto`}>
+                Napísať nám
+              </a>
+              <Link href={LINK_PRIJIMACKY_PREHLAD} className={`${ctaPillLavender} justify-center sm:w-auto`}>
+                Pozrieť prijímačky
+              </Link>
+            </div>
           </header>
+        </div>
+      </section>
 
-          {/* Dvojblok — hneď pod hero */}
-          <div className="mt-8 grid gap-6 border-t border-black/[0.06] pt-8 md:mt-9 md:gap-8 md:pt-9 lg:grid-cols-2 lg:items-stretch">
-            <div className="flex min-h-0 flex-col" id="kontakt-na-nas-block">
-              <h2 className="font-heading m-0 text-lg font-bold text-brand-fg1 md:text-xl">
-                Kontakt na nás
-              </h2>
-              <div className="mt-4 flex flex-1 flex-col rounded-[1.5rem] border border-black/[0.07] bg-white p-6 shadow-[0_20px_50px_-28px_rgba(60,55,95,0.16)] md:mt-5 md:rounded-[1.65rem] md:p-8">
-                <ul className="m-0 flex flex-1 list-none flex-col gap-6 p-0">
-                  <li className="flex gap-4">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-accent/50 text-brand-fg1">
-                      <IconMail />
-                    </span>
-                    <div>
-                      <p className="m-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-fg3">
-                        E-mail
-                      </p>
-                      <a
-                        href={MAILTO}
-                        className="mt-1.5 block text-[17px] font-bold text-brand-fg1 underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary md:text-lg"
-                      >
-                        {INFO_EMAIL}
-                      </a>
-                    </div>
-                  </li>
-                  <li className="flex gap-4">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-accent/50 text-brand-fg1">
-                      <IconPhone />
-                    </span>
-                    <div>
-                      <p className="m-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-fg3">
-                        Telefón
-                      </p>
-                      <a
-                        href={PHONE_TEL}
-                        className="mt-1.5 block text-[19px] font-bold tracking-tight text-brand-fg1 md:text-[1.35rem]"
-                      >
-                        {PHONE_DISPLAY}
-                      </a>
-                    </div>
-                  </li>
-                  <li className="flex gap-4">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-accent/50 text-brand-fg1">
-                      <IconPin />
-                    </span>
-                    <div>
-                      <p className="m-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-fg3">
-                        Adresa
-                      </p>
-                      <p className="m-0 mt-1.5 text-[17px] font-bold leading-snug text-brand-fg1 md:text-lg">
-                        {STREET}, {CITY_ZIP}
-                      </p>
-                    </div>
-                  </li>
-                </ul>
-                <a href={MAILTO} className={`${ctaYellow} mt-8 w-full justify-center`}>
-                  Napísať nám
-                </a>
-              </div>
-            </div>
-
-            <div id="napiste-nam" className="scroll-mt-28 flex min-h-0 flex-col lg:scroll-mt-32">
-              <h2 className="font-heading m-0 text-lg font-bold text-brand-fg1 md:text-xl">
-                Napíšte nám
-              </h2>
-              <form
-                className="mt-4 flex flex-1 flex-col rounded-[1.5rem] border border-black/[0.08] bg-white p-6 shadow-[0_20px_50px_-28px_rgba(185,160,224,0.2)] md:mt-5 md:rounded-[1.65rem] md:p-8"
-                noValidate
-              >
-                <div className="flex flex-1 flex-col gap-4">
-                  <div>
-                    <label htmlFor="kontakt-meno" className="mb-1.5 block text-[13px] font-semibold text-brand-fg2">
-                      Meno
-                    </label>
-                    <input id="kontakt-meno" name="meno" type="text" autoComplete="name" className={inputClass} />
-                  </div>
-                  <div>
-                    <label htmlFor="kontakt-email" className="mb-1.5 block text-[13px] font-semibold text-brand-fg2">
-                      E-mail
-                    </label>
-                    <input
-                      id="kontakt-email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      className={inputClass}
-                    />
-                  </div>
-                  <div className="flex min-h-0 flex-1 flex-col">
-                    <label htmlFor="kontakt-sprava" className="mb-1.5 block text-[13px] font-semibold text-brand-fg2">
-                      Správa
-                    </label>
-                    <textarea
-                      id="kontakt-sprava"
-                      name="sprava"
-                      rows={5}
-                      className={`${inputClass} min-h-[7.5rem] flex-1 resize-y`}
-                    />
-                  </div>
+      {/* BLOK 2 — kontakt vľavo + formulár vpravo */}
+      <section className={`${CX} relative z-[1] pt-8 md:pt-10`} aria-label="Kontakt a formulár">
+        <div className="overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-white/90 via-[#faf8fc] to-brand-bg2/90 shadow-[0_20px_50px_-32px_rgba(60,55,95,0.14)] ring-1 ring-black/[0.05] md:rounded-[1.75rem] lg:grid lg:grid-cols-2 lg:items-stretch">
+          <div className="flex flex-col border-b border-black/[0.06] p-6 sm:p-7 md:p-8 lg:border-b-0 lg:border-r lg:border-black/[0.06]">
+            <h2 className="font-heading m-0 text-lg font-bold text-brand-fg1 md:text-xl">Kontakt na nás</h2>
+            <ul className="m-0 mt-4 flex flex-1 list-none flex-col gap-5 p-0 md:mt-5 md:gap-6">
+              <li className="flex gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-accent/50 text-brand-fg1">
+                  <IconMail />
+                </span>
+                <div>
+                  <p className="m-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-fg3">
+                    E-mail
+                  </p>
+                  <a
+                    href={MAILTO}
+                    className="mt-1.5 block text-[17px] font-bold text-brand-fg1 underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary md:text-lg"
+                  >
+                    {INFO_EMAIL}
+                  </a>
                 </div>
-                <button type="button" className={`${ctaYellow} mt-6 w-full justify-center`}>
-                  Odoslať správu
-                </button>
-              </form>
-            </div>
+              </li>
+              <li className="flex gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-accent/50 text-brand-fg1">
+                  <IconPhone />
+                </span>
+                <div>
+                  <p className="m-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-fg3">
+                    Telefón
+                  </p>
+                  <a
+                    href={PHONE_TEL}
+                    className="mt-1.5 block text-[19px] font-bold tracking-tight text-brand-fg1 md:text-[1.35rem]"
+                  >
+                    {PHONE_DISPLAY}
+                  </a>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-accent/50 text-brand-fg1">
+                  <IconPin />
+                </span>
+                <div>
+                  <p className="m-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-fg3">
+                    Adresa
+                  </p>
+                  <a
+                    href={MAPS_OPEN_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1.5 block text-[17px] font-bold leading-snug text-brand-fg1 underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary md:text-lg"
+                  >
+                    {ADDRESS_BLOCK}
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <a href={MAILTO} className={`${ctaYellow} mt-8 w-full justify-center lg:mt-auto`}>
+              Napísať nám
+            </a>
+          </div>
+
+          <div id="napiste-nam" className="scroll-mt-28 flex flex-col bg-white/70 p-6 sm:p-7 md:p-8 lg:scroll-mt-32">
+            <h2 className="font-heading m-0 text-lg font-bold text-brand-fg1 md:text-xl">Napíšte nám</h2>
+            <form className="mt-4 flex flex-1 flex-col gap-4 md:mt-5" noValidate>
+              <div>
+                <label htmlFor="kontakt-meno" className="mb-1.5 block text-[13px] font-semibold text-brand-fg2">
+                  Meno
+                </label>
+                <input id="kontakt-meno" name="meno" type="text" autoComplete="name" className={inputClass} />
+              </div>
+              <div>
+                <label htmlFor="kontakt-email" className="mb-1.5 block text-[13px] font-semibold text-brand-fg2">
+                  E-mail
+                </label>
+                <input
+                  id="kontakt-email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  className={inputClass}
+                />
+              </div>
+              <div className="flex min-h-0 flex-1 flex-col">
+                <label htmlFor="kontakt-sprava" className="mb-1.5 block text-[13px] font-semibold text-brand-fg2">
+                  Správa
+                </label>
+                <textarea
+                  id="kontakt-sprava"
+                  name="sprava"
+                  rows={5}
+                  className={`${inputClass} min-h-[7.5rem] flex-1 resize-y`}
+                />
+              </div>
+              <button type="button" className={`${ctaYellow} mt-2 w-full justify-center`}>
+                Odoslať správu
+              </button>
+            </form>
           </div>
         </div>
       </section>
 
-      {/* BLOK 2: Mapa (~polovica šírky / výšky obrazovky) + text vedľa */}
-      <section className={`${CX} relative z-[1] pb-10 md:pb-12`} aria-labelledby="heading-kde-najdes">
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-10">
-          <div className="order-2 min-w-0 lg:order-1">
-            <div className="overflow-hidden rounded-[1.5rem] ring-1 ring-black/[0.08] shadow-[0_20px_48px_-30px_rgba(45,50,70,0.2)] md:rounded-[1.75rem]">
-              <div className="relative h-[min(50svh,17rem)] w-full bg-[#e4e8ee] sm:h-[min(50svh,19rem)] lg:h-[min(50svh,22rem)] lg:max-h-[50vh]">
+      {/* BLOK 3 — mapa (~polovica šírky) + text vpravo */}
+      <section className={`${CX} relative z-[1] pt-8 pb-6 md:pt-10 md:pb-8`} aria-labelledby="heading-kde-najdes">
+        <h2
+          id="heading-kde-najdes"
+          className="font-heading m-0 text-[clamp(1.35rem,1.05rem+1.15vw,1.85rem)] font-bold tracking-tight text-brand-fg1"
+        >
+          Kde nás nájdeš
+        </h2>
+
+        <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-stretch lg:gap-8">
+          <div className="order-2 min-h-0 lg:order-1">
+            <div className="overflow-hidden rounded-[1.5rem] ring-1 ring-black/[0.08] shadow-[0_16px_40px_-26px_rgba(45,50,70,0.16)] md:rounded-[1.65rem]">
+              <div className="relative h-[min(42svh,15rem)] w-full bg-[#e4e8ee] sm:h-[min(40svh,16rem)] lg:h-[min(50svh,28rem)] lg:min-h-[20rem]">
                 <iframe
                   title="Mapa — Haanova 28, Bratislava"
                   src={MAP_EMBED_SRC}
-                  className="absolute inset-0 h-full w-full border-0 grayscale-[0.12] contrast-[0.98]"
+                  className="absolute inset-0 h-full w-full border-0 grayscale-[0.08] contrast-[0.98]"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
@@ -245,47 +266,40 @@ export function KontaktContent() {
             </div>
           </div>
 
-          <div className="order-1 flex min-w-0 flex-col justify-center lg:order-2">
-            <h2
-              id="heading-kde-najdes"
-              className="font-heading m-0 text-[clamp(1.35rem,1.05rem+1.2vw,1.85rem)] font-bold tracking-tight text-brand-fg1"
-            >
-              Kde nás nájdeš
-            </h2>
+          <div className="order-1 flex flex-col justify-center gap-4 lg:order-2 lg:pl-2">
             <a
               href={MAPS_OPEN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group mt-4 inline-flex w-fit max-w-full items-start gap-2 font-heading text-[clamp(1.05rem,0.95rem+0.5vw,1.3rem)] font-bold leading-snug tracking-tight text-brand-fg1 underline decoration-brand-primary/40 underline-offset-[3px] transition-colors hover:text-brand-primary hover:decoration-brand-primary md:mt-5"
+              className="font-heading text-[clamp(1.05rem,0.95rem+0.45vw,1.25rem)] font-bold leading-snug tracking-tight text-brand-fg1 underline decoration-brand-primary/40 underline-offset-[3px] transition-colors hover:text-brand-primary hover:decoration-brand-primary"
             >
-              <IconPin className="mt-1 shrink-0 text-brand-primary opacity-90" />
-              <span>
-                {ADDRESS_LINE}
-                <span className="mt-1 block text-[13px] font-normal font-sans text-brand-fg3 no-underline group-hover:text-brand-fg2">
-                  Otvorí sa v mapách
-                </span>
+              {ADDRESS_LINE}
+              <span className="mt-1 block text-[12px] font-medium text-brand-fg3 no-underline">
+                Otvorí sa v mapách
               </span>
             </a>
-            <p className="m-0 mt-5 max-w-md text-[13px] leading-relaxed text-brand-fg3 md:text-[14px]">
-              Naša poloha sa môže v priebehu najbližších rokov meniť. Aktuálne fungujeme na Haanovej 28 a
-              zároveň sme v procese prerábky budovy na Znievskej.
-            </p>
-            <p className="m-0 mt-4 max-w-md text-[13px] leading-relaxed text-brand-fg3 md:text-[14px]">
-              Ak ťa zaujíma viac o budove, projekte alebo podpore školy, pozri si podstránku{" "}
-              <Link
-                href={LINK_DVA_PERCENTA}
-                className="font-semibold text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"
-              >
-                2 % pre Lýceum
-              </Link>
-              .
-            </p>
+            <div className="space-y-2 text-[12px] leading-relaxed text-brand-fg3 md:text-[13px]">
+              <p>Naša poloha sa môže v priebehu najbližších rokov meniť.</p>
+              <p>
+                Aktuálne fungujeme na Haanovej 28 a zároveň sme v procese prerábky budovy na Znievskej.
+              </p>
+              <p>
+                Ak ťa zaujíma viac o budove, projekte alebo podpore školy, pozri si podstránku{" "}
+                <Link
+                  href={LINK_DVA_PERCENTA}
+                  className="font-semibold text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"
+                >
+                  2 % pre Lýceum
+                </Link>
+                .
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* BLOK 3: Social wall */}
-      <section className={`${CX} relative z-[1] pb-10 md:pb-12`} aria-labelledby="heading-social">
+      {/* BLOK 4: Social wall */}
+      <section className={`${CX} relative z-[1] pt-4 pb-10 md:pt-6 md:pb-12`} aria-labelledby="heading-social">
         <h2
           id="heading-social"
           className="font-heading m-0 text-[clamp(1.35rem,1.05rem+1.2vw,1.85rem)] font-bold tracking-tight text-brand-fg1"
@@ -462,7 +476,7 @@ export function KontaktContent() {
         </div>
       </section>
 
-      {/* BLOK 4: Spodný CTA — iná logika, bez opakovania „ozvi sa“ */}
+      {/* BLOK 5: Spodný CTA */}
       <section className={`${CX} relative z-[1] pb-12 md:pb-14`} aria-labelledby="heading-dalsi-krok">
         <div className="relative overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-white via-brand-bg2 to-brand-accent/30 px-6 py-8 text-center ring-1 ring-black/[0.06] shadow-[0_18px_44px_-24px_rgba(185,160,224,0.28)] md:rounded-[1.75rem] md:px-10 md:py-9">
           <div

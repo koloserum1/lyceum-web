@@ -2,7 +2,6 @@ import Link from "next/link";
 import { LINK_TERMINY_VYSLEDKY_ZAPIS } from "@/data/prijimacky-nav";
 import chipMotion from "./coTeCakaChips.module.css";
 import atmosphere from "./coTeCakaAtmosphere.module.css";
-
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
 
 const LINK_ULOHY = "/prijimacky/vyskusaj-si-ulohy";
@@ -12,16 +11,16 @@ const LINK_AKO = "/prijimacky/ako-sa-dostat-na-lyceum";
 const ctaPrimaryYellow =
   "inline-flex items-center justify-center rounded-full border-0 bg-[#fdb913] px-8 py-3.5 text-[15px] font-bold text-brand-fg1 no-underline shadow-[0_14px_36px_-12px_rgba(253,185,19,0.5)] transition-[transform,box-shadow,background-color] hover:bg-[#f5b010] hover:shadow-[0_18px_40px_-10px_rgba(253,185,19,0.48)] md:px-10 md:py-4 md:text-base";
 
-/** Sekundárne CTA v hero — menšie a jemnejšie ako primárne. */
+/** Sekundárne CTA v hero — jemný lila podklad, kontrast voči pozadiu. */
 const pillSecondaryHero =
-  "inline-flex items-center justify-center rounded-full border border-brand-primary/38 bg-white/88 px-5 py-2.5 text-[13px] font-semibold text-brand-fg1 no-underline shadow-[0_10px_28px_-12px_rgba(185,160,224,0.32)] backdrop-blur-md transition-[border-color,background-color,box-shadow,transform] hover:border-brand-primary/55 hover:bg-white hover:shadow-[0_14px_34px_-10px_rgba(185,160,224,0.36)] md:px-6 md:py-3 md:text-[14px]";
+  "inline-flex items-center justify-center rounded-full border border-brand-primary/42 bg-[#f2ecfb]/95 px-5 py-2.5 text-[13px] font-semibold text-brand-fg1 no-underline shadow-[0_8px_28px_-10px_rgba(130,105,185,0.22),0_14px_36px_-14px_rgba(185,160,224,0.28)] backdrop-blur-md transition-[border-color,background-color,box-shadow,transform] hover:border-brand-primary/58 hover:bg-[#faf6ff] hover:shadow-[0_12px_36px_-10px_rgba(140,115,195,0.3)] md:px-6 md:py-3 md:text-[14px]";
 
 const pillSecondary =
-  "inline-flex items-center justify-center rounded-full border border-brand-primary/40 bg-white/85 px-5 py-2.5 text-[14px] font-semibold text-brand-fg1 no-underline shadow-[0_8px_28px_-14px_rgba(185,160,224,0.35)] backdrop-blur-md transition-[border-color,background-color,box-shadow] hover:border-brand-primary/55 hover:bg-white hover:shadow-[0_12px_32px_-12px_rgba(185,160,224,0.38)] md:px-6 md:text-[15px]";
+  "inline-flex items-center justify-center rounded-full border border-brand-primary/44 bg-[#ede7f8]/92 px-5 py-2.5 text-[14px] font-semibold text-brand-fg1 no-underline shadow-[0_8px_28px_-12px_rgba(125,100,175,0.22)] backdrop-blur-md transition-[border-color,background-color,box-shadow] hover:border-brand-primary/58 hover:bg-[#f5f0fc] hover:shadow-[0_14px_38px_-12px_rgba(150,125,200,0.28)] md:px-6 md:text-[15px]";
 
-/** Veľké plávajúce bubliny — jednotný „vzdušný“ základ. */
+/** Veľké plávajúce bubliny — výraznejší odtieň a jemný glow oproti hero pozadiu. */
 const heroBubbleBase =
-  "inline-flex max-w-full items-center justify-center rounded-full border border-white/95 bg-white/88 text-center font-semibold text-brand-fg1 shadow-[0_18px_48px_-12px_rgba(120,105,165,0.28),0_8px_28px_-10px_rgba(160,185,210,0.2)] backdrop-blur-xl transition-[transform,box-shadow] hover:-translate-y-px hover:shadow-[0_22px_52px_-12px_rgba(120,105,165,0.32)]";
+  "inline-flex max-w-full items-center justify-center rounded-full border border-[#c9bee5]/65 bg-[#fdfbff]/96 text-center font-semibold text-brand-fg1 shadow-[0_12px_40px_-10px_rgba(125,102,175,0.28),0_4px_24px_-8px_rgba(170,150,215,0.18)] backdrop-blur-xl transition-[transform,box-shadow] hover:-translate-y-px hover:shadow-[0_18px_48px_-10px_rgba(115,92,168,0.32),0_8px_28px_-8px_rgba(185,165,225,0.22)]";
 
 const heroBubbleMd =
   `${heroBubbleBase} whitespace-nowrap px-8 py-4 text-[14px] font-semibold md:px-10 md:py-[1.05rem] md:text-[15px]`;
@@ -30,53 +29,92 @@ const heroBubbleMd =
 const heroBubbleWide =
   `${heroBubbleBase} max-w-[min(100%,20rem)] px-7 py-4 text-[13px] font-semibold leading-snug sm:max-w-[21rem] md:max-w-[23rem] md:px-10 md:py-4 md:text-[14px]`;
 
-/** Individualizovaný vstup — jemné odlíšenie. */
+/** Individualizovaný vstup — výraznejší lila highlight v hero. */
 const heroBubbleAccent =
-  "inline-flex max-w-full items-center justify-center rounded-full border border-brand-primary/45 bg-gradient-to-br from-white/95 via-white/88 to-brand-accent/45 text-center text-[13px] font-semibold leading-snug text-brand-fg1 shadow-[0_0_0_1px_rgba(185,160,224,0.25),0_18px_48px_-10px_rgba(185,160,224,0.35),0_12px_32px_-12px_rgba(140,120,180,0.15)] backdrop-blur-xl transition-[transform,box-shadow] hover:-translate-y-px hover:shadow-[0_0_0_1px_rgba(185,160,224,0.35),0_24px_56px_-12px_rgba(185,160,224,0.38)] md:text-[14px] md:px-9 md:py-4";
+  "inline-flex max-w-full items-center justify-center rounded-full border border-brand-primary/52 bg-gradient-to-br from-[#faf6ff] via-[#ebe4fb] to-brand-accent/55 text-center text-[13px] font-semibold leading-snug text-brand-fg1 shadow-[0_0_0_1px_rgba(165,140,210,0.35),0_16px_44px_-8px_rgba(130,105,185,0.35),0_8px_28px_-8px_rgba(200,175,235,0.25)] backdrop-blur-xl transition-[transform,box-shadow] hover:-translate-y-px hover:shadow-[0_0_0_1px_rgba(155,130,200,0.45),0_22px_56px_-10px_rgba(120,95,175,0.38)] md:text-[14px] md:px-9 md:py-4";
 
-const islandBase =
-  "rounded-[1.75rem] border border-white/70 bg-white/55 px-6 py-6 shadow-[0_20px_56px_-28px_rgba(80,70,110,0.18)] backdrop-blur-md ring-1 ring-black/[0.04] transition-[transform,box-shadow] duration-300 hover:shadow-[0_24px_60px_-26px_rgba(80,70,110,0.22)] md:px-7 md:py-7";
+/** Statické boxy — spoločná výška na sm+ cez grid 2×2 + min-h; accent = jemný fialový podtón. */
+const skladajuBoxBase =
+  "flex h-full min-h-[12.5rem] flex-col rounded-[1.25rem] border px-5 py-6 shadow-[0_10px_36px_-14px_rgba(88,72,120,0.12)] md:rounded-[1.4rem] md:px-6 md:py-7 sm:min-h-0";
+
+const skladajuBoxNeutral =
+  `${skladajuBoxBase} border-[#d8d0e4]/55 bg-[#faf9fc] ring-1 ring-white/45`;
+
+const skladajuBoxAccent =
+  `${skladajuBoxBase} border-brand-primary/22 bg-gradient-to-b from-[#faf7ff] to-[#f1e9fb] ring-1 ring-brand-primary/12 shadow-[0_12px_40px_-12px_rgba(120,95,170,0.16)]`;
+
+const skladajuKarty = [
+  {
+    title: "Slovenský jazyk",
+    text: "Písomný test zo slovenského jazyka",
+    variant: "neutral" as const,
+  },
+  {
+    title: "Matematika",
+    text: "Písomný test z matematiky",
+    variant: "neutral" as const,
+  },
+  {
+    title: "Všeobecné študijné predpoklady",
+    text: "Test zo všeobecných študijných predpokladov",
+    variant: "neutral" as const,
+  },
+  {
+    title: "Individualizovaný vstup",
+    text: "Druhá časť prijímacieho konania, ktorá dopĺňa písomné testy",
+    variant: "accent" as const,
+  },
+] as const;
 
 export function CoTeCakaNaPrijimackachContent() {
   return (
     <main
       id="prijimacky-co-te-caka-na-prijimackach"
-      className="scroll-mt-24 bg-[#f7f5fa] pb-14 md:scroll-mt-28 md:pb-20"
+      className="scroll-mt-24 bg-[#ebe6f4] pb-14 md:scroll-mt-28 md:pb-20"
     >
-      {/* Jednotné atmosférické pozadie celej stránky */}
+      {/* Atmosférické pozadie — sivofialová základná náladová plocha */}
       <div
         className="relative overflow-hidden"
         style={{
           background: `
-            radial-gradient(ellipse 100% 70% at 50% -8%, rgba(216, 198, 240, 0.38) 0%, transparent 55%),
-            radial-gradient(ellipse 55% 45% at 100% 18%, rgba(184, 210, 206, 0.22) 0%, transparent 50%),
-            radial-gradient(ellipse 50% 40% at 0% 45%, rgba(230, 224, 248, 0.35) 0%, transparent 48%),
-            linear-gradient(180deg, #faf9fc 0%, #f5f3f8 38%, #f8f7fa 100%)
+            radial-gradient(ellipse 110% 75% at 50% -12%, rgba(198, 178, 235, 0.42) 0%, transparent 58%),
+            radial-gradient(ellipse 60% 50% at 100% 12%, rgba(175, 195, 235, 0.28) 0%, transparent 52%),
+            radial-gradient(ellipse 55% 48% at 0% 38%, rgba(210, 200, 245, 0.38) 0%, transparent 50%),
+            radial-gradient(ellipse 70% 45% at 80% 85%, rgba(180, 205, 228, 0.22) 0%, transparent 55%),
+            linear-gradient(180deg, #f2eef9 0%, #e8e2f4 32%, #ebe6f2 58%, #f0ecf8 100%)
           `,
         }}
       >
         <div
-          className="pointer-events-none absolute -left-32 top-[28%] h-72 w-72 rounded-full bg-brand-accent/25 blur-[100px]"
+          className="pointer-events-none absolute -left-28 top-[22%] h-80 w-80 rounded-full bg-[#c4b0e8]/35 blur-[100px]"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -right-24 top-[52%] h-64 w-64 rounded-full bg-[#c5ddd8]/30 blur-[90px]"
+          className="pointer-events-none absolute -right-20 top-[48%] h-72 w-72 rounded-full bg-brand-accent/32 blur-[95px]"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute left-1/3 bottom-[5%] h-56 w-56 -translate-x-1/2 rounded-full bg-[#b8c8ec]/22 blur-[80px]"
           aria-hidden
         />
 
         {/* ——— Hero: čistý stred, bubliny len v bočných zónach (lg+), pod obsahom na mobile ——— */}
         <header className={`${CX} relative z-[1] pt-6 pb-2 md:pt-8 md:pb-4`}>
-          <div className="relative overflow-hidden rounded-[24px] shadow-[0_28px_72px_-36px_rgba(95,80,130,0.2)] ring-1 ring-white/85 md:rounded-[28px] lg:rounded-[32px]">
+          <div className="relative overflow-hidden rounded-[24px] shadow-[0_32px_80px_-32px_rgba(85,65,130,0.28)] ring-1 ring-[#d8cef0]/90 md:rounded-[28px] lg:rounded-[32px]">
             <div
-              className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fefdfb] via-[#f7f4fb] to-[#f0f4f9]"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#fbf8ff] via-[#ebe4f8] to-[#dde8f5]"
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute left-1/2 top-[-30%] h-[85%] w-[90%] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(230,216,248,0.55)_0%,transparent_62%)] blur-3xl"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-transparent via-[#f5f0fc]/80 to-[#e8e0f7]/95"
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute bottom-[-20%] right-0 h-[55%] w-[50%] rounded-full bg-[radial-gradient(circle_at_center,rgba(200,224,230,0.35)_0%,transparent_65%)] blur-3xl"
+              className="pointer-events-none absolute left-1/2 top-[-32%] h-[88%] w-[95%] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(200,175,245,0.5)_0%,rgba(220,210,250,0.2)_45%,transparent_68%)] blur-3xl"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute bottom-[-22%] right-[-5%] h-[58%] w-[55%] rounded-full bg-[radial-gradient(circle_at_center,rgba(165,188,235,0.38)_0%,transparent_68%)] blur-3xl"
               aria-hidden
             />
 
@@ -168,64 +206,37 @@ export function CoTeCakaNaPrijimackachContent() {
           </div>
         </header>
 
-        {/* ——— Z čoho sa skladajú — ostrovčeky, plynulý náväzok ——— */}
+        {/* ——— Z čoho sa skladajú — kompaktný 2×2 grid ——— */}
         <section
           id="zo-co-sa-skladaju"
-          className={`${CX} relative z-[1] pt-16 md:pt-20 lg:pt-24`}
+          className={`${CX} relative z-[1] pt-10 md:pt-12 lg:pt-14`}
           aria-labelledby="heading-skladaju"
         >
           <h2
             id="heading-skladaju"
-            className="font-heading m-0 max-w-xl text-[clamp(1.5rem,1.05rem+1.8vw,2.15rem)] font-bold leading-[1.12] tracking-tight text-brand-fg1"
+            className="font-heading m-0 max-w-2xl text-[clamp(1.45rem,1.05rem+1.65vw,2.05rem)] font-bold leading-[1.12] tracking-tight text-brand-fg1"
           >
             Z čoho sa prijímačky skladajú
           </h2>
 
-          <div className="mt-12 flex flex-col gap-10 md:mt-14 md:gap-12 lg:mt-16 lg:gap-14">
-            <div className="flex flex-col items-stretch gap-10 md:flex-row md:items-start md:justify-between md:gap-8 lg:gap-12">
+          <div className="mx-auto mt-5 grid max-w-3xl grid-cols-1 gap-3 sm:mt-6 sm:min-h-[24rem] sm:grid-cols-2 sm:grid-rows-2 sm:gap-4 md:min-h-[25rem] md:gap-4">
+            {skladajuKarty.map((item) => (
               <article
-                className={`${islandBase} w-full max-w-md md:-rotate-[0.35deg] md:translate-x-1`}
+                key={item.title}
+                className={
+                  item.variant === "accent"
+                    ? skladajuBoxAccent
+                    : skladajuBoxNeutral
+                }
               >
-                <h3 className="font-heading m-0 text-[1.12rem] font-bold leading-snug text-brand-fg1 md:text-[1.2rem]">
-                  Slovenský jazyk
+                <h3 className="font-heading m-0 text-[clamp(1.05rem,0.98rem+0.35vw,1.2rem)] font-bold leading-snug tracking-tight text-brand-fg1 md:text-[1.14rem]">
+                  {item.title}
                 </h3>
-                <p className="m-0 mt-3 text-[14px] leading-relaxed text-brand-fg2 md:text-[15px]">
-                  Písomný test zo slovenského jazyka
+                <p className="m-0 mt-2 max-w-prose text-[14px] leading-relaxed text-brand-fg2 md:mt-2.5 md:text-[15px]">
+                  {item.text}
                 </p>
               </article>
-              <article
-                className={`${islandBase} w-full max-w-[17.5rem] md:mt-14 md:rotate-[0.5deg] md:self-end`}
-              >
-                <h3 className="font-heading m-0 text-[1.12rem] font-bold leading-snug text-brand-fg1 md:text-[1.2rem]">
-                  Matematika
-                </h3>
-                <p className="m-0 mt-3 text-[14px] leading-relaxed text-brand-fg2 md:text-[15px]">
-                  Písomný test z matematiky
-                </p>
-              </article>
-            </div>
-
-            <article
-              className={`${islandBase} mx-auto w-full max-w-lg md:mx-0 md:ml-[4%] md:max-w-xl md:-rotate-[0.25deg]`}
-            >
-              <h3 className="font-heading m-0 text-[1.08rem] font-bold leading-snug text-brand-fg1 md:text-[1.14rem]">
-                Všeobecné študijné predpoklady
-              </h3>
-              <p className="m-0 mt-3 text-[14px] leading-relaxed text-brand-fg2 md:text-[15px]">
-                Test zo všeobecných študijných predpokladov
-              </p>
-            </article>
-
-            <article
-              className={`${islandBase} mx-auto w-full max-w-3xl rounded-[2rem] border-brand-primary/25 bg-gradient-to-br from-white/70 via-white/50 to-brand-accent/35 px-7 py-7 shadow-[0_24px_64px_-28px_rgba(120,95,170,0.2)] ring-brand-primary/15 md:px-9 md:py-8`}
-            >
-              <h3 className="font-heading m-0 text-[1.15rem] font-bold leading-snug text-brand-fg1 md:text-[1.28rem]">
-                Individualizovaný vstup
-              </h3>
-              <p className="m-0 mt-3 max-w-2xl text-[14px] leading-relaxed text-brand-fg2 md:text-[15px]">
-                Druhá časť prijímacieho konania, ktorá dopĺňa písomné testy
-              </p>
-            </article>
+            ))}
           </div>
         </section>
 
@@ -255,7 +266,7 @@ export function CoTeCakaNaPrijimackachContent() {
             ).map((item, i) => (
               <span
                 key={item.label}
-                className={`${item.cls} inline-flex cursor-default rounded-full border border-brand-primary/22 bg-white/80 px-5 py-2.5 text-[14px] font-semibold text-brand-fg1 shadow-[0_10px_32px_-14px_rgba(185,160,224,0.38)] backdrop-blur-sm transition-[transform,box-shadow,border-color] hover:border-brand-primary/45 md:px-6 md:py-3 md:text-[15px]`}
+                className={`${item.cls} inline-flex cursor-default rounded-full border border-brand-primary/32 bg-[#e8e2f4]/88 px-5 py-2.5 text-[14px] font-semibold text-brand-fg1 shadow-[0_8px_28px_-10px_rgba(120,98,168,0.2)] backdrop-blur-sm transition-[transform,box-shadow,border-color] hover:border-brand-primary/52 hover:bg-[#f0eafc] hover:shadow-[0_14px_40px_-12px_rgba(140,115,195,0.32)] md:px-6 md:py-3 md:text-[15px]`}
                 style={{
                   marginLeft: i === 1 ? "0.2rem" : undefined,
                   marginTop: i === 1 ? "-0.4rem" : undefined,
@@ -281,21 +292,25 @@ export function CoTeCakaNaPrijimackachContent() {
 
           <div className="relative mx-auto mt-10 max-w-4xl md:mt-12">
             <div
-              className="pointer-events-none absolute inset-0 -z-[1] rounded-[2rem] bg-[#fdb913]/12 blur-2xl md:rounded-[2.25rem]"
+              className="pointer-events-none absolute -inset-3 -z-[1] rounded-[2.1rem] bg-[radial-gradient(ellipse_at_30%_50%,rgba(150,130,205,0.35)_0%,transparent_55%),radial-gradient(ellipse_at_85%_50%,rgba(253,185,19,0.22)_0%,transparent_50%)] blur-2xl md:-inset-4 md:rounded-[2.35rem]"
               aria-hidden
             />
             <div
-              className="relative overflow-hidden rounded-[1.75rem] shadow-[0_28px_72px_-32px_rgba(60,55,90,0.18)] ring-1 ring-black/[0.06] md:rounded-[2rem]"
+              className="relative overflow-hidden rounded-[1.75rem] shadow-[0_32px_80px_-28px_rgba(75,58,115,0.35),0_16px_48px_-20px_rgba(253,185,19,0.15)] ring-1 ring-[#b8a8d8]/45 md:rounded-[2rem]"
               role="img"
               aria-label="Pomer písomnej časti a individualizovaného vstupu: 80 % ku 20 %"
             >
               <div className="flex min-h-[10.5rem] flex-col sm:min-h-[11.5rem] md:min-h-[12.5rem] md:flex-row">
-                <div className="relative flex flex-[8] flex-col justify-center bg-gradient-to-br from-[#eef1f6] via-[#e6ebf2] to-[#dde3ec] px-7 py-8 md:px-11 md:py-10">
+                <div className="relative flex flex-[8] flex-col justify-center bg-gradient-to-br from-[#dce2f4] via-[#cfd8ef] to-[#bfcae8] px-7 py-8 md:px-11 md:py-10">
                   <div
-                    className="pointer-events-none absolute inset-y-0 right-0 w-2/5 bg-gradient-to-l from-white/35 to-transparent"
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_40%,rgba(255,255,255,0.45)_0%,transparent_55%)]"
                     aria-hidden
                   />
-                  <p className="relative m-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-fg2 md:text-xs">
+                  <div
+                    className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-[#e8ecfa]/90 to-transparent"
+                    aria-hidden
+                  />
+                  <p className="relative m-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#4a4a62]/85 md:text-xs">
                     Písomná časť
                   </p>
                   <p className="font-heading relative m-0 mt-2 text-[clamp(2.6rem,1.85rem+3.8vw,4.1rem)] font-bold leading-[0.95] tracking-tight text-brand-fg1">
@@ -304,10 +319,10 @@ export function CoTeCakaNaPrijimackachContent() {
                 </div>
                 <div className="relative flex flex-[2] flex-col justify-center bg-[#fdb913] px-6 py-7 text-brand-fg1 md:px-7 md:py-9">
                   <div
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent"
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/28 via-transparent to-[#f5a800]/12"
                     aria-hidden
                   />
-                  <p className="relative m-0 text-[10px] font-semibold uppercase leading-snug tracking-[0.12em] text-brand-fg1/72 md:text-[11px]">
+                  <p className="relative m-0 text-[10px] font-semibold uppercase leading-snug tracking-[0.12em] text-brand-fg1/75 md:text-[11px]">
                     Individualizovaný vstup
                   </p>
                   <p className="font-heading relative m-0 mt-2 text-[clamp(2rem,1.45rem+2.2vw,2.85rem)] font-bold leading-none tracking-tight">
