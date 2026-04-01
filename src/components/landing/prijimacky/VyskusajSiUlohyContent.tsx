@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LINK_TERMINY_VYSLEDKY_ZAPIS } from "@/data/prijimacky-nav";
 import { PRIJIMACIE_ULOHY_PDF, ukazkyUlohKategorie } from "@/data/prijimacky-ukazky-uloh";
+import heroPills from "./heroFloatingPills.module.css";
 import { VyskusajSiUlohyMiniQuiz } from "./VyskusajSiUlohyMiniQuiz";
 
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
@@ -11,197 +12,141 @@ const LINK_TERM = LINK_TERMINY_VYSLEDKY_ZAPIS;
 
 const sectionY = "py-10 md:py-14 lg:py-16";
 
-/** Vertikálna fotka sekcie (Lýceum C. S. Lewisa) — súbor `public/prijimacky/typy-uloh-portrait.png`. */
-const TYPY_ULOH_PORTRAIT_SRC = "/prijimacky/typy-uloh-portrait.png";
+/** Hero — trieda pri spolupráci (editoriálny výrez). */
+const HERO_VYSKUSAJ_SRC = "/prijimacky/hero-vyskusaj-si-ulohy.jpg";
 
-/** Jednotné číslovanie typov úloh — rovnaký badge na každej karte. */
-const typUlohyCisloBadge =
-  "flex h-8 w-9 shrink-0 items-center justify-center self-start rounded-lg bg-[#ebe6f4] text-[12px] font-bold tabular-nums leading-none text-brand-fg2 ring-1 ring-[#d2c8e4]/65";
+const ctaPrimaryYellow =
+  "inline-flex items-center justify-center rounded-full border-0 bg-[#fdb913] px-8 py-3.5 text-[15px] font-bold text-brand-fg1 no-underline shadow-[0_12px_32px_-12px_rgba(253,185,19,0.65)] transition-colors hover:bg-[#f5b010] md:px-10 md:text-base";
+
+/** Sekundárne pill — jemný zlatý okraj (akcent ako na „Ako sa dostať“, nie plná výplň). */
+const pillSecondaryHeroWarm =
+  "inline-flex items-center justify-center rounded-full border border-[#d4be78]/75 bg-[#f7f2ea]/95 px-5 py-2.5 text-[14px] font-semibold text-[#2a1f18] no-underline shadow-[0_6px_20px_-10px_rgba(55,45,25,0.08)] backdrop-blur-sm transition-colors hover:border-[#fdb913]/45 hover:bg-[#faf0e4] hover:shadow-[0_8px_24px_-12px_rgba(253,185,19,0.12)] md:px-6 md:text-[15px]";
 
 export function VyskusajSiUlohyContent() {
   return (
     <main
       id="prijimacky-vyskusaj-si-ulohy"
-      className="scroll-mt-24 bg-brand-bg1 pb-12 md:scroll-mt-28 md:pb-16"
+      className="scroll-mt-24 bg-[#f5ebe3] pb-12 md:scroll-mt-28 md:pb-16"
     >
+      {/* Hero — tá istá skladba ako „Ako sa dostať na Lýceum“; stĺpce zrkadlovo (fotka vľavo, text vpravo), teplá marhuľa */}
       <div className={`${CX} pt-6 md:pt-8`}>
-        <nav className="mb-6 text-sm text-brand-fg3 md:mb-8" aria-label="Oblasť stránky">
-          <Link
-            href="/#prijimacky"
-            className="font-medium text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"
-          >
-            Prijímačky
-          </Link>
-          <span className="mx-2 text-brand-fg3" aria-hidden>
-            /
-          </span>
-          <span className="text-brand-fg2">Vyskúšaj si úlohy</span>
-        </nav>
-      </div>
-
-      {/* 1. Úvod — jeden nadpis, jedna myšlienka, jemné odkazy */}
-      <div className={CX}>
         <header
-          className="rounded-[22px] bg-gradient-to-br from-white via-brand-bg2/35 to-[#fef9e8] px-6 py-10 ring-1 ring-black/[0.06] sm:px-8 sm:py-11 md:rounded-[26px] md:px-10 md:py-12"
+          className="overflow-x-clip rounded-[28px] bg-gradient-to-br from-[#f0e2d6] via-[#faf5f0] to-[#f2d9c4] ring-1 ring-[#d8a888]/52 shadow-[0_24px_60px_-32px_rgba(90,55,35,0.14),inset_0_1px_0_0_rgba(255,255,255,0.55)] md:rounded-[32px] lg:rounded-[36px]"
+          aria-label="Úvod a typy úloh"
         >
-          <h1 className="font-heading m-0 max-w-2xl text-[clamp(1.75rem,1.1rem+2.5vw,2.75rem)] font-bold leading-[1.08] tracking-tight text-brand-fg1">
-            Vyskúšaj si úlohy
-          </h1>
-          <p className="m-0 mt-4 max-w-2xl text-[15px] leading-relaxed text-brand-fg2 md:mt-5 md:text-[16px] md:leading-[1.55]">
-            Pozri si, aký typ premýšľania sa objavuje v prijímačkách na Lýceum. Krátko,
-            zrozumiteľne a bez zbytočného stresu.
-          </p>
-          <p className="m-0 mt-5 text-[13px] text-brand-fg3 md:mt-6 md:text-[14px]">
-            <Link
-              href={LINK_CO}
-              className="font-medium text-brand-primary underline decoration-brand-primary/35 underline-offset-[3px] transition-colors hover:decoration-brand-primary/55"
-            >
-              Čo ťa čaká na prijímačkách
-            </Link>
-            <span className="mx-2 text-brand-fg4" aria-hidden>
-              ·
-            </span>
-            <Link
-              href={LINK_TERM}
-              className="font-medium text-brand-primary underline decoration-brand-primary/35 underline-offset-[3px] transition-colors hover:decoration-brand-primary/55"
-            >
-              Termíny a kapacita
-            </Link>
-          </p>
+          <div className="p-6 sm:p-8 md:p-10 lg:p-12 lg:pb-8">
+            <div className="grid gap-10 lg:grid-cols-[minmax(280px,1.08fr)_minmax(0,0.92fr)] lg:items-start lg:gap-10 xl:gap-12">
+              <div className="relative mx-auto w-full max-w-[min(100%,24rem)] sm:max-w-[min(100%,28rem)] lg:mx-0 lg:max-w-none lg:w-full">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[24px] ring-1 ring-[#c8b078]/55 md:aspect-[3/2] md:rounded-[28px] lg:rounded-[32px]">
+                  <Image
+                    src={HERO_VYSKUSAJ_SRC}
+                    alt="Študenti Lýcea C. S. Lewisa pri spolupráci a riešení úlohy pri stole v triede"
+                    fill
+                    className="object-cover object-[center_42%]"
+                    sizes="(max-width: 1024px) min(100vw, 28rem), (max-width: 1400px) 48vw, 640px"
+                    priority
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#3d2818]/[0.28] via-[#5c3a28]/[0.07] to-transparent"
+                    aria-hidden
+                  />
+                </div>
+                <div className="absolute left-2 top-2 z-[2] sm:left-3 sm:top-3 lg:left-4 lg:top-4">
+                  <span
+                    className={`${heroPills.pillDriftA} font-heading inline-block rounded-full bg-[#4a3228] px-6 py-3.5 text-base font-bold leading-tight tracking-tight text-[#fff9f4] shadow-[0_12px_28px_-8px_rgba(45,28,18,0.32),0_4px_16px_-6px_rgba(120,75,45,0.16)] ring-1 ring-[#f0c068]/35 sm:px-7 sm:py-4 sm:text-lg md:px-8 md:py-[1.125rem] md:text-xl`}
+                  >
+                    Ukážky úloh
+                  </span>
+                </div>
+                <div className="absolute right-2 bottom-2 z-[2] sm:right-3 sm:bottom-3 lg:right-4 lg:bottom-4">
+                  <span
+                    className={`${heroPills.pillDriftB} font-heading inline-block rounded-full border-2 border-[#dcc070]/65 bg-[#faf6ee]/98 px-6 py-3.5 text-base font-bold leading-tight tracking-tight text-[#2a1f18] shadow-[0_10px_28px_-10px_rgba(100,65,40,0.18)] backdrop-blur-sm sm:px-7 sm:py-4 sm:text-lg md:px-8 md:py-[1.125rem] md:text-xl`}
+                  >
+                    Prijímačky
+                  </span>
+                </div>
+              </div>
+
+              <div className="min-w-0">
+                <nav
+                  className="mb-5 text-[13px] md:mb-6"
+                  aria-label="Oblasť stránky"
+                >
+                  <Link
+                    href="/#prijimacky"
+                    className="font-medium text-brand-primary underline decoration-[#e8c878]/45 underline-offset-2 hover:decoration-brand-primary"
+                  >
+                    Prijímačky
+                  </Link>
+                  <span className="mx-2 text-[#d4a088]" aria-hidden>
+                    /
+                  </span>
+                  <span className="text-[#3d2e28]">Vyskúšaj si úlohy</span>
+                </nav>
+
+                <h1 className="font-heading m-0 max-w-xl text-[clamp(2rem,1.2rem+3.2vw,3.35rem)] font-bold leading-[1.05] tracking-tight text-[#1f1814]">
+                  <span className="block">Vyskúšaj si</span>
+                  <span className="mt-1 block text-[#fdb913]">úlohy</span>
+                </h1>
+
+                <p className="m-0 mt-5 max-w-md text-[15px] font-normal leading-relaxed text-[#4a362c]/92 sm:text-[16px] md:mt-6 md:text-[17px] md:leading-[1.62]">
+                  Taký typ myslenia a zadaní, aký uvidíš na prijímačkách — bez tlaku, že musíš
+                  všetko vedieť dopredu.
+                </p>
+
+                <div className="mt-7 flex flex-col gap-3 sm:mt-8">
+                  <Link href="#heading-mini-quiz" className={`${ctaPrimaryYellow} w-fit`}>
+                    Skús úlohy na nečisto
+                  </Link>
+                  <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
+                    <Link href={LINK_CO} className={pillSecondaryHeroWarm}>
+                      Čo ťa čaká na prijímačkách
+                    </Link>
+                    <Link href={LINK_TERM} className={pillSecondaryHeroWarm}>
+                      Termíny, výsledky a zápis
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Typy úloh — integrovaný pás v tom istom hero bloku (ako termíny na „Ako sa dostať“) */}
+            <div className="mt-8 border-t border-[#e0c898]/50 pt-6 md:mt-10 md:pt-8">
+              <h2
+                id="heading-typy"
+                className="scroll-mt-28 font-heading m-0 text-[11px] font-bold uppercase tracking-[0.16em] text-[#6e5c38] md:text-xs"
+              >
+                Typy úloh, s ktorými sa môžeš stretnúť
+              </h2>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+                {ukazkyUlohKategorie.map((kat) => {
+                  const kratky = (kat.nazov.split(/[\s,]+/)[0] ?? kat.nazov).toLocaleUpperCase("sk");
+                  return (
+                    <div
+                      key={kat.id}
+                      className="rounded-2xl bg-gradient-to-br from-[#faf6ef]/98 to-[#f2e6d4]/98 px-4 py-3.5 ring-1 ring-[#d4c090]/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] backdrop-blur-sm md:px-5 md:py-4"
+                    >
+                      <p className="m-0 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#9a8028]">
+                        {kratky}
+                      </p>
+                      <p className="font-heading m-0 mt-1.5 text-[clamp(0.92rem,0.82rem+0.45vw,1.08rem)] font-bold leading-snug text-brand-fg1">
+                        {kat.nazov}
+                      </p>
+                      <p className="m-0 mt-2 text-[13px] leading-relaxed text-brand-fg2 md:text-[14px]">
+                        {kat.popis}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </header>
       </div>
 
-      {/* 2. Typy úloh — editoriálna kompozícia: portrét + asymetrické bloky */}
-      <section className={`${CX} ${sectionY} relative`} aria-labelledby="heading-typy">
-        <div
-          className="pointer-events-none absolute -right-24 top-1/4 h-80 w-80 rounded-full bg-brand-primary/12 blur-[100px]"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute -left-20 bottom-[15%] h-64 w-64 rounded-full bg-[#fef6d4]/45 blur-[90px]"
-          aria-hidden
-        />
-
-        <div className="relative mx-auto max-w-6xl">
-          <h2
-            id="heading-typy"
-            className="font-heading m-0 max-w-[22ch] text-[clamp(1.35rem,1.05rem+1.15vw,1.75rem)] font-bold leading-[1.12] tracking-tight text-brand-fg1 md:max-w-[28ch] lg:text-[clamp(1.45rem,1.1rem+1.2vw,1.9rem)]"
-          >
-            Typy úloh, s ktorými sa môžeš stretnúť
-          </h2>
-
-          <div className="mt-8 grid grid-cols-1 items-start gap-8 lg:mt-10 lg:grid-cols-12 lg:items-start lg:gap-9 xl:gap-12">
-            {/* Portrét — kratší než 9∶16, lepšia výška voči obsahu vpravo */}
-            <div className="relative lg:col-span-5 xl:col-span-4">
-              <figure className="relative mx-auto w-full max-w-[min(100%,17rem)] lg:mx-0 lg:max-w-[15.5rem] xl:max-w-[16rem]">
-                <div
-                  className="pointer-events-none absolute -inset-2.5 -z-[1] rounded-[1.75rem] bg-[radial-gradient(ellipse_at_40%_35%,rgba(185,160,224,0.32)_0%,transparent_68%)] opacity-90 blur-xl md:-inset-3 md:rounded-[2rem]"
-                  aria-hidden
-                />
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.5rem] shadow-[0_22px_56px_-22px_rgba(55,45,95,0.32),0_10px_32px_-16px_rgba(185,160,224,0.2)] ring-1 ring-black/[0.06] md:rounded-[1.75rem] lg:rounded-[1.85rem]">
-                  <Image
-                    src={TYPY_ULOH_PORTRAIT_SRC}
-                    alt="Študenti Lýcea C. S. Lewisa pri spolupráci pri stole v triede"
-                    fill
-                    className="object-cover object-[center_48%]"
-                    sizes="(max-width: 1024px) 272px, 256px"
-                    priority={false}
-                  />
-                </div>
-              </figure>
-            </div>
-
-            {/* Štyri typy — rovnaké číslovanie (badge), zachovaná variácia kariet */}
-            <div className="flex flex-col gap-4 md:gap-5 lg:col-span-7 lg:pt-0.5 xl:col-span-8">
-              <article
-                key={ukazkyUlohKategorie[0].id}
-                className="rounded-[1.35rem] border border-[#e2d8f0]/75 bg-gradient-to-br from-[#f3edfb] via-white to-[#faf8ff] p-5 shadow-[0_18px_50px_-28px_rgba(90,72,130,0.2)] ring-1 ring-white/55 md:p-6 lg:rounded-[1.5rem] lg:p-7"
-              >
-                <div className="flex gap-3 md:gap-3.5">
-                  <span className={typUlohyCisloBadge} aria-hidden>
-                    01
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-heading m-0 text-[1.12rem] font-bold leading-snug text-brand-fg1 md:text-[1.22rem]">
-                      {ukazkyUlohKategorie[0].nazov}
-                    </h3>
-                    <p className="m-0 mt-2 max-w-prose text-[15px] leading-relaxed text-brand-fg2 md:mt-2.5 md:text-[16px]">
-                      {ukazkyUlohKategorie[0].popis}
-                    </p>
-                  </div>
-                </div>
-              </article>
-
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-1 xl:grid-cols-2 xl:gap-5">
-                <article
-                  key={ukazkyUlohKategorie[1].id}
-                  className="rounded-[1.2rem] border border-black/[0.06] bg-white/95 p-5 shadow-[0_14px_40px_-26px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.03] md:p-5"
-                >
-                  <div className="flex gap-3 md:gap-3.5">
-                    <span className={typUlohyCisloBadge} aria-hidden>
-                      02
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-heading m-0 text-[1.05rem] font-bold leading-snug text-brand-fg1 md:text-[1.1rem]">
-                        {ukazkyUlohKategorie[1].nazov}
-                      </h3>
-                      <p className="m-0 mt-2 text-[14px] leading-relaxed text-brand-fg2 md:text-[15px]">
-                        {ukazkyUlohKategorie[1].popis}
-                      </p>
-                    </div>
-                  </div>
-                </article>
-
-                <article
-                  key={ukazkyUlohKategorie[2].id}
-                  className="rounded-[1.15rem] border border-brand-primary/22 bg-[#faf9fc] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] ring-1 ring-brand-primary/18 md:p-5 xl:translate-x-0.5"
-                >
-                  <div className="flex gap-3 md:gap-3.5">
-                    <span className={typUlohyCisloBadge} aria-hidden>
-                      03
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-heading m-0 text-[1.05rem] font-bold leading-snug text-brand-fg1 md:text-[1.1rem]">
-                        {ukazkyUlohKategorie[2].nazov}
-                      </h3>
-                      <p className="m-0 mt-2 text-[14px] leading-relaxed text-brand-fg2 md:text-[15px]">
-                        {ukazkyUlohKategorie[2].popis}
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <article
-                key={ukazkyUlohKategorie[3].id}
-                className="relative overflow-hidden rounded-[1.25rem] border border-[#eae6f2] bg-white py-5 pl-5 pr-5 shadow-[0_12px_40px_-22px_rgba(75,60,115,0.12)] md:rounded-[1.35rem] md:py-5 md:pl-6 md:pr-5"
-              >
-                <div
-                  className="absolute bottom-0 left-0 top-0 w-1 rounded-full bg-gradient-to-b from-brand-primary via-[#c4aee8] to-brand-accent"
-                  aria-hidden
-                />
-                <div className="flex gap-3 pl-3 md:gap-3.5 md:pl-3.5">
-                  <span className={typUlohyCisloBadge} aria-hidden>
-                    04
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-heading m-0 text-[1.06rem] font-bold leading-snug text-brand-fg1 md:text-[1.12rem]">
-                      {ukazkyUlohKategorie[3].nazov}
-                    </h3>
-                    <p className="m-0 mt-2 max-w-prose text-[14px] leading-relaxed text-brand-fg2 md:mt-2 md:text-[15px]">
-                      {ukazkyUlohKategorie[3].popis}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Mini kvíz — hlavný interaktívny blok */}
+      {/* Mini kvíz — pozadie sekcie ako zvyšok stránky; oranžový ombre len vo vnútri karty kvízu */}
       <section
-        className={`${CX} ${sectionY} border-t border-black/[0.06]`}
+        className={`${CX} ${sectionY} scroll-mt-28 border-t border-[#dcc898]/45 md:scroll-mt-32`}
         aria-labelledby="heading-mini-quiz"
       >
         <div className="mx-auto max-w-2xl md:max-w-3xl">
@@ -209,9 +154,11 @@ export function VyskusajSiUlohyContent() {
             id="heading-mini-quiz"
             className="font-heading m-0 text-center text-[clamp(1.3rem,1rem+1.2vw,1.85rem)] font-bold leading-tight tracking-tight text-brand-fg1"
           >
-            Skús si 3 úlohy na nečisto
+            Skús si 3 úlohy na{" "}
+            <span className="text-[#fdb913]">nečisto</span>
           </h2>
-          <p className="m-0 mt-3 text-center text-[15px] leading-relaxed text-brand-fg2 md:mt-4 md:text-[16px]">
+          <div className="mx-auto mt-4 h-0.5 w-12 rounded-full bg-[#fdb913]" aria-hidden />
+          <p className="m-0 mt-5 text-center text-[15px] leading-relaxed text-brand-fg2 md:mt-6 md:text-[16px]">
             Ochutnávka typu zadaní — súvislosti a pokoj pri riešení, nie biflenie.
           </p>
           <div className="mt-7 md:mt-8">
@@ -220,7 +167,7 @@ export function VyskusajSiUlohyContent() {
         </div>
       </section>
 
-      {/* 4. PDF — jedno záverečné CTA; náhľad len na väčších obrazovkách */}
+      {/* 3. PDF — jedno záverečné CTA; náhľad len na väčších obrazovkách */}
       <section
         className={`${CX} ${sectionY} border-t border-black/[0.06]`}
         aria-labelledby="heading-cela"

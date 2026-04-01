@@ -9,14 +9,24 @@ import {
   type QuizOptionKey,
 } from "@/data/vyskusaj-si-ulohy-mini-quiz";
 
+/**
+ * Paleta akcentu (zhodná s CTA #fdb913): silný len na CTA / zvýraznenie,
+ * stredný na okraje, slabý tint na pozadí — nie plná žltá plocha karty.
+ */
 const cardClass =
-  "rounded-[1.35rem] border border-[#e8e2f4]/75 bg-gradient-to-b from-white to-[#faf8ff] px-5 py-6 shadow-[0_16px_48px_-20px_rgba(95,78,130,0.14)] ring-1 ring-black/[0.04] sm:rounded-[1.5rem] sm:px-7 sm:py-8 md:px-8 md:py-9";
+  "rounded-[1.35rem] border border-[#d8c498]/65 bg-[#faf5ee] px-5 py-6 text-brand-fg1 shadow-[0_20px_50px_-28px_rgba(45,35,22,0.1)] ring-1 ring-[#e5d8c4]/75 sm:rounded-[1.5rem] sm:px-7 sm:py-8 md:px-8 md:py-9";
+
+const progressWrapClass =
+  "inline-flex items-center gap-1.5 rounded-full border border-[#dcc898]/70 bg-[#fff3e0] px-3 py-1 tabular-nums shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]";
+
+const progressCurrentClass = "text-[15px] font-bold text-[#fdb913] md:text-[16px]";
+const progressTotalClass = "text-[13px] font-medium text-brand-fg3 md:text-[14px]";
 
 const optionBase =
-  "w-full rounded-xl text-left text-[15px] leading-snug transition-[border-color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8ff] disabled:cursor-default md:text-[15px]";
+  "w-full rounded-xl text-left text-[15px] leading-snug transition-[border-color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#fdb913]/45 focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf5ee] disabled:cursor-default md:text-[15px]";
 
 const optionIdle =
-  "border border-[#e4deef]/85 bg-white/95 text-brand-fg1 hover:border-brand-primary/35 hover:bg-[#faf9ff] hover:shadow-[0_6px_20px_-12px_rgba(120,95,170,0.12)]";
+  "border border-[#d8d2c8]/90 bg-[#fdfcfa] text-brand-fg1 hover:border-[#d8b868]/70 hover:bg-[#faf0e4] hover:shadow-[0_4px_18px_-12px_rgba(253,185,19,0.12)]";
 
 /** Správna odpoveď — zreteľná zelená, tmavý text. */
 const optionCorrectState =
@@ -32,13 +42,13 @@ const optionCorrectRevealState =
 
 /** Ostatné možnosti po zamknutí — stlmené. */
 const optionFadedState =
-  "border border-[#e4e0eb]/88 bg-[#f7f7f9]/95 text-brand-fg2 opacity-72";
+  "border border-[#ddd8d0]/95 bg-[#f0ebe4]/98 text-brand-fg2 opacity-72";
 
 const explainBoxClass =
-  "rounded-[1rem] border border-[#ddd6e8]/65 bg-[#f4f2f8] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] md:rounded-[1.1rem] md:px-5 md:py-[1.125rem]";
+  "rounded-[1rem] border-y border-r border-[#d8c8a8]/55 border-l-[3px] border-l-[#fdb913] bg-[#fff4e0] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.55)] md:rounded-[1.1rem] md:px-5 md:py-[1.125rem]";
 
 const explainTitleClass =
-  "font-heading m-0 text-[12px] font-bold uppercase tracking-[0.1em] text-brand-fg3 md:text-[13px]";
+  "font-heading m-0 text-[12px] font-bold uppercase tracking-[0.1em] text-[#8a7228] md:text-[13px]";
 
 export function VyskusajSiUlohyMiniQuiz() {
   const [index, setIndex] = useState(0);
@@ -116,11 +126,11 @@ export function VyskusajSiUlohyMiniQuiz() {
             {block.ctas[1].label}
           </Link>
         </div>
-        <div className="mt-8 flex justify-center border-t border-black/[0.06] pt-6">
+        <div className="mt-8 flex justify-center border-t border-[#dcc898]/45 pt-6">
           <button
             type="button"
             onClick={restart}
-            className="rounded-sm text-[14px] font-medium text-brand-fg3 underline decoration-brand-fg3/35 underline-offset-[5px] transition-colors hover:text-brand-fg2 hover:decoration-brand-fg2/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/35 focus-visible:ring-offset-2"
+            className="rounded-sm text-[14px] font-medium text-brand-fg2 underline decoration-[#c4a860]/55 underline-offset-[5px] transition-colors hover:text-brand-fg1 hover:decoration-[#fdb913]/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#fdb913]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf5ee]"
           >
             Skúsiť znova
           </button>
@@ -162,12 +172,10 @@ export function VyskusajSiUlohyMiniQuiz() {
       role="region"
       aria-label={`Otázka ${index + 1} z ${total}`}
     >
-      <div className="flex items-baseline justify-between gap-3">
-        <p
-          className="m-0 text-[13px] font-medium tabular-nums text-brand-fg3 md:text-[14px]"
-          aria-hidden
-        >
-          {index + 1} / {total}
+      <div className="flex items-center justify-between gap-3">
+        <p className={progressWrapClass} aria-hidden>
+          <span className={progressCurrentClass}>{index + 1}</span>
+          <span className={progressTotalClass}> / {total}</span>
         </p>
       </div>
 
@@ -176,7 +184,7 @@ export function VyskusajSiUlohyMiniQuiz() {
           {q.lead}
         </p>
         {q.bullets && q.bullets.length > 0 ? (
-          <ul className="m-0 mt-3 list-disc space-y-1.5 pl-5 text-[14px] leading-relaxed text-brand-fg2 md:text-[15px]">
+          <ul className="m-0 mt-3 list-disc space-y-1.5 pl-5 text-[14px] leading-relaxed text-brand-fg2 marker:text-[#c4a050] md:text-[15px]">
             {q.bullets.map((line) => (
               <li key={line} className="pl-0.5">
                 {line}
@@ -219,7 +227,7 @@ export function VyskusajSiUlohyMiniQuiz() {
                 <p className="m-0 mt-2.5 text-[14px] font-normal leading-relaxed text-brand-fg1 md:mt-3 md:text-[15px] md:leading-[1.55]">
                   {q.feedbackWrongExplain}
                 </p>
-                <p className="m-0 mt-4 border-t border-black/[0.06] pt-4 text-[13px] font-normal leading-relaxed text-brand-fg3 md:mt-5 md:pt-4 md:text-[14px] md:leading-[1.55]">
+                <p className="m-0 mt-4 border-t border-[#dcc898]/45 pt-4 text-[13px] font-normal leading-relaxed text-brand-fg3 md:mt-5 md:pt-4 md:text-[14px] md:leading-[1.55]">
                   {q.feedbackWrongEncourage}
                 </p>
               </>

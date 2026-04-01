@@ -11,9 +11,11 @@ export const siteContact = {
     "851 06",
     "Bratislava",
   ] as const,
-  instagramUrl:
-    "https://www.instagram.com/lyceumcsl?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
-  facebookUrl: "https://www.facebook.com/LyceumCSL/",
+  instagramUrl: "https://www.instagram.com/lyceumcsl/",
+  facebookUrl: "https://www.facebook.com/LyceumCSL",
+  /** Firemná stránka školy (príspevky / prehľad). */
+  linkedinUrl:
+    "https://www.linkedin.com/company/lyceumcsl/posts/?feedView=all",
   tiktokUrl: "https://www.tiktok.com/@lyceumcsl",
   /** Povinné informovanie GDPR (Osobnyudaj.sk) */
   privacyInfoUrl:

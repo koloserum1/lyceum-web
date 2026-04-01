@@ -1,7 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import { siteContact } from "@/content/siteContact";
 
-const LINK_INSTAGRAM_LYCEUM = "https://www.instagram.com/lyceumcsl/";
+const LINK_INSTAGRAM_LYCEUM = siteContact.instagramUrl;
+const LINK_FACEBOOK_LYCEUM = siteContact.facebookUrl;
+const LINK_LINKEDIN_LYCEUM = siteContact.linkedinUrl;
+const LINK_TIKTOK_LYCEUM = siteContact.tiktokUrl;
+
+/** Náhľady v kartách sociálnych sietí (existujúce fotky z public). */
+const SOCIAL_PREVIEW_INSTAGRAM = "/kontakt/instagram-lyceum-preview.png";
+const SOCIAL_PREVIEW_FACEBOOK = "/kontakt/facebook-lyceum-preview.png";
+const SOCIAL_PREVIEW_LINKEDIN = "/kontakt/linkedin-lyceum-preview.png";
+const SOCIAL_PREVIEW_TIKTOK = "/kontakt/tiktok-lyceum-preview.png";
 
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
 
@@ -306,11 +316,8 @@ export function KontaktContent() {
         >
           Kde nás môžeš sledovať
         </h2>
-        <p className="m-0 mt-3 max-w-2xl text-[15px] leading-relaxed text-brand-fg2 md:mt-4">
-          Aktuálne dianie, zákulisie a novinky zdieľame aj na sociálnych sieťach.
-        </p>
 
-        <div className="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-4 xl:gap-5">
+        <div className="mt-6 grid gap-5 sm:mt-7 sm:grid-cols-2 xl:grid-cols-4 xl:gap-5">
           {/* Instagram — vizuálne najbohatšia */}
           <article className={`${socialCardBase} border border-[#f0d8e8]/60`}>
             <div
@@ -333,14 +340,15 @@ export function KontaktContent() {
               <h3 className="font-heading m-0 text-lg font-bold text-brand-fg1">Instagram</h3>
               <div className="mt-4 flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-white/70 bg-white/45 p-2 shadow-inner shadow-white/40 backdrop-blur-sm sm:p-3">
                 <div className="overflow-hidden rounded-xl bg-white ring-1 ring-black/[0.06]">
-                  <Image
-                    src="/kontakt/instagram-lyceum-profile.png"
-                    alt="Profil Lýceum C. S. Lewisa na Instagrame (@lyceumcsl)"
-                    width={819}
-                    height={1024}
-                    className="h-auto w-full origin-center scale-[1.18] object-cover object-center"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 320px"
-                  />
+                  <div className="relative aspect-[3/4] w-full">
+                    <Image
+                      src={SOCIAL_PREVIEW_INSTAGRAM}
+                      alt="Futbalový tím Lýcea — život školy na Instagrame (@lyceumcsl)"
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 320px"
+                    />
+                  </div>
                 </div>
               </div>
               <a
@@ -366,31 +374,27 @@ export function KontaktContent() {
             />
             <div className="relative z-[1] flex flex-1 flex-col p-6 md:p-7">
               <h3 className="font-heading m-0 text-lg font-bold text-brand-fg1">Facebook</h3>
-              <div className="mt-4 flex flex-1 flex-col rounded-2xl border border-white/80 bg-white/55 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] backdrop-blur-sm">
-                <div className="flex items-center gap-2">
-                  <div className="flex -space-x-2">
-                    {[0, 1, 2].map((i) => (
-                      <div
-                        key={i}
-                        className="h-9 w-9 rounded-full border-2 border-white bg-gradient-to-br from-[#8eb8f4] to-[#5b8def] ring-1 ring-[#5b8def]/20"
-                      />
-                    ))}
+              <div className="mt-4 flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-white/70 bg-white/45 p-2 shadow-inner shadow-white/40 backdrop-blur-sm sm:p-3">
+                <div className="overflow-hidden rounded-xl bg-white ring-1 ring-black/[0.06]">
+                  <div className="relative aspect-[3/4] w-full">
+                    <Image
+                      src={SOCIAL_PREVIEW_FACEBOOK}
+                      alt="Tím Lýcea s víťazným šekom z Pronea Hackathon 2026 — novinky na Facebooku"
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 320px"
+                    />
                   </div>
-                  <span className="text-[11px] font-semibold text-[#3d5a8a]">Komunita · novinky</span>
                 </div>
-                <div className="mt-4 space-y-2 rounded-xl bg-white/70 p-3 ring-1 ring-[#c8daf4]/50">
-                  <div className="h-2 w-[78%] rounded-full bg-[#3d5a8a]/12" />
-                  <div className="h-2 w-full rounded-full bg-[#3d5a8a]/10" />
-                  <div className="h-2 w-[85%] rounded-full bg-[#3d5a8a]/10" />
-                </div>
-                <div className="mt-3 min-h-[3.25rem] flex-1 rounded-xl border border-dashed border-[#5b8def]/25 bg-gradient-to-b from-white/60 to-[#eef5ff]/80" />
-                <p className="m-0 mt-3 text-center text-[10px] font-semibold uppercase tracking-[0.16em] text-[#5a7194]">
-                  Priestor pre obsah
-                </p>
               </div>
-              <button type="button" className={`${socialCta} mt-5`}>
+              <a
+                href={LINK_FACEBOOK_LYCEUM}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${socialCta} relative z-[1] mt-5 inline-flex justify-center no-underline`}
+              >
                 Pozrieť profil
-              </button>
+              </a>
             </div>
           </article>
 
@@ -406,31 +410,27 @@ export function KontaktContent() {
             />
             <div className="relative z-[1] flex flex-1 flex-col p-6 md:p-7">
               <h3 className="font-heading m-0 text-lg font-bold text-brand-fg1">LinkedIn</h3>
-              <div className="mt-4 flex flex-1 flex-col rounded-2xl border border-white/85 bg-white/65 p-4 backdrop-blur-sm">
-                <div className="flex gap-1 border-b border-[#0a66c2]/12 pb-3">
-                  <span className="rounded-md bg-[#0a66c2]/12 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-[#0a66c2]">
-                    Prax
-                  </span>
-                  <span className="rounded-md bg-brand-fg1/[0.06] px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-brand-fg3">
-                    Projekty
-                  </span>
-                </div>
-                <div className="mt-3 flex gap-3">
-                  <div className="h-14 w-14 shrink-0 rounded-lg bg-gradient-to-br from-[#0a66c2]/15 to-[#0a66c2]/08 ring-1 ring-[#0a66c2]/15" />
-                  <div className="min-w-0 flex-1 space-y-2">
-                    <div className="h-2.5 w-[48%] rounded bg-brand-fg1/12" />
-                    <div className="h-2 w-full rounded bg-brand-fg1/[0.07]" />
-                    <div className="h-2 w-[90%] rounded bg-brand-fg1/[0.07]" />
+              <div className="mt-4 flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-white/70 bg-white/45 p-2 shadow-inner shadow-white/40 backdrop-blur-sm sm:p-3">
+                <div className="overflow-hidden rounded-xl bg-white ring-1 ring-black/[0.06]">
+                  <div className="relative aspect-[3/4] w-full">
+                    <Image
+                      src={SOCIAL_PREVIEW_LINKEDIN}
+                      alt="Článok o študentoch Lýcea — crowdfunding a projektová výučba (LinkedIn)"
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 320px"
+                    />
                   </div>
                 </div>
-                <div className="mt-3 min-h-[3.25rem] flex-1 rounded-lg border border-dashed border-[#0a66c2]/20 bg-gradient-to-b from-white/80 to-[#f0f7fc]/90" />
-                <p className="m-0 mt-3 text-center text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-fg3">
-                  Priestor pre obsah
-                </p>
               </div>
-              <button type="button" className={`${socialCta} mt-5`}>
+              <a
+                href={LINK_LINKEDIN_LYCEUM}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${socialCta} relative z-[1] mt-5 inline-flex justify-center no-underline`}
+              >
                 Pozrieť profil
-              </button>
+              </a>
             </div>
           </article>
 
@@ -450,27 +450,27 @@ export function KontaktContent() {
             />
             <div className="relative z-[1] flex flex-1 flex-col p-6 md:p-7">
               <h3 className="font-heading m-0 text-lg font-bold text-white/95">TikTok</h3>
-              <div className="mt-4 flex flex-1 flex-col rounded-2xl border border-white/12 bg-[#1a1820]/80 p-4 backdrop-blur-sm">
-                <div className="relative mx-auto aspect-[9/15] w-[52%] max-w-[7rem] overflow-hidden rounded-xl bg-gradient-to-b from-[#3d3848] to-[#1f1d26] ring-1 ring-white/10">
-                  <div className="absolute inset-x-2 top-2.5 flex justify-center gap-1">
-                    <span className="h-1 w-6 rounded-full bg-white/20" />
-                    <span className="h-1 w-4 rounded-full bg-white/15" />
-                  </div>
-                  <div className="absolute inset-x-2 bottom-10 top-10 rounded-md bg-gradient-to-b from-white/8 to-transparent" />
-                  <div className="absolute bottom-2.5 left-1/2 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border-2 border-[#fdb913]/40 bg-[#fdb913]/15">
-                    <span className="ml-0.5 block h-0 w-0 border-y-[5px] border-l-[8px] border-y-transparent border-l-white/90" />
+              <div className="mt-4 flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-white/70 bg-white/45 p-2 shadow-inner shadow-white/40 backdrop-blur-sm sm:p-3">
+                <div className="overflow-hidden rounded-xl bg-white ring-1 ring-black/[0.06]">
+                  <div className="relative aspect-[3/4] w-full">
+                    <Image
+                      src={SOCIAL_PREVIEW_TIKTOK}
+                      alt="TikTok Lýcea — rozhovor v ateliéri, účet @lyceumcsl"
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 320px"
+                    />
                   </div>
                 </div>
-                <p className="m-0 mt-4 text-center text-[10px] font-semibold uppercase tracking-[0.16em] text-white/45">
-                  Priestor pre obsah
-                </p>
               </div>
-              <button
-                type="button"
-                className="mt-5 w-full rounded-full border-2 border-white/20 bg-white/10 py-3 text-[14px] font-bold text-white backdrop-blur-sm transition-[border-color,background-color] hover:border-[#fdb913]/45 hover:bg-white/[0.14] md:text-[15px]"
+              <a
+                href={LINK_TIKTOK_LYCEUM}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative z-[1] mt-5 inline-flex w-full justify-center rounded-full border-2 border-white/20 bg-white/10 py-3 text-[14px] font-bold text-white no-underline backdrop-blur-sm transition-[border-color,background-color] hover:border-[#fdb913]/45 hover:bg-white/[0.14] md:text-[15px]"
               >
                 Pozrieť profil
-              </button>
+              </a>
             </div>
           </article>
         </div>

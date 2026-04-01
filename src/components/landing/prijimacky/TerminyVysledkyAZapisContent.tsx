@@ -1,13 +1,24 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import atmosphere from "./coTeCakaAtmosphere.module.css";
 
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
 
 const LINK_AKO = "/prijimacky/ako-sa-dostat-na-lyceum";
 const LINK_CO = "/prijimacky/co-te-caka-na-prijimackach";
 
-const HERO_ILLUSTRATION_SRC = "/prijimacky/hero-terminy-zapis.png";
+const HERO_ILLUSTRATION_SRC = "/prijimacky/hero-terminy-classroom-crop.png";
+
+/** Bubliny nad fotkou — rovnaký jazyk ako na ďalších prijímačkových stránkach. */
+const heroBubbleBase =
+  "pointer-events-none inline-flex max-w-full items-center justify-center rounded-full border border-[#c9bee5]/65 bg-[#fdfbff]/96 text-center font-semibold text-brand-fg1 shadow-[0_12px_40px_-10px_rgba(125,102,175,0.28),0_4px_24px_-8px_rgba(170,150,215,0.18)] backdrop-blur-xl";
+
+const heroBubbleMd =
+  `${heroBubbleBase} whitespace-nowrap px-6 py-3 text-[12px] font-semibold sm:px-8 sm:py-3.5 sm:text-[13px] md:text-[14px]`;
+
+const heroBubbleZapis =
+  "pointer-events-none inline-flex max-w-full items-center justify-center rounded-full border border-brand-primary/52 bg-gradient-to-br from-[#faf6ff] via-[#ebe4fb] to-brand-accent/55 text-center text-[12px] font-semibold leading-snug text-brand-fg1 shadow-[0_0_0_1px_rgba(165,140,210,0.35),0_16px_44px_-8px_rgba(130,105,185,0.35),0_8px_28px_-8px_rgba(200,175,235,0.25)] backdrop-blur-xl sm:text-[13px] md:px-8 md:py-3.5 md:text-[14px]";
 
 const ctaPrimaryYellow =
   "inline-flex items-center justify-center rounded-full border-0 bg-[#fdb913] px-8 py-3.5 text-[15px] font-bold text-brand-fg1 no-underline shadow-[0_14px_36px_-12px_rgba(253,185,19,0.5)] transition-[transform,box-shadow,background-color] hover:bg-[#f5b010] hover:shadow-[0_18px_40px_-10px_rgba(253,185,19,0.48)] md:px-10 md:py-4 md:text-base";
@@ -19,9 +30,9 @@ const ctaSecondaryLavender =
 const surfaceDotsSoft =
   "bg-[radial-gradient(circle_at_center,rgba(165,140,205,0.11)_1px,transparent_1px)] bg-[length:20px_20px]";
 
-/** Veľmi jemná mriežka */
+/** Veľmi jemná mriežka (mierne citeľnejšia ako predtým, stále nenápadná). */
 const surfaceGridFaint =
-  "bg-[linear-gradient(rgba(155,130,190,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(155,130,190,0.07)_1px,transparent_1px)] bg-[length:32px_32px]";
+  "bg-[linear-gradient(rgba(145,118,178,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(145,118,178,0.09)_1px,transparent_1px)] bg-[length:32px_32px]";
 
 export function TerminyVysledkyAZapisContent() {
   const terminy: {
@@ -77,29 +88,31 @@ export function TerminyVysledkyAZapisContent() {
       id="prijimacky-terminy-vysledky-a-zapis"
       className="relative isolate scroll-mt-24 bg-[#f9f7fb] pb-14 md:scroll-mt-28 md:pb-20"
     >
-      {/* Hero — biely panel, kompozícia bez prekrytia informačného boxu cez obrázok */}
-      <div className={`${CX} relative z-[1] pt-6 md:pt-8`}>
+      {/* Hero — kompaktný horizontálny blok, čistá fotka, mriežka ako podklad */}
+      <div className={`${CX} relative z-[1] pt-4 md:pt-5`}>
         <section
-          className="relative overflow-hidden rounded-[1.5rem] border border-[#e4dcf0] bg-white shadow-[0_18px_48px_-28px_rgba(72,56,105,0.12)] md:rounded-[1.65rem]"
+          className="relative overflow-hidden rounded-[1.35rem] border border-[#e4dcf0] bg-white shadow-[0_14px_40px_-26px_rgba(72,56,105,0.1)] md:rounded-[1.5rem]"
           aria-label="Úvod"
         >
           <div
-            className={`pointer-events-none absolute inset-0 opacity-[0.35] ${surfaceGridFaint}`}
+            className="pointer-events-none absolute inset-0 opacity-100"
+            style={{
+              background: `
+                radial-gradient(ellipse 52% 38% at 6% 92%, rgba(200, 182, 238, 0.1) 0%, transparent 58%),
+                radial-gradient(ellipse 44% 32% at 98% 6%, rgba(175, 195, 235, 0.09) 0%, transparent 52%)
+              `,
+            }}
             aria-hidden
           />
           <div
-            className="pointer-events-none absolute right-0 top-0 h-24 w-24 border-l border-b border-[#e8e0f0] opacity-70 md:h-28 md:w-28"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute bottom-0 left-0 h-20 w-20 border-t border-r border-[#e8e0f0] opacity-70 md:h-24 md:w-24"
+            className={`pointer-events-none absolute inset-0 opacity-[0.4] ${surfaceGridFaint}`}
             aria-hidden
           />
 
-          <div className="relative grid grid-cols-1 gap-8 px-5 py-8 sm:px-7 sm:py-9 md:gap-10 md:px-9 md:py-10 lg:grid-cols-12 lg:items-start">
-            <div className="lg:col-span-7">
+          <div className="relative grid grid-cols-1 gap-6 px-5 py-5 sm:px-6 sm:py-6 md:gap-7 md:px-7 md:py-6 lg:grid-cols-12 lg:items-center lg:gap-8 lg:px-8 lg:py-5 xl:gap-10">
+            <div className="min-w-0 lg:col-span-6">
               <nav
-                className="mb-4 text-sm text-brand-fg3 md:mb-5"
+                className="mb-2 text-[13px] text-brand-fg3 md:mb-2.5 md:text-sm"
                 aria-label="Oblasť stránky"
               >
                 <Link
@@ -114,71 +127,59 @@ export function TerminyVysledkyAZapisContent() {
                 <span className="text-brand-fg2">Termíny, výsledky a zápis</span>
               </nav>
 
-              <h1 className="font-heading m-0 text-[clamp(1.7rem,1.05rem+2.1vw,2.55rem)] font-bold leading-[1.08] tracking-tight text-[#342c44]">
-                <span className="relative inline-block">
-                  Termíny
-                  <span
-                    className="absolute -bottom-0.5 left-0 right-0 h-[0.32em] rounded-sm bg-brand-primary/22"
-                    aria-hidden
-                  />
-                </span>
-                , výsledky{" "}
-                <span className="relative inline-block text-[#3d3550]">
-                  <span className="relative z-[1]">a zápis</span>
-                  <span
-                    className="absolute -bottom-1 left-[-0.08em] right-[-0.08em] -z-0 h-[0.38em] skew-x-[-2deg] rounded-sm bg-[#fdb913]/35"
-                    aria-hidden
-                  />
-                </span>
+              <h1 className="font-heading m-0 max-w-[22rem] text-[clamp(1.55rem,1rem+1.85vw,2.25rem)] font-bold leading-[1.07] tracking-tight text-[#342c44] sm:max-w-xl lg:max-w-none">
+                Termíny, výsledky a zápis
               </h1>
-              <p className="m-0 mt-4 max-w-xl text-[15px] leading-relaxed text-brand-fg2 sm:text-[16px] md:mt-5 md:text-[17px] md:leading-[1.6]">
+              <p className="m-0 mt-2.5 max-w-xl text-[15px] leading-snug text-brand-fg2 sm:mt-3 sm:text-[16px] md:text-[16px] md:leading-[1.55]">
                 Harmonogram prijatia, kapacita a čo nasleduje po vyhlásení výsledkov — na jednom mieste.
               </p>
-              <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row sm:flex-wrap sm:gap-4">
-                <Link href={LINK_AKO} className={`${ctaPrimaryYellow} justify-center`}>
+              <div className="mt-4 flex max-w-xl flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-stretch sm:gap-2.5 md:mt-4">
+                <Link
+                  href={LINK_AKO}
+                  className={`${ctaPrimaryYellow} justify-center px-7 py-3 text-[14px] md:px-9 md:py-3.5 md:text-[15px]`}
+                >
                   Ako sa dostať na Lýceum
                 </Link>
-                <Link href={LINK_CO} className={`${ctaSecondaryLavender} justify-center`}>
+                <Link
+                  href={LINK_CO}
+                  className={`${ctaSecondaryLavender} justify-center px-7 py-3 text-[14px] md:px-9 md:py-3.5 md:text-[15px]`}
+                >
                   Čo ťa čaká na prijímačkách
                 </Link>
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 lg:col-span-5 lg:pt-1">
-              <div className="relative mx-auto w-full max-w-[15.5rem] sm:max-w-[17rem] lg:mx-0 lg:ml-auto lg:max-w-[16.5rem]">
-                <div
-                  className="pointer-events-none absolute -left-1 -top-1 right-3 h-px bg-gradient-to-r from-[#d4c8ea] to-transparent"
-                  aria-hidden
-                />
-                <div
-                  className="pointer-events-none absolute -left-1 -top-1 bottom-4 w-px bg-gradient-to-b from-[#d4c8ea] to-transparent"
-                  aria-hidden
-                />
-                <div className="relative ml-2 mt-2 overflow-hidden rounded-br-[1.75rem] rounded-tl-xl border border-[#e0d8ec] bg-[#f5f1fa] shadow-[0_12px_32px_-18px_rgba(65,52,92,0.14)]">
-                  <div className="relative aspect-[5/4] w-full">
+            <div className="min-w-0 lg:col-span-6">
+              <div
+                className="mx-auto w-full max-w-lg lg:mx-0 lg:max-w-none"
+                role="group"
+                aria-label="Fotografia z výučby"
+              >
+                <div className="overflow-hidden rounded-xl border border-[#e0d8ec] bg-[#f3f0f8] shadow-[0_10px_28px_-16px_rgba(65,52,92,0.12)]">
+                  <div className="relative aspect-[5/3] w-full sm:aspect-[16/9] lg:aspect-[3/2]">
                     <Image
                       src={HERO_ILLUSTRATION_SRC}
-                      alt="Ilustrácia školskej atmosféry a prijímacieho obdobia v jemných fialových a zlatých tónoch"
+                      alt="Učiteľka pri stole s študentom pri písaní v triede — podpora a sústredenie na výučbu"
                       fill
-                      className="object-cover object-[center_42%]"
-                      sizes="(max-width: 1024px) 260px, 264px"
+                      className="object-cover object-center"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                       priority
                     />
+                    <span
+                      className={`absolute left-2 top-[14%] z-[2] max-w-[calc(100%-1rem)] -rotate-[1deg] sm:left-3 sm:top-[16%] ${atmosphere.driftA} ${heroBubbleMd}`}
+                      aria-hidden
+                    >
+                      Výsledky
+                    </span>
+                    <span
+                      className={`absolute bottom-[18%] right-2 z-[2] max-w-[min(100%,11rem)] rotate-[1.5deg] sm:right-3 sm:bottom-[20%] ${atmosphere.driftD} ${heroBubbleZapis}`}
+                      aria-hidden
+                    >
+                      Zápis
+                    </span>
                   </div>
                 </div>
               </div>
-
-              <aside className="mx-auto w-full max-w-[15.5rem] rounded-xl border border-[#e4dcf0] bg-[#faf8fc] px-4 py-3.5 shadow-[0_6px_20px_-12px_rgba(65,52,92,0.12)] sm:max-w-[17rem] lg:mx-0 lg:ml-auto lg:max-w-[16.5rem]">
-                <p className="m-0 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-fg3">
-                  Zápis
-                </p>
-                <p className="font-heading m-0 mt-1 text-[1.1rem] font-bold tabular-nums text-[#342c44]">
-                  25. 5. 2026
-                </p>
-                <p className="m-0 mt-1 border-t border-[#e8e2ee] pt-2 text-[13px] font-medium leading-snug text-brand-fg2">
-                  Haanova 28
-                </p>
-              </aside>
             </div>
           </div>
         </section>
@@ -308,7 +309,7 @@ export function TerminyVysledkyAZapisContent() {
       >
         <div className="relative overflow-hidden rounded-[1.5rem] border border-[#e2dce8] bg-[#fbf9fc] px-5 py-10 md:rounded-[1.65rem] md:px-9 md:py-12">
           <div
-            className={`pointer-events-none absolute inset-0 opacity-[0.3] ${surfaceGridFaint}`}
+            className={`pointer-events-none absolute inset-0 opacity-[0.36] ${surfaceGridFaint}`}
             aria-hidden
           />
 

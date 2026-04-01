@@ -14,9 +14,9 @@ import {
   type StudentVideoCardHandle,
 } from "@/components/landing/StudentVideoCard";
 import { useVideoPosterDataUrl } from "@/hooks/useVideoPosterDataUrl";
+import { siteContact } from "@/content/siteContact";
 
-const LYCEUM_INSTAGRAM_URL =
-  "https://www.instagram.com/lyceumcsl?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==";
+const LYCEUM_INSTAGRAM_URL = siteContact.instagramUrl;
 
 /** Len horizontálny posun v karuseli — bez `scrollIntoView`, ktoré posúva aj okno stránky. */
 function scrollCarouselItemIntoCenter(
