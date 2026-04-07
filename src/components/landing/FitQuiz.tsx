@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+import Link from "next/link";
 import { fitQuizQuestions } from "@/content/lyceum";
 
 type Answer = "yes" | "unsure" | "no" | null;
@@ -303,9 +304,12 @@ export function FitQuiz() {
                 <a href="#zaujemca" className="btn-primary-site justify-center">
                   Mám záujem o štúdium
                 </a>
-                <a href="#dod" className="btn-secondary-site justify-center">
+                <Link
+                  href="/dod"
+                  className="btn-secondary-site justify-center"
+                >
                   Deň otvorených dverí
-                </a>
+                </Link>
               </div>
               <button
                 type="button"

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { pillars } from "@/content/pillars";
 import { getSiteUrl } from "@/lib/site";
+import { preStudentovPages } from "@/data/pre-studentov-nav";
 
 const PRIJIMACKY_PATHS = [
   "ako-sa-dostat-na-lyceum",
@@ -18,6 +19,7 @@ const STATIC_PATHS = [
   "/ochrana-osobnych-udajov",
   "/dva-percenta",
   "/pridaj-sa-do-timu",
+  "/dod",
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -42,6 +44,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
+    });
+  }
+
+  for (const p of preStudentovPages) {
+    entries.push({
+      url: `${base}/pre-studentov/${p.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.65,
     });
   }
 

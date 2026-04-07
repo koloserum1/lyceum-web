@@ -382,7 +382,8 @@ body {
 }
 
 /* Menu: Bricolage Grotesque Regular — priamo --font-bricolage (next/font na <html>), !important cez dedený font-sans z body */
-header.site-header nav a[data-nav-link] {
+header.site-header nav a[data-nav-link],
+header.site-header nav button[data-nav-link] {
   font-family: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif !important;
   font-weight: 400 !important;
   letter-spacing: -0.02em;

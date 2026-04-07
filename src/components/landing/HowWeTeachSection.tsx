@@ -28,7 +28,7 @@ export function HowWeTeachSection() {
             pointerInteraction={false}
           />
           <div className="relative z-[1] grid gap-8 p-6 sm:p-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:items-center md:gap-10 md:p-8 lg:gap-12 lg:p-9">
-            <figure className="m-0 w-full justify-self-center overflow-hidden rounded-2xl shadow-md ring-1 ring-black/[0.04] md:max-w-[min(100%,440px)] lg:max-w-[min(100%,480px)]">
+            <figure className="m-0 w-full max-w-[min(100%,440px)] justify-self-center overflow-hidden rounded-2xl shadow-md ring-1 ring-black/[0.04] lg:max-w-[min(100%,480px)]">
               <div className="relative mx-auto aspect-[16/10] w-full max-w-full md:aspect-[4/3]">
                 <Image
                   src={howWeTeachIntroImageSrc}
