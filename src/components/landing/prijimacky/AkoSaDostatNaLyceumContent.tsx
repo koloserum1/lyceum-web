@@ -18,18 +18,18 @@ const pillSecondary =
   "inline-flex items-center justify-center rounded-full border border-brand-primary/45 bg-white/90 px-5 py-2.5 text-[14px] font-semibold text-brand-fg1 no-underline shadow-sm backdrop-blur-sm transition-colors hover:border-brand-primary hover:bg-brand-accent/35 md:px-6 md:text-[15px]";
 
 const pillSecondaryHero =
-  "inline-flex items-center justify-center rounded-full border border-[#b5cfc9]/55 bg-[#fcfaf7]/95 px-5 py-2.5 text-[14px] font-semibold text-[#1e2c2a] no-underline shadow-[0_6px_20px_-8px_rgba(80,120,112,0.2)] backdrop-blur-sm transition-colors hover:border-brand-primary/55 hover:bg-[#f4faf8] hover:shadow-[0_8px_24px_-8px_rgba(185,160,224,0.22)] md:px-6 md:text-[15px]";
+  "inline-flex items-center justify-center rounded-full border border-[#e8e4df] bg-white px-5 py-2.5 text-[14px] font-semibold text-[#1a1f1e] no-underline shadow-[0_4px_16px_-8px_rgba(0,0,0,0.06)] backdrop-blur-sm transition-colors hover:border-[#e8c4a8]/80 hover:bg-[#fffaf6] hover:shadow-[0_6px_20px_-8px_rgba(200,150,110,0.12)] md:px-6 md:text-[15px]";
 
 export function AkoSaDostatNaLyceumContent() {
   return (
     <main
       id="prijimacky-ako-sa-dostat-na-lyceum"
-      className="scroll-mt-24 bg-[#f0eef3] pb-10 md:scroll-mt-28 md:pb-14"
+      className="scroll-mt-24 bg-brand-bg2 pb-10 md:scroll-mt-28 md:pb-14"
     >
       {/* BLOK 1 — Hero + termíny v jednom celku */}
       <div className={`${CX} pt-6 md:pt-8`}>
         <section
-          className="overflow-x-clip rounded-[28px] bg-gradient-to-br from-[#f4f1ea] via-[#faf9f7] to-[#e8f2f0] ring-1 ring-[#c5d9d4]/45 shadow-[0_24px_60px_-32px_rgba(80,60,120,0.12),inset_0_1px_0_0_rgba(255,255,255,0.65)] md:rounded-[32px] lg:rounded-[36px]"
+          className="overflow-x-clip rounded-[36px] bg-gradient-to-br from-white via-[#faf9f7] to-[#fff7f0] ring-1 ring-[#ebe4dc]/60 shadow-[0_24px_60px_-32px_rgba(90,80,70,0.08),inset_0_1px_0_0_rgba(255,255,255,0.9)]"
           aria-label="Úvod a dôležité termíny"
         >
           <div className="p-6 sm:p-8 md:p-10 lg:p-12 lg:pb-8">
@@ -45,10 +45,10 @@ export function AkoSaDostatNaLyceumContent() {
                   >
                     Prijímačky
                   </Link>
-                  <span className="mx-2 text-[#8fafab]" aria-hidden>
+                  <span className="mx-2 text-brand-fg3" aria-hidden>
                     /
                   </span>
-                  <span className="text-[#3d4d4b]">Ako sa dostať na Lýceum</span>
+                  <span className="text-brand-fg2">Ako sa dostať na Lýceum</span>
                 </nav>
 
                 <h1 className="font-heading m-0 max-w-xl text-[clamp(2rem,1.2rem+3.2vw,3.35rem)] font-bold leading-[1.05] tracking-tight text-[#1a1f1e]">
@@ -78,7 +78,7 @@ export function AkoSaDostatNaLyceumContent() {
               </div>
 
               <div className="relative mx-auto w-full max-w-[min(100%,24rem)] sm:max-w-[min(100%,28rem)] lg:mx-0 lg:max-w-none lg:w-full">
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[24px] ring-1 ring-[#9ebfb8]/45 md:aspect-[3/2] md:rounded-[28px] lg:rounded-[32px]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[24px] ring-1 ring-[#ebe8e4]/90 md:aspect-[3/2] md:rounded-[28px] lg:rounded-[32px]">
                   <Image
                     src="/images/prijimacky/hero-ako-sa-dostat-na-lyceum.png"
                     alt="Študenti na Lýceu pri spoločnej práci v priestoroch školy"
@@ -88,20 +88,20 @@ export function AkoSaDostatNaLyceumContent() {
                     priority
                   />
                   <div
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2c3f3d]/[0.26] via-[#3d524f]/[0.06] to-transparent"
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2a2218]/[0.22] via-[#4a3d2e]/[0.05] to-transparent"
                     aria-hidden
                   />
                 </div>
                 <div className="absolute left-2 top-2 z-[2] sm:left-3 sm:top-3 lg:left-4 lg:top-4">
                   <span
-                    className={`${heroPills.pillDriftA} font-heading inline-block rounded-full bg-[#2f403e] px-6 py-3.5 text-base font-bold leading-tight tracking-tight text-white shadow-[0_12px_28px_-8px_rgba(35,52,48,0.28),0_4px_16px_-6px_rgba(60,110,100,0.14)] sm:px-7 sm:py-4 sm:text-lg md:px-8 md:py-[1.125rem] md:text-xl`}
+                    className={`${heroPills.pillDriftA} font-heading inline-block rounded-full border border-[#f0d8c8]/90 bg-gradient-to-br from-white to-[#fff2e8] px-6 py-3.5 text-base font-bold leading-tight tracking-tight text-brand-fg1 shadow-[0_12px_28px_-10px_rgba(180,130,90,0.18)] sm:px-7 sm:py-4 sm:text-lg md:px-8 md:py-[1.125rem] md:text-xl`}
                   >
                     Lýcejná výzva
                   </span>
                 </div>
                 <div className="absolute right-2 bottom-2 z-[2] sm:right-3 sm:bottom-3 lg:right-4 lg:bottom-4">
                   <span
-                    className={`${heroPills.pillDriftB} font-heading inline-block rounded-full border-2 border-[#c5ddd8]/65 bg-[#fdfcfa]/96 px-6 py-3.5 text-base font-bold leading-tight tracking-tight text-[#1a2221] shadow-[0_10px_28px_-10px_rgba(70,110,102,0.22)] backdrop-blur-sm sm:px-7 sm:py-4 sm:text-lg md:px-8 md:py-[1.125rem] md:text-xl`}
+                    className={`${heroPills.pillDriftB} font-heading inline-block rounded-full border-2 border-[#e8e2dc]/90 bg-white/95 px-6 py-3.5 text-base font-bold leading-tight tracking-tight text-brand-fg1 shadow-[0_10px_28px_-10px_rgba(0,0,0,0.06)] backdrop-blur-sm sm:px-7 sm:py-4 sm:text-lg md:px-8 md:py-[1.125rem] md:text-xl`}
                   >
                     Prijímačky
                   </span>
@@ -112,9 +112,9 @@ export function AkoSaDostatNaLyceumContent() {
             {/* Termíny: integrovaný pás v tom istom bloku */}
             <div
               id="dolezite-terminy"
-              className="scroll-mt-28 mt-8 border-t border-[#c5d9d4]/35 pt-6 md:mt-10 md:pt-8"
+              className="scroll-mt-28 mt-8 border-t border-[#ebe8e4]/90 pt-6 md:mt-10 md:pt-8"
             >
-              <p className="font-heading m-0 text-[11px] font-bold uppercase tracking-[0.16em] text-[#5a6e6c] md:text-xs">
+              <p className="font-heading m-0 text-[11px] font-bold uppercase tracking-[0.16em] text-brand-fg3 md:text-xs">
                 Dôležité termíny na jednom mieste
               </p>
               <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
@@ -135,7 +135,7 @@ export function AkoSaDostatNaLyceumContent() {
                       label: "Zápis",
                       date: "25. 5. 2026",
                       sub: (
-                        <span className="mt-0.5 block text-[0.9em] font-semibold text-[#4a5c5a]">
+                        <span className="mt-0.5 block text-[0.9em] font-semibold text-brand-fg2">
                           Haanova 28
                         </span>
                       ),
@@ -144,9 +144,9 @@ export function AkoSaDostatNaLyceumContent() {
                 ).map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-2xl bg-gradient-to-br from-white/70 to-[#e8f0ee]/90 px-4 py-3.5 ring-1 ring-[#b8d0cb]/35 backdrop-blur-sm md:px-5 md:py-4"
+                    className="rounded-2xl border border-black/[0.05] bg-white px-4 py-3.5 shadow-[0_4px_20px_-12px_rgba(0,0,0,0.06)] backdrop-blur-sm md:px-5 md:py-4"
                   >
-                    <p className="m-0 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#6b7f7d]">
+                    <p className="m-0 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-fg3">
                       {item.label}
                     </p>
                     <p className="font-heading m-0 mt-1.5 text-[clamp(0.98rem,0.88rem+0.5vw,1.2rem)] font-bold leading-snug text-brand-fg1">
@@ -166,21 +166,21 @@ export function AkoSaDostatNaLyceumContent() {
         className={`${CX} py-8 md:py-10`}
         aria-labelledby="heading-kto-a-info"
       >
-        <div className="relative overflow-hidden rounded-[28px] bg-[#425754] p-6 text-white shadow-[0_28px_64px_-26px_rgba(45,68,64,0.28)] ring-1 ring-[#5a726f]/40 sm:p-8 md:rounded-[32px] md:p-10 lg:p-12">
+        <div className="relative overflow-hidden rounded-[36px] border border-[#ebe6e0]/90 bg-gradient-to-br from-white via-[#fcfbfa] to-[#fff5ec] p-6 text-brand-fg1 shadow-[0_28px_64px_-32px_rgba(90,80,70,0.09)] sm:p-8 md:p-10 lg:p-12">
           <div
-            className="pointer-events-none absolute inset-0 rounded-[28px] bg-gradient-to-tr from-brand-primary/[0.07] via-transparent to-[#fdb913]/[0.05]"
+            className="pointer-events-none absolute inset-0 rounded-[36px] bg-gradient-to-tr from-white/80 via-transparent to-[#ffd4b8]/[0.14]"
             aria-hidden
           />
           <div className="relative z-[1]">
           <h2
             id="heading-kto-a-info"
-            className="font-heading m-0 max-w-2xl text-[clamp(1.35rem,1rem+1.4vw,1.85rem)] font-bold leading-tight tracking-tight text-white md:text-[clamp(1.45rem,1.05rem+1.5vw,2rem)]"
+            className="font-heading m-0 max-w-2xl text-[clamp(1.35rem,1rem+1.4vw,1.85rem)] font-bold leading-tight tracking-tight text-brand-fg1 md:text-[clamp(1.45rem,1.05rem+1.5vw,2rem)]"
           >
             Kto sa môže prihlásiť
-            <span className="text-white/45"> — </span>
+            <span className="text-brand-fg3"> — </span>
             základné informácie o prijatí
           </h2>
-          <p className="m-0 mt-4 text-[15px] leading-relaxed text-white/78 md:text-base">
+          <p className="m-0 mt-4 text-[15px] leading-relaxed text-brand-fg2 md:text-base">
             Na Lýceum sa môžu hlásiť:
           </p>
           <div className="mt-5 flex flex-wrap gap-2.5 md:gap-3">
@@ -191,7 +191,7 @@ export function AkoSaDostatNaLyceumContent() {
             ].map((text) => (
               <span
                 key={text}
-                className="inline-flex max-w-full rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[13px] font-medium leading-snug text-white/95 backdrop-blur-md md:text-[14px]"
+                className="inline-flex max-w-full rounded-full border border-[#e8e4df] bg-white px-4 py-2 text-[13px] font-medium leading-snug text-brand-fg1 shadow-[0_2px_12px_-6px_rgba(0,0,0,0.06)] backdrop-blur-[2px] md:text-[14px]"
               >
                 {text}
               </span>
@@ -208,14 +208,14 @@ export function AkoSaDostatNaLyceumContent() {
             ).map((row) => (
               <div key={row.title} className="relative">
                 <div
-                  className="pointer-events-none absolute -inset-1 rounded-2xl bg-[#fdb913]/15 blur-xl"
+                  className="pointer-events-none absolute -inset-1 rounded-2xl bg-[#ffd4b8]/20 blur-xl"
                   aria-hidden
                 />
-                <div className="relative rounded-2xl border border-white/15 bg-white/[0.08] px-5 py-5 backdrop-blur-sm md:py-6">
-                  <p className="m-0 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/55">
+                <div className="relative rounded-2xl border border-[#ebe8e4] bg-white px-5 py-5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.06)] md:py-6">
+                  <p className="m-0 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-fg3">
                     {row.title}
                   </p>
-                  <p className="font-heading m-0 mt-2 text-[clamp(1.05rem,0.95rem+0.6vw,1.35rem)] font-bold leading-snug text-[#fdb913]">
+                  <p className="font-heading m-0 mt-2 text-[clamp(1.05rem,0.95rem+0.6vw,1.35rem)] font-bold leading-snug text-brand-fg1">
                     {row.value}
                   </p>
                 </div>
@@ -245,19 +245,19 @@ export function AkoSaDostatNaLyceumContent() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-8 lg:items-stretch">
-          <article className="relative flex min-h-full flex-col overflow-hidden rounded-[28px] bg-[#3a4e4c] p-7 text-white shadow-[0_32px_68px_-30px_rgba(38,58,55,0.32)] ring-1 ring-[#4d6562]/45 md:p-9 lg:p-10">
+          <article className="relative flex min-h-full flex-col overflow-hidden rounded-[28px] border border-[#edd8cc]/80 bg-gradient-to-br from-white via-[#faf7f2] to-[#fff0e6] p-7 text-brand-fg1 shadow-[0_28px_64px_-28px_rgba(120,90,70,0.1)] md:p-9 lg:p-10">
             <div
-              className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#fdb913]/18 blur-3xl"
+              className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-[#ffd4b8]/25 blur-3xl"
               aria-hidden
             />
-            <h3 className="font-heading relative m-0 text-[clamp(1.25rem,1.05rem+1vw,1.55rem)] font-bold leading-tight text-white">
+            <h3 className="font-heading relative m-0 text-[clamp(1.25rem,1.05rem+1vw,1.55rem)] font-bold leading-tight text-brand-fg1">
               1. Cez Lýcejnú výzvu
             </h3>
-            <p className="relative m-0 mt-4 text-[14px] leading-relaxed text-white/85 md:text-[15px]">
+            <p className="relative m-0 mt-4 text-[14px] leading-relaxed text-brand-fg2 md:text-[15px]">
               Táto cesta je pre uchádzačov, ktorí chcú ukázať svoj prístup,
               premýšľanie a silné stránky už vopred.
             </p>
-            <ul className="relative m-0 mt-7 flex-1 list-none space-y-2.5 p-0 text-[14px] leading-snug text-white/95 md:mt-8 md:text-[15px]">
+            <ul className="relative m-0 mt-7 flex-1 list-none space-y-2.5 p-0 text-[14px] leading-snug text-brand-fg1 md:mt-8 md:text-[15px]">
               {[
                 "úspešný riešiteľ Lýcejnej výzvy",
                 "umiestnenie do 47. miesta",
@@ -265,7 +265,7 @@ export function AkoSaDostatNaLyceumContent() {
                 "rozhovor aspoň 40 %",
               ].map((item) => (
                 <li key={item} className="flex gap-2.5">
-                  <span className="mt-0.5 shrink-0 font-bold text-[#fdb913]" aria-hidden>
+                  <span className="mt-0.5 shrink-0 font-bold text-[#e8a078]" aria-hidden>
                     ✓
                   </span>
                   <span>{item}</span>
@@ -280,7 +280,7 @@ export function AkoSaDostatNaLyceumContent() {
             </Link>
           </article>
 
-          <article className="relative flex min-h-full flex-col rounded-[28px] border-2 border-brand-primary/40 bg-gradient-to-b from-white to-[#f7f2fc] p-7 shadow-[0_32px_64px_-36px_rgba(120,90,160,0.22)] md:p-9 lg:p-10">
+          <article className="relative flex min-h-full flex-col rounded-[28px] border-2 border-brand-primary/40 bg-white p-7 shadow-[0_32px_64px_-36px_rgba(120,90,160,0.22)] md:p-9 lg:p-10">
             <div
               className="pointer-events-none absolute right-0 top-0 h-40 w-40 rounded-bl-[100%] bg-brand-accent/40 blur-2xl"
               aria-hidden

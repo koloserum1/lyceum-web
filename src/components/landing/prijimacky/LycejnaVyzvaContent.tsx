@@ -13,7 +13,7 @@ export function LycejnaVyzvaContent() {
   return (
     <main
       id="prijimacky-lycejna-vyzva"
-      className="scroll-mt-24 bg-brand-bg1 pb-16 md:scroll-mt-28 md:pb-24"
+      className="scroll-mt-24 bg-brand-bg2 pb-16 md:scroll-mt-28 md:pb-24"
     >
       <div className={`${CX} pt-6 md:pt-8`}>
         <nav className="mb-8 text-sm text-brand-fg3" aria-label="Oblasť stránky">
@@ -33,7 +33,7 @@ export function LycejnaVyzvaContent() {
       {/* 1. Hero */}
       <div className={CX}>
         <section
-          className="rounded-[24px] bg-gradient-to-br from-[#fef9e8] via-white to-brand-bg2 px-6 py-14 ring-1 ring-black/[0.06] sm:px-10 sm:py-16 md:rounded-[28px] md:px-12 md:py-16 lg:px-16"
+          className="rounded-[24px] bg-white px-6 py-14 ring-1 ring-black/[0.06] sm:px-10 sm:py-16 md:rounded-[28px] md:px-12 md:py-16 lg:px-16"
           aria-label="Úvod"
         >
           <div className="relative max-w-3xl">
@@ -86,7 +86,7 @@ export function LycejnaVyzvaContent() {
           Ako to funguje
         </h2>
         <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-2 lg:gap-8">
-          <article className="flex flex-col rounded-[24px] border border-[#fdb913]/40 bg-gradient-to-b from-[#fffbeb] to-white p-6 shadow-[0_16px_48px_-28px_rgba(0,0,0,0.12)] md:p-8 lg:p-9">
+          <article className="flex flex-col rounded-[24px] border border-[#fdb913]/40 bg-white p-6 shadow-[0_16px_48px_-28px_rgba(0,0,0,0.12)] md:p-8 lg:p-9">
             <h3 className="font-heading m-0 text-[clamp(1.15rem,1rem+0.8vw,1.4rem)] font-bold text-brand-fg1">
               Domáca časť
             </h3>
@@ -95,7 +95,7 @@ export function LycejnaVyzvaContent() {
               mailom a odpovede sa odovzdávajú cez Google Forms.
             </p>
           </article>
-          <article className="flex flex-col rounded-[24px] border border-brand-primary/35 bg-gradient-to-b from-[#f8f5fc] to-white p-6 shadow-[0_16px_48px_-28px_rgba(0,0,0,0.12)] md:p-8 lg:p-9">
+          <article className="flex flex-col rounded-[24px] border border-brand-primary/35 bg-white p-6 shadow-[0_16px_48px_-28px_rgba(0,0,0,0.12)] md:p-8 lg:p-9">
             <h3 className="font-heading m-0 text-[clamp(1.15rem,1rem+0.8vw,1.4rem)] font-bold text-brand-fg1">
               Školská časť
             </h3>
@@ -201,7 +201,7 @@ export function LycejnaVyzvaContent() {
 
       {/* 6. Výsledok */}
       <section className={CX} aria-labelledby="heading-vysledok">
-        <div className="mx-auto max-w-2xl rounded-2xl bg-gradient-to-r from-brand-bg2 to-white px-6 py-8 ring-1 ring-black/[0.07] md:px-10 md:py-9">
+        <div className="mx-auto max-w-2xl rounded-2xl bg-white px-6 py-8 ring-1 ring-black/[0.07] md:px-10 md:py-9">
           <h2
             id="heading-vysledok"
             className="font-heading m-0 text-center text-[clamp(1.2rem,1rem+1vw,1.5rem)] font-bold text-brand-fg1"
@@ -247,7 +247,7 @@ export function LycejnaVyzvaContent() {
       {/* 8. Spodný CTA */}
       <div className={CX}>
         <section
-          className="rounded-[24px] bg-gradient-to-br from-brand-primary/15 via-brand-bg2 to-[#fef9e8] px-6 py-12 ring-1 ring-black/[0.08] md:rounded-[28px] md:px-12 md:py-16 lg:px-16 lg:py-20"
+          className="rounded-[24px] bg-white px-6 py-12 ring-1 ring-black/[0.08] md:rounded-[28px] md:px-12 md:py-16 lg:px-16 lg:py-20"
           aria-labelledby="heading-zaver"
         >
           <div className="mx-auto max-w-2xl text-center">

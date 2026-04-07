@@ -1,12 +1,45 @@
 "use client";
 
-import { useCallback, useId, useState } from "react";
+import { useCallback, useId, useMemo, useState } from "react";
 
 const QUESTIONS = [
   "Viem povedať jednou vetou, prečo učím — bez klišé?",
   "Keď študentovi niečo nejde, viem držať náročnosť aj bezpečie naraz?",
   "Viem fungovať v tíme aj vtedy, keď to nie je podľa mňa — s rešpektom a spätnou väzbou?",
 ] as const;
+
+/** Rovnaká vnútorná karta ako VyskusajSiUlohyMiniQuiz (FitQuiz štýl). */
+const questionCardClass =
+  "group relative isolate overflow-visible rounded-[20px] border border-[#d8c498]/65 bg-[#faf5ee]/95 px-5 pb-6 pt-9 text-brand-fg1 shadow-[0_12px_40px_-24px_rgba(45,35,22,0.14)] ring-1 ring-[#fff8f0]/90 backdrop-blur-[2px] sm:px-8 sm:pb-8 sm:pt-10";
+
+const optionBase =
+  "flex-1 rounded-[14px] border px-4 py-3.5 text-center font-heading text-[0.95rem] font-bold tracking-tight transition-[background-color,border-color,box-shadow,transform] duration-200 sm:min-w-[7rem] sm:py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#fdb913]/45 focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf5ee]";
+
+const optionIdle =
+  "border-black/[0.08] bg-white/90 text-brand-fg1 shadow-[0_1px_0_rgba(0,0,0,0.04)] hover:border-black/15 hover:bg-black/[0.02]";
+
+const optionSelected =
+  "border-brand-fg1 bg-brand-fg1 text-brand-bg1 shadow-[0_1px_0_rgba(0,0,0,0.06)]";
+
+const resultCardClass =
+  "rounded-[20px] border border-[#d8c498]/65 bg-gradient-to-br from-[#fff8f0] via-[#faf5ee] to-[#fff3e0] p-8 text-center text-brand-fg1 shadow-[0_12px_40px_-24px_rgba(45,35,22,0.12)] ring-1 ring-[#fff8f0]/90 sm:p-10";
+
+function ChevronLeft({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M15 6l-6 6 6 6" />
+    </svg>
+  );
+}
 
 export function JoinTeamMiniQuiz() {
   const groupId = useId();
@@ -18,13 +51,21 @@ export function JoinTeamMiniQuiz() {
   ]);
   const [finished, setFinished] = useState(false);
 
+  const total = QUESTIONS.length;
+  const currentAnswer = answers[step];
+
+  const progressPct = useMemo(() => {
+    if (finished) return 100;
+    const answeredCount = step + (currentAnswer !== null ? 1 : 0);
+    return (answeredCount / total) * 100;
+  }, [finished, step, currentAnswer, total]);
+
   const reset = useCallback(() => {
     setStep(0);
     setAnswers([null, null, null]);
     setFinished(false);
   }, []);
 
-  const currentAnswer = answers[step];
   const isLast = step === QUESTIONS.length - 1;
 
   const setAnswer = (value: "ano" | "nie") => {
@@ -49,157 +90,134 @@ export function JoinTeamMiniQuiz() {
     setStep((s) => s - 1);
   };
 
-  return (
-    <div className="relative w-full max-w-[520px] md:max-w-none lg:max-w-[560px]">
-      <div
-        className="relative overflow-hidden rounded-xl bg-white p-5 shadow-[0_10px_36px_-22px_rgba(65,52,92,0.14)] sm:rounded-[1.1rem] sm:p-6 md:p-7"
-        role="region"
-        aria-label="Mini quiz — tri otázky"
-      >
-        {!finished ? (
-          <>
-            <div className="flex items-start justify-between gap-4">
-              <div
-                className="flex flex-1 gap-1.5 pt-0.5"
-                role="progressbar"
-                aria-valuenow={step + 1}
-                aria-valuemin={1}
-                aria-valuemax={QUESTIONS.length}
-                aria-label={`Otázka ${step + 1} z ${QUESTIONS.length}`}
-              >
-                {QUESTIONS.map((_, i) => (
-                  <div
-                    key={i}
-                    className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
-                      i <= step ? "bg-brand-primary/55" : "bg-[#e4dcf0]"
-                    }`}
-                  />
-                ))}
-              </div>
-              <button
-                type="button"
-                onClick={reset}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#e4dcf0] bg-[#faf8fc] text-lg leading-none text-brand-fg3 transition hover:border-brand-primary/35 hover:bg-white hover:text-brand-fg1"
-                aria-label="Začať odznova"
-              >
-                ×
-              </button>
-            </div>
-
-            <p className="m-0 mt-6 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-fg3 md:mt-8">
-              Otázka {String(step + 1).padStart(2, "0")} / {QUESTIONS.length}
-            </p>
-
-            <h3 className="font-heading m-0 mt-2 text-[clamp(1.12rem,1rem+1vw,1.38rem)] font-bold leading-snug tracking-tight text-[#342c44] md:mt-2.5">
-              {QUESTIONS[step]}
-            </h3>
-
-            <p className="m-0 mt-5 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-fg3 md:mt-6">
-              Vyberte len jednu možnosť
-            </p>
-
-            <div
-              className="mt-2.5 space-y-1"
-              role="radiogroup"
-              aria-labelledby={`${groupId}-legend`}
+  if (finished) {
+    return (
+      <div className="mx-auto mt-8 max-w-xl md:mt-10">
+        <div className={resultCardClass} role="region" aria-labelledby={`${groupId}-done`}>
+          <p
+            id={`${groupId}-done`}
+            className="font-heading m-0 text-[clamp(1.15rem,1rem+1vw,1.45rem)] font-bold leading-snug text-brand-fg1"
+          >
+            Ďakujeme za úprimné odpovede
+          </p>
+          <p className="m-0 mt-4 text-[15px] leading-relaxed text-brand-fg2 md:mt-5 md:text-[16px]">
+            Odpovede sú len pre teba — pomôžu ti zvážiť, či ti sedí kultúra Lýcea. Ak chceš
+            pokračovať, pozri sekciu{" "}
+            <span className="font-medium text-brand-fg1">Ako sa prihlásiť</span> nižšie.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+            <button
+              type="button"
+              onClick={reset}
+              className="btn-primary-site justify-center px-8 py-3.5 text-[15px] md:px-10"
             >
-              <span id={`${groupId}-legend`} className="sr-only">
-                Odpoveď na otázku {step + 1}
-              </span>
-              {(["ano", "nie"] as const).map((val) => {
-                const label = val === "ano" ? "Áno" : "Nie";
-                const selected = currentAnswer === val;
-                return (
-                  <label
-                    key={val}
-                    className={`flex cursor-pointer items-center gap-3.5 rounded-xl border px-4 py-3.5 transition md:px-5 md:py-4 ${
-                      selected
-                        ? "border-brand-primary/35 bg-[#f7f3fc] ring-1 ring-brand-primary/15"
-                        : "border-transparent hover:bg-[#faf8fc]"
-                    }`}
-                  >
-                    <span
-                      className={`flex h-[22px] w-[22px] shrink-0 rounded-full border-2 ${
-                        selected
-                          ? "border-brand-primary bg-brand-primary"
-                          : "border-[#d0c4e0] bg-white"
-                      }`}
-                      aria-hidden
-                    >
-                      {selected ? (
-                        <span className="m-auto block h-2 w-2 rounded-full bg-white" />
-                      ) : null}
-                    </span>
-                    <input
-                      type="radio"
-                      name={`quiz-${groupId}-${step}`}
-                      value={val}
-                      checked={selected}
-                      onChange={() => setAnswer(val)}
-                      className="sr-only"
-                    />
-                    <span className="text-[15px] font-medium text-[#342c44] md:text-base">
-                      {label}
-                    </span>
-                  </label>
-                );
-              })}
-            </div>
-
-            <div className="mt-6 flex flex-wrap items-center justify-end gap-4 border-t border-[#ece6f2] pt-5 md:mt-8 md:pt-6">
-              <button
-                type="button"
-                onClick={goBack}
-                disabled={step === 0}
-                className="text-sm font-semibold text-brand-fg1 underline decoration-brand-primary/30 underline-offset-4 transition enabled:hover:decoration-brand-primary disabled:cursor-not-allowed disabled:opacity-35 disabled:no-underline"
-              >
-                Späť
-              </button>
-              <button
-                type="button"
-                onClick={goNext}
-                disabled={currentAnswer === null}
-                className="min-w-[7.5rem] rounded-full bg-[#fdb913] px-6 py-2.5 text-sm font-bold text-brand-fg1 shadow-[0_8px_24px_-12px_rgba(253,185,19,0.45)] transition enabled:hover:bg-[#f5b010] disabled:cursor-not-allowed disabled:opacity-45"
-              >
-                {isLast ? "Hotovo" : "Ďalej"}
-              </button>
-            </div>
-          </>
-        ) : (
-          <div className="pt-1">
-            <div className="flex justify-end">
-              <button
-                type="button"
-                onClick={reset}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e4dcf0] bg-[#faf8fc] text-lg leading-none text-brand-fg3 transition hover:border-brand-primary/35 hover:bg-white hover:text-brand-fg1"
-                aria-label="Zavrieť a začať znova"
-              >
-                ×
-              </button>
-            </div>
-            <p className="m-0 mt-3 text-center text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-fg3">
-              Hotovo
-            </p>
-            <p className="font-heading m-0 mt-2 text-center text-[clamp(1.08rem,1rem+0.8vw,1.32rem)] font-bold leading-snug text-[#342c44]">
-              Ďakujeme za úprimné odpovede
-            </p>
-            <p className="m-0 mt-3 text-center text-sm leading-relaxed text-brand-fg2">
-              Odpovede sú len pre teba — pomôžu ti zvážiť, či ti sedí kultúra
-              Lýcea. Ak chceš pokračovať, pozri sekciu{" "}
-              <span className="font-medium text-[#342c44]">Ako sa prihlásiť</span>{" "}
-              nižšie.
-            </p>
-            <div className="mt-6 flex justify-center border-t border-[#ece6f2] pt-5">
-              <button
-                type="button"
-                onClick={reset}
-                className="rounded-full bg-[#fdb913] px-6 py-2.5 text-sm font-bold text-brand-fg1 shadow-[0_8px_24px_-12px_rgba(253,185,19,0.4)] transition hover:bg-[#f5b010]"
-              >
-                Zopakovať kvíz
-              </button>
-            </div>
+              Zopakovať kvíz
+            </button>
           </div>
-        )}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto mt-8 max-w-xl md:mt-10">
+      <div className="mb-6 flex items-center gap-3 sm:mb-8">
+        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[#e8dcc8]/45">
+          <div
+            className="h-full rounded-full bg-[#fdb913] transition-[width] duration-500 ease-out"
+            style={{ width: `${progressPct}%` }}
+          />
+        </div>
+        <span className="shrink-0 font-heading text-[11px] font-bold tabular-nums uppercase tracking-[0.12em] text-[#8a7228]">
+          {step + 1} / {total}
+        </span>
+      </div>
+
+      <div
+        className={questionCardClass}
+        role="region"
+        aria-label={`Otázka ${step + 1} z ${total}`}
+      >
+        <div
+          className="pointer-events-none absolute top-0 right-0 z-10 origin-bottom-left translate-x-[22%] -translate-y-[32%] rotate-[9deg] rounded-full bg-[#fdb913] px-3.5 py-1.5 shadow-[0_3px_14px_-3px_rgba(45,35,22,0.2)] sm:translate-x-[20%] sm:-translate-y-[28%] sm:rotate-[8deg] sm:px-4 sm:py-2"
+          aria-hidden
+        >
+          <span className="font-heading block max-w-[10rem] text-center text-[0.85rem] font-bold leading-none tracking-tight text-brand-fg1 sm:max-w-[11rem] sm:text-[0.95rem]">
+            Otázka {step + 1}
+          </span>
+        </div>
+
+        <p className="m-0 mt-1 text-[15px] font-semibold leading-relaxed text-brand-fg1 md:mt-0 md:text-[16px] md:leading-[1.55]">
+          {QUESTIONS[step]}
+        </p>
+
+        <p className="m-0 mt-5 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-fg3 md:mt-6">
+          Vyberte len jednu možnosť
+        </p>
+
+        <div
+          className="mt-2.5 flex flex-col gap-2.5 sm:mt-3 sm:flex-row sm:flex-wrap sm:gap-3"
+          role="radiogroup"
+          aria-labelledby={`${groupId}-legend`}
+        >
+          <span id={`${groupId}-legend`} className="sr-only">
+            Odpoveď na otázku {step + 1}
+          </span>
+          {(["ano", "nie"] as const).map((val) => {
+            const label = val === "ano" ? "Áno" : "Nie";
+            const selected = currentAnswer === val;
+            return (
+              <button
+                key={val}
+                type="button"
+                onClick={() => setAnswer(val)}
+                className={`${optionBase} ${selected ? optionSelected : optionIdle}`}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-[#dcc898]/45 pt-5 md:mt-8 md:pt-6">
+          <button
+            type="button"
+            onClick={goBack}
+            disabled={step === 0}
+            className="inline-flex items-center gap-1.5 rounded-full border border-black/[0.08] bg-white/90 px-3 py-2 text-xs font-bold text-brand-fg1 shadow-sm ring-1 ring-white/80 transition-colors hover:bg-black/[0.03] disabled:pointer-events-none disabled:opacity-35"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            Späť
+          </button>
+          <button
+            type="button"
+            onClick={goNext}
+            disabled={currentAnswer === null}
+            className="btn-primary-site min-w-[7.5rem] justify-center px-8 py-3.5 text-[15px] disabled:cursor-not-allowed disabled:opacity-45"
+          >
+            {isLast ? "Hotovo" : "Ďalej"}
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-8 flex justify-center gap-2 px-2 sm:mt-10" aria-hidden>
+        {QUESTIONS.map((_, i) => {
+          const done = i < step || (i === step && currentAnswer !== null);
+          const current = i === step;
+          return (
+            <div
+              key={i}
+              className={[
+                "h-2.5 shrink-0 rounded-full transition-[background-color,width] duration-200",
+                current
+                  ? "w-8 bg-[#2a2218] shadow-[0_0_0_1px_rgba(0,0,0,0.06)]"
+                  : done
+                    ? "w-2.5 bg-[#c4a050]"
+                    : "w-2.5 bg-[#d8c8b0]",
+              ].join(" ")}
+            />
+          );
+        })}
       </div>
     </div>
   );

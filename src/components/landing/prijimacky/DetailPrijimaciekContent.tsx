@@ -14,7 +14,7 @@ export function DetailPrijimaciekContent() {
   return (
     <main
       id="prijimacky-detail-prijimaciek"
-      className="scroll-mt-24 bg-brand-bg1 pb-16 md:scroll-mt-28 md:pb-24"
+      className="scroll-mt-24 bg-brand-bg2 pb-16 md:scroll-mt-28 md:pb-24"
     >
       <div className={`${CX} pt-6 md:pt-8`}>
         <nav className="mb-8 text-sm text-brand-fg3" aria-label="Oblasť stránky">
@@ -34,7 +34,7 @@ export function DetailPrijimaciekContent() {
       {/* 1. Hero */}
       <div className={CX}>
         <section
-          className="rounded-[24px] bg-gradient-to-br from-brand-bg2 via-white to-[#f5f0fc] px-6 py-14 ring-1 ring-black/[0.06] sm:px-10 sm:py-16 md:rounded-[28px] md:px-12 md:py-16 lg:px-16"
+          className="rounded-[24px] bg-white px-6 py-14 ring-1 ring-black/[0.06] sm:px-10 sm:py-16 md:rounded-[28px] md:px-12 md:py-16 lg:px-16"
           aria-label="Úvod"
         >
           <div className="relative max-w-3xl">
@@ -215,7 +215,7 @@ export function DetailPrijimaciekContent() {
       {/* 7. Spodný CTA */}
       <div className={`${CX} ${sectionGap}`}>
         <section
-          className="rounded-[24px] bg-gradient-to-br from-brand-primary/20 via-brand-bg2 to-[#fef9e8] px-6 py-12 ring-1 ring-black/[0.08] md:rounded-[28px] md:px-12 md:py-16 lg:px-16 lg:py-20"
+          className="rounded-[24px] bg-white px-6 py-12 ring-1 ring-black/[0.08] md:rounded-[28px] md:px-12 md:py-16 lg:px-16 lg:py-20"
           aria-labelledby="heading-zaver"
         >
           <div className="mx-auto max-w-2xl text-center">

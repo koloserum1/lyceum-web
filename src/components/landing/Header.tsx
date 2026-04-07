@@ -26,6 +26,10 @@ const linkClassDesktop =
 const linkClassMobile =
   "rounded-lg px-3 py-2.5 text-[17px] text-brand-fg1 no-underline hover:bg-black/[0.04]";
 
+/** Položky podmenu Prijímačky — rovnaká reč ako ostatné odkazy (bez fialových boxov). */
+const prijimackySubmenuLinkClass =
+  "block w-full rounded-lg px-3 py-2.5 text-left text-[15px] font-medium leading-snug text-brand-fg1 no-underline transition-colors hover:bg-black/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/[0.08] focus-visible:ring-offset-2";
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -87,10 +91,10 @@ export function Header() {
     : "bg-white/[0.82] ring-1 ring-black/[0.05] backdrop-blur-sm backdrop-saturate-120 shadow-[0_1px_0_rgba(0,0,0,0.05)]";
 
   const dropdownPanelClass =
-    "absolute left-0 top-full z-[60] pt-2 transition-[opacity,visibility,transform] duration-200 ease-out " +
+    "absolute left-0 top-full z-[60] pt-2 transition-[opacity,visibility] duration-200 ease-out " +
     (prijimackyDesktopOpen
-      ? "visible translate-y-0 opacity-100"
-      : "invisible pointer-events-none -translate-y-1 opacity-0");
+      ? "visible opacity-100"
+      : "invisible pointer-events-none opacity-0");
 
   return (
     <header className="site-header sticky top-0 z-50 w-full pt-2 sm:pt-3">
@@ -138,7 +142,7 @@ export function Header() {
             >
               <button
                 type="button"
-                className={`${linkClassDesktop} inline-flex cursor-pointer items-center gap-1 border-0 bg-transparent p-0 font-sans`}
+                className={`${linkClassDesktop} inline-flex cursor-pointer items-center gap-1 border-0 bg-transparent p-0 font-sans outline-none focus-visible:ring-2 focus-visible:ring-black/[0.1] focus-visible:ring-offset-2`}
                 aria-expanded={prijimackyDesktopOpen}
                 aria-haspopup="true"
                 aria-controls="prijimacky-submenu-desktop"
@@ -158,13 +162,13 @@ export function Header() {
                 aria-labelledby="prijimacky-trigger-desktop"
                 className={dropdownPanelClass}
               >
-                <ul className="m-0 min-w-[min(100vw-2rem,20rem)] list-none rounded-2xl border border-black/[0.08] bg-white/[0.97] p-2 py-2.5 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.18)] backdrop-blur-md backdrop-saturate-150 xl:min-w-[22rem]">
+                <ul className="m-0 flex min-w-[min(100vw-2rem,20rem)] list-none flex-col gap-0.5 rounded-xl border border-black/[0.08] bg-white/95 p-1.5 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.12)] backdrop-blur-sm xl:min-w-[22rem]">
                   {prijimackyPages.map((p) => (
                     <li key={p.slug}>
                       <Link
                         href={`/prijimacky/${p.slug}`}
                         data-nav-link
-                        className="block rounded-xl px-3 py-2.5 text-left text-[15px] font-normal leading-snug text-brand-fg1 no-underline transition-colors hover:bg-black/[0.05]"
+                        className={prijimackySubmenuLinkClass}
                         onClick={() => setPrijimackyDesktopOpen(false)}
                       >
                         {p.label}
@@ -213,7 +217,7 @@ export function Header() {
 
       {open ? (
         <div
-          className={`${SHELL} ${bubbleRadius} rounded-t-none border-t border-black/[0.07] bg-white/[0.55] shadow-[0_12px_40px_-12px_rgba(0,0,0,0.1)] backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 lg:hidden`}
+          className={`${SHELL} ${bubbleRadius} rounded-t-none border-t border-black/[0.06] bg-white shadow-[0_16px_48px_-20px_rgba(0,0,0,0.1)] transition-colors duration-300 lg:hidden`}
         >
           <nav className="flex flex-col gap-1 py-4" aria-label="Hlavná navigácia">
             {navBeforePrijimacky.map((l) => (
@@ -231,15 +235,17 @@ export function Header() {
             <div className="flex flex-col">
               <button
                 type="button"
-                className={`${linkClassMobile} flex w-full items-center justify-between text-left font-sans`}
+                className={`flex w-full items-center justify-between rounded-lg border border-transparent px-3 py-2.5 text-left text-[17px] font-sans text-brand-fg1 transition-colors ${
+                  prijimackyMobileOpen ? "bg-black/[0.04]" : "hover:bg-black/[0.03]"
+                }`}
                 aria-expanded={prijimackyMobileOpen}
                 aria-controls="prijimacky-submenu-mobile"
                 id="prijimacky-trigger-mobile"
                 onClick={() => setPrijimackyMobileOpen((v) => !v)}
               >
-                <span>Prijímačky</span>
+                <span className="font-medium">Prijímačky</span>
                 <span
-                  className={`text-sm opacity-70 transition-transform ${prijimackyMobileOpen ? "rotate-180" : ""}`}
+                  className={`text-sm text-brand-fg3 transition-transform ${prijimackyMobileOpen ? "rotate-180" : ""}`}
                   aria-hidden
                 >
                   ▾
@@ -248,7 +254,7 @@ export function Header() {
               {prijimackyMobileOpen ? (
                 <ul
                   id="prijimacky-submenu-mobile"
-                  className="m-0 mb-1 list-none border-l-2 border-[#fdb913]/80 pl-2"
+                  className="m-0 mt-2 flex list-none flex-col gap-0.5 rounded-xl border border-black/[0.06] bg-white p-2 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.08)]"
                   role="list"
                 >
                   {prijimackyPages.map((p) => (
@@ -256,7 +262,7 @@ export function Header() {
                       <Link
                         href={`/prijimacky/${p.slug}`}
                         data-nav-link
-                        className={`${linkClassMobile} block pl-2 text-[16px] text-brand-fg1`}
+                        className={prijimackySubmenuLinkClass}
                         onClick={() => {
                           setOpen(false);
                           setPrijimackyMobileOpen(false);

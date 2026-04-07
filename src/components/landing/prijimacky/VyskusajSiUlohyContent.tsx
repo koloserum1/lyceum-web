@@ -22,18 +22,28 @@ const ctaPrimaryYellow =
 const pillSecondaryHeroWarm =
   "inline-flex items-center justify-center rounded-full border border-[#d4be78]/75 bg-[#f7f2ea]/95 px-5 py-2.5 text-[14px] font-semibold text-[#2a1f18] no-underline shadow-[0_6px_20px_-10px_rgba(55,45,25,0.08)] backdrop-blur-sm transition-colors hover:border-[#fdb913]/45 hover:bg-[#faf0e4] hover:shadow-[0_8px_24px_-12px_rgba(253,185,19,0.12)] md:px-6 md:text-[15px]";
 
+/** Jemný teplý wash v pravom dolnom rohu — doplní ombre bez výraznej oranžovej plochy. */
+const vyskusajHeroWash =
+  "pointer-events-none absolute inset-0 rounded-[28px] bg-[radial-gradient(ellipse_118%_92%_at_100%_100%,rgba(235,185,145,0.09)_0%,rgba(248,225,205,0.05)_48%,transparent_72%)] md:rounded-[32px] lg:rounded-[36px]";
+
+/** Obal minikvízu — layout ako FitQuiz na domovskej stránke, teplá paleta (žltý akcent zachovaný). */
+const miniQuizShell =
+  "relative isolate overflow-hidden rounded-[24px] bg-gradient-to-b from-[#fdf8f0] via-[#faf5ee]/75 to-[#f0e6dc] ring-1 ring-[#e8dcc8]/45 shadow-[0_16px_48px_-28px_rgba(45,35,22,0.12)]";
+
 export function VyskusajSiUlohyContent() {
   return (
     <main
       id="prijimacky-vyskusaj-si-ulohy"
-      className="scroll-mt-24 bg-[#f5ebe3] pb-12 md:scroll-mt-28 md:pb-16"
+      className="scroll-mt-24 bg-brand-bg2 pb-12 md:scroll-mt-28 md:pb-16"
     >
-      {/* Hero — tá istá skladba ako „Ako sa dostať na Lýceum“; stĺpce zrkadlovo (fotka vľavo, text vpravo), teplá marhuľa */}
+      {/* Hero — tá istá skladba ako „Ako sa dostať na Lýceum“; jemný teplý ombre namiesto výraznej oranžovej. */}
       <div className={`${CX} pt-6 md:pt-8`}>
         <header
-          className="overflow-x-clip rounded-[28px] bg-gradient-to-br from-[#f0e2d6] via-[#faf5f0] to-[#f2d9c4] ring-1 ring-[#d8a888]/52 shadow-[0_24px_60px_-32px_rgba(90,55,35,0.14),inset_0_1px_0_0_rgba(255,255,255,0.55)] md:rounded-[32px] lg:rounded-[36px]"
+          className="relative overflow-x-clip rounded-[28px] bg-gradient-to-br from-[#faf7f3] via-[#faf8f6] to-[#f0e4dc] ring-1 ring-[#e8d4c8]/48 shadow-[0_24px_60px_-32px_rgba(75,52,38,0.08),inset_0_1px_0_0_rgba(255,255,255,0.92)] md:rounded-[32px] lg:rounded-[36px]"
           aria-label="Úvod a typy úloh"
         >
+          <div className={vyskusajHeroWash} aria-hidden />
+          <div className="relative z-[1]">
           <div className="p-6 sm:p-8 md:p-10 lg:p-12 lg:pb-8">
             <div className="grid gap-10 lg:grid-cols-[minmax(280px,1.08fr)_minmax(0,0.92fr)] lg:items-start lg:gap-10 xl:gap-12">
               <div className="relative mx-auto w-full max-w-[min(100%,24rem)] sm:max-w-[min(100%,28rem)] lg:mx-0 lg:max-w-none lg:w-full">
@@ -111,7 +121,7 @@ export function VyskusajSiUlohyContent() {
             </div>
 
             {/* Typy úloh — integrovaný pás v tom istom hero bloku (ako termíny na „Ako sa dostať“) */}
-            <div className="mt-8 border-t border-[#e0c898]/50 pt-6 md:mt-10 md:pt-8">
+            <div className="mt-8 border-t border-[#e5d5c8]/45 pt-6 md:mt-10 md:pt-8">
               <h2
                 id="heading-typy"
                 className="scroll-mt-28 font-heading m-0 text-[11px] font-bold uppercase tracking-[0.16em] text-[#6e5c38] md:text-xs"
@@ -124,7 +134,7 @@ export function VyskusajSiUlohyContent() {
                   return (
                     <div
                       key={kat.id}
-                      className="rounded-2xl bg-gradient-to-br from-[#faf6ef]/98 to-[#f2e6d4]/98 px-4 py-3.5 ring-1 ring-[#d4c090]/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] backdrop-blur-sm md:px-5 md:py-4"
+                      className="rounded-2xl border border-black/[0.06] bg-white px-4 py-3.5 shadow-[0_8px_28px_-16px_rgba(90,55,35,0.08)] md:px-5 md:py-4"
                     >
                       <p className="m-0 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#9a8028]">
                         {kratky}
@@ -141,27 +151,38 @@ export function VyskusajSiUlohyContent() {
               </div>
             </div>
           </div>
+          </div>
         </header>
       </div>
 
-      {/* Mini kvíz — pozadie sekcie ako zvyšok stránky; oranžový ombre len vo vnútri karty kvízu */}
+      {/* Mini kvíz — layout ako „Otestuj sa“ (FitQuiz), farby teplé / žltý akcent */}
       <section
         className={`${CX} ${sectionY} scroll-mt-28 border-t border-[#dcc898]/45 md:scroll-mt-32`}
         aria-labelledby="heading-mini-quiz"
       >
-        <div className="mx-auto max-w-2xl md:max-w-3xl">
-          <h2
-            id="heading-mini-quiz"
-            className="font-heading m-0 text-center text-[clamp(1.3rem,1rem+1.2vw,1.85rem)] font-bold leading-tight tracking-tight text-brand-fg1"
-          >
-            Skús si 3 úlohy na{" "}
-            <span className="text-[#fdb913]">nečisto</span>
-          </h2>
-          <div className="mx-auto mt-4 h-0.5 w-12 rounded-full bg-[#fdb913]" aria-hidden />
-          <p className="m-0 mt-5 text-center text-[15px] leading-relaxed text-brand-fg2 md:mt-6 md:text-[16px]">
-            Ochutnávka typu zadaní — súvislosti a pokoj pri riešení, nie biflenie.
-          </p>
-          <div className="mt-7 md:mt-8">
+        <div className={miniQuizShell}>
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.35]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at center, rgba(160,120,70,0.09) 1px, transparent 1px)",
+              backgroundSize: "16px 16px",
+            }}
+            aria-hidden
+          />
+          <div className="relative z-[1] px-5 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12">
+            <header className="mx-auto max-w-2xl text-center">
+              <h2
+                id="heading-mini-quiz"
+                className="font-heading m-0 text-[clamp(1.35rem,1rem+1.2vw,1.85rem)] font-bold leading-tight tracking-tight text-brand-fg1 md:text-[clamp(1.5rem,1.1rem+1.4vw,2rem)]"
+              >
+                Skús si 3 úlohy na{" "}
+                <span className="text-[#fdb913]">nečisto</span>
+              </h2>
+              <p className="mx-auto mt-3 mb-0 max-w-lg text-[15px] font-normal leading-relaxed text-brand-fg2 md:mt-4 md:text-base">
+                Ochutnávka typu zadaní — súvislosti a pokoj pri riešení, nie biflenie.
+              </p>
+            </header>
             <VyskusajSiUlohyMiniQuiz />
           </div>
         </div>
@@ -172,7 +193,7 @@ export function VyskusajSiUlohyContent() {
         className={`${CX} ${sectionY} border-t border-black/[0.06]`}
         aria-labelledby="heading-cela"
       >
-        <div className="mx-auto max-w-3xl rounded-[22px] bg-gradient-to-br from-brand-primary/12 via-white to-brand-bg2 px-6 py-9 ring-1 ring-black/[0.07] md:rounded-[24px] md:px-10 md:py-10">
+        <div className="mx-auto max-w-3xl rounded-[22px] border border-black/[0.07] bg-white px-6 py-9 shadow-[0_16px_48px_-28px_rgba(0,0,0,0.08)] md:rounded-[24px] md:px-10 md:py-10">
           <h2
             id="heading-cela"
             className="font-heading m-0 text-center text-[clamp(1.15rem,1rem+0.85vw,1.45rem)] font-bold leading-tight text-brand-fg1"
@@ -192,7 +213,7 @@ export function VyskusajSiUlohyContent() {
               Pozrieť celú ukážku úloh
             </a>
           </div>
-          <div className="mt-7 hidden overflow-hidden rounded-xl border border-black/[0.08] bg-brand-bg2/50 md:mt-8 md:block">
+          <div className="mt-7 hidden overflow-hidden rounded-xl border border-black/[0.08] bg-brand-bg2 md:mt-8 md:block">
             <object
               data={PRIJIMACIE_ULOHY_PDF}
               type="application/pdf"

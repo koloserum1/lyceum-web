@@ -86,7 +86,7 @@ export function TerminyVysledkyAZapisContent() {
   return (
     <main
       id="prijimacky-terminy-vysledky-a-zapis"
-      className="relative isolate scroll-mt-24 bg-[#f9f7fb] pb-14 md:scroll-mt-28 md:pb-20"
+      className="relative isolate scroll-mt-24 bg-brand-bg2 pb-14 md:scroll-mt-28 md:pb-20"
     >
       {/* Hero — kompaktný horizontálny blok, čistá fotka, mriežka ako podklad */}
       <div className={`${CX} relative z-[1] pt-4 md:pt-5`}>
@@ -155,7 +155,7 @@ export function TerminyVysledkyAZapisContent() {
                 role="group"
                 aria-label="Fotografia z výučby"
               >
-                <div className="overflow-hidden rounded-xl border border-[#e0d8ec] bg-[#f3f0f8] shadow-[0_10px_28px_-16px_rgba(65,52,92,0.12)]">
+                <div className="overflow-hidden rounded-xl border border-[#e0d8ec] bg-white shadow-[0_10px_28px_-16px_rgba(65,52,92,0.12)]">
                   <div className="relative aspect-[5/3] w-full sm:aspect-[16/9] lg:aspect-[3/2]">
                     <Image
                       src={HERO_ILLUSTRATION_SRC}
@@ -190,7 +190,7 @@ export function TerminyVysledkyAZapisContent() {
         className={`${CX} relative z-[1] mt-2 py-12 md:py-16 lg:py-[4.5rem]`}
         aria-labelledby="heading-terminy"
       >
-        <div className="relative overflow-hidden rounded-[1.5rem] border border-[#dcd2eb] bg-gradient-to-b from-[#f3eef9] to-[#ebe4f4] px-4 py-10 shadow-[0_16px_44px_-24px_rgba(75,58,110,0.14)] sm:px-7 md:rounded-[1.65rem] md:px-9 md:py-12 lg:px-11">
+        <div className="relative overflow-hidden rounded-[1.5rem] border border-[#e4dcf0] bg-white px-4 py-10 shadow-[0_16px_44px_-24px_rgba(75,58,110,0.14)] sm:px-7 md:rounded-[1.65rem] md:px-9 md:py-12 lg:px-11">
           <div
             className={`pointer-events-none absolute inset-0 opacity-[0.4] ${surfaceDotsSoft}`}
             aria-hidden
@@ -224,12 +224,12 @@ export function TerminyVysledkyAZapisContent() {
 
                 const surfaceCls =
                   t.layout === "finale"
-                    ? "border-[#e8dcc8] bg-gradient-to-br from-white to-[#fffdf8] shadow-[0_14px_40px_-20px_rgba(120,95,60,0.08)] ring-1 ring-[#f5ead0]/45"
+                    ? "border-[#e8dcc8] bg-white shadow-[0_14px_40px_-20px_rgba(120,95,60,0.08)] ring-1 ring-[#f5ead0]/45"
                     : t.layout === "full"
                       ? "border-[#d8cce8] bg-white shadow-[0_12px_36px_-20px_rgba(75,58,110,0.1)]"
                       : i % 2 === 0
-                        ? "border-[#e0d6ee] bg-white/90"
-                        : "border-[#ddd4e8] bg-[#faf8fc]/95";
+                        ? "border-[#e0d6ee] bg-white"
+                        : "border-[#ddd4e8] bg-white";
 
                 return (
                   <li key={t.label} className="relative flex gap-0 pb-10 last:pb-0 md:gap-2 md:pb-12">
@@ -307,7 +307,7 @@ export function TerminyVysledkyAZapisContent() {
         className={`${CX} relative z-[1] py-12 md:py-16 lg:py-[4.5rem]`}
         aria-labelledby="heading-po-vysledkoch"
       >
-        <div className="relative overflow-hidden rounded-[1.5rem] border border-[#e2dce8] bg-[#fbf9fc] px-5 py-10 md:rounded-[1.65rem] md:px-9 md:py-12">
+        <div className="relative overflow-hidden rounded-[1.5rem] border border-[#e2dce8] bg-white px-5 py-10 md:rounded-[1.65rem] md:px-9 md:py-12">
           <div
             className={`pointer-events-none absolute inset-0 opacity-[0.36] ${surfaceGridFaint}`}
             aria-hidden
@@ -362,7 +362,7 @@ export function TerminyVysledkyAZapisContent() {
       {/* Záverečný CTA */}
       <div className={`${CX} relative z-[1] pb-4 pt-2`}>
         <section
-          className="overflow-hidden rounded-[1.5rem] border border-[#e4dcf0] bg-gradient-to-br from-white via-[#faf8fc] to-[#f3ebfa] px-6 py-11 shadow-[0_18px_44px_-24px_rgba(72,56,105,0.12)] md:rounded-[1.65rem] md:px-12 md:py-14 lg:px-14 lg:py-16"
+          className="overflow-hidden rounded-[1.5rem] border border-[#e4dcf0] bg-white px-6 py-11 shadow-[0_18px_44px_-24px_rgba(72,56,105,0.12)] md:rounded-[1.65rem] md:px-12 md:py-14 lg:px-14 lg:py-16"
           aria-labelledby="heading-dalsi"
         >
           <div

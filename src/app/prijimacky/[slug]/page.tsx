@@ -43,7 +43,7 @@ export default async function PrijimackyPodstrankaPage({ params }: Props) {
       <Header />
       <main
         id={`prijimacky-${slug}`}
-        className="scroll-mt-24 bg-brand-bg1 pb-14 md:scroll-mt-28 md:pb-20"
+        className="scroll-mt-24 bg-brand-bg2 pb-14 md:scroll-mt-28 md:pb-20"
       >
         <div className={`${CX} pt-8 md:pt-12`}>
           <nav className="mb-6 text-sm text-brand-fg3" aria-label="Oblasť stránky">
