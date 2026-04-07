@@ -9,8 +9,9 @@ import { SchoolComparisonSection } from "@/components/landing/SchoolComparisonSe
 import { TeachersSection } from "@/components/landing/TeachersSection";
 import { PartnerReferencesSection } from "@/components/landing/PartnerReferencesSection";
 import { ThreePillarsSection } from "@/components/landing/ThreePillarsSection";
+import { HowWeTeachSection } from "@/components/landing/HowWeTeachSection";
 import { FitQuiz } from "@/components/landing/FitQuiz";
-import { SubjectsAccordion } from "@/components/landing/SubjectsAccordion";
+import { SubjectsSection } from "@/components/landing/SubjectsSection";
 import { InterestForm } from "@/components/landing/InterestForm";
 import { partnerBrands } from "@/content/partners";
 import { studentVideos } from "@/content/studentVideos";
@@ -63,15 +64,6 @@ function H2({
   );
 }
 
-function PlaceholderMini({ title }: { title: string }) {
-  return (
-    <div className="rounded-2xl border border-dashed border-black/12 bg-brand-bg2/50 px-5 py-10 text-center">
-      <p className="font-heading m-0 text-base text-brand-fg1">{title}</p>
-      <p className="mt-1 mb-0 text-xs text-brand-fg3">Čoskoro</p>
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <>
@@ -112,7 +104,7 @@ export default function Home() {
                     berú vážne.
                   </p>
                   <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
-                    <a href="#ako-funguje" className="btn-primary-site justify-center">
+                    <a href="#ako-ucime" className="btn-primary-site justify-center">
                       Pozrieť, ako to u nás funguje
                     </a>
                     <a href="#prijimacky" className="btn-secondary-site justify-center">
@@ -155,6 +147,8 @@ export default function Home() {
           </div>
         </section>
 
+        <HowWeTeachSection />
+
         <SchoolComparisonSection />
 
         <section
@@ -196,49 +190,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Ako to funguje */}
-        <Sec id="ako-funguje" className="bg-brand-bg1">
-          <H2
-            title="Tri veci, ktoré ťa tu čakajú"
-            subtitle="Skratka namiesto dlhých odstavcov."
-          />
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              {
-                e: "📌",
-                t: "Projekty",
-                d: "Reálne zadania, termíny, výstupy v tíme.",
-                c: "border-[#d4b85e]/55 bg-gradient-to-br from-[#fdb91326] to-transparent",
-              },
-              {
-                e: "↩",
-                t: "Spätná väzba",
-                d: "Dávaš ju aj prijímaš. Rastieš po iteráciách.",
-                c: "border-[#9a7ec8]/55 bg-gradient-to-br from-[#5620821c] to-transparent",
-              },
-              {
-                e: "🏢",
-                t: "Prax",
-                d: "Firmy a mentori — vidíš, ako to chodí vonku.",
-                c: "border-[#a8a6b2]/50 bg-gradient-to-br from-[#1d1d1f0c] to-transparent",
-              },
-            ].map((x) => (
-              <div
-                key={x.t}
-                className={`rounded-2xl border p-5 ${x.c}`}
-              >
-                <span className="text-2xl" aria-hidden>
-                  {x.e}
-                </span>
-                <h3 className="font-heading mt-2 mb-0 text-lg">{x.t}</h3>
-                <p className="mt-2 mb-0 text-[13px] font-normal leading-snug text-brand-fg3">
-                  {x.d}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Sec>
-
         {/* Realita — pás */}
         <Sec className="!py-0">
           <div className="rounded-2xl bg-brand-fg1 px-6 py-10 text-brand-bg1 md:px-12 md:py-12">
@@ -252,126 +203,30 @@ export default function Home() {
           </div>
         </Sec>
 
-        {/* Komunita */}
-        <Sec id="komunita" className="bg-brand-bg1">
-          <H2
-            title="Atmosféra = podmienka učenia"
-            subtitle="Bezpečie a rešpekt, aby si mohol skúšať."
-            right={
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary-site !py-2 !text-xs"
-              >
-                Instagram
-              </a>
-            }
-          />
-          <div className="grid gap-3 sm:grid-cols-3">
-            {[
-              "Počúvame ťa — feedback ide oboma smermi.",
-              "Kultúra: tímy, prezentácie, reflexie.",
-              "Každý má priestor ukázať silné stránky.",
-            ].map((t, i) => (
-              <div
-                key={i}
-                className="flex gap-3 rounded-xl bg-brand-bg2/80 px-4 py-3 ring-1 ring-black/[0.04]"
-              >
-                <span
-                  className="font-heading text-brand-primary"
-                  aria-hidden
-                >
-                  {i + 1}
-                </span>
-                <p className="m-0 text-[13px] font-normal leading-snug text-brand-fg1">
-                  {t}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Sec>
+        <SubjectsSection />
 
-        {/* Štúdium / predmety */}
-        <Sec id="studium" className="bg-brand-bg1">
-          <div id="predmety" className="scroll-mt-24">
-            <H2
-              title="Predmety s využitím"
-              subtitle="Prax a projekty. Rozbaľ blok, ktorý ťa zaujíma."
-            />
-            <SubjectsAccordion />
-            <div
-              id="dod"
-              className="mt-6 flex flex-wrap items-center gap-3 scroll-mt-24"
-            >
-              <a href="#zaujemca" className="btn-primary-site">
-                Deň otvorených dverí
-              </a>
-              <span className="text-xs text-brand-fg3">PDF plán doplníme.</span>
-            </div>
-          </div>
-        </Sec>
+        {/* Kotva #prijimacky — hero a podstránky prijímačiek */}
+        <div
+          id="prijimacky"
+          className="scroll-mt-24 h-px w-full overflow-hidden opacity-0 md:scroll-mt-28"
+          aria-hidden
+        />
 
         {/* Quiz */}
         <Sec id="otestuj-sa" className="bg-brand-bg1">
           <FitQuiz />
         </Sec>
 
-        {/* Porovnanie — karty */}
-        <Sec className="bg-brand-bg1 !pb-8">
-          <H2
-            title="Lýceum vs. obchodná akadémia"
-            subtitle="Iný dôraz, nie „lepšie / horšie“."
-          />
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl border border-black/[0.06] bg-brand-bg2/60 p-6">
-              <h3 className="font-heading m-0 text-lg text-brand-fg1">
-                Lýceum C. S. Lewisa
-              </h3>
-              <ul className="mt-4 space-y-2 text-[13px] font-normal text-brand-fg1">
-                <li>✓ Projekty, firmy, mentori</li>
-                <li>✓ Digitál v kontexte úloh</li>
-                <li>✓ Podnikavosť (enterprise, service design…)</li>
-                <li>✓ Komunita a explicitný feedback</li>
-              </ul>
-            </div>
-            <div className="rounded-2xl border border-dashed border-black/15 bg-brand-bg1 p-6">
-              <h3 className="font-heading m-0 text-lg text-brand-fg3">
-                Obchodná akadémia (typicky)
-              </h3>
-              <ul className="mt-4 space-y-2 text-[13px] font-normal text-brand-fg3">
-                <li>— Ekonomika, účtovníctvo častejšie v centre</li>
-                <li>— IT podľa školy</li>
-                <li>— Iná štruktúra praxe</li>
-                <li>— Závisí od konkrétnej školy</li>
-              </ul>
-            </div>
-          </div>
-        </Sec>
-
-        {/* Záujem */}
+        {/* Záujem — kotva #dod pre menu (DOD) */}
         <Sec id="zaujemca" className="bg-brand-bg2/30">
+          <div
+            id="dod"
+            className="scroll-mt-24 h-px w-full overflow-hidden opacity-0 md:scroll-mt-28"
+            aria-hidden
+          />
           <div className="mx-auto max-w-md">
             <H2 title="Záujem o štúdium" subtitle="Krátko napíš — ozveme sa." />
             <InterestForm />
-          </div>
-        </Sec>
-
-        {/* Placeholdery */}
-        <Sec className="!pt-0">
-          <div className="grid gap-4 md:grid-cols-3">
-            <div id="pre-studentov" className="scroll-mt-24">
-              <PlaceholderMini title="Pre študentov · školský poriadok" />
-            </div>
-            <div id="pridaj-sa" className="scroll-mt-24">
-              <PlaceholderMini title="Pridaj sa do tímu" />
-            </div>
-            <div id="prijimacky" className="scroll-mt-24">
-              <PlaceholderMini title="Prijímačky a termíny" />
-            </div>
-          </div>
-          <div id="stipendia" className="mt-4 scroll-mt-24">
-            <PlaceholderMini title="Štipendiá" />
           </div>
         </Sec>
 

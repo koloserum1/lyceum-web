@@ -48,10 +48,7 @@ export function ThreePillarsSection() {
 
               <div className="absolute inset-x-0 bottom-0 z-[1] p-3 sm:p-4 md:inset-x-auto md:right-3 md:bottom-3 md:left-auto md:w-[min(100%,88%)] md:max-w-[340px] lg:right-4 lg:bottom-4">
                 <div className="rounded-xl border border-black/[0.07] bg-[#fdfbf7] p-4 shadow-[0_12px_40px_-20px_rgba(0,0,0,0.16)] transition-shadow duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:shadow-[0_16px_44px_-22px_rgba(0,0,0,0.2)] motion-reduce:transition-none sm:p-5">
-                  <span className="inline-block rounded border border-black/25 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-fg1">
-                    {p.tag}
-                  </span>
-                  <h3 className="font-heading mt-3 mb-0 text-[clamp(1.25rem,1rem+1.2vw,1.65rem)] leading-[1.12] tracking-tight text-brand-fg1">
+                  <h3 className="font-heading m-0 text-[clamp(1.25rem,1rem+1.2vw,1.65rem)] leading-[1.12] tracking-tight text-brand-fg1">
                     {p.title}
                   </h3>
                   <p className="mt-2 mb-0 text-[13px] font-normal leading-snug text-brand-fg3 md:text-[14px]">

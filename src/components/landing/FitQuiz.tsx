@@ -165,7 +165,7 @@ export function FitQuiz() {
             Sadlo by ti Lýceum?
           </h2>
           <p className="mx-auto mt-3 mb-0 max-w-lg text-[15px] font-normal leading-relaxed text-brand-fg3 md:mt-4 md:text-base">
-            Rýchly check — 10 otázok, bez klamstva.
+            Rýchly check — 10 otázok. Otestuj sa, či je pre Teba Lýceum správna škola.
           </p>
         </header>
 
@@ -185,22 +185,22 @@ export function FitQuiz() {
             </div>
 
             <div
-              className="relative rounded-[20px] border border-black/[0.06] bg-brand-bg1/85 p-6 shadow-[0_12px_40px_-24px_rgba(27,22,36,0.16)] ring-1 ring-white/80 backdrop-blur-[2px] sm:p-8"
+              className="group relative isolate overflow-visible rounded-[20px] border border-black/[0.06] bg-brand-bg1/85 px-5 pb-6 pt-9 shadow-[0_12px_40px_-24px_rgba(27,22,36,0.16)] ring-1 ring-white/80 backdrop-blur-[2px] sm:px-8 sm:pb-8 sm:pt-10 sm:pr-7"
               role="group"
               aria-live="polite"
               aria-label={`Otázka ${idx + 1} z ${total}`}
             >
               <div
-                className={`pointer-events-none absolute -right-1 -top-2 z-10 origin-bottom-left rotate-[8deg] rounded-full bg-brand-secondary px-3 py-1.5 shadow-[0_3px_14px_-3px_rgba(27,22,36,0.2)] sm:-right-2 sm:top-0 sm:px-4 sm:py-2`}
+                className="pointer-events-none absolute top-0 right-0 z-10 origin-bottom-left translate-x-[22%] -translate-y-[32%] rotate-[9deg] rounded-full bg-brand-secondary px-3.5 py-1.5 shadow-[0_3px_14px_-3px_rgba(27,22,36,0.22)] sm:translate-x-[20%] sm:-translate-y-[28%] sm:rotate-[8deg] sm:px-4 sm:py-2"
               >
-                <span className="font-heading text-[0.75rem] font-bold leading-none tracking-tight text-brand-fg1 sm:text-[0.85rem]">
+                <span className="font-heading block max-w-[10rem] text-center text-[0.85rem] font-bold leading-none tracking-tight text-brand-fg1 sm:max-w-[11rem] sm:text-[0.95rem]">
                   Otázka {idx + 1}
                 </span>
               </div>
 
               <p
                 key={idx}
-                className={`m-0 pr-2 text-[clamp(1rem,0.95rem+0.5vw,1.2rem)] font-normal leading-snug text-brand-fg1 sm:pr-4 md:text-[1.25rem] md:leading-relaxed ${
+                className={`m-0 max-w-[min(100%,36rem)] text-[clamp(1rem,0.95rem+0.5vw,1.2rem)] font-normal leading-snug text-brand-fg1 md:text-[1.25rem] md:leading-relaxed ${
                   motionOk ? "animate-fit-quiz-step-in" : ""
                 }`}
               >
@@ -228,7 +228,7 @@ export function FitQuiz() {
                 })}
               </div>
 
-              <div className="mt-6 flex items-center justify-between gap-3 sm:mt-8">
+              <div className="mt-6 sm:mt-8">
                 <button
                   type="button"
                   onClick={goBack}
@@ -238,10 +238,6 @@ export function FitQuiz() {
                   <ChevronLeft className="h-4 w-4" />
                   Späť
                 </button>
-                <p className="m-0 max-w-[14rem] text-right text-[11px] leading-snug text-brand-fg4 sm:max-w-none">
-                  Vyber odpoveď — pokračujeme na ďalšiu otázku. Späť alebo bodky
-                  upravíš predchádzajúce.
-                </p>
               </div>
             </div>
 

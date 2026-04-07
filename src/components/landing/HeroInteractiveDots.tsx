@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 /** Zodpovedá predchádzajúcemu statickému CSS (glob + hrúbka bodky) */
 const GRID = 44;
 const DOT_RADIUS = 1.1;
-const DOT_COLOR = "#000000";
+const DEFAULT_DOT_COLOR = "#000000";
 const REPULSE_RADIUS = 120;
 const REPULSE_STRENGTH = 34;
 
@@ -140,7 +140,25 @@ function getRepulsed(
 /** ~30 FPS – menej práce na GPU pri plnej viditeľnosti */
 const MIN_FRAME_MS = 1000 / 30;
 
-export function HeroInteractiveDots() {
+const DEFAULT_TEXT_MASK = ".hero-top-text-cluster";
+
+export type HeroInteractiveDotsProps = {
+  /** Farba bodiek (default čierna ako hero); pre svetlé pozadie napr. rgba(29,31,35,0.1) */
+  dotColor?: string;
+  /** Selektor bloku s textom — bodky sa v ňom nevykreslia (maska). */
+  textMaskSelector?: string;
+  /**
+   * Ak false: statická mriežka bez nepretržitej animácie a bez interakcie myšou
+   * (menej JS/GPU). Hero nechaj true.
+   */
+  pointerInteraction?: boolean;
+};
+
+export function HeroInteractiveDots({
+  dotColor = DEFAULT_DOT_COLOR,
+  textMaskSelector = DEFAULT_TEXT_MASK,
+  pointerInteraction = true,
+}: HeroInteractiveDotsProps = {}) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -99999, y: -99999 });
@@ -169,12 +187,13 @@ export function HeroInteractiveDots() {
     /** Bodky s „repulse“ len na šírku lg+ (myš); na mobile statická mriežka. */
     const mqDesktop = window.matchMedia("(min-width: 1024px)");
     let pointerDesktop = mqDesktop.matches;
-    const repulseOff = () => reducedMotion || !pointerDesktop;
+    const repulseOff = () =>
+      reducedMotion || !pointerDesktop || !pointerInteraction;
 
     const rebuildGlyphMask = () => {
       const shell = wrap.parentElement;
       const cluster = shell?.querySelector(
-        ".hero-top-text-cluster",
+        textMaskSelector,
       ) as HTMLElement | null;
       if (!cluster || w < 1 || h < 1) {
         glyphMaskRef.current = null;
@@ -209,7 +228,7 @@ export function HeroInteractiveDots() {
           if (isOverGlyph(ox, oy, mask)) continue;
           ctx.beginPath();
           ctx.arc(ox, oy, DOT_RADIUS, 0, Math.PI * 2);
-          ctx.fillStyle = DOT_COLOR;
+          ctx.fillStyle = dotColor;
           ctx.fill();
         }
       }
@@ -264,9 +283,11 @@ export function HeroInteractiveDots() {
         window.removeEventListener("mousemove", onMove);
         cancelLoop();
         draw();
-      } else {
+      } else if (pointerInteraction) {
         window.addEventListener("mousemove", onMove, { passive: true });
         if (!reducedMotion && heroVisible) scheduleLoop();
+      } else {
+        draw();
       }
     };
 
@@ -279,7 +300,7 @@ export function HeroInteractiveDots() {
     const shell = wrap.parentElement;
     if (shell) ro.observe(shell);
     const cluster = shell?.querySelector(
-      ".hero-top-text-cluster",
+      textMaskSelector,
     ) as HTMLElement | null;
     if (cluster) ro.observe(cluster);
 
@@ -291,7 +312,7 @@ export function HeroInteractiveDots() {
       draw();
     });
 
-    if (pointerDesktop) {
+    if (pointerDesktop && pointerInteraction) {
       window.addEventListener("mousemove", onMove, { passive: true });
     }
     mqDesktop.addEventListener("change", onPointerModeChange);
@@ -326,12 +347,14 @@ export function HeroInteractiveDots() {
     return () => {
       cancelled = true;
       mqDesktop.removeEventListener("change", onPointerModeChange);
-      window.removeEventListener("mousemove", onMove);
+      if (pointerInteraction) {
+        window.removeEventListener("mousemove", onMove);
+      }
       ro.disconnect();
       io?.disconnect();
       cancelLoop();
     };
-  }, []);
+  }, [dotColor, textMaskSelector, pointerInteraction]);
 
   return (
     <div
