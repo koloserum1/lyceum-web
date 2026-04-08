@@ -100,7 +100,7 @@ function AlternativeSchoolToggle({
 
   return (
     <div
-      className="flex w-full rounded-full bg-black/[0.06] p-1 ring-1 ring-black/[0.06]"
+      className="relative z-10 flex w-full touch-manipulation rounded-full bg-black/[0.06] p-1 ring-1 ring-black/[0.06]"
       role="tablist"
       aria-label="Typ porovnávanej školy"
     >
@@ -263,6 +263,14 @@ export function SchoolComparisonSection() {
       return;
     }
 
+    /* Úzke displeje: IO často nespustí včas (viewport, iOS) — titulok by ostal opacity-0. */
+    const narrow = window.matchMedia("(max-width: 1023px)");
+    if (narrow.matches) {
+      setIntroOn(true);
+      requestAnimationFrame(() => setBarsOn(true));
+      return;
+    }
+
     const el = rootRef.current;
     if (!el) return;
 
@@ -274,7 +282,7 @@ export function SchoolComparisonSection() {
           obs.disconnect();
         }
       },
-      { threshold: 0.14, rootMargin: "0px 0px -6% 0px" },
+      { threshold: 0.05, rootMargin: "0px 0px 12% 0px" },
     );
     obs.observe(el);
     return () => obs.disconnect();

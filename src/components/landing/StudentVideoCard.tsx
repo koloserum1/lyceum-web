@@ -395,35 +395,26 @@ export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
   const overlayFactor = showEndScreen ? 1 : tailProgress;
   const showTailOrEndOverlay = tailProgress > 0 || showEndScreen;
 
+  const tapLabel =
+    showEndScreen
+      ? "Koniec ukážky — celé video na Instagrame"
+      : isFirst
+        ? soundOn
+          ? "Pozastaviť alebo spustiť video"
+          : "Zapnúť zvuk a prehrať video od začiatku"
+        : paused
+          ? "Spustiť video"
+          : "Pozastaviť video";
+
   return (
     <div
-      className={`relative aspect-[9/16] w-full overflow-hidden bg-brand-bg2 ${showEndScreen ? "cursor-default" : "cursor-pointer"}`}
-      role="button"
-      tabIndex={showEndScreen ? -1 : 0}
-      aria-label={
-        showEndScreen
-          ? "Koniec ukážky — celé video na Instagrame"
-          : isFirst
-            ? soundOn
-              ? "Pozastaviť alebo spustiť video"
-              : "Zapnúť zvuk a prehrať video od začiatku"
-            : paused
-              ? "Spustiť video"
-              : "Pozastaviť video"
-      }
-      onClick={handleRootClick}
-      onKeyDown={(e) => {
-        if (showEndScreen) return;
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handleRootClick();
-        }
-      }}
+      className={`relative aspect-[9/16] w-full overflow-hidden bg-brand-bg2 ${showEndScreen ? "cursor-default" : ""}`}
     >
       <video
         ref={videoRef}
-        className="h-full w-full object-cover"
+        className="pointer-events-none h-full w-full bg-black object-cover"
         playsInline
+        controls={false}
         poster={posterResolved ?? undefined}
         preload={
           isFirst ? "metadata" : posterResolved ? "none" : "metadata"
@@ -433,6 +424,15 @@ export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
       >
         <source src={item.src} type="video/mp4" />
       </video>
+
+      {!showEndScreen ? (
+        <button
+          type="button"
+          className="absolute inset-0 z-[5] m-0 cursor-pointer touch-manipulation border-0 bg-transparent p-0 [-webkit-tap-highlight-color:transparent]"
+          aria-label={tapLabel}
+          onClick={handleRootClick}
+        />
+      ) : null}
 
       {showTailOrEndOverlay ? (
         <div

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { TeacherReference } from "@/content/teacherReferences";
 
 function TeacherPhoto({
@@ -97,6 +97,7 @@ type Props = {
 export function TeachersSection({ items }: Props) {
   const [index, setIndex] = useState(0);
   const [motionOk, setMotionOk] = useState(true);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -143,6 +144,19 @@ export function TeachersSection({ items }: Props) {
         className={`flex flex-col gap-8 md:flex-row md:items-stretch md:gap-10 lg:gap-12 ${
           motionOk ? "transition-[opacity] duration-300 ease-out" : ""
         }`}
+        onTouchStart={(e) => {
+          touchStartX.current = e.touches[0]?.clientX ?? null;
+        }}
+        onTouchEnd={(e) => {
+          if (touchStartX.current == null || count < 2) return;
+          const end = e.changedTouches[0]?.clientX;
+          if (end == null) return;
+          const dx = end - touchStartX.current;
+          touchStartX.current = null;
+          if (Math.abs(dx) < 56) return;
+          if (dx < 0) go(1);
+          else go(-1);
+        }}
       >
         {/* Portrét + žltý štítok s menom (ako pri videách so študentmi) */}
         <div className="relative isolate mx-auto w-full max-w-[min(78vw,280px)] shrink-0 pt-7 pr-5 sm:max-w-[min(78vw,300px)] sm:pt-8 sm:pr-6 md:mx-0">
@@ -173,7 +187,7 @@ export function TeachersSection({ items }: Props) {
               type="button"
               onClick={() => go(-1)}
               aria-label="Predchádzajúca referencia"
-              className="order-2 flex h-11 w-11 shrink-0 items-center justify-center self-center rounded-full border border-black/[0.08] bg-white/90 text-brand-fg1 shadow-[0_1px_0_rgba(0,0,0,0.04)] ring-1 ring-white/80 backdrop-blur-sm transition-colors hover:border-black/15 hover:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 sm:order-1 sm:self-stretch sm:rounded-[20px]"
+              className="order-2 flex min-h-11 min-w-11 shrink-0 touch-manipulation items-center justify-center self-center rounded-full border border-black/[0.08] bg-white/90 text-brand-fg1 shadow-[0_1px_0_rgba(0,0,0,0.04)] ring-1 ring-white/80 backdrop-blur-sm transition-colors hover:border-black/15 hover:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 sm:order-1 sm:self-stretch sm:rounded-[20px]"
             >
               <ChevronLeft className="h-5 w-5 opacity-80" />
             </button>
@@ -198,7 +212,7 @@ export function TeachersSection({ items }: Props) {
               type="button"
               onClick={() => go(1)}
               aria-label="Ďalšia referencia"
-              className="order-3 flex h-11 w-11 shrink-0 items-center justify-center self-center rounded-full border border-black/[0.08] bg-white/90 text-brand-fg1 shadow-[0_1px_0_rgba(0,0,0,0.04)] ring-1 ring-white/80 backdrop-blur-sm transition-colors hover:border-black/15 hover:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 sm:order-3 sm:self-stretch sm:rounded-[20px]"
+              className="order-3 flex min-h-11 min-w-11 shrink-0 touch-manipulation items-center justify-center self-center rounded-full border border-black/[0.08] bg-white/90 text-brand-fg1 shadow-[0_1px_0_rgba(0,0,0,0.04)] ring-1 ring-white/80 backdrop-blur-sm transition-colors hover:border-black/15 hover:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 sm:order-3 sm:self-stretch sm:rounded-[20px]"
             >
               <ChevronRight className="h-5 w-5 opacity-80" />
             </button>
@@ -221,7 +235,7 @@ export function TeachersSection({ items }: Props) {
                   aria-label={`${item.name}${active ? " (aktuálne)" : ""}`}
                   onClick={() => setIndex(i)}
                   className={[
-                    "h-2.5 w-2.5 shrink-0 rounded-full transition-[background-color,transform] duration-200 ease-out",
+                    "h-2.5 w-2.5 shrink-0 touch-manipulation rounded-full transition-[background-color,transform] duration-200 ease-out",
                     active
                       ? "scale-100 bg-brand-fg1 shadow-[0_0_0_1px_rgba(0,0,0,0.06)]"
                       : "bg-black/[0.14] hover:bg-black/25",

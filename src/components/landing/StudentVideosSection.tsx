@@ -159,7 +159,7 @@ function VideoCarouselIndicators({
               aria-label={isActive ? `${label}, priebeh ${Math.round(safe * 100)} %` : `Prejsť na ${label}`}
               onClick={() => onSelect(i)}
               className={[
-                "relative shrink-0 ease-[cubic-bezier(0.33,0.1,0.2,1)]",
+                "relative shrink-0 touch-manipulation ease-[cubic-bezier(0.33,0.1,0.2,1)]",
                 "transition-[min-width,width,height,border-radius,background-color,box-shadow] duration-700",
                 isActive
                   ? "h-2.5 min-w-[3.75rem] overflow-hidden rounded-full bg-black/[0.1] sm:min-w-[4rem]"
@@ -192,6 +192,9 @@ export function StudentVideosSection({ items }: Props) {
   const userChoseCarouselRef = useRef(false);
   /** Ignorovať synchronizáciu so scrollom hneď po programovom posune karuselu */
   const suppressScrollSyncRef = useRef(false);
+  const syncActiveRafRef = useRef<ReturnType<typeof requestAnimationFrame> | null>(
+    null,
+  );
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeFraction, setActiveFraction] = useState(0);
@@ -258,9 +261,39 @@ export function StudentVideosSection({ items }: Props) {
     };
   }, [centerFirstItemInCarousel]);
 
+  const syncActiveFromScroll = useCallback(() => {
+    const root = scrollRef.current;
+    if (!root || suppressScrollSyncRef.current) return;
+    const rootRect = root.getBoundingClientRect();
+    const center = rootRect.left + rootRect.width / 2;
+    let best = 0;
+    let bestDist = Infinity;
+    itemRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const elCenter = r.left + r.width / 2;
+      const dist = Math.abs(elCenter - center);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = i;
+      }
+    });
+    if (best !== activeIndexRef.current) {
+      activeIndexRef.current = best;
+      setActiveIndex(best);
+      cardRefs.current.forEach((h, idx) => {
+        if (idx !== best) h?.pauseFromCarousel();
+      });
+    }
+  }, []);
+
   const scrollToIndex = useCallback(
     (i: number) => {
+      suppressScrollSyncRef.current = true;
       scrollCarouselToIndex(i, "smooth");
+      window.setTimeout(() => {
+        suppressScrollSyncRef.current = false;
+      }, 420);
     },
     [scrollCarouselToIndex],
   );
@@ -304,13 +337,47 @@ export function StudentVideosSection({ items }: Props) {
     };
   }, []);
 
+  useEffect(() => {
+    const root = scrollRef.current;
+    if (!root) return;
+
+    const onScroll = () => {
+      if (suppressScrollSyncRef.current) return;
+      if (syncActiveRafRef.current) cancelAnimationFrame(syncActiveRafRef.current);
+      syncActiveRafRef.current = requestAnimationFrame(() => {
+        syncActiveRafRef.current = null;
+        syncActiveFromScroll();
+      });
+    };
+
+    const onTouchEnd = () => {
+      if (suppressScrollSyncRef.current) return;
+      syncActiveFromScroll();
+    };
+
+    root.addEventListener("scroll", onScroll, { passive: true });
+    root.addEventListener("touchend", onTouchEnd, { passive: true });
+    const scrollEndSupported = "onscrollend" in root;
+    if (scrollEndSupported) {
+      root.addEventListener("scrollend", onTouchEnd as EventListener);
+    }
+    return () => {
+      root.removeEventListener("scroll", onScroll);
+      root.removeEventListener("touchend", onTouchEnd);
+      if (scrollEndSupported) {
+        root.removeEventListener("scrollend", onTouchEnd as EventListener);
+      }
+      if (syncActiveRafRef.current) cancelAnimationFrame(syncActiveRafRef.current);
+    };
+  }, [syncActiveFromScroll, items.length]);
+
   const labels = items.map((it) => it.name);
 
   return (
     <div>
       <div
         ref={scrollRef}
-        className="-mx-4 no-scrollbar snap-x snap-mandatory overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth scroll-pl-4 scroll-pr-4 px-4 pb-2 pt-1 sm:-mx-6 sm:scroll-pl-6 sm:scroll-pr-6 sm:px-6 lg:-mx-8 lg:scroll-pl-8 lg:scroll-pr-8 lg:px-8"
+        className="-mx-4 touch-pan-x no-scrollbar snap-x snap-mandatory overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth scroll-pl-4 scroll-pr-4 px-4 pb-2 pt-1 sm:-mx-6 sm:scroll-pl-6 sm:scroll-pr-6 sm:px-6 lg:-mx-8 lg:scroll-pl-8 lg:scroll-pr-8 lg:px-8 [-webkit-overflow-scrolling:touch]"
         role="region"
         aria-label="Videá študentov — posun doprava"
       >

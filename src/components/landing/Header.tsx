@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { prijimackyPages } from "@/data/prijimacky-nav";
 import { preStudentovPages } from "@/data/pre-studentov-nav";
 
@@ -44,6 +44,14 @@ export function Header() {
   const preStudentLeaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
+  const lastMobileMenuToggleRef = useRef(0);
+
+  const toggleMobileMenu = useCallback(() => {
+    const t = Date.now();
+    if (t - lastMobileMenuToggleRef.current < 340) return;
+    lastMobileMenuToggleRef.current = t;
+    setOpen((v) => !v);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 72);
@@ -136,13 +144,13 @@ export function Header() {
       : "invisible pointer-events-none -translate-y-1 opacity-0");
 
   return (
-    <header className="site-header sticky top-0 z-50 w-full pt-2 sm:pt-3">
+    <header className="site-header sticky top-0 z-[60] w-full pt-2 sm:pt-3">
       <div
-        className={`${SHELL} overflow-hidden transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out lg:overflow-visible ${glassDesktop} ${bubbleRadius} ${
-          open ? "rounded-b-none lg:rounded-b-[24px]" : ""
+        className={`${SHELL} overflow-hidden transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out xl:overflow-visible ${glassDesktop} ${bubbleRadius} ${
+          open ? "rounded-b-none xl:rounded-b-[24px]" : ""
         }`}
       >
-        <div className="flex flex-nowrap items-center justify-between gap-2 py-3 sm:gap-3 lg:gap-4 lg:py-[clamp(1rem,3vw,1.35rem)]">
+        <div className="flex min-w-0 flex-nowrap items-center justify-between gap-2 py-3 sm:gap-3 xl:gap-4 xl:py-[clamp(1rem,3vw,1.35rem)]">
           <Link
             href="/#domov"
             className="relative block min-w-0 shrink leading-none no-underline"
@@ -152,14 +160,14 @@ export function Header() {
               alt="Lýceum C. S. Lewisa"
               width={300}
               height={80}
-              className="h-9 w-auto max-w-[min(42vw,200px)] object-contain object-left sm:h-10 sm:max-w-[min(46vw,240px)] lg:h-14 lg:max-w-[min(320px,82vw)]"
+              className="h-9 w-auto max-w-[min(42vw,200px)] object-contain object-left sm:h-10 sm:max-w-[min(46vw,240px)] lg:h-12 lg:max-w-[min(280px,52vw)] xl:h-14 xl:max-w-[min(320px,82vw)]"
               unoptimized
               priority
             />
           </Link>
 
           <nav
-            className="hidden items-center gap-5 lg:flex xl:gap-6"
+            className="hidden min-w-0 flex-1 items-center justify-end gap-5 xl:flex xl:gap-6"
             aria-label="Hlavná navigácia"
           >
             {navStart.map((l) => (
@@ -288,16 +296,19 @@ export function Header() {
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
             <Link
               href="/#zaujemca"
-              className="btn-secondary-site inline-flex max-w-[min(46vw,11rem)] shrink-0 truncate whitespace-nowrap !py-2.5 !text-[clamp(10px,2.8vw,12px)] !px-[0.55rem] !pb-[0.45rem] sm:!px-3 sm:!text-xs lg:max-w-none lg:!px-[clamp(1.5rem,1.75vw,3.5rem)] lg:!py-[0.7rem] lg:!pb-[0.6rem] lg:!text-[clamp(15px,0.9rem+0.35vw,17px)]"
+              className="btn-secondary-site inline-flex max-w-[min(46vw,11rem)] shrink-0 truncate whitespace-nowrap !py-2.5 !text-[clamp(10px,2.8vw,12px)] !px-[0.55rem] !pb-[0.45rem] sm:!px-3 sm:!text-xs xl:max-w-none xl:!px-[clamp(1.5rem,1.75vw,3.5rem)] xl:!py-[0.7rem] xl:!pb-[0.6rem] xl:!text-[clamp(15px,0.9rem+0.35vw,17px)]"
             >
               Záujem o štúdium
             </Link>
             <button
               type="button"
-              className="shrink-0 rounded-lg p-1.5 sm:p-2 lg:hidden"
+              className="relative z-10 shrink-0 touch-manipulation rounded-lg p-2 sm:p-2.5 xl:hidden [-webkit-tap-highlight-color:transparent]"
               aria-label="Menu"
               aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleMobileMenu();
+              }}
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M5 5v1.5h14V5H5z" />
@@ -311,7 +322,7 @@ export function Header() {
 
       {open ? (
         <div
-          className={`${SHELL} ${bubbleRadius} rounded-t-none border-t border-black/[0.06] bg-white shadow-[0_16px_48px_-20px_rgba(0,0,0,0.1)] transition-colors duration-300 lg:hidden`}
+          className={`${SHELL} relative z-20 ${bubbleRadius} rounded-t-none border-t border-black/[0.06] bg-white shadow-[0_16px_48px_-20px_rgba(0,0,0,0.1)] transition-colors duration-300 xl:hidden`}
         >
           <nav className="flex flex-col gap-1 py-4" aria-label="Hlavná navigácia">
             {navStart.map((l) => (

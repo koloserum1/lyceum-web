@@ -152,7 +152,7 @@ export function SiteContactFooter() {
         className="border-t border-black/[0.08] bg-brand-bg2/95 pb-0 pt-7 md:pt-9"
         aria-label="Pätička stránky"
       >
-        <div className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 overflow-x-clip">
+        <div className="relative left-1/2 w-screen min-w-0 max-w-[100vw] -translate-x-1/2 overflow-x-clip">
           <div className="relative isolate">
             <Link
               href="/#domov"

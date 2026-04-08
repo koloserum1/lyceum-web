@@ -18,7 +18,7 @@ function YearTabList({
   baseId: string;
 }) {
   const baseBtn =
-    "min-h-[44px] flex-1 rounded-full px-3 py-2.5 text-center text-[12px] font-semibold leading-snug transition-[background-color,color,box-shadow] duration-200 ease-out sm:px-4 sm:text-[13px] motion-reduce:transition-none md:text-[14px]";
+    "min-h-[44px] flex-1 touch-manipulation rounded-full px-3 py-2.5 text-center text-[12px] font-semibold leading-snug transition-[background-color,color,box-shadow] duration-200 ease-out sm:px-4 sm:text-[13px] motion-reduce:transition-none md:text-[14px]";
   const active = "bg-white text-brand-fg1 shadow-sm ring-1 ring-black/[0.06]";
   const idle = "text-brand-fg3 hover:text-brand-fg1";
 
@@ -65,7 +65,7 @@ function ExpandRowButton({
   return (
     <button
       type="button"
-      className="-m-1 inline-flex shrink-0 items-center justify-center rounded-lg p-2 text-brand-fg3 transition-colors hover:text-brand-fg1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50 focus-visible:ring-offset-1"
+      className="-m-1 inline-flex min-h-[44px] min-w-[44px] shrink-0 touch-manipulation items-center justify-center rounded-lg p-2 text-brand-fg3 transition-colors hover:text-brand-fg1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50 focus-visible:ring-offset-1"
       aria-expanded={expanded}
       aria-label={label}
       onClick={onToggle}

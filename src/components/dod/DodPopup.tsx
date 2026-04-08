@@ -1,7 +1,15 @@
 "use client";
 
 import type { PortableTextBlock } from "@portabletext/types";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import { createPortal } from "react-dom";
 import { PortableText } from "@portabletext/react";
 
 import type { DodPopupPayload } from "@/lib/dod-popup";
@@ -20,6 +28,11 @@ export function DodPopup({ data }: Props) {
   const titleId = useId();
   const emailFieldId = useId();
   const lastFocusRef = useRef<HTMLElement | null>(null);
+  const [portalEl, setPortalEl] = useState<HTMLElement | null>(null);
+
+  useLayoutEffect(() => {
+    setPortalEl(document.body);
+  }, []);
 
   const close = useCallback(() => {
     setOpen(false);
@@ -27,10 +40,22 @@ export function DodPopup({ data }: Props) {
   }, []);
 
   useEffect(() => {
+    if (!open || !portalEl) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open, portalEl]);
+
+  useEffect(() => {
     if (!open) return;
     lastFocusRef.current = document.activeElement as HTMLElement | null;
     const t = window.setTimeout(() => {
-      panelRef.current?.querySelector<HTMLElement>("button, [href], input")?.focus();
+      const input = panelRef.current?.querySelector<HTMLElement>(
+        'input[type="email"], input:not([type="hidden"])',
+      );
+      input?.focus();
     }, 0);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") close();
@@ -80,16 +105,16 @@ export function DodPopup({ data }: Props) {
     }
   }
 
-  if (!open) return null;
+  if (!open || !portalEl) return null;
 
-  return (
+  const overlay = (
     <div
       className="fixed inset-0 z-[100] flex items-end justify-center p-4 sm:items-center"
       role="presentation"
     >
       <button
         type="button"
-        className="absolute inset-0 bg-black/45 backdrop-blur-[2px]"
+        className="absolute inset-0 z-0 bg-black/45 backdrop-blur-none sm:backdrop-blur-[2px]"
         aria-label="Zavrieť"
         onClick={close}
       />
@@ -98,22 +123,11 @@ export function DodPopup({ data }: Props) {
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative z-[101] w-full max-w-lg rounded-[24px] border border-black/[0.08] bg-white p-6 shadow-[0_24px_64px_-24px_rgba(0,0,0,0.25)] sm:p-8"
+        className="relative z-10 w-full max-w-lg rounded-[24px] border border-black/[0.08] bg-white p-6 shadow-[0_24px_64px_-24px_rgba(0,0,0,0.25)] sm:p-8"
       >
-        <button
-          type="button"
-          className="absolute right-3 top-3 rounded-lg p-2 text-brand-fg3 hover:bg-black/[0.05] hover:text-brand-fg1"
-          onClick={close}
-          aria-label="Zavrieť popup"
-        >
-          <span aria-hidden className="text-xl leading-none">
-            ×
-          </span>
-        </button>
-
         <h2
           id={titleId}
-          className="font-heading pr-8 text-[clamp(1.25rem,1rem+1.2vw,1.65rem)] font-bold leading-tight tracking-tight text-brand-fg1"
+          className="font-heading pr-14 text-[clamp(1.25rem,1rem+1.2vw,1.65rem)] font-bold leading-tight tracking-tight text-brand-fg1 sm:pr-8"
         >
           {title}
         </h2>
@@ -165,7 +179,28 @@ export function DodPopup({ data }: Props) {
             </button>
           </form>
         )}
+
+        <button
+          type="button"
+          className="absolute right-2 top-2 z-[80] flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-lg border-0 bg-transparent p-0 text-brand-fg3 [-webkit-tap-highlight-color:transparent] touch-manipulation hover:bg-black/[0.05] hover:text-brand-fg1 sm:right-3 sm:top-3 sm:min-h-0 sm:min-w-0 sm:p-2"
+          onPointerDown={(e) => {
+            e.stopPropagation();
+            close();
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            close();
+          }}
+          aria-label="Zavrieť popup"
+        >
+          <span aria-hidden className="pointer-events-none text-2xl leading-none sm:text-xl">
+            ×
+          </span>
+        </button>
       </div>
     </div>
   );
+
+  return createPortal(overlay, portalEl);
 }

@@ -186,7 +186,7 @@ export function FitQuiz() {
             </div>
 
             <div
-              className="group relative isolate overflow-visible rounded-[20px] border border-black/[0.06] bg-brand-bg1/85 px-5 pb-6 pt-9 shadow-[0_12px_40px_-24px_rgba(27,22,36,0.16)] ring-1 ring-white/80 backdrop-blur-[2px] sm:px-8 sm:pb-8 sm:pt-10 sm:pr-7"
+              className="group relative isolate overflow-visible rounded-[20px] border border-black/[0.06] bg-brand-bg1/85 px-5 pb-6 pt-14 shadow-[0_12px_40px_-24px_rgba(27,22,36,0.16)] ring-1 ring-white/80 backdrop-blur-[2px] sm:px-8 sm:pb-8 sm:pt-10 sm:pr-7"
               role="group"
               aria-live="polite"
               aria-label={`Otázka ${idx + 1} z ${total}`}
@@ -217,7 +217,7 @@ export function FitQuiz() {
                       type="button"
                       onClick={() => onPick(value)}
                       className={[
-                        "flex-1 rounded-[14px] border px-4 py-3.5 text-center font-heading text-[0.95rem] font-bold tracking-tight transition-[background-color,border-color,box-shadow,transform] duration-200 sm:min-w-[7rem] sm:py-3",
+                        "flex-1 touch-manipulation rounded-[14px] border px-4 py-3.5 text-center font-heading text-[0.95rem] font-bold tracking-tight transition-[background-color,border-color,box-shadow,transform] duration-200 sm:min-w-[7rem] sm:py-3",
                         active
                           ? "border-brand-fg1 bg-brand-fg1 text-brand-bg1 shadow-[0_1px_0_rgba(0,0,0,0.06)]"
                           : "border-black/[0.08] bg-white/90 text-brand-fg1 shadow-[0_1px_0_rgba(0,0,0,0.04)] hover:border-black/15 hover:bg-black/[0.02]",
@@ -234,7 +234,7 @@ export function FitQuiz() {
                   type="button"
                   onClick={goBack}
                   disabled={idx === 0}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-black/[0.08] bg-white/90 px-3 py-2 text-xs font-bold text-brand-fg1 shadow-sm ring-1 ring-white/80 transition-colors hover:bg-black/[0.03] disabled:pointer-events-none disabled:opacity-35"
+                  className="inline-flex touch-manipulation items-center gap-1.5 rounded-full border border-black/[0.08] bg-white/90 px-3 py-2 text-xs font-bold text-brand-fg1 shadow-sm ring-1 ring-white/80 transition-colors hover:bg-black/[0.03] disabled:pointer-events-none disabled:opacity-35"
                 >
                   <ChevronLeft className="h-4 w-4" />
                   Späť
@@ -266,7 +266,7 @@ export function FitQuiz() {
                       setIdx(i);
                     }}
                     className={[
-                      "h-2.5 shrink-0 rounded-full transition-[background-color,transform,width] duration-200",
+                      "h-2.5 shrink-0 touch-manipulation rounded-full transition-[background-color,transform,width] duration-200",
                       !allowed
                         ? "w-2.5 cursor-not-allowed bg-black/[0.06] opacity-40"
                         : current
@@ -317,14 +317,14 @@ export function FitQuiz() {
                   setShowResult(false);
                   setIdx(total - 1);
                 }}
-                className="mt-5 text-sm font-normal text-brand-fg3 underline decoration-brand-fg4 underline-offset-4 transition-colors hover:text-brand-fg1"
+                className="mt-5 touch-manipulation text-sm font-normal text-brand-fg3 underline decoration-brand-fg4 underline-offset-4 transition-colors hover:text-brand-fg1"
               >
                 Upraviť odpovede
               </button>
               <button
                 type="button"
                 onClick={reset}
-                className="mt-3 text-sm font-normal text-brand-fg3 underline decoration-brand-fg4 underline-offset-4 transition-colors hover:text-brand-fg1"
+                className="mt-3 touch-manipulation text-sm font-normal text-brand-fg3 underline decoration-brand-fg4 underline-offset-4 transition-colors hover:text-brand-fg1"
               >
                 Zopakovať kvíz od začiatku
               </button>

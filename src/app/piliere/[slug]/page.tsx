@@ -38,7 +38,7 @@ export default async function PillarPage({ params }: Props) {
         <div className={`${CX} pt-8 md:pt-12`}>
           <nav className="mb-6 text-sm text-brand-fg3" aria-label="Navigácia">
             <Link
-              href="/#tri-piliere"
+              href={`/#pillar-${slug}`}
               className="font-medium text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"
             >
               Tri piliere
@@ -74,12 +74,12 @@ export default async function PillarPage({ params }: Props) {
               {pillar.body}
             </p>
             <p className="m-0 mt-10">
-              <Link
-                href="/#tri-piliere"
-                className="inline-flex items-center rounded-full border border-black/12 bg-brand-bg2 px-5 py-2.5 text-sm font-medium text-brand-fg1 no-underline transition hover:border-black/20 hover:bg-white"
-              >
-                ← Späť na tri piliere
-              </Link>
+            <Link
+              href={`/#pillar-${slug}`}
+              className="inline-flex items-center rounded-full border border-black/12 bg-brand-bg2 px-5 py-2.5 text-sm font-medium text-brand-fg1 no-underline transition hover:border-black/20 hover:bg-white"
+            >
+              ← Späť na tri piliere
+            </Link>
             </p>
           </article>
         </div>

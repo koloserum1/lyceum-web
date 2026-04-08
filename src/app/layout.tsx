@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Inter } from "next/font/google";
 import "./globals.css";
-import { DodPopup } from "@/components/dod/DodPopup";
-import { PrijimackyPopup } from "@/components/dod/PrijimackyPopup";
+import { HashScroll } from "@/components/HashScroll";
+import { SitePopups } from "@/components/dod/SitePopups";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { getDodPopupSettings } from "@/lib/dod-popup";
 import { getPrijimackyPopupSettings } from "@/lib/prijimacky-popup";
@@ -26,6 +26,13 @@ const bricolageGrotesque = Bricolage_Grotesque({
 });
 
 const siteUrl = getSiteUrl();
+
+/** Správna škála a dotyky na iOS / Android (Next odporúča export viewport). */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -78,9 +85,16 @@ export default async function RootLayout({
     >
       <body className="min-h-full font-sans antialiased">
         <SmoothScroll />
+        <HashScroll />
         {children}
-        {showDod && dod ? <DodPopup data={dod} /> : null}
-        {showPrijimacky && prij ? <PrijimackyPopup data={prij} /> : null}
+        {showDod || showPrijimacky ? (
+          <SitePopups
+            dod={dod}
+            prij={prij}
+            showDod={showDod}
+            showPrijimacky={showPrijimacky}
+          />
+        ) : null}
       </body>
     </html>
   );

@@ -100,7 +100,7 @@ function DotIndicators({
               aria-label={active ? `${label} (aktuálne)` : `Prejsť na ${label}`}
               onClick={() => onSelect(i)}
               className={[
-                "h-2.5 w-2.5 shrink-0 rounded-full transition-[background-color,transform] duration-200 ease-out",
+                "h-2.5 w-2.5 shrink-0 touch-manipulation rounded-full transition-[background-color,transform] duration-200 ease-out",
                 active
                   ? "scale-100 bg-brand-fg1 shadow-[0_0_0_1px_rgba(0,0,0,0.06)]"
                   : "bg-black/[0.14] hover:bg-black/25",
@@ -185,9 +185,23 @@ export function PartnerReferencesSection({ items }: Props) {
       });
     };
 
+    const onTouchEnd = () => {
+      if (suppressScrollSyncRef.current) return;
+      syncActiveFromScroll();
+    };
+
     root.addEventListener("scroll", onScroll, { passive: true });
+    root.addEventListener("touchend", onTouchEnd, { passive: true });
+    const scrollEndSupported = "onscrollend" in root;
+    if (scrollEndSupported) {
+      root.addEventListener("scrollend", onTouchEnd as EventListener);
+    }
     return () => {
       root.removeEventListener("scroll", onScroll);
+      root.removeEventListener("touchend", onTouchEnd);
+      if (scrollEndSupported) {
+        root.removeEventListener("scrollend", onTouchEnd as EventListener);
+      }
       if (syncActiveRef.current) cancelAnimationFrame(syncActiveRef.current);
     };
   }, [syncActiveFromScroll, items.length]);
@@ -212,7 +226,7 @@ export function PartnerReferencesSection({ items }: Props) {
     <div>
       <div
         ref={scrollRef}
-        className="-mx-4 no-scrollbar snap-x snap-mandatory overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth scroll-pl-4 scroll-pr-4 px-4 pb-2 pt-1 sm:-mx-6 sm:scroll-pl-6 sm:scroll-pr-6 sm:px-6 lg:-mx-8 lg:scroll-pl-8 lg:scroll-pr-8 lg:px-8"
+        className="-mx-4 touch-pan-x no-scrollbar snap-x snap-mandatory overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth scroll-pl-4 scroll-pr-4 px-4 pb-2 pt-1 sm:-mx-6 sm:scroll-pl-6 sm:scroll-pr-6 sm:px-6 lg:-mx-8 lg:scroll-pl-8 lg:scroll-pr-8 lg:px-8 [-webkit-overflow-scrolling:touch]"
         role="region"
         aria-label="Referencie partnerov — posun doprava"
       >

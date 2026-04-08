@@ -61,7 +61,7 @@ function MemberCard({ m }: { m: TeamMember }) {
 
 export function TeamSection({ members }: { members: TeamMember[] }) {
   return (
-    <div className="flex gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:gap-5">
+    <div className="flex touch-pan-x snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-pl-3 scroll-pr-3 pb-2 no-scrollbar [-webkit-overflow-scrolling:touch] md:gap-5">
       {members.map((m) => (
         <MemberCard key={m.id} m={m} />
       ))}

@@ -27,8 +27,9 @@ export function ThreePillarsSection() {
           {pillars.map((p) => (
             <Link
               key={p.slug}
+              id={`pillar-${p.slug}`}
               href={`/piliere/${p.slug}`}
-              className="group relative isolate block aspect-[4/5] w-full overflow-hidden rounded-[22px] shadow-[0_20px_50px_-24px_rgba(0,0,0,0.2)] ring-1 ring-black/[0.06] transition-[box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none hover:shadow-[0_26px_56px_-24px_rgba(0,0,0,0.24)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#562082]"
+              className="group relative isolate block aspect-[4/5] w-full scroll-mt-28 overflow-hidden rounded-[22px] shadow-[0_20px_50px_-24px_rgba(0,0,0,0.2)] ring-1 ring-black/[0.06] transition-[box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none hover:shadow-[0_26px_56px_-24px_rgba(0,0,0,0.24)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#562082] md:scroll-mt-32"
             >
               <Image
                 src={p.imageSrc}
