@@ -200,7 +200,7 @@ export function DetailPrijimaciekContent() {
           </h2>
           <p className="m-0 mt-2 text-[13px] leading-relaxed text-brand-fg3 md:text-sm">
             Informácie pre uchádzačov so špeciálnymi výchovno-vzdelávacími
-            potrebami (ŠVVP) ti radi poskytneme na vyžiadanie — napíš nám cez{" "}
+            potrebami (ŠVVP) ti radi poskytneme na vyžiadanie: napíš nám cez{" "}
             <Link
               href="/#zaujemca"
               className="font-medium text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"

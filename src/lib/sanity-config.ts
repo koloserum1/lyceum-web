@@ -1,5 +1,5 @@
 /**
- * Verejné ID projektu a dataset — môžu ísť do `NEXT_PUBLIC_*` v .env.
+ * Verejné ID projektu a dataset: môžu ísť do `NEXT_PUBLIC_*` v .env.
  * Fallback zodpovedá projektu „lyceum“ (iw5edpoc / production).
  */
 export const sanityProjectId =

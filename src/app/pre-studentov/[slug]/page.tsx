@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = pageMeta(slug);
   if (!page) return { title: BASE_TITLE };
   return {
-    title: `${page.label} — Pre študentov — ${BASE_TITLE}`,
+    title: `${page.label} | Pre študentov | ${BASE_TITLE}`,
     description: `Informácie pre študentov: ${page.label}.`,
   };
 }

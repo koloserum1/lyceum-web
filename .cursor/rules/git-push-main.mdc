@@ -16,10 +16,10 @@ Keď používateľ napíše **pushni**, **pushni mi to**, **push do mainu** aleb
 
 2. Skontroluj stav: `git status`. Ak sú necommitnuté zmeny: `git add -A`, potom `git commit -m "..."` (stručný, zmysluplný popis v slovenčine).
 
-3. Push: `git push origin main`. Remote `origin` je **SSH** (`git@github.com:koloserum1/lyceum-web.git`) — autentifikácia cez `~/.ssh/id_ed25519_github_hankafialova`.
+3. Push: `git push origin main`. Remote `origin` je **SSH** (`git@github.com:koloserum1/lyceum-web.git`), autentifikácia cez `~/.ssh/id_ed25519_github_hankafialova`.
 
 4. Ak `git pull` / synchronizácia: pred pushom rieš konflikty; pri potrebe `git pull origin main --rebase` (alebo merge), potom znova `git push origin main`.
 
-5. Ak push zlyhá na **Permission denied (publickey)** — skontroluj SSH kľúč na GitHub účte používateľa.
+5. Ak push zlyhá na **Permission denied (publickey)**: skontroluj SSH kľúč na GitHub účte používateľa.
 
-Nepýtaj sa zbytočne na povolenie pushu — ak používateľ explicitne chce push, vykonaj kroky (okrem situácie, keď `git status` ukáže, že nie je čo commitnúť a remote je aktuálny).
+Nepýtaj sa zbytočne na povolenie pushu: ak používateľ explicitne chce push, vykonaj kroky (okrem situácie, keď `git status` ukáže, že nie je čo commitnúť a remote je aktuálny).

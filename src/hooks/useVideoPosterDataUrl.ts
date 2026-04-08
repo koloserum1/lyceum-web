@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-/** Zdieľaná cache — jeden skrytý fetch na URL, nie päť paralelných. */
+/** Zdieľaná cache: jeden skrytý fetch na URL, nie päť paralelných. */
 const posterCache = new Map<string, string>();
 
 /** Pre záložný odber z hlavného `<video>` (napr. iOS). */

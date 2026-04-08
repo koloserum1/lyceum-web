@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LINK_TERMINY_VYSLEDKY_ZAPIS } from "@/data/prijimacky-nav";
-import atmosphere from "./coTeCakaAtmosphere.module.css";
 import heroPills from "./heroFloatingPills.module.css";
 
 const HERO_ATMOSFERA_SRC = "/prijimacky/co-te-caka-hero-studenti.png";
@@ -15,13 +14,13 @@ const LINK_AKO = "/prijimacky/ako-sa-dostat-na-lyceum";
 const washPage = "bg-brand-bg2";
 const borderSection = "border-[#e0d8ee]/85";
 
-/** Jedna karta: hero + „Z čoho sa skladajú“ — veľmi jemný fialový ombre (takmer neutrálna báza, len náznak levandule). */
+/** Jedna karta: hero + „Z čoho sa skladajú“: veľmi jemný fialový ombre (takmer neutrálna báza, len náznak levandule). */
 const coTeCakaUnifiedCard =
   "relative overflow-x-clip rounded-[36px] bg-gradient-to-br from-[#faf9f7] via-[#faf8fb] to-[#efeaf8] ring-1 ring-[#e8e0e8]/65 shadow-[0_24px_60px_-32px_rgba(85,75,120,0.09),inset_0_1px_0_0_rgba(255,255,255,0.92)]";
 const coTeCakaUnifiedCardPurpleWash =
   "pointer-events-none absolute inset-0 rounded-[36px] bg-[radial-gradient(ellipse_120%_90%_at_100%_100%,rgba(200,185,230,0.08)_0%,rgba(225,218,242,0.04)_50%,transparent_72%)]";
 
-/** Sekcia „Čo znamená individualizovaný vstup“ — rovnaký jemný ombre + wash ako hero karta. */
+/** Sekcia „Čo znamená individualizovaný vstup“: rovnaký jemný ombre + wash ako hero karta. */
 const coTeCakaIndivSectionCard =
   "relative overflow-hidden rounded-[36px] border border-[#e8e4ee]/85 bg-gradient-to-br from-[#faf9f7] via-[#faf8fb] to-[#efeaf8] p-6 text-brand-fg1 opacity-100 shadow-[0_24px_60px_-32px_rgba(85,75,120,0.09),inset_0_1px_0_0_rgba(255,255,255,0.92)] sm:p-8 md:p-10 lg:p-12";
 const eyebrowPlum =
@@ -34,35 +33,20 @@ const linkPlumHover =
 const ctaPrimaryYellow =
   "inline-flex items-center justify-center rounded-full border-0 bg-[#fdb913] px-8 py-3.5 text-[15px] font-bold text-brand-fg1 no-underline shadow-[0_14px_36px_-12px_rgba(253,185,19,0.5)] transition-[transform,box-shadow,background-color] hover:bg-[#f5b010] hover:shadow-[0_18px_40px_-10px_rgba(253,185,19,0.48)] md:px-10 md:py-4 md:text-base";
 
-/** Sekundárne CTA v hero — jemný lila podklad, kontrast voči pozadiu. */
+/** Sekundárne CTA v hero: jemný lila podklad, kontrast voči pozadiu. */
 const pillSecondaryHero =
   "inline-flex items-center justify-center rounded-full border border-brand-primary/42 bg-[#f2ecfb]/95 px-5 py-2.5 text-[13px] font-semibold text-brand-fg1 no-underline shadow-[0_8px_28px_-10px_rgba(130,105,185,0.22),0_14px_36px_-14px_rgba(185,160,224,0.28)] backdrop-blur-md transition-[border-color,background-color,box-shadow,transform] hover:border-brand-primary/58 hover:bg-[#faf6ff] hover:shadow-[0_12px_36px_-10px_rgba(140,115,195,0.3)] md:px-6 md:py-3 md:text-[14px]";
-
-/** Veľké plávajúce bubliny — výraznejší odtieň a jemný glow oproti hero pozadiu. */
-const heroBubbleBase =
-  "inline-flex max-w-full items-center justify-center rounded-full border border-[#c9bee5]/65 bg-[#fdfbff]/96 text-center font-semibold text-brand-fg1 shadow-[0_12px_40px_-10px_rgba(125,102,175,0.28),0_4px_24px_-8px_rgba(170,150,215,0.18)] backdrop-blur-xl transition-[transform,box-shadow] hover:-translate-y-px hover:shadow-[0_18px_48px_-10px_rgba(115,92,168,0.32),0_8px_28px_-8px_rgba(185,165,225,0.22)]";
-
-const heroBubbleMd =
-  `${heroBubbleBase} whitespace-nowrap px-8 py-4 text-[14px] font-semibold md:px-10 md:py-[1.05rem] md:text-[15px]`;
-
-/** Najširší riadok — Všeobecné študijné predpoklady. */
-const heroBubbleWide =
-  `${heroBubbleBase} max-w-[min(100%,20rem)] px-7 py-4 text-[13px] font-semibold leading-snug sm:max-w-[21rem] md:max-w-[23rem] md:px-10 md:py-4 md:text-[14px]`;
-
-/** Individualizovaný vstup — výraznejší lila highlight v hero. */
-const heroBubbleAccent =
-  "inline-flex max-w-full items-center justify-center rounded-full border border-brand-primary/52 bg-gradient-to-br from-[#faf6ff] via-[#ebe4fb] to-brand-accent/55 text-center text-[13px] font-semibold leading-snug text-brand-fg1 shadow-[0_0_0_1px_rgba(165,140,210,0.35),0_16px_44px_-8px_rgba(130,105,185,0.35),0_8px_28px_-8px_rgba(200,175,235,0.25)] backdrop-blur-xl transition-[transform,box-shadow] hover:-translate-y-px hover:shadow-[0_0_0_1px_rgba(155,130,200,0.45),0_22px_56px_-10px_rgba(120,95,175,0.38)] md:text-[14px] md:px-9 md:py-4";
 
 /** Spoločné s hero boxom: jemný lila rám, mäkký gradient (sekcie pod hero). */
 const sectionHeroRing = "ring-1 ring-[#d8cef0]/90";
 const sectionHeroCardShadow =
   "shadow-[0_32px_80px_-40px_rgba(85,65,130,0.2),0_1px_0_rgba(0,0,0,0.03)]";
 
-/** Prehľad štyroch častí — rovnaký rám ako termínové karty na „Ako sa dostať na Lýceum“. */
+/** Prehľad štyroch častí: rovnaký rám ako termínové karty na „Ako sa dostať na Lýceum“. */
 const skladajuBox =
   "flex h-full flex-col items-center text-center rounded-2xl border border-black/[0.05] bg-white px-4 py-3.5 shadow-[0_4px_20px_-12px_rgba(0,0,0,0.06)] backdrop-blur-sm transition-[box-shadow] duration-200 md:px-5 md:py-4 hover:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.09)]";
 
-/** 04 — výraznejší, jemný béžovo-fialový podklad (ladí s hero accentom). */
+/** 04: výraznejší, jemný béžovo-fialový podklad (ladí s hero accentom). */
 const skladajuBoxIndiv =
   "flex h-full flex-col items-center text-center rounded-2xl border border-[#c4b8dc]/55 bg-gradient-to-br from-[#fffbf7] via-[#f4eef8] to-[#e8e0f4] px-4 py-3.5 shadow-[0_10px_36px_-14px_rgba(105,85,155,0.22),0_4px_20px_-12px_rgba(90,70,50,0.06),inset_0_1px_0_0_rgba(255,255,255,0.75)] ring-1 ring-[#d8cef0]/70 backdrop-blur-sm transition-[box-shadow,border-color] duration-200 md:px-5 md:py-4 hover:border-[#a896cc]/55 hover:shadow-[0_16px_44px_-14px_rgba(95,75,150,0.26),0_6px_24px_-10px_rgba(120,95,80,0.08)]";
 
@@ -108,13 +92,13 @@ export function CoTeCakaNaPrijimackachContent() {
       id="prijimacky-co-te-caka-na-prijimackach"
       className={`scroll-mt-24 ${washPage} pb-14 md:scroll-mt-28 md:pb-20`}
     >
-      {/* Hero — rovnaké pozadie ako zvyšok stránky (brand-bg2), karta jemne oddelená */}
+      {/* Hero: rovnaké pozadie ako zvyšok stránky (brand-bg2), karta jemne oddelená */}
       <div className="relative overflow-hidden bg-brand-bg2 pb-2 md:pb-4">
         <header className={`${CX} relative z-[1] pt-6 md:pt-8`}>
           <div className={`opacity-100 ${coTeCakaUnifiedCard}`}>
             <div className={coTeCakaUnifiedCardPurpleWash} aria-hidden />
             <div className="relative z-[1]">
-            {/* Horný blok hero — rovnaký grid ako „Ako sa dostať na Lýceum“ (veľká fotka vpravo) */}
+            {/* Horný blok hero: rovnaký grid ako „Ako sa dostať na Lýceum“ (veľká fotka vpravo) */}
             <div className="relative opacity-100">
               <div className="grid gap-8 px-5 py-10 sm:px-6 sm:py-11 md:gap-10 md:py-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(280px,1.08fr)] lg:items-start lg:gap-10 lg:px-10 lg:py-10 xl:gap-12">
                 <div className="min-w-0 text-left">
@@ -193,26 +177,7 @@ export function CoTeCakaNaPrijimackachContent() {
               </div>
             </div>
 
-            {/* Mobile / tablet: bubliny až pod CTA — žiadne prekrývanie */}
-            <div
-              className="relative z-10 flex flex-wrap justify-start gap-2.5 px-5 pb-9 pt-2 lg:hidden"
-              aria-hidden
-            >
-              <span className={`${atmosphere.driftC} ${heroBubbleWide} max-w-[18rem] text-[12px] md:text-[13px]`}>
-                Všeobecné študijné predpoklady
-              </span>
-              <span className={`${atmosphere.driftA} ${heroBubbleMd} text-[13px] md:px-7 md:py-3 md:text-[14px]`}>
-                Slovenský jazyk
-              </span>
-              <span className={`${atmosphere.driftB} ${heroBubbleMd} text-[13px] md:px-7 md:py-3 md:text-[14px]`}>
-                Matematika
-              </span>
-              <span className={`${atmosphere.driftD} ${heroBubbleAccent} max-w-[16rem] text-[12px] md:px-7 md:py-3 md:text-[13px]`}>
-                Individualizovaný vstup
-              </span>
-            </div>
-
-            {/* Z čoho sa prijímačky skladajú — kontinuálne s hero (jedna karta) */}
+            {/* Z čoho sa prijímačky skladajú: kontinuálne s hero (jedna karta) */}
             <section
               id="zo-co-sa-skladaju"
               className="relative z-10 scroll-mt-28 px-5 pb-10 pt-8 sm:px-6 md:pb-12 md:pt-10 lg:px-10"
@@ -251,7 +216,7 @@ export function CoTeCakaNaPrijimackachContent() {
         </header>
       </div>
 
-      {/* ——— Čo znamená individualizovaný vstup — layout ako blok „Kto sa môže prihlásiť“ na „Ako sa dostať“ ——— */}
+      {/* --- Čo znamená individualizovaný vstup: layout ako blok „Kto sa môže prihlásiť“ na „Ako sa dostať“ --- */}
       <section className={`${CX} py-8 md:py-10`} aria-labelledby="heading-indiv">
         <div className={coTeCakaIndivSectionCard}>
           <div className={coTeCakaUnifiedCardPurpleWash} aria-hidden />
@@ -268,7 +233,7 @@ export function CoTeCakaNaPrijimackachContent() {
             </h2>
             <p className="m-0 mt-4 max-w-2xl text-[15px] leading-relaxed text-brand-fg2 md:text-base">
               Ide o druhú časť prijímacieho konania, ktorá dopĺňa písomné testy. Nie je to
-              samostatná skúška z jednej témy — škola ťa spoznáva inak ako cez tabuľku odpovedí:
+              samostatná skúška z jednej témy: škola ťa spoznáva inak ako cez tabuľku odpovedí:
               záujem, spôsob myslenia a ako komunikuješ v menšej skupine alebo v rozhovore.
             </p>
 
@@ -317,7 +282,7 @@ export function CoTeCakaNaPrijimackachContent() {
         </div>
       </section>
 
-      {/* ——— Ako sa počíta výsledok — čistá vizualizácia 80 / 20 ——— */}
+      {/* --- Ako sa počíta výsledok: čistá vizualizácia 80 / 20 --- */}
       <section
         className={`${CX} border-t ${borderSection} bg-brand-bg2 pt-12 md:pt-16 lg:pt-20`}
         aria-labelledby="heading-vysledok"
@@ -372,7 +337,7 @@ export function CoTeCakaNaPrijimackachContent() {
                   20 %
                 </p>
                 <p className="m-0 mt-2 max-w-[14rem] text-[13px] leading-relaxed text-brand-fg2 md:text-[14px]">
-                  Dotazník, skupinové zadanie alebo ústny rozhovor — podľa rozhodnutia školy.
+                  Dotazník, skupinové zadanie alebo ústny rozhovor: podľa rozhodnutia školy.
                 </p>
               </div>
             </div>
@@ -385,7 +350,7 @@ export function CoTeCakaNaPrijimackachContent() {
         </div>
       </section>
 
-      {/* ——— CTA ——— */}
+      {/* --- CTA --- */}
       <section
         className={`${CX} border-t ${borderSection} pt-12 md:pt-16 lg:pt-20`}
         aria-labelledby="heading-dalsi"
@@ -418,7 +383,7 @@ export function CoTeCakaNaPrijimackachContent() {
         </div>
       </section>
 
-      {/* ——— ŠVVP ——— */}
+      {/* --- ŠVVP --- */}
       <section className={`${CX} pt-12 md:pt-14`} aria-labelledby="heading-svvp">
         <div className={`mx-auto max-w-xl border-t ${borderSection} pt-10 md:pt-11`}>
           <p className={`m-0 mb-1 ${eyebrowPlum}`}>ŠVVP</p>
@@ -430,7 +395,7 @@ export function CoTeCakaNaPrijimackachContent() {
           </h2>
           <p className="m-0 mt-2 text-[13px] leading-relaxed text-brand-fg3 md:text-[14px]">
             Informácie pre uchádzačov so špeciálnymi výchovno-vzdelávacími potrebami (ŠVVP) ti
-            radi poskytneme na vyžiadanie — napíš nám cez{" "}
+            radi poskytneme na vyžiadanie: napíš nám cez{" "}
             <Link
               href="/#zaujemca"
               className="font-medium text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"
@@ -442,7 +407,7 @@ export function CoTeCakaNaPrijimackachContent() {
         </div>
       </section>
 
-      {/* ——— Spodná navigácia ——— */}
+      {/* --- Spodná navigácia --- */}
       <nav
         className={`${CX} mt-12 flex flex-col items-center justify-center gap-2 border-t ${borderSection} pt-8 pb-10 text-center text-[13px] text-brand-fg3 sm:flex-row sm:gap-0 sm:pb-12 sm:text-[14px] md:mt-14 md:pt-9`}
         aria-label="Navigácia na konci stránky"

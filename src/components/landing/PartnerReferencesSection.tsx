@@ -228,7 +228,7 @@ export function PartnerReferencesSection({ items }: Props) {
         ref={scrollRef}
         className="-mx-4 touch-pan-x no-scrollbar snap-x snap-mandatory overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth scroll-pl-4 scroll-pr-4 px-4 pb-2 pt-1 sm:-mx-6 sm:scroll-pl-6 sm:scroll-pr-6 sm:px-6 lg:-mx-8 lg:scroll-pl-8 lg:scroll-pr-8 lg:px-8 [-webkit-overflow-scrolling:touch]"
         role="region"
-        aria-label="Referencie partnerov — posun doprava"
+        aria-label="Referencie partnerov, posun doprava"
       >
         <div className="flex w-max min-w-0 flex-nowrap gap-6 md:gap-8">
           {items.map((item, index) => (
@@ -238,7 +238,7 @@ export function PartnerReferencesSection({ items }: Props) {
                 itemRefs.current[index] = el;
               }}
               className="group relative isolate w-[min(78vw,300px)] shrink-0 snap-start pt-7 pr-5 sm:w-[min(72vw,320px)] sm:pt-8 sm:pr-6"
-              aria-label={`Referencia — ${item.partnerName}`}
+              aria-label={`Referencia, ${item.partnerName}`}
             >
               <div
                 className="relative z-0 flex min-h-[min(72vh,520px)] w-full flex-col overflow-hidden rounded-[20px] bg-brand-bg2 ring-1 ring-black/[0.06] shadow-[0_12px_40px_-20px_rgba(27,22,36,0.2)] transition-shadow duration-300 group-hover:shadow-[0_16px_48px_-18px_rgba(27,22,36,0.25)]"

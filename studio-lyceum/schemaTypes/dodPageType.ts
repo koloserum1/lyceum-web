@@ -1,15 +1,15 @@
 import { defineField, defineType } from "sanity";
 
 /**
- * Verejná podstránka /dod — keď je DOD popup vypnutý, menu vedie sem;
+ * Verejná podstránka /dod: keď je DOD popup vypnutý, menu vedie sem;
  * obsah sa dá editovať v CMS (text, obrázky).
  */
 export const dodPageType = defineType({
   name: "dodPage",
-  title: "DOD — podstránka",
+  title: "DOD: podstránka",
   type: "document",
   description:
-    "Stránka /dod — rovnaký vizuál ako podstránky „Pre študentov“. Odporúčaný úvodný text vieš nahrať príkazom npm run seed:dod v repozitári webu (vyžaduje SANITY_API_WRITE_TOKEN).",
+    "Stránka /dod: rovnaký vizuál ako podstránky „Pre študentov“. Odporúčaný úvodný text vieš nahrať príkazom npm run seed:dod v repozitári webu (vyžaduje SANITY_API_WRITE_TOKEN).",
   fields: [
     defineField({
       name: "title",

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Kotvy pod fixným menu — výška sa mení s breakpointmi / obsahom hlavičky */
+/* Kotvy pod fixným menu: výška sa mení s breakpointmi / obsahom hlavičky */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-padding-top: 5rem;
@@ -26,13 +26,13 @@
   /* Inter / Bricolage Grotesque: CSS premenné z next/font v layout.tsx */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
-  /* Školské farby: #fdb913 · #562082 — výraznejšie pastelové; text ~ Apple black */
+  /* Školské farby: #fdb913 · #562082: výraznejšie pastelové; text ~ Apple black */
   --color-brand-primary: #b9a0e0;
   --color-brand-secondary: #f2d56e;
   --color-brand-tertiary: #fceca8;
   --color-brand-accent: #d8c6f0;
   --color-brand-bg1: #ffffff;
-  /* Jemnejšie ako predtým (#f3f2f6) — bližšie k bielej, stále jemný „papier“ */
+  /* Jemnejšie ako predtým (#f3f2f6): bližšie k bielej, stále jemný „papier“ */
   --color-brand-bg2: #faf9fc;
   --color-brand-fg1: #1d1d1f;
   --color-brand-fg3: #6e6e73;
@@ -91,7 +91,7 @@ body {
   animation-delay: 0.42s;
 }
 
-/* Sekcia Učitelia — jemný vstup textu pri prepnutí */
+/* Sekcia Učitelia: jemný vstup textu pri prepnutí */
 @keyframes teachers-quote-in {
   from {
     opacity: 0;
@@ -120,7 +120,7 @@ body {
   animation: fit-quiz-step-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Pás partnerov pod hero — nekonečný horizontálny posuv (dva rovnaké bloky) */
+/* Pás partnerov pod hero: nekonečný horizontálny posuv (dva rovnaké bloky) */
 @keyframes partner-marquee {
   0% {
     transform: translate3d(0, 0, 0);
@@ -129,7 +129,7 @@ body {
     transform: translate3d(-50%, 0, 0);
   }
 }
-/* contain + žiadne will-change — menšia záťaž GPU/pamäte pri nekonečnej animácii */
+/* contain + žiadne will-change: menšia záťaž GPU/pamäte pri nekonečnej animácii */
 .partner-marquee-wrap {
   overflow: hidden;
   contain: layout paint;
@@ -321,7 +321,7 @@ body {
 .home-hero-top-shell {
   isolation: isolate;
 }
-/* PC: fotka vľavo (42 %), text vpravo (58 %) — grid, aby gap nezlomil riadok */
+/* PC: fotka vľavo (42 %), text vpravo (58 %): grid, aby gap nezlomil riadok */
 .home-hero-top-cols {
   display: grid;
   grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
@@ -426,7 +426,7 @@ body {
   }
 }
 
-/* Menu: Bricolage Grotesque Regular — priamo --font-bricolage (next/font na <html>), !important cez dedený font-sans z body */
+/* Menu: Bricolage Grotesque Regular: priamo --font-bricolage (next/font na <html>), !important cez dedený font-sans z body */
 header.site-header nav a[data-nav-link],
 header.site-header nav button[data-nav-link] {
   font-family: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif !important;

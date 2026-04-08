@@ -8,14 +8,14 @@ const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
 
 const HERO = "/pridaj-sa-hero-team.png";
 
-/** Hero karta — rovnaká logika ako „Ako sa dostať na Lýceum“ (prijímačky). */
+/** Hero karta: rovnaká logika ako „Ako sa dostať na Lýceum“ (prijímačky). */
 const heroCard =
   "overflow-x-clip rounded-[36px] bg-gradient-to-br from-white via-[#faf9f7] to-[#fff7f0] ring-1 ring-[#ebe4dc]/60 shadow-[0_24px_60px_-32px_rgba(90,80,70,0.08),inset_0_1px_0_0_rgba(255,255,255,0.9)]";
 
 export const metadata: Metadata = {
-  title: "Pridaj sa do tímu — Lýceum C. S. Lewisa",
+  title: "Pridaj sa do tímu | Lýceum C. S. Lewisa",
   description:
-    "Uč kvalitne a moderne v Lýceu C. S. Lewisa. Tím, rast, vybavenie a priestor tvoriť nový koncept školy. Napíš na praca@lyceum.sk.",
+    "Učíš kvalitne a moderne v Lýceu C. S. Lewisa. Tím, rast, vybavenie a priestor tvoriť nový koncept školy. Napíš na praca@lyceum.sk.",
 };
 
 export default function PridajSaDoTimuPage() {
@@ -62,7 +62,7 @@ export default function PridajSaDoTimuPage() {
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[24px] ring-1 ring-[#ebe8e4]/90 md:aspect-[3/2] md:rounded-[28px] lg:rounded-[32px]">
                     <Image
                       src={HERO}
-                      alt="Časť tímu na streche pri západe slnka — priateľská atmosféra, oranžové visačky"
+                      alt="Časť tímu na streche pri západe slnka: priateľská atmosféra, oranžové visačky"
                       fill
                       priority
                       className="object-cover object-left"

@@ -145,7 +145,7 @@ const DEFAULT_TEXT_MASK = ".hero-top-text-cluster";
 export type HeroInteractiveDotsProps = {
   /** Farba bodiek (default čierna ako hero); pre svetlé pozadie napr. rgba(29,31,35,0.1) */
   dotColor?: string;
-  /** Selektor bloku s textom — bodky sa v ňom nevykreslia (maska). */
+  /** Selektor bloku s textom: bodky sa v ňom nevykreslia (maska). */
   textMaskSelector?: string;
   /**
    * Ak false: statická mriežka bez nepretržitej animácie a bez interakcie myšou

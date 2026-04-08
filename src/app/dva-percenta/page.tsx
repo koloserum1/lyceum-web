@@ -12,9 +12,9 @@ const ARCHINFO_STUDIA =
   "https://www.archinfo.sk/diela/obcianska-stavba/lyceum-c-s-lewisa-studia.html";
 
 export const metadata: Metadata = {
-  title: "2 % pre Lýceum — Lýceum C. S. Lewisa",
+  title: "2 % pre Lýceum | Lýceum C. S. Lewisa",
   description:
-    "Poukázanie 2 % z dane pre OZ Planéta — podpora Lýcea C. S. Lewisa. Údaje, lehoty a postup pre zamestnancov, fyzické a právnické osoby.",
+    "Poukázanie 2 % z dane pre OZ Planéta: podpora Lýcea C. S. Lewisa. Údaje, lehoty a postup pre zamestnancov, fyzické a právnické osoby.",
 };
 
 export default function DvaPercentaPage() {
@@ -32,7 +32,7 @@ export default function DvaPercentaPage() {
           >
             <Image
               src={HERO}
-              alt="Vizualizácia budovy Lýcea — moderná architektúra a okolie školy"
+              alt="Vizualizácia budovy Lýcea: moderná architektúra a okolie školy"
               fill
               priority
               className="object-cover object-center"

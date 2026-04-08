@@ -27,7 +27,7 @@ const linkClassDesktop =
 const linkClassMobile =
   "rounded-lg px-3 py-2.5 text-[17px] text-brand-fg1 no-underline hover:bg-black/[0.04]";
 
-/** Položky podmenu Prijímačky — rovnaká reč ako ostatné odkazy (bez fialových boxov). */
+/** Položky podmenu Prijímačky: rovnaká reč ako ostatné odkazy (bez fialových boxov). */
 const prijimackySubmenuLinkClass =
   "block w-full rounded-lg px-3 py-2.5 text-left text-[15px] font-medium leading-snug text-brand-fg1 no-underline transition-colors hover:bg-black/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/[0.08] focus-visible:ring-offset-2";
 

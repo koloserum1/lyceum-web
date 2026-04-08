@@ -3,9 +3,9 @@
 import { useCallback, useId, useMemo, useState } from "react";
 
 const QUESTIONS = [
-  "Viem povedať jednou vetou, prečo učím — bez klišé?",
+  "Viem povedať jednou vetou, prečo učím – bez klišé?",
   "Keď študentovi niečo nejde, viem držať náročnosť aj bezpečie naraz?",
-  "Viem fungovať v tíme aj vtedy, keď to nie je podľa mňa — s rešpektom a spätnou väzbou?",
+  "Viem fungovať v tíme aj vtedy, keď to nie je podľa mňa – s rešpektom a spätnou väzbou?",
 ] as const;
 
 /** Rovnaká vnútorná karta ako VyskusajSiUlohyMiniQuiz (FitQuiz štýl). */
@@ -101,7 +101,7 @@ export function JoinTeamMiniQuiz() {
             Ďakujeme za úprimné odpovede
           </p>
           <p className="m-0 mt-4 text-[15px] leading-relaxed text-brand-fg2 md:mt-5 md:text-[16px]">
-            Odpovede sú len pre teba — pomôžu ti zvážiť, či ti sedí kultúra Lýcea. Ak chceš
+            Odpovede sú len pre teba; pomôžu ti zvážiť, či ti sedí kultúra Lýcea. Ak chceš
             pokračovať, pozri sekciu{" "}
             <span className="font-medium text-brand-fg1">Ako sa prihlásiť</span> nižšie.
           </p>

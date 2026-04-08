@@ -1,5 +1,5 @@
 /**
- * Referencie partnerov — horizontálny pás na webe.
+ * Referencie partnerov: horizontálny pás na webe.
  * Logá: `/public/partners/referencie/` (názvy súborov v SUBORY.txt v tom istom priečinku).
  * Ak súbor ešte nie je nahraný, v UI sa zobrazí placeholder.
  */
@@ -29,7 +29,7 @@ export const partnerReferences: readonly PartnerReference[] = [
     partnerName: "Wigro-Fin",
     logoSrc: "/partners/referencie/wirgofin.jpeg",
     quote:
-      "Brainstorming s prínosom mladíckej energie do rôznych tém súvisiacich s prezentáciou našej firmy na sociálnych sieťach — inšpiratívne nápady s úprimnou snahou a záujmom, angažovanosť.",
+      "Brainstorming s prínosom mladíckej energie do rôznych tém súvisiacich s prezentáciou našej firmy na sociálnych sieťach – inšpiratívne nápady s úprimnou snahou a záujmom, angažovanosť.",
   },
   {
     id: "fbe",
@@ -37,7 +37,7 @@ export const partnerReferences: readonly PartnerReference[] = [
     partnerName: "FBE",
     logoSrc: "/partners/referencie/FBE.jpeg",
     quote:
-      "Veľmi rýchla adaptácia a dobrá priateľská komunikácia, rýchle pochopenie zadania — vrátane vystupovania na školení FBE, ktorého sa zúčastnil s klientmi FBE a rýchlo nadviazal kontakt aj so seniornými účastníkmi.",
+      "Veľmi rýchla adaptácia a dobrá priateľská komunikácia, rýchle pochopenie zadania, vrátane vystupovania na školení FBE, ktorého sa zúčastnil s klientmi FBE a rýchlo nadviazal kontakt aj so seniornými účastníkmi.",
   },
   {
     id: "accace-mashka",
@@ -45,7 +45,7 @@ export const partnerReferences: readonly PartnerReference[] = [
     partnerName: "Accace",
     logoSrc: "/partners/accace.png",
     quote:
-      "Veľmi ma milo prekvapilo, keď som Mashke vysvetľovala zadanie prezentácie, ktorá nás bude čakať pre externé publikum — aktívne počúvala, písala si poznámky a navrhla, ako by slajdy mohli vyzerať. Zúčastnili sme sa spolu interného školenia k UX téme a nebojácne sa vrhla do spoločnej aktivity s ľuďmi v skupine z HR profesie z iných spoločností. Bola veľmi vnímavá a definovala, čo by sa chcela dozvedieť. Každý deň príjemné prekvapenie.",
+      "Veľmi ma milo prekvapilo, keď som Mashke vysvetľovala zadanie prezentácie, ktorá nás bude čakať pre externé publikum – aktívne počúvala, písala si poznámky a navrhla, ako by slajdy mohli vyzerať. Zúčastnili sme sa spolu interného školenia k UX téme a nebojácne sa vrhla do spoločnej aktivity s ľuďmi v skupine z HR profesie z iných spoločností. Bola veľmi vnímavá a definovala, čo by sa chcela dozvedieť. Každý deň príjemné prekvapenie.",
   },
   {
     id: "o2-praca",

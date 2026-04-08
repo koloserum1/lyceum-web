@@ -1,7 +1,7 @@
-/** Porovnanie Lýcea s bežným gymnáziom — hodiny „za týždeň a sčítané za celé štúdium“. */
+/** Porovnanie Lýcea s bežným gymnáziom: hodiny „za týždeň a sčítané za celé štúdium“. */
 
 export const schoolComparisonIntro = {
-  title: "Ako vyzerá praktická škola?",
+  title: "Ako vyzerá tvoj týždeň v praktickej škole?",
 } as const;
 
 export type ComparisonBarRow = {
@@ -17,7 +17,7 @@ export const MAX_BAR_HOURS = 24;
 export const lyceumComparison = {
   title: "Lýceum C. S. Lewisa",
   intro:
-    "Lýceum sa sústredí na 3 piliere: Podnikavosť, Digitál a Charakter. Má navýšenú dotáciu angličtiny. Veľa predmetov je praktických.",
+    "U nás stojíme na 3 pilieroch: Podnikavosť, Digitál a Charakter. Máš navýšenú dotáciu angličtiny. Veľa predmetov je praktických.",
   rows: [
     { label: "Matematika", barValue: 12, hoursDisplay: "12 hodín" },
     { label: "Angličtina", barValue: 18, hoursDisplay: "18 hodín" },
@@ -59,7 +59,7 @@ export const lyceumComparison = {
 export const gymnasiumComparison = {
   title: "Bežné 4-ročné gymnázium",
   intro:
-    "Na gymnáziu sú rovnomerne rozvrhnuté všetky predmety, v ktorých sa študent zdokonaľuje v akademických zručnostiach.",
+    "Na gymnáziu sú rovnomerne rozvrhnuté predmety; zdokonaľuješ sa v akademických zručnostiach.",
   rows: [
     { label: "Matematika", barValue: 12, hoursDisplay: "12 hodín" },
     { label: "Angličtina", barValue: 14, hoursDisplay: "14 hodín" },
@@ -91,7 +91,7 @@ export const gymnasiumComparison = {
 } as const;
 
 /**
- * Obchodná akadémia (6317 M) — hodiny podľa rovnakej logiky ako v poznámke pod grafom
+ * Obchodná akadémia (6317 M): hodiny podľa rovnakej logiky ako v poznámke pod grafom
  * (súčet týždenných hodín za I.–IV. ročník), vychádzajúc z bežného ŠVP / učebných plánov
  * (napr. OA Bratislava Nevädzová, obsah štúdia 2025/26).
  *
@@ -99,13 +99,13 @@ export const gymnasiumComparison = {
  * informatika 2 + aplikovaná informatika 2+2. Prírodné vedy: na OA typicky výrazne menej
  * ako na gymnáziu (v príklade len biológia v I. a II. ročníku).
  * Odborné predmety: súhrn kľúčovej odbornej dotácie (ekonomika, účtovníctvo, administratíva
- * a ďalšie podľa ŠVP) — vyššia ako na bežnom gymnáziu; hodnota na škále grafu je zaokrúhlená.
+ * a ďalšie podľa ŠVP) – vyššia ako na bežnom gymnáziu; hodnota na škále grafu je zaokrúhlená.
  * Prax / etika: porovnateľné s gymnáziom v tabuľke (súvislá prax na OA je mimo týždenných hodín).
  */
 export const businessAcademyComparison = {
   title: "Obchodná akadémia",
   intro:
-    "Na obchodnej akadémii sú rovnomerne rozvrhnuté všetky predmety, v ktorých sa študent zdokonaľuje v ekonomických a odborných zručnostiach.",
+    "Na obchodnej akadémii sú rovnomerne rozvrhnuté predmety; zdokonaľuješ sa v ekonomických a odborných zručnostiach.",
   rows: [
     { label: "Matematika", barValue: 10, hoursDisplay: "10 hodín" },
     { label: "Angličtina", barValue: 14, hoursDisplay: "14 hodín" },

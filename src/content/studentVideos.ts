@@ -1,4 +1,4 @@
-/** Súbory v `public/video/` — URL začínajú lomítkom */
+/** Súbory v `public/video/`: URL začínajú lomítkom */
 export type StudentVideo = {
   id: string;
   name: string;

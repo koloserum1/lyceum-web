@@ -1,4 +1,4 @@
-/** Kontakt a pätička — údaje školy a zriaďovateľa */
+/** Kontakt a pätička: údaje školy a zriaďovateľa */
 export const siteContact = {
   email: "info@lyceum.sk",
   phone: "+421 901 788 744",

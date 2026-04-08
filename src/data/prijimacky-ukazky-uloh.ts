@@ -1,10 +1,10 @@
 /**
- * Kompletná ukážka prijímacích úloh (PDF) — oficiálny dokument Lýcea (súbor v `public/prijimacie-ukazky-uloh.pdf`).
+ * Kompletná ukážka prijímacích úloh (PDF): oficiálny dokument Lýcea (súbor v `public/prijimacie-ukazky-uloh.pdf`).
  * Stránka z neho nečíta text, len naň odkazuje a voliteľne ho zobrazí v náhľade.
  */
 export const PRIJIMACIE_ULOHY_PDF = "/prijimacie-ukazky-uloh.pdf";
 
-/** Stručný prehľad typov na stránke „Vyskúšaj si úlohy“ — jedna veta na kartu. */
+/** Stručný prehľad typov na stránke „Vyskúšaj si úlohy“: jedna veta na kartu. */
 export const ukazkyUlohKategorie = [
   {
     id: "logicke",

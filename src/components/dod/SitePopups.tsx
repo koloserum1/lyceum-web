@@ -13,7 +13,7 @@ type Props = {
 };
 
 /**
- * Len jeden modal naraz — inak by jeden fullscreen overlay (nižší z-index) ostal
+ * Len jeden modal naraz: inak by jeden fullscreen overlay (nižší z-index) ostal
  * pod druhým a na mobile by „zrazil“ kliky (menu, odkazy) bez viditeľného dôvodu.
  */
 export function SitePopups({ dod, prij, showDod, showPrijimacky }: Props) {

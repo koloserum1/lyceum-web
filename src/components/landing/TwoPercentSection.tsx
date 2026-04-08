@@ -3,7 +3,7 @@
 import { useId, useState } from "react";
 
 /**
- * Obsah 2 % z dane — stránka /dva-percenta.
+ * Obsah 2 % z dane: stránka /dva-percenta.
  * Údaje + výber spôsobu príspevku + stabilný box 3 %.
  */
 
@@ -19,7 +19,7 @@ const body =
 type ContributorKind = "" | "zamestnanec" | "fyzicka" | "pravnicka";
 
 const SELECT_OPTIONS: { value: ContributorKind; label: string }[] = [
-  { value: "", label: "— Vyberte možnosť —" },
+  { value: "", label: "(Vyberte možnosť)" },
   { value: "zamestnanec", label: "Zamestnanec" },
   { value: "fyzicka", label: "Fyzická osoba (podáva daňové priznanie)" },
   { value: "pravnicka", label: "Právnická osoba" },
@@ -68,7 +68,7 @@ export function TwoPercentSection() {
           Prispievam ako…
         </h2>
         <p className="m-0 mt-3 max-w-2xl text-[13px] leading-relaxed text-brand-fg3 md:text-sm">
-          Vyberte svoju situáciu — zobrazí sa vám stručný postup, čo a kedy
+          Vyberte svoju situáciu – zobrazí sa vám stručný postup, čo a kedy
           vyplniť.
         </p>
 

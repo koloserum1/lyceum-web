@@ -49,8 +49,7 @@ export function DodSubpageShell({ title, children }: Props) {
             <div className="mt-6 max-w-3xl text-[15px] font-normal leading-relaxed text-brand-fg1 sm:text-[16px] md:mt-8 md:text-[17px] md:leading-[1.62]">
               {children ?? (
                 <p className="m-0 text-brand-fg3">
-                  Obsah pripravíme. Texty môžeš upraviť v Sanity v dokumente „DOD —
-                  podstránka“.
+                  Obsah pripravíme. Texty môžeš upraviť v Sanity v dokumente „DOD: podstránka“.
                 </p>
               )}
             </div>

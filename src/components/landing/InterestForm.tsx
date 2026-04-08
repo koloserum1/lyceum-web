@@ -53,7 +53,7 @@ export function InterestForm() {
       </button>
       {sent ? (
         <p className="m-0 text-center text-sm font-bold text-brand-primary">
-          Ďakujeme — demo formulár (backend ešte nepripojený).
+          Ďakujeme, ide o demo formulár (backend ešte nepripojený).
         </p>
       ) : null}
     </form>

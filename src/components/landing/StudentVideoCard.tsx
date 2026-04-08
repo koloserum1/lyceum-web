@@ -25,7 +25,7 @@ type Props = {
   /** Karusel: len aktívna karta posiela priebeh do bodkového indikátora */
   isActive?: boolean;
   onPlaybackProgress?: (index: number, fraction: number) => void;
-  /** Klik na video — synchronizácia s bodkovým indikátorom (karusel) */
+  /** Klik na video: synchronizácia s bodkovým indikátorom (karusel) */
   onCarouselInteract?: (index: number) => void;
 };
 
@@ -300,7 +300,7 @@ export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
     if (!soundOn) v.muted = true;
   }, [item.src, isFirst, soundOn, showEndScreen]);
 
-  /** ~60 fps: priebeh z currentTime/duration — končí s videom; pri pause len seek/play obnoví kreslenie */
+  /** ~60 fps: priebeh z currentTime/duration: končí s videom; pri pause len seek/play obnoví kreslenie */
   useEffect(() => {
     if (!item.src || !isActive) return;
     const v = videoRef.current;
@@ -336,7 +336,7 @@ export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
     };
   }, [item.src, index, isActive]);
 
-  /** Po konci prehrania: vždy znova od začiatku, stíšené, loop — po commite DOM (muted/loop props). */
+  /** Po konci prehrania: vždy znova od začiatku, stíšené, loop: po commite DOM (muted/loop props). */
   useLayoutEffect(() => {
     if (!showEndScreen) return;
     const v = videoRef.current;
@@ -397,7 +397,7 @@ export const StudentVideoCard = forwardRef<StudentVideoCardHandle, Props>(
 
   const tapLabel =
     showEndScreen
-      ? "Koniec ukážky — celé video na Instagrame"
+      ? "Koniec ukážky – celé video na Instagrame"
       : isFirst
         ? soundOn
           ? "Pozastaviť alebo spustiť video"

@@ -1,7 +1,7 @@
 import { defineField, defineType } from "sanity";
 
 /**
- * Jedinečný dokument — v Studio vždy jedna karta „DOD popup“ (id: dodPopup).
+ * Jedinečný dokument: v Studio vždy jedna karta „DOD popup“ (id: dodPopup).
  */
 export const dodPopupType = defineType({
   name: "dodPopup",

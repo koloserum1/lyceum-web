@@ -54,7 +54,7 @@ const doc = {
           _key: "p1s",
           marks: [],
           text:
-            "Deň otvorených dverí je chvíľa, keď si môžeš pozrieť školu v pohybe — učebne, projekty a ľudí, ktorí ťa budú sprevádzať štúdiom. Pripravíme prehliadku, čas na otázky a stručné informácie o prihlásení.",
+            "Deň otvorených dverí je chvíľa, keď si môžeš pozrieť školu v pohybe: učebne, projekty a ľudí, ktorí ťa budú sprevádzať štúdiom. Pripravíme prehliadku, čas na otázky a stručné informácie o prihlásení.",
         },
       ],
     },
@@ -83,7 +83,7 @@ const doc = {
           _key: "p2s",
           marks: [],
           text:
-            "Termín a miesto zverejníme na webe vždy, keď je DOD dopredu naplánovaný. Ak zrovna žiadny neprebieha, sleduj aktualizácie — o novom termíne ťa necháme včas vedieť.",
+            "Termín a miesto zverejníme na webe vždy, keď je DOD dopredu naplánovaný. Ak zrovna žiadny neprebieha, sleduj aktualizácie: o novom termíne ťa necháme včas vedieť.",
         },
       ],
     },

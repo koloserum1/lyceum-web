@@ -12,21 +12,21 @@ const LINK_TERM = LINK_TERMINY_VYSLEDKY_ZAPIS;
 
 const sectionY = "py-10 md:py-14 lg:py-16";
 
-/** Hero — trieda pri spolupráci (editoriálny výrez). */
+/** Hero: trieda pri spolupráci (editoriálny výrez). */
 const HERO_VYSKUSAJ_SRC = "/prijimacky/hero-vyskusaj-si-ulohy.jpg";
 
 const ctaPrimaryYellow =
   "inline-flex items-center justify-center rounded-full border-0 bg-[#fdb913] px-8 py-3.5 text-[15px] font-bold text-brand-fg1 no-underline shadow-[0_12px_32px_-12px_rgba(253,185,19,0.65)] transition-colors hover:bg-[#f5b010] md:px-10 md:text-base";
 
-/** Sekundárne pill — jemný zlatý okraj (akcent ako na „Ako sa dostať“, nie plná výplň). */
+/** Sekundárne pill: jemný zlatý okraj (akcent ako na „Ako sa dostať“, nie plná výplň). */
 const pillSecondaryHeroWarm =
   "inline-flex items-center justify-center rounded-full border border-[#d4be78]/75 bg-[#f7f2ea]/95 px-5 py-2.5 text-[14px] font-semibold text-[#2a1f18] no-underline shadow-[0_6px_20px_-10px_rgba(55,45,25,0.08)] backdrop-blur-sm transition-colors hover:border-[#fdb913]/45 hover:bg-[#faf0e4] hover:shadow-[0_8px_24px_-12px_rgba(253,185,19,0.12)] md:px-6 md:text-[15px]";
 
-/** Jemný teplý wash v pravom dolnom rohu — doplní ombre bez výraznej oranžovej plochy. */
+/** Jemný teplý wash v pravom dolnom rohu: doplní ombre bez výraznej oranžovej plochy. */
 const vyskusajHeroWash =
   "pointer-events-none absolute inset-0 rounded-[28px] bg-[radial-gradient(ellipse_118%_92%_at_100%_100%,rgba(235,185,145,0.09)_0%,rgba(248,225,205,0.05)_48%,transparent_72%)] md:rounded-[32px] lg:rounded-[36px]";
 
-/** Obal minikvízu — layout ako FitQuiz na domovskej stránke, teplá paleta (žltý akcent zachovaný). */
+/** Obal minikvízu: layout ako FitQuiz na domovskej stránke, teplá paleta (žltý akcent zachovaný). */
 const miniQuizShell =
   "relative isolate overflow-hidden rounded-[24px] bg-gradient-to-b from-[#fdf8f0] via-[#faf5ee]/75 to-[#f0e6dc] ring-1 ring-[#e8dcc8]/45 shadow-[0_16px_48px_-28px_rgba(45,35,22,0.12)]";
 
@@ -36,7 +36,7 @@ export function VyskusajSiUlohyContent() {
       id="prijimacky-vyskusaj-si-ulohy"
       className="scroll-mt-24 bg-brand-bg2 pb-12 md:scroll-mt-28 md:pb-16"
     >
-      {/* Hero — tá istá skladba ako „Ako sa dostať na Lýceum“; jemný teplý ombre namiesto výraznej oranžovej. */}
+      {/* Hero: tá istá skladba ako „Ako sa dostať na Lýceum“; jemný teplý ombre namiesto výraznej oranžovej. */}
       <div className={`${CX} pt-6 md:pt-8`}>
         <header
           className="relative overflow-x-clip rounded-[28px] bg-gradient-to-br from-[#faf7f3] via-[#faf8f6] to-[#f0e4dc] ring-1 ring-[#e8d4c8]/48 shadow-[0_24px_60px_-32px_rgba(75,52,38,0.08),inset_0_1px_0_0_rgba(255,255,255,0.92)] md:rounded-[32px] lg:rounded-[36px]"
@@ -100,7 +100,7 @@ export function VyskusajSiUlohyContent() {
                 </h1>
 
                 <p className="m-0 mt-5 max-w-md text-[15px] font-normal leading-relaxed text-[#4a362c]/92 sm:text-[16px] md:mt-6 md:text-[17px] md:leading-[1.62]">
-                  Taký typ myslenia a zadaní, aký uvidíš na prijímačkách — bez tlaku, že musíš
+                  Taký typ myslenia a zadaní, aký uvidíš na prijímačkách – bez tlaku, že musíš
                   všetko vedieť dopredu.
                 </p>
 
@@ -120,7 +120,7 @@ export function VyskusajSiUlohyContent() {
               </div>
             </div>
 
-            {/* Typy úloh — integrovaný pás v tom istom hero bloku (ako termíny na „Ako sa dostať“) */}
+            {/* Typy úloh: integrovaný pás v tom istom hero bloku (ako termíny na „Ako sa dostať“) */}
             <div className="mt-8 border-t border-[#e5d5c8]/45 pt-6 md:mt-10 md:pt-8">
               <h2
                 id="heading-typy"
@@ -155,7 +155,7 @@ export function VyskusajSiUlohyContent() {
         </header>
       </div>
 
-      {/* Mini kvíz — layout ako „Otestuj sa“ (FitQuiz), farby teplé / žltý akcent */}
+      {/* Mini kvíz: layout ako „Otestuj sa“ (FitQuiz), farby teplé / žltý akcent */}
       <section
         className={`${CX} ${sectionY} scroll-mt-28 border-t border-[#dcc898]/45 md:scroll-mt-32`}
         aria-labelledby="heading-mini-quiz"
@@ -180,7 +180,7 @@ export function VyskusajSiUlohyContent() {
                 <span className="text-[#fdb913]">nečisto</span>
               </h2>
               <p className="mx-auto mt-3 mb-0 max-w-lg text-[15px] font-normal leading-relaxed text-brand-fg2 md:mt-4 md:text-base">
-                Ochutnávka typu zadaní — súvislosti a pokoj pri riešení, nie biflenie.
+                Ochutnávka typu zadaní – súvislosti a pokoj pri riešení, nie bifľovanie.
               </p>
             </header>
             <VyskusajSiUlohyMiniQuiz />
@@ -188,7 +188,7 @@ export function VyskusajSiUlohyContent() {
         </div>
       </section>
 
-      {/* 3. PDF — jedno záverečné CTA; náhľad len na väčších obrazovkách */}
+      {/* 3. PDF: jedno záverečné CTA; náhľad len na väčších obrazovkách */}
       <section
         className={`${CX} ${sectionY} border-t border-black/[0.06]`}
         aria-labelledby="heading-cela"
@@ -201,7 +201,7 @@ export function VyskusajSiUlohyContent() {
             Chceš si prejsť viac úloh?
           </h2>
           <p className="m-0 mt-3 text-center text-[15px] leading-relaxed text-brand-fg2 md:mt-4 md:text-[16px]">
-            Kompletné znenia zadaní sú v jednom PDF — vždy rovnaké ako oficiálna ukážka.
+            Kompletné znenia zadaní sú v jednom PDF – vždy rovnaké ako oficiálna ukážka.
           </p>
           <div className="mt-7 flex justify-center md:mt-8">
             <a

@@ -36,7 +36,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Lýceum C. S. Lewisa — moderná stredná škola",
+  title: "Lýceum C. S. Lewisa: moderná stredná škola",
   description:
     "Digitálne zručnosti, podnikavosť a charakter. Projekty, prax, spätná väzba a reálne zadania.",
   openGraph: {
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     locale: "sk_SK",
     url: "/",
     siteName: "Lýceum C. S. Lewisa",
-    title: "Lýceum C. S. Lewisa — moderná stredná škola",
+    title: "Lýceum C. S. Lewisa: moderná stredná škola",
     description:
       "Digitálne zručnosti, podnikavosť a charakter. Projekty, prax, spätná väzba a reálne zadania.",
     images: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         url: "/hero-lyceum.jpg",
         width: 1024,
         height: 681,
-        alt: "Lýceum C. S. Lewisa — školské prostredie",
+        alt: "Lýceum C. S. Lewisa: školské prostredie",
       },
     ],
   },

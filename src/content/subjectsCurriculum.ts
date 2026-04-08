@@ -1,5 +1,5 @@
 /**
- * Učebný plán / predmety — sekcia „Predmety s využitím“ (interaktívna tabuľka podľa ročníka).
+ * Učebný plán / predmety: sekcia „Predmety s využitím“ (interaktívna tabuľka podľa ročníka).
  */
 
 export type SubjectYearId = "y1" | "y2" | "y3" | "y4";
@@ -31,7 +31,7 @@ export type YearCurriculumPlan = {
   sections: readonly YearCurriculumSection[];
 };
 
-export const subjectsSectionTitle = "Predmety s využitím";
+export const subjectsSectionTitle = "Predmety a ako ich využiješ";
 
 export const subjectYearPlans: readonly YearCurriculumPlan[] = [
   {
@@ -39,7 +39,7 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
     tabLabel: "1. ročník",
     headline: "1. ročník",
     totalHours: "31 hodín týždenne",
-    lead: "Buduješ všeobecný základ a spoznávaš náš spôsob práce — projekty, jazyk v praxi, informatika ako nástroj.",
+    lead: "Buduješ všeobecný základ a spoznávaš náš spôsob práce: projekty, jazyk v praxi, informatika ako nástroj.",
     sections: [
       {
         id: "y1-zaklad",
@@ -50,7 +50,7 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
             subject: "Slovenský jazyk a literatúra",
             hours: "2",
             detail:
-              "Čítanie, písanie, argumentácia — základ pre maturity, eseje aj prezentácie v projektoch.",
+              "Čítanie, písanie, argumentácia: základ pre maturity, eseje aj prezentácie v projektoch.",
           },
           {
             id: "y1-anj",
@@ -64,20 +64,20 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
             subject: "Matematika",
             hours: "4",
             detail:
-              "Logika, modelovanie, dáta — podpora pre prírodné vedy aj pre technické a podnikateľské projekty.",
+              "Logika, modelovanie, dáta: podpora pre prírodné vedy aj pre technické a podnikateľské projekty.",
           },
           {
             id: "y1-nae",
             subject: "Náboženstvo a etika",
             hours: "2",
             detail:
-              "Reálne situácie, hodnoty a rozhodnutia — nie bifľovanie definícií.",
+              "Reálne situácie, hodnoty a rozhodnutia – nie bifľovanie definícií.",
           },
           {
             id: "y1-tv",
             subject: "Telesná a športová výchova",
             hours: "2",
-            detail: "Pohyb, tímové súťaže, návyky — rovnováha k projektom a stresu.",
+            detail: "Pohyb, tímové súťaže, návyky: rovnováha k projektom a stresu.",
           },
           {
             id: "y1-tried",
@@ -109,7 +109,7 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
             subject: "Podnikanie a komunikácia",
             hours: "3",
             detail:
-              "Nápad, dohody v tíme, posun vecí dopredu — komunikácia ako súčasť výstupu.",
+              "Nápad, dohody v tíme, posun vecí dopredu: komunikácia ako súčasť výstupu.",
           },
           {
             id: "y1-biz",
@@ -123,7 +123,7 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
             subject: "Student enterprise",
             hours: "4",
             detail:
-              "Mini‑firma ako projekt: roly v tíme, plán, výstup, prezentácia — učenie robením.",
+              "Mini‑firma ako projekt: roly v tíme, plán, výstup, prezentácia: učenie robením.",
           },
         ],
       },
@@ -145,7 +145,7 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
             subject: "Slovenský jazyk a literatúra",
             hours: "4",
             detail:
-              "Čítanie, písanie, argumentácia — základ pre maturity a projekty.",
+              "Čítanie, písanie, argumentácia: základ pre maturity a projekty.",
           },
           {
             id: "y2-anj",
@@ -157,7 +157,7 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
             id: "y2-mat",
             subject: "Matematika",
             hours: "4",
-            detail: "Logika a dáta — podpora pre prírodné a technické predmety.",
+            detail: "Logika a dáta: podpora pre prírodné a technické predmety.",
           },
           {
             id: "y2-nae",
@@ -223,7 +223,7 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
             id: "y2-se",
             subject: "Student enterprise",
             hours: "4",
-            detail: "Projekt mini‑firmy — roly, plán, výstupy.",
+            detail: "Projekt mini‑firmy: roly, plán, výstupy.",
           },
         ],
       },
@@ -234,7 +234,7 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
     tabLabel: "3. ročník",
     headline: "3. ročník",
     totalHours: "36 hodín týždenne",
-    lead: "Silné voliteľné zameranie a prvá väčšia prax vo firmách — viac „robím to naozaj“.",
+    lead: "Silné voliteľné zameranie a prvá väčšia prax vo firmách: viac „robím to naozaj“.",
     sections: [
       {
         id: "y3-zaklad",
@@ -286,7 +286,7 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
             id: "y3-pri",
             subject: "Prírodovedné predmety",
             hours: "2",
-            detail: "Podľa rozvrhu — fyzika, chémia, biológia a súvislosti.",
+            detail: "Podľa rozvrhu: fyzika, chémia, biológia a súvislosti.",
           },
         ],
       },
@@ -312,7 +312,7 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
             subject: "Odborná prax",
             hours: "4",
             detail:
-              "Čas v reálnej firme po príprave v škole — most medzi teóriou a praxou.",
+              "Čas v reálnej firme po príprave v škole: most medzi teóriou a praxou.",
           },
         ],
       },
@@ -382,7 +382,7 @@ export const subjectYearPlans: readonly YearCurriculumPlan[] = [
             id: "y4-y4p",
             subject: "Projekt 4. ročníka (Y4)",
             hours: "2",
-            detail: "Záverečný projekt v zvolenom smere — výstup a obhajoba.",
+            detail: "Záverečný projekt v zvolenom smere: výstup a obhajoba.",
           },
         ],
       },

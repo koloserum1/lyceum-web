@@ -69,7 +69,7 @@ export default function Home() {
     <>
       <Header />
       <main id="domov" className="scroll-mt-24 md:scroll-mt-28">
-        {/* Hero — tesne pod menu (menu má vlastný spodný „odstup“ cez pt na headeri) */}
+        {/* Hero: tesne pod menu (menu má vlastný spodný „odstup“ cez pt na headeri) */}
         <div className="mt-2 pb-0 sm:mt-3 md:mt-4">
           <div
             className={`${CX} home-hero-top-shell relative overflow-hidden rounded-[24px] bg-brand-bg2 pb-6 pt-6 md:pb-8 md:pt-8`}
@@ -80,7 +80,7 @@ export default function Home() {
                 <figure className="m-0 overflow-hidden rounded-2xl shadow-md ring-1 ring-black/[0.04]">
                   <Image
                     src={HERO_IMG}
-                    alt="Podujatie v Lýceu C. S. Lewisa — študenti pri prezentácii"
+                    alt="Podujatie v Lýceu C. S. Lewisa – študenti pri prezentácii"
                     width={1024}
                     height={681}
                     className="h-auto w-full object-cover object-center sm:max-h-[380px]"
@@ -164,7 +164,7 @@ export default function Home() {
               Učitelia na Lýceu
             </h2>
             <p className="mt-3 mb-0 max-w-2xl text-sm font-normal leading-relaxed text-brand-fg3 md:mt-4 md:text-[15px]">
-              Referencie z výučby — celý text naraz, prepínanie šípkami alebo bodkami.
+              Referencie z výučby – celý text naraz, prepínanie šípkami alebo bodkami.
             </p>
             <div className="mt-8 md:mt-10">
               <TeachersSection items={teacherReferences} />
@@ -190,7 +190,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Realita — pás */}
+        {/* Realita: pás */}
         <Sec className="!py-0">
           <div className="rounded-2xl bg-brand-fg1 px-6 py-10 text-brand-bg1 md:px-12 md:py-12">
             <h2 className="font-heading m-0 max-w-xl text-[clamp(1.25rem,1rem+1.5vw,1.85rem)] leading-tight">
@@ -198,14 +198,14 @@ export default function Home() {
             </h2>
             <p className="mt-4 mb-0 max-w-2xl text-sm font-normal leading-relaxed text-white/85">
               Skúšaš veci v praxi, nie len memoruješ. Chyby pomenuješ a ideš
-              ďalej — nie sa tváriť, že neexistujú.
+              ďalej – nie tváriť sa, že neexistujú.
             </p>
           </div>
         </Sec>
 
         <SubjectsSection />
 
-        {/* Kotva #prijimacky — hero a podstránky prijímačiek */}
+        {/* Kotva #prijimacky: hero a podstránky prijímačiek */}
         <div
           id="prijimacky"
           className="scroll-mt-24 h-px w-full overflow-hidden opacity-0 md:scroll-mt-28"
@@ -217,7 +217,7 @@ export default function Home() {
           <FitQuiz />
         </Sec>
 
-        {/* Záujem — kotva #dod pre menu (DOD) */}
+        {/* Záujem: kotva #dod pre menu (DOD) */}
         <Sec id="zaujemca" className="bg-brand-bg2/30">
           <div
             id="dod"
@@ -225,7 +225,7 @@ export default function Home() {
             aria-hidden
           />
           <div className="mx-auto max-w-md">
-            <H2 title="Záujem o štúdium" subtitle="Krátko napíš — ozveme sa." />
+            <H2 title="Záujem o štúdium" subtitle="Krátko napíš, ozveme sa." />
             <InterestForm />
           </div>
         </Sec>

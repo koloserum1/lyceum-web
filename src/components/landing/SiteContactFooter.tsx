@@ -33,7 +33,7 @@ function IconFacebook({ className }: { className?: string }) {
   );
 }
 
-/** Simple Icons — 24×24, jedna uzavretá cesta (FA 448×512 pri malom scale robila „dieru“) */
+/** Simple Icons: 24×24, jedna uzavretá cesta (FA 448×512 pri malom scale robila „dieru“) */
 function IconTikTok({ className }: { className?: string }) {
   return (
     <svg
@@ -58,7 +58,7 @@ function FooterSocialNav() {
         target="_blank"
         rel="noopener noreferrer"
         className={iconBtn}
-        aria-label="Instagram — otvorí sa na novej karte"
+        aria-label="Instagram – otvorí sa na novej karte"
       >
         <IconInstagram className="h-6 w-6" />
       </a>
@@ -67,7 +67,7 @@ function FooterSocialNav() {
         target="_blank"
         rel="noopener noreferrer"
         className={iconBtn}
-        aria-label="Facebook — otvorí sa na novej karte"
+        aria-label="Facebook – otvorí sa na novej karte"
       >
         <IconFacebook className="h-6 w-6" />
       </a>
@@ -76,7 +76,7 @@ function FooterSocialNav() {
         target="_blank"
         rel="noopener noreferrer"
         className={iconBtn}
-        aria-label="TikTok — otvorí sa na novej karte"
+        aria-label="TikTok – otvorí sa na novej karte"
       >
         <IconTikTok className="h-6 w-6" />
       </a>
@@ -100,7 +100,7 @@ export function SiteContactFooter() {
             Kontakt
           </h2>
           <p className="mt-3 mb-0 max-w-2xl text-sm font-normal leading-relaxed text-brand-fg3 md:mt-4 md:text-[15px]">
-            Ozvi sa nám — radi odpovieme na otázky o štúdiu alebo spolupráci.
+            Ozvi sa nám, radi odpovieme na otázky o štúdiu alebo spolupráci.
           </p>
 
           <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">

@@ -11,7 +11,7 @@ export const structure: StructureResolver = (S) =>
           S.document().schemaType("dodPopup").documentId("dodPopup"),
         ),
       S.listItem()
-        .title("Prijímačky — popup")
+        .title("Prijímačky: popup")
         .id("prijimackyPopup")
         .child(
           S.document()
@@ -19,7 +19,7 @@ export const structure: StructureResolver = (S) =>
             .documentId("prijimackyPopup"),
         ),
       S.listItem()
-        .title("DOD — podstránka")
+        .title("DOD: podstránka")
         .id("dodPage")
         .child(S.document().schemaType("dodPage").documentId("dodPage")),
       S.divider(),

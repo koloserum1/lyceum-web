@@ -18,7 +18,7 @@ import { siteContact } from "@/content/siteContact";
 
 const LYCEUM_INSTAGRAM_URL = siteContact.instagramUrl;
 
-/** Len horizontálny posun v karuseli — bez `scrollIntoView`, ktoré posúva aj okno stránky. */
+/** Len horizontálny posun v karuseli: bez `scrollIntoView`, ktoré posúva aj okno stránky. */
 function scrollCarouselItemIntoCenter(
   root: HTMLDivElement,
   el: HTMLElement,
@@ -217,7 +217,7 @@ export function StudentVideosSection({ items }: Props) {
     scrollCarouselToIndex(0, "auto");
   }, [scrollCarouselToIndex]);
 
-  /** Pri načítaní vycentrovať prvé video — inak je „v strede“ iná karta (napr. Matúš) */
+  /** Pri načítaní vycentrovať prvé video: inak je „v strede“ iná karta (napr. Matúš) */
   useLayoutEffect(() => {
     suppressScrollSyncRef.current = true;
     centerFirstItemInCarousel();
@@ -379,7 +379,7 @@ export function StudentVideosSection({ items }: Props) {
         ref={scrollRef}
         className="-mx-4 touch-pan-x no-scrollbar snap-x snap-mandatory overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth scroll-pl-4 scroll-pr-4 px-4 pb-2 pt-1 sm:-mx-6 sm:scroll-pl-6 sm:scroll-pr-6 sm:px-6 lg:-mx-8 lg:scroll-pl-8 lg:scroll-pr-8 lg:px-8 [-webkit-overflow-scrolling:touch]"
         role="region"
-        aria-label="Videá študentov — posun doprava"
+        aria-label="Videá študentov, posun doprava"
       >
         <div className="flex w-max min-w-0 flex-nowrap gap-6 md:gap-8">
           {items.map((v, index) => (
@@ -389,7 +389,7 @@ export function StudentVideosSection({ items }: Props) {
                 itemRefs.current[index] = el;
               }}
               className="group relative isolate w-[min(78vw,280px)] shrink-0 snap-start pt-7 pr-5 sm:w-[min(72vw,300px)] sm:pt-8 sm:pr-6"
-              aria-label={`Video — ${v.name}`}
+              aria-label={`Video, ${v.name}`}
             >
               <div
                 className="relative z-0 w-full overflow-hidden rounded-[20px] bg-brand-bg2 ring-1 ring-black/[0.06] shadow-[0_12px_40px_-20px_rgba(27,22,36,0.2)] transition-shadow duration-300 group-hover:shadow-[0_16px_48px_-18px_rgba(27,22,36,0.25)]"

@@ -10,7 +10,7 @@ const LINK_CO = "/prijimacky/co-te-caka-na-prijimackach";
 
 const HERO_ILLUSTRATION_SRC = "/prijimacky/hero-terminy-classroom-crop.png";
 
-/** Bubliny nad fotkou — rovnaký jazyk ako na ďalších prijímačkových stránkach. */
+/** Bubliny nad fotkou: rovnaký jazyk ako na ďalších prijímačkových stránkach. */
 const heroBubbleBase =
   "pointer-events-none inline-flex max-w-full items-center justify-center rounded-full border border-[#c9bee5]/65 bg-[#fdfbff]/96 text-center font-semibold text-brand-fg1 shadow-[0_12px_40px_-10px_rgba(125,102,175,0.28),0_4px_24px_-8px_rgba(170,150,215,0.18)] backdrop-blur-xl";
 
@@ -26,7 +26,7 @@ const ctaPrimaryYellow =
 const ctaSecondaryLavender =
   "inline-flex items-center justify-center rounded-full border border-brand-primary/44 bg-[#ede7f8]/95 px-8 py-3.5 text-[15px] font-semibold text-brand-fg1 no-underline shadow-[0_8px_28px_-12px_rgba(125,100,175,0.22)] backdrop-blur-sm transition-[border-color,background-color,box-shadow] hover:border-brand-primary/58 hover:bg-[#f5f0fc] hover:shadow-[0_14px_38px_-12px_rgba(150,125,200,0.28)] md:px-10 md:py-4 md:text-base";
 
-/** Jemný raster bodov — nízka intenzita, integrovaný do plochy */
+/** Jemný raster bodov: nízka intenzita, integrovaný do plochy */
 const surfaceDotsSoft =
   "bg-[radial-gradient(circle_at_center,rgba(165,140,205,0.11)_1px,transparent_1px)] bg-[length:20px_20px]";
 
@@ -88,36 +88,22 @@ export function TerminyVysledkyAZapisContent() {
       id="prijimacky-terminy-vysledky-a-zapis"
       className="relative isolate scroll-mt-24 bg-brand-bg2 pb-14 md:scroll-mt-28 md:pb-20"
     >
-      {/* Hero — kompaktný horizontálny blok, čistá fotka, mriežka ako podklad */}
-      <div className={`${CX} relative z-[1] pt-4 md:pt-5`}>
+      {/* Hero: rovnaká vizuálna reč ako „Ako sa dostať na Lýceum“ / „Vyskúšaj si úlohy“ */}
+      <div className={`${CX} relative z-[1] pt-6 md:pt-8`}>
         <section
-          className="relative overflow-hidden rounded-[1.35rem] border border-[#e4dcf0] bg-white shadow-[0_14px_40px_-26px_rgba(72,56,105,0.1)] md:rounded-[1.5rem]"
+          className="relative overflow-x-clip rounded-[28px] bg-gradient-to-br from-white via-[#faf9f7] to-[#fff7f0] ring-1 ring-[#ebe4dc]/60 shadow-[0_24px_60px_-32px_rgba(90,80,70,0.08),inset_0_1px_0_0_rgba(255,255,255,0.9)] md:rounded-[32px] lg:rounded-[36px]"
           aria-label="Úvod"
         >
-          <div
-            className="pointer-events-none absolute inset-0 opacity-100"
-            style={{
-              background: `
-                radial-gradient(ellipse 52% 38% at 6% 92%, rgba(200, 182, 238, 0.1) 0%, transparent 58%),
-                radial-gradient(ellipse 44% 32% at 98% 6%, rgba(175, 195, 235, 0.09) 0%, transparent 52%)
-              `,
-            }}
-            aria-hidden
-          />
-          <div
-            className={`pointer-events-none absolute inset-0 opacity-[0.4] ${surfaceGridFaint}`}
-            aria-hidden
-          />
-
-          <div className="relative grid grid-cols-1 gap-6 px-5 py-5 sm:px-6 sm:py-6 md:gap-7 md:px-7 md:py-6 lg:grid-cols-12 lg:items-center lg:gap-8 lg:px-8 lg:py-5 xl:gap-10">
-            <div className="min-w-0 lg:col-span-6">
+          <div className="p-6 sm:p-8 md:p-10 lg:p-12 lg:pb-8">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(280px,1.08fr)] lg:items-center lg:gap-10 xl:gap-12">
+            <div className="min-w-0">
               <nav
-                className="mb-2 text-[13px] text-brand-fg3 md:mb-2.5 md:text-sm"
+                className="mb-5 text-[13px] md:mb-6"
                 aria-label="Oblasť stránky"
               >
                 <Link
                   href="/#prijimacky"
-                  className="font-medium text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"
+                  className="font-medium text-brand-primary underline decoration-[#b9a0e0]/45 underline-offset-2 hover:decoration-brand-primary"
                 >
                   Prijímačky
                 </Link>
@@ -127,43 +113,48 @@ export function TerminyVysledkyAZapisContent() {
                 <span className="text-brand-fg2">Termíny, výsledky a zápis</span>
               </nav>
 
-              <h1 className="font-heading m-0 max-w-[22rem] text-[clamp(1.55rem,1rem+1.85vw,2.25rem)] font-bold leading-[1.07] tracking-tight text-[#342c44] sm:max-w-xl lg:max-w-none">
-                Termíny, výsledky a zápis
+              <h1 className="font-heading m-0 max-w-xl text-[clamp(2rem,1.2rem+3.2vw,3.35rem)] font-bold leading-[1.05] tracking-tight text-[#1a1f1e]">
+                <span className="block">Termíny, výsledky</span>
+                <span className="mt-1 block text-[#fdb913]">a zápis</span>
               </h1>
-              <p className="m-0 mt-2.5 max-w-xl text-[15px] leading-snug text-brand-fg2 sm:mt-3 sm:text-[16px] md:text-[16px] md:leading-[1.55]">
-                Harmonogram prijatia, kapacita a čo nasleduje po vyhlásení výsledkov — na jednom mieste.
+              <p className="m-0 mt-5 max-w-xl text-[15px] font-normal leading-relaxed text-[#2a3533]/92 sm:text-[16px] md:mt-6 md:text-[17px] md:leading-[1.62]">
+                Harmonogram prijatia, kapacita a čo nasleduje po vyhlásení výsledkov – na jednom mieste.
               </p>
-              <div className="mt-4 flex max-w-xl flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-stretch sm:gap-2.5 md:mt-4">
+              <div className="mt-7 flex max-w-xl flex-col gap-3 sm:mt-8">
                 <Link
                   href={LINK_AKO}
-                  className={`${ctaPrimaryYellow} justify-center px-7 py-3 text-[14px] md:px-9 md:py-3.5 md:text-[15px]`}
+                  className={`${ctaPrimaryYellow} w-fit justify-center px-8 py-3.5 text-[15px] md:px-10 md:py-4 md:text-base`}
                 >
                   Ako sa dostať na Lýceum
                 </Link>
                 <Link
                   href={LINK_CO}
-                  className={`${ctaSecondaryLavender} justify-center px-7 py-3 text-[14px] md:px-9 md:py-3.5 md:text-[15px]`}
+                  className={`${ctaSecondaryLavender} w-fit justify-center px-8 py-3.5 text-[15px] md:px-10 md:py-4 md:text-base`}
                 >
                   Čo ťa čaká na prijímačkách
                 </Link>
               </div>
             </div>
 
-            <div className="min-w-0 lg:col-span-6">
+            <div className="min-w-0">
               <div
-                className="mx-auto w-full max-w-lg lg:mx-0 lg:max-w-none"
+                className="relative mx-auto w-full max-w-[min(100%,24rem)] sm:max-w-[min(100%,28rem)] lg:mx-0 lg:max-w-none"
                 role="group"
                 aria-label="Fotografia z výučby"
               >
-                <div className="overflow-hidden rounded-xl border border-[#e0d8ec] bg-white shadow-[0_10px_28px_-16px_rgba(65,52,92,0.12)]">
-                  <div className="relative aspect-[5/3] w-full sm:aspect-[16/9] lg:aspect-[3/2]">
+                <div className="overflow-hidden rounded-[24px] bg-white ring-1 ring-[#ebe8e4]/90 shadow-[0_16px_44px_-28px_rgba(55,45,35,0.12)] md:rounded-[28px] lg:rounded-[32px]">
+                  <div className="relative aspect-[4/3] w-full sm:aspect-[16/9] lg:aspect-[3/2]">
                     <Image
                       src={HERO_ILLUSTRATION_SRC}
-                      alt="Učiteľka pri stole s študentom pri písaní v triede — podpora a sústredenie na výučbu"
+                      alt="Učiteľka pri stole s študentom pri písaní v triede – podpora a sústredenie na výučbu"
                       fill
                       className="object-cover object-center"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       priority
+                    />
+                    <div
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2a2218]/[0.18] via-[#4a3d2e]/[0.04] to-transparent"
+                      aria-hidden
                     />
                     <span
                       className={`absolute left-2 top-[14%] z-[2] max-w-[calc(100%-1rem)] -rotate-[1deg] sm:left-3 sm:top-[16%] ${atmosphere.driftA} ${heroBubbleMd}`}
@@ -182,10 +173,11 @@ export function TerminyVysledkyAZapisContent() {
               </div>
             </div>
           </div>
+          </div>
         </section>
       </div>
 
-      {/* Dôležité termíny — lila panel, dynamické šírky kariet */}
+      {/* Dôležité termíny: lila panel, dynamické šírky kariet */}
       <section
         className={`${CX} relative z-[1] mt-2 py-12 md:py-16 lg:py-[4.5rem]`}
         aria-labelledby="heading-terminy"
@@ -270,7 +262,7 @@ export function TerminyVysledkyAZapisContent() {
         </div>
       </section>
 
-      {/* Prehľad štúdia — tri typografické karty bez ikon */}
+      {/* Prehľad štúdia: tri typografické karty bez ikon */}
       <section
         className={`${CX} relative z-[1] py-12 md:py-16 lg:py-[4.5rem]`}
         aria-labelledby="heading-prehlad-studia"
@@ -302,7 +294,7 @@ export function TerminyVysledkyAZapisContent() {
         </div>
       </section>
 
-      {/* Po vyhlásení — proces, striedanie odsadenia, bez žltej výplne na každom kroku */}
+      {/* Po vyhlásení: proces, striedanie odsadenia, bez žltej výplne na každom kroku */}
       <section
         className={`${CX} relative z-[1] py-12 md:py-16 lg:py-[4.5rem]`}
         aria-labelledby="heading-po-vysledkoch"

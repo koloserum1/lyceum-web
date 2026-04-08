@@ -26,7 +26,7 @@ export function AkoSaDostatNaLyceumContent() {
       id="prijimacky-ako-sa-dostat-na-lyceum"
       className="scroll-mt-24 bg-brand-bg2 pb-10 md:scroll-mt-28 md:pb-14"
     >
-      {/* BLOK 1 — Hero + termíny v jednom celku */}
+      {/* BLOK 1: Hero + termíny v jednom celku */}
       <div className={`${CX} pt-6 md:pt-8`}>
         <section
           className="overflow-x-clip rounded-[36px] bg-gradient-to-br from-white via-[#faf9f7] to-[#fff7f0] ring-1 ring-[#ebe4dc]/60 shadow-[0_24px_60px_-32px_rgba(90,80,70,0.08),inset_0_1px_0_0_rgba(255,255,255,0.9)]"
@@ -161,7 +161,7 @@ export function AkoSaDostatNaLyceumContent() {
         </section>
       </div>
 
-      {/* BLOK 2 — Pre koho + základné info v jednom celku */}
+      {/* BLOK 2: Pre koho + základné info v jednom celku */}
       <section
         className={`${CX} py-8 md:py-10`}
         aria-labelledby="heading-kto-a-info"
@@ -177,7 +177,7 @@ export function AkoSaDostatNaLyceumContent() {
             className="font-heading m-0 max-w-2xl text-[clamp(1.35rem,1rem+1.4vw,1.85rem)] font-bold leading-tight tracking-tight text-brand-fg1 md:text-[clamp(1.45rem,1.05rem+1.5vw,2rem)]"
           >
             Kto sa môže prihlásiť
-            <span className="text-brand-fg3"> — </span>
+            <span className="text-brand-fg3"> · </span>
             základné informácie o prijatí
           </h2>
           <p className="m-0 mt-4 text-[15px] leading-relaxed text-brand-fg2 md:text-base">
@@ -226,7 +226,7 @@ export function AkoSaDostatNaLyceumContent() {
         </div>
       </section>
 
-      {/* BLOK 3 — Dve cesty */}
+      {/* BLOK 3: Dve cesty */}
       <section
         id="na-lyceum-vedu-dve-cesty"
         className={`${CX} scroll-mt-28 py-10 md:py-12`}
@@ -318,7 +318,7 @@ export function AkoSaDostatNaLyceumContent() {
         </div>
       </section>
 
-      {/* BLOK 4 — Kroky + ďalšie kroky v jednom */}
+      {/* BLOK 4: Kroky + ďalšie kroky v jednom */}
       <div className={CX}>
         <section
           className="mb-10 overflow-hidden rounded-[28px] bg-white p-6 ring-1 ring-black/[0.06] shadow-[0_20px_50px_-28px_rgba(0,0,0,0.1)] sm:p-8 md:rounded-[32px] md:p-10"

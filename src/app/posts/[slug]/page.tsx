@@ -53,7 +53,7 @@ export default async function PostPage({ params }: Props) {
           Publikované:{" "}
           {post.publishedAt
             ? new Date(post.publishedAt).toLocaleDateString("sk-SK")
-            : "—"}
+            : "neuvedené"}
         </p>
         {Array.isArray(post.body) ? (
           <PortableText value={post.body} />

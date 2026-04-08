@@ -6,11 +6,11 @@ const eyebrow =
 const h2Section =
   "font-heading m-0 mt-2 text-[clamp(1.05rem,0.95rem+0.55vw,1.25rem)] font-bold leading-tight tracking-tight text-brand-fg1 md:mt-2.5";
 
-/** Karta sekcie — rovnaká reč ako bloky na prijímačkách („Kto sa môže prihlásiť“). */
+/** Karta sekcie: rovnaká reč ako bloky na prijímačkách („Kto sa môže prihlásiť“). */
 const contentCard =
   "rounded-[28px] border border-[#ebe6e0]/90 bg-gradient-to-br from-white via-[#fcfbfa] to-[#fff5ec] p-6 text-brand-fg1 shadow-[0_28px_64px_-32px_rgba(90,80,70,0.09)] sm:p-8 md:p-10";
 
-/** Obal minikvízu — rovnako ako na „Vyskúšaj si úlohy“ (FitQuiz). */
+/** Obal minikvízu: rovnako ako na „Vyskúšaj si úlohy“ (FitQuiz). */
 const joinTeamMiniQuizShell =
   "relative isolate overflow-hidden rounded-[24px] bg-gradient-to-b from-[#fdf8f0] via-[#faf5ee]/75 to-[#f0e6dc] ring-1 ring-[#e8dcc8]/45 shadow-[0_16px_48px_-28px_rgba(45,35,22,0.12)]";
 
@@ -23,7 +23,7 @@ export function JoinTeamContent() {
   return (
     <div className="flex flex-col gap-10 md:gap-12">
       <section aria-label="Čo ponúkame, koho hľadáme a výber">
-        {/* Vždy tri samostatné karty pod sebou — na každej šírke jasne oddelené boxy */}
+        {/* Vždy tri samostatné karty pod sebou: na každej šírke jasne oddelené boxy */}
         <div className="flex flex-col gap-6 md:gap-8">
           <section
             aria-labelledby="join-co-ponukame"
@@ -36,7 +36,7 @@ export function JoinTeamContent() {
             <ul className="m-0 mt-4 list-disc space-y-2 pl-5 text-[14px] leading-relaxed text-brand-fg2 marker:text-brand-primary/55 md:mt-5 md:text-[15px] md:leading-[1.55]">
               {[
                 "tím, ktorý drží spolu a dáva si spätnú väzbu",
-                "podporu a rast: školenia, vzdelávania, sprevádzanie v učení",
+                "podporu a rast: škoľenia, ďalšie vzdelávanie a sprevádzanie pri učení",
                 "pracovný notebook a kvalitné kancelárske + digitálne vybavenie",
                 "priestor tvoriť: byť pri vzniku nového konceptu školy a posúvať stredoškolské vzdelávanie cez prax a projekty",
               ].map((item) => (
@@ -95,11 +95,11 @@ export function JoinTeamContent() {
                 id="join-quiz"
                 className="font-heading m-0 text-[clamp(1.35rem,1rem+1.2vw,1.85rem)] font-bold leading-tight tracking-tight text-brand-fg1 md:text-[clamp(1.5rem,1.1rem+1.4vw,2rem)]"
               >
-                Mini quiz —{" "}
+                Mini quiz –{" "}
                 <span className="text-[#fdb913]">tri otázky</span>
               </h2>
               <p className="mx-auto mt-3 mb-0 max-w-lg text-[15px] font-normal leading-relaxed text-brand-fg2 md:mt-4 md:text-base">
-                Tri krátke otázky — pomôžu ti zvážiť, či ti sedí spôsob práce u nás.
+                Tri krátke otázky ti pomôžu zvážiť, či ti sedí spôsob práce u nás.
               </p>
             </header>
             <JoinTeamMiniQuiz />
@@ -160,28 +160,33 @@ export function JoinTeamContent() {
         <p className={eyebrow}>Kariéra</p>
         <h2
           id="join-pozicie-heading"
-          className="font-heading m-0 mt-2 text-lg font-bold leading-tight text-brand-fg1 md:text-xl"
+          className="font-heading m-0 mt-2 text-[clamp(1.2rem,1.05rem+0.6vw,1.45rem)] font-bold leading-tight text-brand-fg1 md:mt-2.5"
         >
           Voľné pozície
         </h2>
-        <p className="m-0 mt-3 max-w-2xl text-[15px] font-medium text-brand-fg2 md:mt-4 md:text-[16px]">
-          Momentálne tu nemáme aktívny inzerát.
+        <p className="m-0 mt-2 max-w-prose text-[14px] leading-relaxed text-brand-fg3 md:text-[15px]">
+          Nové inzeráty budú vždy priamo tu.
         </p>
-        <p className="m-0 mt-2 max-w-2xl text-[14px] leading-relaxed text-brand-fg3 md:text-[15px]">
-          Tento priestor je pripravený na nové otvorené role — ako len budú,
-          zobrazia sa tu prehľadne a jasne.
-        </p>
-        <p className="m-0 mt-5 max-w-2xl rounded-xl border border-[#e8e4ee]/90 bg-[#faf8fc]/80 px-4 py-3 text-[13px] leading-relaxed text-brand-fg2 md:mt-6 md:text-[14px]">
-          Žiadne otvorené pozície zatiaľ neevidujeme. Skús sa pozrieť neskôr
-          alebo nám napíš na{" "}
-          <a
-            href={MAILTO}
-            className="font-semibold text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"
-          >
-            {PRACA_EMAIL}
-          </a>
-          .
-        </p>
+
+        <div
+          className="mt-6 flex min-h-[min(280px,42vh)] w-full flex-col items-center justify-center rounded-[28px] border-2 border-dashed border-[#d4c8e8]/90 bg-gradient-to-b from-[#faf8fc] to-[#f3eef8]/80 px-6 py-12 text-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.85)] sm:min-h-[300px] sm:px-10 md:mt-8 md:py-14"
+          role="region"
+          aria-label="Zoznam voľných pozícií"
+        >
+          <p className="m-0 max-w-md text-[15px] font-medium leading-relaxed text-brand-fg2 md:text-[16px] md:leading-[1.55]">
+            Momentálne nie je zverejnená žiadna otvorená pozícia.
+          </p>
+          <p className="m-0 mt-5 max-w-md text-[14px] leading-relaxed text-brand-fg3 md:mt-6 md:text-[15px]">
+            Ak máš záujem o spoluprácu, napíš nám na{" "}
+            <a
+              href={MAILTO}
+              className="font-semibold text-brand-primary underline decoration-brand-primary/35 underline-offset-2 hover:decoration-brand-primary"
+            >
+              {PRACA_EMAIL}
+            </a>
+            .
+          </p>
+        </div>
       </section>
     </div>
   );

@@ -19,7 +19,7 @@ type Props = {
 };
 
 export function DodPopup({ data }: Props) {
-  /** Pri každom načítaní stránky (F5 / refresh) sa popup znova zobrazí — bez sessionStorage. */
+  /** Pri každom načítaní stránky (F5 / refresh) sa popup znova zobrazí: bez sessionStorage. */
   const [open, setOpen] = useState(true);
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);

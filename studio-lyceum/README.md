@@ -1,4 +1,4 @@
-# Lyceum — Sanity Studio
+# Lyceum: Sanity Studio
 
 Projekt: `iw5edpoc` · dataset: `production` (clean + TypeScript).
 
@@ -27,7 +27,7 @@ Projekt: `iw5edpoc` · dataset: `production` (clean + TypeScript).
 ## Schéma Post + Vision (GROQ)
 
 - Dokumentový typ **Post** je v `schemaTypes/postType.ts` (title, slug, publishedAt, image, body).
-- V hornej lište Studio je okrem **Structure** aj nástroj **Vision** — tam môžeš skúšať GROQ, napr.  
+- V hornej lište Studio je okrem **Structure** aj nástroj **Vision**, tam môžeš skúšať GROQ, napr.  
   `*[_type == "post"]{ _id, title }`
 
 ## DOD popup (deň otvorených dverí)

@@ -1,5 +1,5 @@
 /**
- * Pre študentov — podstránky v menu.
+ * Pre študentov: podstránky v menu.
  */
 export const preStudentovPages = [
   { slug: "skolsky-poriadok", label: "Školský poriadok" },

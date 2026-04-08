@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = prijimackyPages.find((p) => p.slug === slug);
   if (!page) return {};
   return {
-    title: `${page.label} — Prijímačky — Lýceum C. S. Lewisa`,
+    title: `${page.label} | Prijímačky | Lýceum C. S. Lewisa`,
     description: `${page.label}. Informácie o prijímacom konaní na Lýceu C. S. Lewisa.`,
   };
 }

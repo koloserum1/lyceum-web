@@ -9,7 +9,7 @@ import {
   type QuizOptionKey,
 } from "@/data/vyskusaj-si-ulohy-mini-quiz";
 
-/** Vnútorná karta otázky — štruktúra ako FitQuiz (odznak „Otázka“, tieň, rám). */
+/** Vnútorná karta otázky: štruktúra ako FitQuiz (odznak „Otázka“, tieň, rám). */
 const questionCardClass =
   "group relative isolate overflow-visible rounded-[20px] border border-[#d8c498]/65 bg-[#faf5ee]/95 px-5 pb-6 pt-9 text-brand-fg1 shadow-[0_12px_40px_-24px_rgba(45,35,22,0.14)] ring-1 ring-[#fff8f0]/90 backdrop-blur-[2px] sm:px-8 sm:pb-8 sm:pt-10";
 
@@ -19,11 +19,11 @@ const optionBase =
 const optionIdle =
   "border border-[#d8d2c8]/90 bg-[#fdfcfa] text-brand-fg1 hover:border-[#d8b868]/70 hover:bg-[#faf0e4] hover:shadow-[0_4px_18px_-12px_rgba(253,185,19,0.12)]";
 
-/** Správna odpoveď — zreteľná zelená, tmavý text. */
+/** Správna odpoveď: zreteľná zelená, tmavý text. */
 const optionCorrectState =
   "border-2 border-emerald-600/85 bg-emerald-50 text-brand-fg1 shadow-[0_4px_20px_-10px_rgba(5,95,70,0.2)]";
 
-/** Nesprávne zvolená — zreteľná ružovočervená, tmavý text. */
+/** Nesprávne zvolená: zreteľná ružovočervená, tmavý text. */
 const optionWrongPickedState =
   "border-2 border-rose-500/88 bg-rose-50 text-brand-fg1 shadow-[0_4px_20px_-10px_rgba(180,50,70,0.12)]";
 
@@ -31,7 +31,7 @@ const optionWrongPickedState =
 const optionCorrectRevealState =
   "border-2 border-emerald-600/85 bg-emerald-50 text-brand-fg1 shadow-[0_4px_20px_-10px_rgba(5,95,70,0.18)]";
 
-/** Ostatné možnosti po zamknutí — stlmené. */
+/** Ostatné možnosti po zamknutí: stlmené. */
 const optionFadedState =
   "border border-[#ddd8d0]/95 bg-[#f0ebe4]/98 text-brand-fg2 opacity-72";
 
@@ -170,7 +170,7 @@ export function VyskusajSiUlohyMiniQuiz() {
 
   return (
     <div className="mx-auto mt-8 max-w-xl md:mt-10">
-      {/* Progress — ako FitQuiz */}
+      {/* Progress: ako FitQuiz */}
       <div className="mb-6 flex items-center gap-3 sm:mb-8">
         <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[#e8dcc8]/45">
           <div
@@ -266,7 +266,7 @@ export function VyskusajSiUlohyMiniQuiz() {
         ) : null}
       </div>
 
-      {/* Bodky — vizuálny prehľad (doplnok k progress baru); skryté pred čítačkou */}
+      {/* Bodky: vizuálny prehľad (doplnok k progress baru); skryté pred čítačkou */}
       <div className="mt-8 flex justify-center gap-2 px-2 sm:mt-10" aria-hidden>
         {miniQuizQuestions.map((_, i) => {
           const done = i < index || (i === index && locked);

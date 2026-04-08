@@ -1,5 +1,5 @@
 /**
- * Prijímačky — podstránky v menu (presné poradie a názvy pre uchádzača / rodiča).
+ * Prijímačky: podstránky v menu (presné poradie a názvy pre uchádzača / rodiča).
  */
 export const prijimackyPages = [
   {

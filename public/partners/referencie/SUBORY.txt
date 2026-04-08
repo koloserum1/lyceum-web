@@ -5,9 +5,9 @@ Aktuálne súbory (cesty v src/content/partnerReferences.ts):
 
   titans.svg
   o2.svg
-  wirgofin.jpeg           — Wigro-Fin
+  wirgofin.jpeg          : Wigro-Fin
   FBE.jpeg
-  accace.png              — Accace (zdieľané: /public/partners/accace.png)
-  galeria-mesta-bratislavy.svg — Galéria mesta Bratislavy
-  compass.png             — Compass Architects
+  accace.png             : Accace (zdieľané: /public/partners/accace.png)
+  galeria-mesta-bratislavy.svg: Galéria mesta Bratislavy
+  compass.png            : Compass Architects
   DASE.jpeg

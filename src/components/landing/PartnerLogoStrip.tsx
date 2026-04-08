@@ -14,7 +14,7 @@ const IMG =
 const IMG_W = 200;
 const IMG_H = 48;
 
-/** Natívne img — menej režijných nákladov ako next/image pri 2× opakovaní v marquee. */
+/** Natívne img: menej režijných nákladov ako next/image pri 2× opakovaní v marquee. */
 const LogoItem = memo(function LogoItem({ p }: { p: PartnerBrand }) {
   const img = (
     // eslint-disable-next-line @next/next/no-img-element -- statické logá z /public, viac kópií v animácii

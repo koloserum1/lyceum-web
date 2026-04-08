@@ -150,7 +150,7 @@ function CompareCard({
   afterBody: string;
   animated: boolean;
   barIndexOffset: number;
-  /** Napr. prepínač v pravom stĺpci — titulok a úvod sú nižšie pod ním. */
+  /** Napr. prepínač v pravom stĺpci: titulok a úvod sú nižšie pod ním. */
   beforeTitle?: ReactNode;
   /** Neviditeľná medzera v ľavom stĺpci = výška prepínača + medzera pod ním (desktop). */
   leadingSpacerForAlignment?: ReactNode;
@@ -263,7 +263,7 @@ export function SchoolComparisonSection() {
       return;
     }
 
-    /* Úzke displeje: IO často nespustí včas (viewport, iOS) — titulok by ostal opacity-0. */
+    /* Úzke displeje: IO často nespustí včas (viewport, iOS), titulok by ostal opacity-0. */
     const narrow = window.matchMedia("(max-width: 1023px)");
     if (narrow.matches) {
       setIntroOn(true);

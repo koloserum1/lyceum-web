@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const pillar = getPillarBySlug(slug);
   if (!pillar) return {};
   return {
-    title: `${pillar.title} — Tri piliere — Lýceum C. S. Lewisa`,
+    title: `${pillar.title} | Tri piliere | Lýceum C. S. Lewisa`,
     description: `${pillar.lead} ${pillar.body.slice(0, 120)}…`,
   };
 }

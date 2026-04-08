@@ -8,11 +8,11 @@ const LINK_KONTAKT = "/#kontakt";
 const heroCtaSecondary =
   "inline-flex items-center justify-center rounded-full border border-[#d4c8ea] bg-white/90 px-5 py-2.5 text-[13px] font-semibold text-brand-fg1 shadow-[0_8px_28px_-12px_rgba(90,70,130,0.18)] backdrop-blur-sm transition-[border-color,background-color,box-shadow,transform] hover:border-brand-primary/45 hover:bg-white hover:shadow-[0_12px_32px_-10px_rgba(100,80,150,0.2)] md:px-6 md:py-3 md:text-[14px]";
 
-/** Hero karta — rovnaká ako „Ako sa dostať na Lýceum“. */
+/** Hero karta: rovnaká ako „Ako sa dostať na Lýceum“. */
 const heroCard =
   "overflow-x-clip rounded-[36px] bg-gradient-to-br from-white via-[#faf9f7] to-[#fff7f0] ring-1 ring-[#ebe4dc]/60 shadow-[0_24px_60px_-32px_rgba(90,80,70,0.08),inset_0_1px_0_0_rgba(255,255,255,0.9)]";
 
-/** Karta textu — ako na „Pridaj sa do tímu“ / prijímačky. */
+/** Karta textu: ako na „Pridaj sa do tímu“ / prijímačky. */
 const contentCard =
   "rounded-[28px] border border-[#ebe6e0]/90 bg-gradient-to-br from-white via-[#fcfbfa] to-[#fff5ec] p-6 text-brand-fg1 shadow-[0_28px_64px_-32px_rgba(90,80,70,0.09)] sm:p-8 md:p-10";
 
@@ -29,7 +29,7 @@ export function SkolneAStipendiaContent() {
       id="prijimacky-skolne-a-stipendia"
       className="scroll-mt-24 bg-brand-bg2 pb-12 md:scroll-mt-28 md:pb-16"
     >
-      {/* 1. Hero — box ako ostatné prijímačkové stránky, pozadie stránky brand-bg2 */}
+      {/* 1. Hero: box ako ostatné prijímačkové stránky, pozadie stránky brand-bg2 */}
       <div className="bg-brand-bg2 pb-2 md:pb-4">
         <div className={`${CX} pt-6 md:pt-8`}>
           <section className={heroCard} aria-label="Úvod a ceny">
@@ -139,7 +139,7 @@ export function SkolneAStipendiaContent() {
         </div>
       </div>
 
-      {/* 2. Ceny — hlavný vizuálny ťažiskový blok */}
+      {/* 2. Ceny: hlavný vizuálny ťažiskový blok */}
       <div className={`${CX} mt-9 text-center md:mt-11 lg:mt-12`}>
         <section aria-labelledby="heading-cena">
           <p className="m-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-fg3">
@@ -186,7 +186,7 @@ export function SkolneAStipendiaContent() {
         </section>
       </div>
 
-      {/* 3. Praktické informácie — druhoradé, kompaktné, bez ťažkých rámov */}
+      {/* 3. Praktické informácie: druhoradé, kompaktné, bez ťažkých rámov */}
       <div className={`${CX} mt-10 flex justify-center md:mt-12 lg:mt-14`}>
         <div className="w-full max-w-4xl rounded-[1.25rem] bg-white px-5 py-7 text-center ring-1 ring-[#e8e2ee] sm:px-7 sm:py-8 md:rounded-[1.35rem] md:px-8 md:py-9 lg:px-10">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
@@ -246,11 +246,11 @@ export function SkolneAStipendiaContent() {
                   <dd className="m-0 mt-2">
                     <ul className="m-0 list-none space-y-1 p-0 text-[13px] leading-relaxed text-brand-fg2 md:text-[14px]">
                       <li className="flex gap-2">
-                        <span className="w-3.5 shrink-0 text-brand-fg4">—</span>
+                        <span className="w-3.5 shrink-0 text-brand-fg4">•</span>
                         <span>variabilný symbol (posielame mailom)</span>
                       </li>
                       <li className="flex gap-2">
-                        <span className="w-3.5 shrink-0 text-brand-fg4">—</span>
+                        <span className="w-3.5 shrink-0 text-brand-fg4">•</span>
                         <span>meno a priezvisko dieťaťa (účel platby)</span>
                       </li>
                     </ul>
@@ -262,7 +262,7 @@ export function SkolneAStipendiaContent() {
         </div>
       </div>
 
-      {/* 4. Štipendiá — úvod + dve podkarty v mriežke */}
+      {/* 4. Štipendiá: úvod + dve podkarty v mriežke */}
       <div className={`${CX} mt-10 md:mt-12 lg:mt-14`}>
         <section className={contentCard} aria-labelledby="heading-stipendia">
           <div className="max-w-2xl">
@@ -304,7 +304,7 @@ export function SkolneAStipendiaContent() {
         </section>
       </div>
 
-      {/* 5. Žiadosť, termíny, kontakt — vonkajší rám + podkarty */}
+      {/* 5. Žiadosť, termíny, kontakt: vonkajší rám + podkarty */}
       <div className={`${CX} mt-10 md:mt-12 lg:mt-14`}>
         <section
           className={contentCard}
@@ -393,7 +393,7 @@ export function SkolneAStipendiaContent() {
         </section>
       </div>
 
-      {/* Jemný záver — bez ďalšej ťažkej karty */}
+      {/* Jemný záver: bez ďalšej ťažkej karty */}
       <div className={`${CX} mt-10 max-w-lg text-center md:mt-12`}>
         <p className="font-heading m-0 text-[0.95rem] font-bold text-brand-fg1 md:text-[1.02rem]">
           Potrebuješ sa poradiť?

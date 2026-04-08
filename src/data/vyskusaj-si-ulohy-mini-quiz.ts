@@ -1,5 +1,5 @@
 /**
- * Mini kvíz „ochutnávka“ na stránke Vyskúšaj si úlohy — texty a odkazy na jednom mieste.
+ * Mini kvíz „ochutnávka“ na stránke Vyskúšaj si úlohy: texty a odkazy na jednom mieste.
  */
 
 export type QuizOptionKey = "A" | "B" | "C" | "D";
@@ -97,7 +97,7 @@ export type MiniQuizResultBlock = {
   ctas: [MiniQuizResultCta, MiniQuizResultCta];
 };
 
-/** Odkazy vo finálnej karte — relatívne alebo absolútne */
+/** Odkazy vo finálnej karte: relatívne alebo absolútne */
 export const miniQuizResultByScore = {
   /** 3 / 3 */
   perfect: {

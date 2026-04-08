@@ -30,7 +30,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (`.env.example` je verejná šablóna — commituj ju)
+# env files (`.env.example` je verejná šablóna; commituj ju)
 .env
 .env.local
 .env.development.local

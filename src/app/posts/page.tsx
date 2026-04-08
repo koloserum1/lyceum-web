@@ -17,7 +17,7 @@ export default async function PostsIndexPage() {
     <main className="mx-auto min-h-screen max-w-3xl bg-brand-bg1 p-8 text-brand-fg1">
       <h1 className="font-heading mb-8 text-4xl font-bold">Posts (Sanity)</h1>
       <p className="mb-6 text-sm text-brand-fg3">
-        Ukážkový zoznam z tutoriálu — obsah pridávaš v Sanity Studio (napr.{" "}
+        Ukážkový zoznam z tutoriálu: obsah pridávaš v Sanity Studio (napr.{" "}
         <code className="text-xs">cd studio-lyceum && npm run dev</code> →
         port 3333).
       </p>
@@ -37,7 +37,7 @@ export default async function PostsIndexPage() {
       </ul>
       {posts.length === 0 ? (
         <p className="text-brand-fg3">
-          Zatiaľ žiadne posty — vytvor a publikuj prvý dokument typu Post v
+          Zatiaľ žiadne posty: vytvor a publikuj prvý dokument typu Post v
           Sanity Studio.
         </p>
       ) : null}

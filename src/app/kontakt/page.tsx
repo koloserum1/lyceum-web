@@ -6,7 +6,7 @@ import { KontaktContent } from "@/components/landing/KontaktContent";
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
 
 export const metadata: Metadata = {
-  title: "Kontakt — Lýceum C. S. Lewisa",
+  title: "Kontakt | Lýceum C. S. Lewisa",
   description:
     "Kontaktujte Lýceum C. S. Lewisa: e-mail, telefón, adresa Haanova 28, Bratislava. Sociálne siete a prijímačky.",
 };

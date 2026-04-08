@@ -11,7 +11,7 @@ export const testimonials: Testimonial[] = [
     id: "t1",
     company: "Titans Freelancers",
     excerpt:
-      "Krátko po predstavení zadania už študenti proaktívne vytvorili schému a plán práce — milo nás to prekvapilo.",
+      "Krátko po predstavení zadania už študenti proaktívne vytvorili schému a plán práce, milo nás to prekvapilo.",
     quote:
       "Krátko po predstavení zadania na daný týždeň už chalani proaktívne vytvorili schému a plán práce, čo nás naozaj veľmi milo prekvapilo. Jednak čo sa týka rýchlosti, akou sa chopili zadania, rovnako aj spôsobu myslenia, akým k problému pristupovali.",
   },
@@ -19,7 +19,7 @@ export const testimonials: Testimonial[] = [
     id: "t2",
     company: "Titans Freelancers",
     excerpt:
-      "Výrazne predčili očakávania — proaktívny prístup, perfektná realizácia a pozitívny feedback z biznisu.",
+      "Výrazne predčili očakávania: proaktívny prístup, perfektná realizácia a pozitívny feedback z biznisu.",
     quote:
       "Chalani boli naozaj veľmi šikovní a výrazne predčili naše očakávania. Od veľmi proaktívneho prístupu k zadaniu až po jeho perfektnú realizáciu. Pýtali sa zaujímavé otázky ohľadom fungovania nášho tímu a firmy. Feedback na nich aj od kolegov z biznisu bol veľmi pozitívny. Boli veľmi slušní a komunikatívni. Spolupráca s nimi bola naozaj veľmi prínosná aj pre nás.",
   },
@@ -35,23 +35,23 @@ export const testimonials: Testimonial[] = [
     id: "t4",
     company: "Accace",
     excerpt:
-      "Aktívne počúvala, robila si poznámky a navrhla štruktúru slidov — každý deň milé prekvapenie.",
+      "Aktívne počúvala, robila si poznámky a navrhla štruktúru slidov; každý deň milé prekvapenie.",
     quote:
-      "Mňa veľmi milo prekvapilo, keď som Mashke vysvetľovala zadanie prezentácie, ktorá nás bude čakať pre externé publikum — aktívne počúvala, písala si poznámky a navrhla, ako by slides mohli vyzerať. Taktiež sme sa spoločne zúčastnili interného školenia k UX téme a nebojácne sa vrhla do spoločnej aktivity s ľuďmi zo skupiny, ktorí boli z HR profesie z iných spoločností. Bola taktiež veľmi vnímavá a zadefinovala, čo by sa chcela dozvedieť. Naozaj som bola veľmi milo prekvapená každý deň.",
+      "Mňa veľmi milo prekvapilo, keď som Mashke vysvetľovala zadanie prezentácie, ktorá nás bude čakať pre externé publikum: aktívne počúvala, písala si poznámky a navrhla, ako by slides mohli vyzerať. Taktiež sme sa spoločne zúčastnili interného školenia k UX téme a nebojácne sa vrhla do spoločnej aktivity s ľuďmi zo skupiny, ktorí boli z HR profesie z iných spoločností. Bola taktiež veľmi vnímavá a zadefinovala, čo by sa chcela dozvedieť. Naozaj som bola veľmi milo prekvapená každý deň.",
   },
   {
     id: "t5",
     company: "O2",
     excerpt:
-      "Natália dala projektu extra námahu aj vo večerných hodinách — oceňujeme angažovanosť.",
+      "Natália dala projektu extra námahu aj vo večerných hodinách; oceňujeme angažovanosť.",
     quote:
-      "Natália pracovala na zadaní vo Figme aj vo večerných hodinách — dala tomu extra námahu. Naozaj si to cením. Hoci sebe aj ľuďom v tíme hovorím, že práca po večeroch je síce obdivuhodná, ale nemala by sa stať rutinou, je to potom skôr obraz nezvládnutého time managementu.",
+      "Natália pracovala na zadaní vo Figme aj vo večerných hodinách; dala tomu extra námahu. Naozaj si to cením. Hoci sebe aj ľuďom v tíme hovorím, že práca po večeroch je síce obdivuhodná, ale nemala by sa stať rutinou, je to potom skôr obraz nezvládnutého time managementu.",
   },
   {
     id: "t6",
     company: "O2",
     excerpt:
-      "Robíte veľmi užitočnú prácu so študentmi — vytvárate hodnotu pre nich aj pre trh práce.",
+      "Robíte veľmi užitočnú prácu so študentmi: vytvárate hodnotu pre nich aj pre trh práce.",
     quote:
       "Robíte veľmi užitočnú prácu so študentmi. Vytvárate hodnotu pre samotných študentov, ale aj pre trh práce. Vďaka vám za to!",
   },
@@ -67,7 +67,7 @@ export const testimonials: Testimonial[] = [
     id: "t8",
     company: "Galéria mesta Bratislava",
     excerpt:
-      "Otvorená reflexia, prečo ich generácia menej chodí do galérií — inšpirácia pre našu komunikáciu.",
+      "Otvorená reflexia, prečo ich generácia menej chodí do galérií; inšpirácia pre našu komunikáciu.",
     quote:
       "Zásadná bola reflexia, prečo má ich generácia malú motiváciu navštevovať galérie alebo múzeá. Otvorenosť, s akou komunikovali napríklad o lenivosti, nízkom záujme objavovať umenie naživo, keď ho majú dostupné cez online platformy, nás vedie k prehodnoteniu foriem komunikácie cielenej na študentstvo stredných škôl.",
   },
@@ -75,15 +75,15 @@ export const testimonials: Testimonial[] = [
     id: "t9",
     company: "Wigro-Fin",
     excerpt:
-      "Brainstorming s mladou energiou — inšpiratívne nápady, úprimná snaha a angažovanosť.",
+      "Brainstorming s mladou energiou: inšpiratívne nápady, úprimná snaha a angažovanosť.",
     quote:
-      "Brainstorming s prínosom mládežníckej energie do rôznych tém súvisiacich s prezentáciou našej firmy na sociálnych sieťach — inšpiratívne nápady s úprimnou snahou a záujmom, angažovanosť.",
+      "Brainstorming s prínosom mládežníckej energie do rôznych tém súvisiacich s prezentáciou našej firmy na sociálnych sieťach: inšpiratívne nápady s úprimnou snahou a záujmom, angažovanosť.",
   },
   {
     id: "t10",
     company: "Compass Architects",
     excerpt:
-      "Oliver a David — vlastné postrehy, dodržané termíny a sebavedomé, slušné vystupovanie.",
+      "Oliver a David: vlastné postrehy, dodržané termíny a sebavedomé, slušné vystupovanie.",
     quote:
       "Boli sme veľmi príjemne prekvapení, keď Oliver a David prejavili svoje vlastné postrehy, návrhy a riešenia. Presne dodržiavali dohodnuté časy. Na všetkých kolegov zapôsobilo ich sebavedomé a slušné vystupovanie. Oliver aj David na nás urobili vynikajúci dojem, boli aktívni a bola to radosť stráviť s nimi týždeň. Dohodli sme sa, že zadania, ktoré rozpracovali, ešte spoločne dotiahneme po skončení programu.",
   },
@@ -91,7 +91,7 @@ export const testimonials: Testimonial[] = [
     id: "t11",
     company: "DASE",
     excerpt:
-      "Prirodzená zvedavosť a prekvapivo veľa už vedia — skvelá diskusia.",
+      "Prirodzená zvedavosť a prekvapivo veľa už vedia: skvelá diskusia.",
     quote:
       "Študenti boli prirodzene zvedaví, čo bolo výborné, lebo sme sa snažili odpovedať na veci, ktoré ich zaujímajú. Boli sme však veľmi milo prekvapení, ako veľa už vedia.",
   },
@@ -140,16 +140,16 @@ export const teamMembers: TeamMember[] = [
     bioLyceum:
       "Na Lýceu vedie digitálny pilier a učí digitálne predmety.",
     bioSchool:
-      "Digitálny svet sa čoraz viac prelína s klasickým. Je radosť učiť študentov tento hybridný svet objavovať a zodpovedne spolu-vytvárať. Toto nie je o „kódovaní appiek“. Lýceum je digitálna škola, no nie továreň na ajťákov — budujeme zručnosti na plavbu 21. storočím.",
+      "Digitálny svet sa čoraz viac prelína s klasickým. Je radosť učiť študentov tento hybridný svet objavovať a zodpovedne spolu-vytvárať. Toto nie je o „kódovaní appiek“. Lýceum je digitálna škola, no nie továreň na ajťákov; budujeme zručnosti na plavbu 21. storočím.",
   },
   {
     id: "zvarik",
     name: "Emil Zvarík",
     role: "Učiteľ, koordinácia",
     bioBefore:
-      "Po učiteľských protestoch spoluzakladal Lepšiu Metodku, študoval matfyz (bakalár informatika, magister kognitívna veda), učil na gymnáziách, absolvoval Nexteriu. Pracoval s dátami v startupe, potom sa vrátil k ľuďom — a k Lýceu.",
+      "Po učiteľských protestoch spoluzakladal Lepšiu Metodku, študoval matfyz (bakalár informatika, magister kognitívna veda), učil na gymnáziách, absolvoval Nexteriu. Pracoval s dátami v startupe, potom sa vrátil k ľuďom a k Lýceu.",
     bioLyceum:
-      "Lýceum je pre neho iná škola — kde sa dá a chce. Tímový hráč medzi motivovanými kolegami. Nie ostrov, ale miesto prepojení s praxou.",
+      "Lýceum je pre neho iná škola, kde sa dá a chce. Tímový hráč medzi motivovanými kolegami. Nie ostrov, ale miesto prepojení s praxou.",
     bioSchool:
       "Učí digitálne aj podnikavé predmety, koordinuje vzdelávanie učiteľov, je triedny aj mentor.",
   },
@@ -160,7 +160,7 @@ export const teamMembers: TeamMember[] = [
     bioBefore:
       "Profesionálny basketbal počas strednej, potom pravdepodobnosť a štatistika na FMFI UK. Po ukončení športu dokončila pedagogické minimum a nastúpila ako učiteľka matematiky.",
     bioLyceum:
-      "Okrem výučby sa podieľa na učebných plánoch a triednictve. Vízia: „Študent má Lýceum rád“ — lebo ona sama ho má rada.",
+      "Okrem výučby sa podieľa na učebných plánoch a triednictve. Vízia: „Študent má Lýceum rád“, lebo ona sama ho má rada.",
     bioSchool:
       "Lýceum je pre ňu prostredie na sebarozvoj a kreativitu v podporujúcej atmosfére. Na hodinách buduje bezpečné a dôverujúce prostredie.",
   },
@@ -173,7 +173,7 @@ export const teamMembers: TeamMember[] = [
     bioLyceum:
       "Učí Podnikanie a komunikáciu, Student enterprise, koordinuje mentoring a je mentorkou.",
     bioSchool:
-      "Lýceum je škola, kde by chcela sama študovať — ľudskosť, partnerský prístup, profesionalita. Žiadna otázka nie je zlá, z chýb sa učíme a chodí sa s úsmevom.",
+      "Lýceum je škola, kde by chcela sama študovať: ľudskosť, partnerský prístup, profesionalita. Žiadna otázka nie je zlá, z chýb sa učíme a chodí sa s úsmevom.",
   },
   {
     id: "laco",
@@ -184,18 +184,18 @@ export const teamMembers: TeamMember[] = [
     bioLyceum:
       "Rozvíja podnikavosť študentov, vyučuje a spoluvytvára kurikulum pre Service Design a Business Strategy.",
     bioSchool:
-      "Lýceum je unikátne prostredie, kde sa učíme žiť relevantne pre dnešok — praktické zručnosti, charakter, odvaha a vytrvalosť meniť seba aj svet.",
+      "Lýceum je unikátne prostredie, kde sa učíme žiť relevantne pre dnešok: praktické zručnosti, charakter, odvaha a vytrvalosť meniť seba aj svet.",
   },
   {
     id: "coyle",
     name: "Fraser Coyle",
     role: "Business English",
     bioBefore:
-      "Štúdiá v Škótsku, potom biznis a vzdelávanie — BMW, Land Rover, jazykové školy vrátane Berlitz, Narnia. Učil angličtinu a business English rôznym vekovým skupinám.",
+      "Štúdiá v Škótsku, potom biznis a vzdelávanie (BMW, Land Rover, jazykové školy vrátane Berlitz, Narnia). Učil angličtinu a business English rôznym vekovým skupinám.",
     bioLyceum:
-      "Na Lýceu učí Business English — moderné biznis koncepty a jazyk v pracovnom kontexte.",
+      "Na Lýceu učí Business English: moderné biznis koncepty a jazyk v pracovnom kontexte.",
     bioSchool:
-      "„Lýceum otvára dvere a príležitosti. Hodiny sú aktuálne, pracujú s hodnotami. Personál je otvorený a buduje vzťahy so študentmi — skvelé prostredie pre učiteľa.“",
+      "„Lýceum otvára dvere a príležitosti. Hodiny sú aktuálne, pracujú s hodnotami. Personál je otvorený a buduje vzťahy so študentmi; skvelé prostredie pre učiteľa.“",
   },
   {
     id: "stasko",
@@ -204,16 +204,16 @@ export const teamMembers: TeamMember[] = [
     bioBefore:
       "Saleziáni, teológia a pedagogika s tínedžermi, potom herectvo na VŠMU, divadlo, televízia, dabing, voiceover.",
     bioLyceum:
-      "Vyučuje NaE, stará sa o charakterové a neformálne vzdelávanie. Veľa sa pýta a počúva — na chodbách aj ako mentor.",
+      "Vyučuje NaE, stará sa o charakterové a neformálne vzdelávanie. Veľa sa pýta a počúva, na chodbách aj ako mentor.",
     bioSchool:
-      "Má rád energiu, nápady a ochotu robiť veci spolu. Lýceum je miesto, kde si sám za seba, ale nikdy nie sám — pri úspechoch aj nezdaroch, aby sme z nich vyťažili maximum.",
+      "Má rád energiu, nápady a ochotu robiť veci spolu. Lýceum je miesto, kde si sám za seba, ale nikdy nie sám pri úspechoch aj nezdaroch, aby sme z nich vyťažili maximum.",
   },
   {
     id: "matulova",
     name: "Milina Matulová",
     role: "Pilier podnikavosti",
     bioBefore:
-      "Angličtina, psychológia, MBA. Pedagogika, poradenstvo, psychológia, manažment — vo viacerých odvetviach. Školstvo sa stalo vášňou.",
+      "Angličtina, psychológia, MBA. Pedagogika, poradenstvo, psychológia, manažment vo viacerých odvetviach. Školstvo sa stalo vášňou.",
     bioLyceum:
       "Spolutvorí kurikulum, vedie tím učiteľov podnikavosti, stará sa o stáže. Verí, že svet sa dá meniť hodinu po hodine.",
     bioSchool:
@@ -224,5 +224,5 @@ export const teamMembers: TeamMember[] = [
 export const stevoQuote = {
   attribution: "Števo Machajdík, predseda správnej rady",
   text:
-    "Na obdobie, keď som mal 16 rokov, si pamätám ako na obdobie snívania. Mal som šťastie na ľudí, ktorí ma sprevádzali a challengovali — a to sa stalo mojím poslaním. Mojím prianím je, aby Lýceum C. S. Lewisa bolo presne takým prostredím pre ďalšie generácie.",
+    "Na obdobie, keď som mal 16 rokov, si pamätám ako na obdobie snívania. Mal som šťastie na ľudí, ktorí ma sprevádzali a challengovali, a to sa stalo mojím poslaním. Mojím prianím je, aby Lýceum C. S. Lewisa bolo presne takým prostredím pre ďalšie generácie.",
 };

@@ -1,1 +1,1 @@
-Fotky učiteľov — súbory {id}.jpg v tomto priečinku (pozri teacherReferences.ts).
+Fotky učiteľov: súbory {id}.jpg v tomto priečinku (pozri teacherReferences.ts).

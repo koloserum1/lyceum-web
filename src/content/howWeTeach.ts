@@ -1,4 +1,4 @@
-/** Sekcia „Ako učíme na Lýceu“ — texty pre landing. */
+/** Sekcia „Ako učíme na Lýceu“: texty pre landing. */
 
 /** Fotka v hornom úvodnom boxe (šedý shell s bodkami). */
 export const howWeTeachIntroImageSrc = "/how-we-teach/ako-ucime-intro.png";
@@ -6,21 +6,21 @@ export const howWeTeachIntroImageSrc = "/how-we-teach/ako-ucime-intro.png";
 export const howWeTeachIntroHeading = "Ako učíme na Lýceu";
 
 export const howWeTeachIntro =
-  "Učíme študentov, ako viesť kvalitný život teraz i po škole. Rozvíjame ich zručnosti v orientácii v komplexnom globálnom svete, kritické myslenie, adaptáciu na neustálu zmenu, spoluprácu, odolnosť, životaschopnosť, ako aj odvahu žiť svoje hodnoty v každodennom živote.";
+  "Pripravujeme ťa na kvalitný život teraz aj po škole. Rozvíjame tvoje schopnosti orientovať sa v komplexnom svete – kritické myslenie, prispôsobenie sa zmene, spoluprácu, odolnosť, životaschopnosť a odvahu žiť svoje hodnoty každý deň.";
 
 export const howWeTeachIntroImageAlt =
-  "Študenti na podujatí — zapojenie, spolupráca a pozitívna atmosféra";
+  "Študenti na podujatí – zapojenie, spolupráca a pozitívna atmosféra";
 
 export const howWeTeachHighlight = "Učíme inak!";
 
 /** Nadpis bloku s kategóriami pod úvodným boxom. */
-export const howWeTeachCategoriesHeading = "Čo u nás študentov čaká";
+export const howWeTeachCategoriesHeading = "Čo ťa u nás čaká";
 
 export type HowWeTeachCategory = {
   id: string;
   title: string;
   /**
-   * Jedna fotka na kategóriu — súbor v `public/how-we-teach/`.
+   * Jedna fotka na kategóriu: súbor v `public/how-we-teach/`.
    * `null` = zatiaľ bez obrázka.
    */
   imageSrc: string | null;
@@ -31,7 +31,7 @@ export type HowWeTeachCategory = {
 };
 
 /**
- * Body zoskupené do kategórií — jedna reprezentatívna fotka na tému.
+ * Body zoskupené do kategórií: jedna reprezentatívna fotka na tému.
  */
 export const howWeTeachCategories: readonly HowWeTeachCategory[] = [
   {
@@ -39,11 +39,11 @@ export const howWeTeachCategories: readonly HowWeTeachCategory[] = [
     title: "Malé triedy a spolupráca",
     imageSrc: "/how-we-teach/maletriedy.png",
     imageAlt:
-      "Učiteľka so študentmi pri spoločnej práci — malá skupina v triede",
+      "Učiteľka so študentmi pri spoločnej práci, malá skupina v triede",
     imageSide: "start",
     points: [
-      "Pracujeme v malých triedach po 17 žiakov a na niektorých predmetoch dokonca v skupinkách po 13 žiakov.",
-      "Podporujeme samostatnú aj tímovú prácu.",
+      "Učíš sa v malej triede (približne 17 spolužiakov); na niektorých predmetoch aj v menších skupinkách po 13.",
+      "Počítame s tvojou samostatnou prácou aj prácou v tíme.",
     ],
   },
   {
@@ -51,13 +51,13 @@ export const howWeTeachCategories: readonly HowWeTeachCategory[] = [
     title: "Prax, zážitky a svet okolo nás",
     imageSrc: "/how-we-teach/prax-zazitky.png",
     imageAlt:
-      "Študenti a lektori s ocenením na podujatí Climathon Bratislava — prax a zážitky mimo školy",
+      "Študenti a lektori s ocenením na podujatí Climathon Bratislava – prax a zážitky mimo školy",
     imageSide: "end",
     points: [
-      "Zameriavame sa na praktické vyučovanie a stretnutia s reálnym svetom.",
-      "Realizujeme zážitkové učenie, exkurzie a teambuildingy.",
-      "Organizujeme diskusie s expertmi.",
-      "Zabezpečíme pre študentov prax v (nielen IT) spoločnostiach.",
+      "Čakajú ťa praktické hodiny a stretnutia s reálnym svetom.",
+      "Zážitkové učenie, exkurzie a teambuildingy.",
+      "Diskusie s expertmi.",
+      "Zabezpečíme ti prax v (nielen IT) spoločnostiach.",
     ],
   },
   {
@@ -65,11 +65,11 @@ export const howWeTeachCategories: readonly HowWeTeachCategory[] = [
     title: "Odolnosť, motivácia a sprievodca",
     imageSrc: "/how-we-teach/odolnost-motivacia.png",
     imageAlt:
-      "Rozhovor v knižnici — sprievodca a študentky pri spoločnej diskusii a učení",
+      "Rozhovor v knižnici – sprievodca a študentky pri spoločnej diskusii a učení",
     imageSide: "start",
     points: [
-      "Budujeme vnútornú odolnosť, zodpovednosť a vytrvalosť.",
-      "Kladieme dôraz na prácu s vnútornou motiváciou, mentorujeme a tútorujeme.",
+      "Buduješ vnútornú odolnosť, zodpovednosť a vytrvalosť.",
+      "Pracujeme s tvojou vnútornou motiváciou – mentorujeme a tútorujeme ťa.",
     ],
   },
   {
@@ -80,10 +80,10 @@ export const howWeTeachCategories: readonly HowWeTeachCategory[] = [
       "Študenti pri praktickej práci s kladivkom a drevom pod dohľadom učiteľa",
     imageSide: "end",
     points: [
-      "Dáme študentom solídny všeobecnovzdelávací základ.",
+      "Získaš solídny všeobecnovzdelávací základ.",
     ],
   },
 ];
 
 export const howWeTeachClosing =
-  "Náš vzdelávací program konzultujeme aj s odborníkmi z firemného prostredia a HR a tak reagujeme na výzvy pracovného trhu. Naši absolventi tak získajú výhodu pripravenosti na rýchlo sa meniaci svet a vysoké nároky pracovného trhu na zručnosti 21. storočia.";
+  "Náš vzdelávací program konzultujeme aj s odborníkmi z firemného prostredia a HR, aby si bol pripravený na rýchlo sa meniaci svet a nároky pracovného trhu na zručnosti 21. storočia.";

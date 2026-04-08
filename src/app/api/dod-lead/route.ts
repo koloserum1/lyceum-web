@@ -44,7 +44,7 @@ export async function POST(req: Request) {
     }
   } else {
     console.warn(
-      "[dod-lead] SANITY_API_WRITE_TOKEN nie je nastavený — lead sa neuloží do Sanity.",
+      "[dod-lead] SANITY_API_WRITE_TOKEN nie je nastavený: lead sa neuloží do Sanity.",
     );
   }
 

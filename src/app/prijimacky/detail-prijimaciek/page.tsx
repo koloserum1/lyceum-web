@@ -3,7 +3,7 @@ import { Header } from "@/components/landing/Header";
 import { DetailPrijimaciekContent } from "@/components/landing/prijimacky/DetailPrijimaciekContent";
 
 export const metadata: Metadata = {
-  title: "Detail prijímačiek — Prijímačky — Lýceum C. S. Lewisa",
+  title: "Detail prijímačiek | Prijímačky | Lýceum C. S. Lewisa",
   description:
     "Prijímacie skúšky: písomné testy, individualizovaný vstup, hodnotenie a podmienky úspešnosti na Lýceu C. S. Lewisa.",
 };

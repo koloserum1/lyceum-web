@@ -41,7 +41,7 @@ function resultBand(yes: number, total: number): { title: string; body: string }
     return {
       title: "Vyzerá to, že ti Lýceum môže sadnúť",
       body:
-        "Veľa „áno“ znamená, že projekty, feedback a tímová práca ti nie sú cudzie — presne na tom staviame deň čo deň.",
+        "Veľa „áno“ znamená, že projekty, feedback a tímová práca ti nie sú cudzie – presne na tom staviame deň čo deň.",
     };
   }
   if (ratio >= 0.6) {
@@ -55,13 +55,13 @@ function resultBand(yes: number, total: number): { title: string; body: string }
     return {
       title: "Je čo prediskutovať",
       body:
-        "Nižší počet „áno“ nemusí znamenať zlú školu — skôr iné očakávania. Otvorená debata na dňoch otvorených dverí ti pomôže zistiť, či je Lýceum pre teba.",
+        "Nižší počet „áno“ nemusí znamenať zlú školu; skôr ide o iné očakávania. Otvorená debata na dňoch otvorených dverí ti pomôže zistiť, či je Lýceum pre teba.",
     };
   }
   return {
     title: "Skús ešte porozmýšľať",
     body:
-      "Projektová škola nie je pre každého — a to je v poriadku. Ak ťa zaujíma len časť toho, čo robíme, napíš nám alebo príď na DOD.",
+      "Projektová škola nie je pre každého, a to je v poriadku. Ak ťa zaujíma len časť toho, čo robíme, napíš nám alebo príď na DOD.",
   };
 }
 
@@ -166,7 +166,8 @@ export function FitQuiz() {
             Sadlo by ti Lýceum?
           </h2>
           <p className="mx-auto mt-3 mb-0 max-w-lg text-[15px] font-normal leading-relaxed text-brand-fg3 md:mt-4 md:text-base">
-            Rýchly check — 10 otázok. Otestuj sa, či je pre Teba Lýceum správna škola.
+            Odpovedz na desať otázok o projektoch, spolupráci a spôsobe práce v škole – uvidíš,
+            či ti náš prístup sedí (nie psychotest).
           </p>
         </header>
 

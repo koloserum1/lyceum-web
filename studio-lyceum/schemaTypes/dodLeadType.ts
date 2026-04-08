@@ -1,11 +1,11 @@
 import { defineField, defineType } from "sanity";
 
 /**
- * Záznam z DOD popupu (odoslaný e-mail) — ukladá API, ak je nastavený write token.
+ * Záznam z DOD popupu (odoslaný e-mail): ukladá API, ak je nastavený write token.
  */
 export const dodLeadType = defineType({
   name: "dodLead",
-  title: "Záujem — e-mail z popupu",
+  title: "Záujem: e-mail z popupu",
   type: "document",
   fields: [
     defineField({

@@ -1,11 +1,11 @@
 import { defineField, defineType } from "sanity";
 
 /**
- * Popup k prijímačkam — rovnaký vzor ako DOD, plus zvýraznený termín.
+ * Popup k prijímačkam: rovnaký vzor ako DOD, plus zvýraznený termín.
  */
 export const prijimackyPopupType = defineType({
   name: "prijimackyPopup",
-  title: "Prijímačky — popup",
+  title: "Prijímačky: popup",
   type: "document",
   fields: [
     defineField({
