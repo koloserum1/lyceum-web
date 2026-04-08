@@ -22,6 +22,10 @@ export const prijimackyPages = [
     slug: "skolne-a-stipendia",
     label: "Školné a štipendiá",
   },
+  {
+    slug: "vysledky-prijimacich-skusok",
+    label: "Výsledky prijímacích skúšok",
+  },
 ] as const;
 
 export type PrijimackySlug = (typeof prijimackyPages)[number]["slug"];

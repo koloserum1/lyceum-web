@@ -17,6 +17,7 @@ export function generateStaticParams() {
     "vyskusaj-si-ulohy",
     "terminy-vysledky-a-zapis",
     "skolne-a-stipendia",
+    "vysledky-prijimacich-skusok",
   ]);
   return prijimackyPages
     .filter((p) => !staticSlugs.has(p.slug))

@@ -11,6 +11,7 @@ const PRIJIMACKY_PATHS = [
   "vyskusaj-si-ulohy",
   "terminy-vysledky-a-zapis",
   "skolne-a-stipendia",
+  "vysledky-prijimacich-skusok",
 ] as const;
 
 const STATIC_PATHS = [
