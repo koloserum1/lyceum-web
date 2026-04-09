@@ -200,7 +200,10 @@ export function Header() {
                 }}
               >
                 Pre študentov
-                <span className="inline-block text-[0.65em] opacity-75" aria-hidden>
+                <span
+                  className="inline-block translate-y-px text-[1.12em] leading-none opacity-85"
+                  aria-hidden
+                >
                   ▾
                 </span>
               </button>
@@ -254,7 +257,10 @@ export function Header() {
                 }}
               >
                 Prijímačky
-                <span className="inline-block text-[0.65em] opacity-75" aria-hidden>
+                <span
+                  className="inline-block translate-y-px text-[1.12em] leading-none opacity-85"
+                  aria-hidden
+                >
                   ▾
                 </span>
               </button>
@@ -348,7 +354,7 @@ export function Header() {
               >
                 <span>Pre študentov</span>
                 <span
-                  className={`text-sm opacity-70 transition-transform ${preStudentovMobileOpen ? "rotate-180" : ""}`}
+                  className={`inline-flex shrink-0 text-xl leading-none opacity-85 transition-transform ${preStudentovMobileOpen ? "rotate-180" : ""}`}
                   aria-hidden
                 >
                   ▾
@@ -391,17 +397,15 @@ export function Header() {
             <div className="flex flex-col">
               <button
                 type="button"
-                className={`flex w-full items-center justify-between rounded-lg border border-transparent px-3 py-2.5 text-left text-[17px] font-sans text-brand-fg1 transition-colors ${
-                  prijimackyMobileOpen ? "bg-black/[0.04]" : "hover:bg-black/[0.03]"
-                }`}
+                className={`${linkClassMobile} flex w-full items-center justify-between text-left font-sans`}
                 aria-expanded={prijimackyMobileOpen}
                 aria-controls="prijimacky-submenu-mobile"
                 id="prijimacky-trigger-mobile"
                 onClick={() => setPrijimackyMobileOpen((v) => !v)}
               >
-                <span className="font-medium">Prijímačky</span>
+                <span>Prijímačky</span>
                 <span
-                  className={`text-sm text-brand-fg3 transition-transform ${prijimackyMobileOpen ? "rotate-180" : ""}`}
+                  className={`inline-flex shrink-0 text-xl leading-none opacity-85 transition-transform ${prijimackyMobileOpen ? "rotate-180" : ""}`}
                   aria-hidden
                 >
                   ▾
@@ -410,7 +414,7 @@ export function Header() {
               {prijimackyMobileOpen ? (
                 <ul
                   id="prijimacky-submenu-mobile"
-                  className="m-0 mt-2 flex list-none flex-col gap-0.5 rounded-xl border border-black/[0.06] bg-white p-2 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.08)]"
+                  className="m-0 mb-1 list-none border-l-2 border-brand-primary/80 pl-2"
                   role="list"
                 >
                   {prijimackyPages.map((p) => (
@@ -418,7 +422,7 @@ export function Header() {
                       <Link
                         href={`/prijimacky/${p.slug}`}
                         data-nav-link
-                        className={prijimackySubmenuLinkClass}
+                        className={`${linkClassMobile} block pl-2 text-[16px] text-brand-fg1`}
                         onClick={() => {
                           setOpen(false);
                           setPrijimackyMobileOpen(false);

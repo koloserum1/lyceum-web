@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/landing/Header";
+import { PillarGalleryGrid } from "@/components/piliere/PillarGalleryGrid";
 import { getPillarBySlug, pillars } from "@/content/pillars";
 
 const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
@@ -27,6 +28,8 @@ export default async function PillarPage({ params }: Props) {
   const { slug } = await params;
   const pillar = getPillarBySlug(slug);
   if (!pillar) notFound();
+
+  const galleryMosaic = slug === "podnikavost" || slug === "charakter";
 
   return (
     <>
@@ -73,15 +76,45 @@ export default async function PillarPage({ params }: Props) {
             <p className="m-0 mt-6 text-[15px] font-normal leading-relaxed text-brand-fg3 md:text-base">
               {pillar.body}
             </p>
-            <p className="m-0 mt-10">
+          </article>
+
+          {pillar.gallery && pillar.gallery.length > 0 ? (
+            <section
+              className={`mt-10 border-t border-black/[0.06] pt-8 md:pt-10 ${
+                galleryMosaic
+                  ? "w-full max-w-[min(64rem,calc(100vw-2rem))] xl:max-w-[68rem]"
+                  : "max-w-3xl"
+              }`}
+              aria-labelledby={`pillar-gallery-${slug}`}
+            >
+              <h2
+                id={`pillar-gallery-${slug}`}
+                className="m-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-fg3"
+              >
+                {pillar.galleryTitle ?? "Ďalšie zábery"}
+              </h2>
+              {pillar.galleryIntro ? (
+                <p className="m-0 mt-3 max-w-2xl text-[14px] leading-relaxed text-brand-fg2 md:text-[15px]">
+                  {pillar.galleryIntro}
+                </p>
+              ) : null}
+              <div className={galleryMosaic ? "mt-6" : "mt-4"}>
+                <PillarGalleryGrid
+                  images={pillar.gallery}
+                  mosaic={galleryMosaic}
+                />
+              </div>
+            </section>
+          ) : null}
+
+          <div className="mt-10 max-w-3xl">
             <Link
               href={`/#pillar-${slug}`}
               className="inline-flex items-center rounded-full border border-black/12 bg-brand-bg2 px-5 py-2.5 text-sm font-medium text-brand-fg1 no-underline transition hover:border-black/20 hover:bg-white"
             >
               ← Späť na tri piliere
             </Link>
-            </p>
-          </article>
+          </div>
         </div>
       </main>
     </>
