@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vonku ako vnútri — redizajn webu Lýcea</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand-primary: #b9a0e0;
+      --brand-secondary: #f2d56e;
+      --brand-purple-deep: #562082;
+      --brand-bg2: #faf9fc;
+      --brand-fg1: #1d1d1f;
+      --brand-fg3: #6e6e73;
+      --font-heading: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+      --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    }
+    @page { size: A4; margin: 22mm; }
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: var(--font-sans);
+      color: var(--brand-fg1);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .sheet {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 48px 32px 40px;
+      max-width: 210mm;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 85% 55% at 92% 8%, rgba(185, 160, 224, 0.35) 0%, transparent 52%),
+        radial-gradient(ellipse 75% 50% at 5% 92%, rgba(242, 213, 110, 0.38) 0%, transparent 48%),
+        linear-gradient(168deg, var(--brand-bg2) 0%, #ffffff 48%, #fffdf6 100%);
+    }
+    .sheet::before,
+    .sheet::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.2;
+    }
+    .sheet::before {
+      width: 120mm;
+      height: 120mm;
+      background: var(--brand-primary);
+      top: -35mm;
+      right: -25mm;
+    }
+    .sheet::after {
+      width: 90mm;
+      height: 90mm;
+      background: var(--brand-secondary);
+      bottom: -20mm;
+      left: -20mm;
+    }
+    .title-block {
+      text-align: center;
+      max-width: 32rem;
+      position: relative;
+      z-index: 1;
+    }
+    h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.65rem, 4vw, 2rem);
+      font-weight: 700;
+      line-height: 1.12;
+      margin: 0 0 0.45rem;
+      letter-spacing: -0.03em;
+    }
+    .subtitle {
+      font-size: clamp(1rem, 2.4vw, 1.15rem);
+      font-weight: 500;
+      color: var(--brand-fg3);
+      line-height: 1.5;
+      margin: 0 0 2.5rem;
+    }
+    .rule {
+      width: 72px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brand-purple-deep), var(--brand-primary), var(--brand-secondary));
+      margin: 0 auto 2.25rem;
+      border-radius: 4px;
+    }
+    .authors {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      font-weight: 600;
+    }
+    @media print {
+      html, body { background: #fff; }
+      .sheet { min-height: auto; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="title-block">
+      <h1>Vonku ako vnútri</h1>
+      <p class="subtitle">Redizajn webu a vonkajšej komunikácie Lýcea</p>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="authors">Matej Hrica<br />Hanka Fialová</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { siteContact } from "@/content/siteContact";
+import { CONTENT_SHELL_CLASS } from "@/lib/content-shell";
 
-const CX = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
+const CX = CONTENT_SHELL_CLASS;
 
 const iconBtn =
   "inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-fg1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2";
@@ -84,7 +85,15 @@ function FooterSocialNav() {
   );
 }
 
-export function SiteContactFooter() {
+type SiteContactFooterProps = {
+  /** Pridá triedy k vnútorným shell kontajnerom (napr. report-print-shell pri tlači). */
+  shellExtraClassName?: string;
+};
+
+export function SiteContactFooter({
+  shellExtraClassName = "",
+}: SiteContactFooterProps = {}) {
+  const shell = [CX, shellExtraClassName].filter(Boolean).join(" ");
   return (
     <>
       <section
@@ -92,7 +101,7 @@ export function SiteContactFooter() {
         aria-labelledby="kontakt-heading"
         className="scroll-mt-24 border-t border-black/[0.06] bg-brand-bg1 py-12 md:scroll-mt-28 md:py-16"
       >
-        <div className={CX}>
+        <div className={shell}>
           <h2
             id="kontakt-heading"
             className="font-heading m-0 text-[clamp(1.85rem,1.15rem+2.5vw,2.85rem)] leading-[1.1] tracking-tight text-brand-fg1"
@@ -171,7 +180,7 @@ export function SiteContactFooter() {
             {/* Text a ikony nad svetlým logom, spodok stránky */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col justify-end gap-4 pt-8 pb-3.5 md:gap-5 md:pt-10 md:pb-4">
               <div
-                className={`${CX} pointer-events-auto flex flex-col gap-4 md:gap-5`}
+                className={`${shell} pointer-events-auto flex flex-col gap-4 md:gap-5`}
               >
                 <FooterSocialNav />
 

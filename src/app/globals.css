@@ -433,3 +433,22 @@ header.site-header nav button[data-nav-link] {
   font-weight: 400 !important;
   letter-spacing: -0.02em;
 }
+
+/* /landing-preview: jednotné bočné okraje (screenshot + tlač po stranách) */
+.report-print-page {
+  @apply min-h-full;
+}
+
+@media print {
+  .report-print-page {
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .report-print-shell {
+    max-width: none !important;
+    padding-left: 18mm !important;
+    padding-right: 18mm !important;
+  }
+}

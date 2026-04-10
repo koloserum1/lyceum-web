@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<!-- Tlač: Chrome / Edge → Ctrl+P → Uložiť ako PDF → A4. Obrázky: vložte <img> do .figure alebo nahraďte .figure. -->
+<html lang="sk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vonku ako vnútri — odborný report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* Farby a typografia ako na landing page (globals.css) */
+    :root {
+      --brand-primary: #b9a0e0;
+      --brand-secondary: #f2d56e;
+      --brand-tertiary: #fceca8;
+      --brand-accent: #d8c6f0;
+      --brand-purple-deep: #562082;
+      --brand-bg1: #ffffff;
+      --brand-bg2: #faf9fc;
+      --brand-fg1: #1d1d1f;
+      --brand-fg3: #6e6e73;
+      --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+      --font-heading: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+    }
+
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    html {
+      font-size: 10.5pt;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      color: var(--brand-fg1);
+      background: linear-gradient(180deg, #ebe8f2 0%, #f5f3f9 40%, #faf9fc 100%);
+      line-height: 1.55;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 12px;
+      padding: 18mm 20mm 24mm;
+      background: var(--brand-bg1);
+      position: relative;
+      page-break-after: always;
+      box-shadow: 0 4px 24px -8px rgba(86, 32, 130, 0.12), 0 1px 3px rgba(0,0,0,.06);
+    }
+    /* jemný ľavý pás ako vizuálna linka s webom */
+    .page:not(.page--cover)::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, var(--brand-purple-deep) 0%, var(--brand-primary) 42%, var(--brand-secondary) 100%);
+      border-radius: 0 3px 3px 0;
+      opacity: 0.9;
+    }
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; box-shadow: none; page-break-after: always; }
+    }
+
+    .page--cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 28mm;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 85% 55% at 92% 8%, rgba(185, 160, 224, 0.35) 0%, transparent 52%),
+        radial-gradient(ellipse 75% 50% at 5% 92%, rgba(242, 213, 110, 0.38) 0%, transparent 48%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(216, 198, 240, 0.12) 0%, transparent 60%),
+        linear-gradient(168deg, var(--brand-bg2) 0%, #ffffff 48%, #fffdf6 100%);
+    }
+    .page--cover::before,
+    .page--cover::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.2;
+    }
+    .page--cover::before {
+      width: 120mm;
+      height: 120mm;
+      background: var(--brand-primary);
+      top: -35mm;
+      right: -25mm;
+    }
+    .page--cover::after {
+      width: 90mm;
+      height: 90mm;
+      background: var(--brand-secondary);
+      bottom: -20mm;
+      left: -20mm;
+    }
+    .page--cover .cover-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 34rem;
+    }
+    .page--cover .rule {
+      width: 72px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brand-purple-deep), var(--brand-primary), var(--brand-secondary));
+      margin: 0 auto 2.25rem;
+      border-radius: 4px;
+    }
+    .page--cover h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.65rem, 4vw, 2rem);
+      font-weight: 700;
+      margin: 0 0 0.45rem;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      color: var(--brand-fg1);
+    }
+    .page--cover .subtitle {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--brand-fg3);
+      margin: 0 0 2.5rem;
+      max-width: 28rem;
+      line-height: 1.45;
+    }
+    .page--cover .authors {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.85;
+      color: var(--brand-fg1);
+    }
+
+    .page--toc {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 22mm;
+      background: linear-gradient(135deg, #ffffff 0%, var(--brand-bg2) 100%);
+    }
+    .page--toc h2 {
+      margin-bottom: 0.25rem;
+    }
+    .page--toc h2::before {
+      background: linear-gradient(180deg, var(--brand-secondary) 0%, var(--brand-primary) 100%);
+    }
+    .page--toc .toc-en {
+      font-family: var(--font-sans);
+      font-size: 9pt;
+      color: var(--brand-fg3);
+      margin: 0 0 1.25rem;
+      font-weight: 500;
+    }
+
+    .page-footer {
+      position: absolute;
+      left: 20mm;
+      right: 20mm;
+      bottom: 12mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-sans);
+      font-size: 8.5pt;
+      color: var(--brand-fg3);
+      padding-top: 0.45rem;
+      border-top: 2px solid rgba(185, 160, 224, 0.45);
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin: 0 0 0.65rem;
+      color: var(--brand-fg1);
+      letter-spacing: -0.02em;
+      position: relative;
+      padding-left: 0.85rem;
+    }
+    h2::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.12em;
+      bottom: 0.12em;
+      width: 4px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, var(--brand-purple-deep), var(--brand-primary));
+    }
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 0.98rem;
+      font-weight: 700;
+      margin: 0.85rem 0 0.4rem;
+      color: var(--brand-fg1);
+      letter-spacing: -0.02em;
+    }
+    h4 {
+      font-family: var(--font-sans);
+      font-size: 9pt;
+      font-weight: 600;
+      margin: 0.6rem 0 0.3rem;
+      color: var(--brand-fg3);
+    }
+    p {
+      margin: 0 0 0.5rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+    .meta {
+      font-size: 9.5pt;
+      margin-bottom: 0.85rem;
+      line-height: 1.55;
+      padding: 0.65rem 0.85rem;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(185, 160, 224, 0.12) 0%, rgba(242, 213, 110, 0.1) 100%);
+      border: 1px solid rgba(86, 32, 130, 0.08);
+    }
+    .meta strong { font-weight: 600; color: var(--brand-fg1); }
+
+    .toc {
+      font-size: 10pt;
+      margin: 0;
+    }
+    .toc ol {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      counter-reset: toc;
+    }
+    .toc li {
+      counter-increment: toc;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+      padding: 0.35rem 0 0.35rem 0.5rem;
+      border-radius: 10px;
+      transition: background 0.15s ease;
+    }
+    .toc li::before {
+      content: counter(toc) ".";
+      display: inline-block;
+      width: 1.5rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      color: var(--brand-purple-deep);
+      opacity: 0.85;
+    }
+    .toc li:hover { background: rgba(185, 160, 224, 0.08); }
+    .toc a {
+      color: var(--brand-fg1);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .toc a:hover { color: var(--brand-purple-deep); text-decoration: underline; text-underline-offset: 3px; }
+
+    .scope {
+      font-family: var(--font-sans);
+      font-size: 8pt;
+      color: var(--brand-fg3);
+      font-style: italic;
+      margin: -0.2rem 0 0.55rem;
+    }
+
+    .figure {
+      border: 1px dashed rgba(185, 160, 224, 0.65);
+      background: linear-gradient(145deg, rgba(250, 249, 252, 1) 0%, rgba(252, 236, 168, 0.15) 100%);
+      border-radius: 18px;
+      min-height: 48mm;
+      margin: 0.45rem 0 0.4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8mm 6mm;
+      text-align: center;
+      page-break-inside: avoid;
+      box-shadow: 0 12px 36px -28px rgba(86, 32, 130, 0.25), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .figure--tall { min-height: 62mm; }
+    .figure--wide-short { min-height: 38mm; }
+    .figure--pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      min-height: 44mm;
+      border: none;
+      background: transparent;
+      padding: 0;
+      box-shadow: none;
+    }
+    .figure--pair .cell {
+      border: 1px dashed rgba(185, 160, 224, 0.55);
+      background: linear-gradient(160deg, var(--brand-bg2) 0%, rgba(216, 198, 240, 0.2) 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5mm;
+      font-size: 9pt;
+      color: var(--brand-fg3);
+      font-family: var(--font-sans);
+      box-shadow: 0 8px 24px -20px rgba(86, 32, 130, 0.2);
+    }
+    .figure-label {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 9pt;
+      color: var(--brand-purple-deep);
+      margin-bottom: 0.15rem;
+    }
+    .figure-hint {
+      font-size: 8.5pt;
+      color: var(--brand-fg3);
+      max-width: 95%;
+      font-family: var(--font-sans);
+    }
+
+    ul.rubric {
+      margin: 0.3rem 0 0.75rem;
+      padding-left: 1.15rem;
+      font-size: 9.5pt;
+      line-height: 1.42;
+      font-family: var(--font-sans);
+    }
+    ul.rubric li {
+      margin-bottom: 0.2rem;
+    }
+    ul.rubric li::marker {
+      color: var(--brand-primary);
+      font-size: 0.85em;
+    }
+    ul.compact { font-size: 9.5pt; margin: 0.25rem 0 0.5rem; padding-left: 1.1rem; font-family: var(--font-sans); }
+    ul.compact li { margin-bottom: 0.15rem; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+      margin: 0.4rem 0 0.55rem;
+      page-break-inside: avoid;
+      font-family: var(--font-sans);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px -22px rgba(86, 32, 130, 0.12);
+    }
+    th, td {
+      border: 0.5pt solid rgba(185, 160, 224, 0.35);
+      padding: 0.4rem 0.5rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: linear-gradient(180deg, rgba(185, 160, 224, 0.35) 0%, rgba(216, 198, 240, 0.25) 100%);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 8pt;
+      color: var(--brand-fg1);
+    }
+    tbody tr:nth-child(even) td {
+      background: rgba(250, 249, 252, 0.6);
+    }
+
+    .footnotes {
+      font-size: 8.5pt;
+      margin-top: 0.65rem;
+      padding-top: 0.45rem;
+      border-top: 2px solid rgba(185, 160, 224, 0.35);
+      font-family: var(--font-sans);
+    }
+    .footnotes p { margin-bottom: 0.32rem; text-align: left; }
+    sup { font-size: 0.75em; color: var(--brand-purple-deep); font-weight: 600; }
+    a { color: var(--brand-purple-deep); font-weight: 500; }
+    strong { font-weight: 600; }
+
+    /* Kontinuálne strany: jemný „papier“ ako na webe */
+    .page:not(.page--cover):not(.page--toc) {
+      background: linear-gradient(180deg, #ffffff 0%, var(--brand-bg2) 100%);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1 — Úvodná strana (template: len názov + mená) -->
+  <section class="page page--cover">
+    <div class="cover-inner">
+      <h1>Vonku ako vnútri</h1>
+      <p class="subtitle">Redizajn webu a vonkajšej komunikácie Lýcea</p>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="authors">Matej Hrica<br />Hanka Fialová</p>
+    </div>
+  </section>
+
+  <!-- 2 — Úvod — kontext projektu (0,5 strany) -->
+  <section class="page" id="uvod">
+    <p class="meta">
+      <strong>Autori:</strong> Matej Hrica, Hanka Fialová<br />
+      <strong>Škola:</strong> SOŠ Lýceum C. S. Lewisa<br />
+      <strong>Školský rok:</strong> 2025/2026<br />
+      <strong>Konzultanti:</strong> Calder (vizuál a identita), PS:Digital (odborná stáž)
+    </p>
+
+    <h2>Úvod: kontext projektu</h2>
+    <p class="scope">Povinný rozsah: cca 0,5 strany</p>
+
+    <p><strong>Elevator pitch.</strong> Uchádzač alebo rodič má v priebehu pár sekúnd pochopiť, čo Lýceum ponúka, čím sa líši a kde nájde štúdium, prijímačky, podmienky a kontakt — bez blúdenia. Prvý kontakt je často web, nie brána; projekt spája <strong>obsah</strong>, <strong>identitu</strong> a <strong>technickú platformu</strong>, ktorú škola vie sama udržiavať.<sup>1</sup></p>
+
+    <p><strong>Prečo sme si vybrali tento projekt a túto tému.</strong> Matej pokrýva vývoj a infraštruktúru, Hanka obsah a vizuál — vieme prejsť od výskumu v komunite až po funkčný web. Téma nie je abstraktná: škola potrebuje dôveryhodnú prezentáciu medzi konkurenciou stredných škôl.<sup>4</sup></p>
+
+    <p><strong>Projekt samostatne alebo s firmou?</strong> Ide o <strong>školský projekt</strong>, nie plnú zákazku pre externú agentúru. <strong>Calder</strong> — konzultácie k identite a spätnej väzbe k vizuálnym návrhom. <strong>PS:Digital</strong> — stáž, odborný pohľad z praxe v digitáli. Firma nepreberá vývoj ani rozhodovanie; <strong>výstupy, dokumentáciu a komunikáciu s vedením držíme my</strong> so školou.</p>
+
+    <p><strong>Rozdelenie v dvojici a čo som ja vytvoril</strong></p>
+    <p><strong>Matej Hrica</strong> — moje výstupy: architektúra webu, výber a nastavenie CMS (Sanity), repozitár (GitHub), nasadenie (Netlify), špecifikácia pre vývoj, technická dokumentácia pre školu.</p>
+    <p><strong>Hanka Fialová</strong> — moje výstupy: copywriting, vizuál stránok a komponentov, práca s fotografiou, mockupy, súlad s identitou, podklady pre konzultácie Calder.</p>
+    <p><strong>Spoločne sme vytvorili:</strong> kvantitatívny výskum (dotazník), analýzu dát, podklady pre vedenie, iterácie podľa spätnej väzby.</p>
+
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 3 — Table of contents — samostatná strana -->
+  <section class="page page--toc" id="toc-page">
+    <h2 id="toc">Obsah</h2>
+    <p class="toc-en">Table of contents</p>
+    <nav class="toc" aria-label="Obsah dokumentu">
+      <ol>
+        <li><a href="#uvod">Úvod — kontext projektu</a></li>
+        <li><a href="#analyza">Analýza problému</a></li>
+        <li><a href="#navrh">Návrh riešenia</a></li>
+        <li><a href="#mvp1">MVP (do decembra)</a></li>
+        <li><a href="#mvp2">Druhá iterácia MVP (do marca)</a></li>
+        <li><a href="#vysledky">Výsledky projektu</a></li>
+        <li><a href="#zaver">Záver</a></li>
+        <li><a href="#zdroje">Zdroje</a></li>
+      </ol>
+    </nav>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 4 — Analýza problému (1,5 strany) — začiatok -->
+  <section class="page" id="analyza">
+    <h2>Analýza problému</h2>
+    <p class="scope">Povinný rozsah: cca 1,5 strany vrátane grafov a tabuliek</p>
+
+    <h3>Krátke predstavenie problematiky a oblasti</h3>
+    <p>Lýceum je vnímané ako škola s praxou, technológiami a projektmi. Vonkajšia komunikácia (web, vizuál) ten obraz ešte nestihla držať pokope; identita sa ešte stabilizuje. Keď hodnoty nie sú na webe čitateľné, škola môže pôsobiť slabšie, než naozaj je.<sup>2</sup></p>
+
+    <h3>Analýza vstupov od „klientov“ (komunita školy)</h3>
+    <p><strong>Prečo sme použili túto metódu.</strong> Kvantitatívny dotazník (Google Forms) — širšia vzorka ako pri pár rozhovoroch, porovnateľné odpovede, čísla ako podklad pre vedenie.<sup>3</sup></p>
+    <p><strong>Koľko ľudí a akým spôsobom.</strong> <strong>205 respondentov</strong> — študenti, učitelia, rodičia. Distribúcia: školský Google Chat a e-mail rodičom; aktívny zber dva týždne, potom mesiac pasívne.</p>
+
+    <h3>Hlavná časť: 1–2 grafy a opis zistení</h3>
+
+    <div class="figure figure--tall" id="fig1">
+      <div class="figure-label">Graf 1 — Respondenti podľa ročníka</div>
+      <div class="figure-hint">Vložte graf alebo tabuľku.</div>
+    </div>
+    <ul class="rubric">
+      <li>Čo sme robili: rozloženie odpovedí podľa ročníka.</li>
+      <li>Čo ukazuje graf: podiel prvákov až štvrtákov.</li>
+      <li>Čo musí čitateľ vedieť: zastúpenie nie je rovnomerné (najviac prváci, najmenej tretiaci).</li>
+      <li>Čo to znamená pre projekt: skew pri otvorených odpovediach; pri ďalšom výskume doplniť tretiakov.</li>
+    </ul>
+
+    <div class="figure" id="fig2">
+      <div class="figure-label">Graf 2 — „Vystihuje vizuálna identita to, akí naozaj ste?“ (1–5)</div>
+      <div class="figure-hint">Stĺpcový alebo koláčový graf.</div>
+    </div>
+    <ul class="rubric">
+      <li>Čo ukazuje: rozloženie hodnotení zhody identity s realitou.</li>
+      <li>Kľúčové: väčšina 3–4, málo 5 — identita znášaná, nie silná.</li>
+      <li>Pre projekt: zmysel zmeny = zosúladiť vonkajší obraz so skúsenosťou zo školy.</li>
+    </ul>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 5 — Analýza — pokračovanie (doplnkový výstup + benchmark) -->
+  <section class="page">
+    <h3>Doplnkový graf (voliteľný tretí výstup)</h3>
+    <div class="figure" id="fig3">
+      <div class="figure-label">Graf 3 — Ako často navštevujete web Lýcea?</div>
+      <div class="figure-hint">Frekvencia.</div>
+    </div>
+    <ul class="rubric">
+      <li>Čo ukazuje: web väčšina nepoužíva ako bežný kanál.</li>
+      <li>Pre projekt: prvý kontakt musí stačiť; škola musí ľudí na web aktívne smerovať.</li>
+    </ul>
+
+    <p>Z otvorených odpovedí: <strong>podnikanie</strong>, <strong>prax</strong>, <strong>digitalizácia</strong>, <strong>tímová práca</strong>; <strong>komunita</strong>, <strong>bezpečné prostredie</strong>, <strong>kreativita</strong>. Škola je vnímaná technologicko-prakticky aj ľudsky podporne — oba pásy musia byť na webe čitateľné naraz.</p>
+
+    <h3>Prehľad existujúcich riešení (benchmark)</h3>
+    <div class="figure figure--pair">
+      <div class="cell" id="fig4">Obrázok 4<br /><span style="font-weight:400;font-size:8.5pt">Iná škola A</span></div>
+      <div class="cell" id="fig5">Obrázok 5<br /><span style="font-weight:400;font-size:8.5pt">Iná škola B</span></div>
+    </div>
+    <ul class="rubric">
+      <li>Čo berieme: jasnú navigáciu, viditeľné termíny.</li>
+      <li>Čomu sa vyhneme: generická šablóna bez väzby na Lýceum.</li>
+    </ul>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 6 — Návrh riešenia (2–3 strany) — strana 1 -->
+  <section class="page" id="navrh">
+    <h2>Návrh riešenia</h2>
+    <p class="scope">Povinný rozsah: cca 2–3 strany vrátane wireframu, plánu, KPI</p>
+
+    <h3>Predstavenie riešenia</h3>
+    <p>Nový web: texty z výskumu, vizuál (mockupy, typografia, farby, komponenty), stack s <strong>CMS</strong> — škola upravuje obsah bez programátora pri každej zmene. Technicky: <strong>Next.js</strong>, <strong>Sanity</strong>, <strong>GitHub</strong>, <strong>Netlify</strong> (<code>*.netlify.app</code>, neskôr vlastná doména).</p>
+
+    <div class="figure figure--tall" id="fig6">
+      <div class="figure-label">Wireframe / Figma — hero a navigácia</div>
+      <div class="figure-hint">Export; voliteľne QR na náhľad.</div>
+    </div>
+    <ul class="rubric">
+      <li>Čo ukazuje: hierarchia informácií.</li>
+      <li>Pre používateľa: kde je štúdium, prijímačky, kontakt.</li>
+      <li>Pre projekt: logika ide do webu a CMS schém.</li>
+    </ul>
+
+    <p><strong>Projektový plán / časť marketingu smerom von.</strong> Po spustení bude škola musieť ľudí smerovať na web (nástenky, rodičovské, hodiny) — súčasť komunikačnej stratégie, nie len samotný web.</p>
+
+    <h3>Riešenie z pohľadu používateľa alebo klienta</h3>
+    <p>Študent: atmosféra, projekty — autentické fotky a texty. Rodič: podmienky, termíny, poplatky, kontakt. Uchádzač: odlíšenie, čo sa naučí.</p>
+
+    <div class="figure" id="fig7">
+      <div class="figure-label">Časový plán — Gantt alebo os</div>
+      <div class="figure-hint">Výskum → identita → špecifikácia → obsah → vývoj → odovzdanie.</div>
+    </div>
+    <ul class="rubric">
+      <li>Prvá polovica roka: dáta a identita.</li>
+      <li>Druhá: web, obsah, implementácia.</li>
+    </ul>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 7 — Návrh — KPI december + marec -->
+  <section class="page">
+    <h3>Tabuľka KPI — december a marec</h3>
+    <p style="font-size:9.5pt;margin-bottom:0.35rem">Údaje musia byť <strong>identické</strong> s dokumentom <em>Updated Project Proposal</em> v Google Classroom.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Výstup</th>
+          <th>December</th>
+          <th>Marec</th>
+          <th>Zodpovednosť</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Výskum komunity (min. 100 odpovedí)</td>
+          <td>min. 100</td>
+          <td>—</td>
+          <td>obaja</td>
+        </tr>
+        <tr>
+          <td>Brand piliere + prvé vizuály identity</td>
+          <td>podľa UPP</td>
+          <td>—</td>
+          <td>Hanka (+ Calder)</td>
+        </tr>
+        <tr>
+          <td>Workshop so školou</td>
+          <td>podľa UPP</td>
+          <td>—</td>
+          <td>obaja</td>
+        </tr>
+        <tr>
+          <td>Špecifikácia webu</td>
+          <td>—</td>
+          <td>podľa UPP</td>
+          <td>Matej</td>
+        </tr>
+        <tr>
+          <td>Obsah + mockupy</td>
+          <td>—</td>
+          <td>podľa UPP</td>
+          <td>Hanka</td>
+        </tr>
+        <tr>
+          <td>Funkčný web / staging</td>
+          <td>—</td>
+          <td>podľa UPP</td>
+          <td>Matej</td>
+        </tr>
+        <tr>
+          <td>Kvalitatívne doplnenie</td>
+          <td>—</td>
+          <td>podľa UPP</td>
+          <td>obaja</td>
+        </tr>
+      </tbody>
+    </table>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 8 — MVP december — strana 1 z 3 -->
+  <section class="page" id="mvp1">
+    <h2>MVP (do decembra)</h2>
+    <p class="scope">Povinný rozsah: cca 3 strany vrátane vizuálov a grafov</p>
+
+    <h3>Predstavenie MVP</h3>
+    <p>Prvé MVP: <strong>dôkaz problému a smer identite</strong> pred veľkou stavbou webu — nie finálny verejný launch na produkčnej doméne.</p>
+
+    <div class="figure figure--wide-short">
+      <div class="figure-label">Diagram / vizuál — moodboard</div>
+    </div>
+    <div class="figure figure--wide-short" style="margin-top:6px">
+      <div class="figure-label">Vizuál — varianty loga / prvky identity</div>
+    </div>
+
+    <h3>Z akých častí sa skladá naše riešenie (prvé MVP)</h3>
+    <ul class="compact">
+      <li>dotazník (Google Forms), analýza otvorených odpovedí;</li>
+      <li>brand piliere, prvé vizuálne návrhy identity.</li>
+    </ul>
+
+    <h3>Ako sme ho vytvorili a čo bolo náročné</h3>
+    <p>Otázky otestované interne, potom distribúcia. Najťažšie: ručná kategorizácia otvorených textov bez skreslenia v prospech jednej skupiny.</p>
+
+    <h3>Ako toto MVP rieši problém</h3>
+    <p>Dáva škole <strong>čísla a smer</strong> namiesto pocitu „niečo treba zmeniť“; podklad pre druhý polrok (web a obsah).</p>
+
+    <div class="figure" id="fig10">
+      <div class="figure-label">Graf — 205 odpovedí podľa skupiny (študent / učiteľ / rodič)</div>
+    </div>
+    <ul class="rubric">
+      <li>Čo ukazuje: váha študentských hlasov vo vzorke.</li>
+      <li>Pre interpretáciu: rodičia a učitelia menej početní, ale zastúpení.</li>
+    </ul>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 9 — MVP december — strana 2 z 3: user testing -->
+  <section class="page">
+    <h3>Výsledky user testingu a feedbacku (cca 2 grafy)</h3>
+    <div class="figure figure--pair">
+      <div class="cell" id="fig11">Graf 1<br /><span style="font-weight:400;font-size:8.5pt">Názor na súčasný brand</span></div>
+      <div class="cell" id="fig12">Graf 2<br /><span style="font-weight:400;font-size:8.5pt">Web / nájdenie informácií</span></div>
+    </div>
+    <ul class="rubric">
+      <li>Čo sme robili: vyhodnotenie z dotazníka / interného hodnotenia.</li>
+      <li>Čo ukazujú: rozptyl názoru na brand; či web plní informačnú úlohu.</li>
+      <li>Čo ste sa dozvedeli od userov / klientov: komunita nie je jednotná ohľadom brandu; web väčšine nestačí alebo ho ľudia nenavštevujú.</li>
+      <li>Prečo to dôležité: potvrdzuje investíciu do redizajnu.</li>
+    </ul>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 10 — MVP december — strana 3 z 3: KPI Demo Day -->
+  <section class="page">
+    <h3>Vyhodnotenie KPI (decembrový Demo Day)</h3>
+    <p style="font-size:9.5pt;margin-bottom:0.35rem">Tabuľka + opis. Čerpajte z prezentácie na Demo Day; znenie zosúlaďte s UPP.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Oblast / KPI</th>
+          <th>Výsledok</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Respondenti</td>
+          <td>cieľ ≥ 100 → <strong>205</strong> (prekonané)</td>
+        </tr>
+        <tr>
+          <td>Piliere + vizuálny smer</td>
+          <td>podľa UPP a konzultácie</td>
+        </tr>
+        <tr>
+          <td>Workshop</td>
+          <td>ak neprebehol — dôvod (kapacity/čas) podľa UPP</td>
+        </tr>
+        <tr>
+          <td>Kvalitatívne rozhovory</td>
+          <td>ak obmedzené — nahradené dotazníkom; skew ročníka</td>
+        </tr>
+        <tr>
+          <td>% spokojnosti s hotovým webom</td>
+          <td>pred finálnym webom nie je uzavriteľné</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Ktoré KPI sme naplnili alebo prekonali?</strong> Minimálne počet respondentov (205 oproti min. 100); ďalej podľa presného znenia v UPP.</p>
+    <p><strong>Ktoré KPI sa nám nepodarilo naplniť a prečo?</strong> Podľa UPP (napr. workshop) — doplňte finálnu formuláciu z Demo Day.</p>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 11 — Druhá iterácia MVP — strana 1 z 3 -->
+  <section class="page" id="mvp2">
+    <h2>Druhá iterácia MVP (do marca)</h2>
+    <p class="scope">Povinný rozsah: cca 3 strany</p>
+
+    <h3>Lessons learned z prvého MVP</h3>
+    <p><strong>Čo sa nám na prvom MVP podarilo?</strong></p>
+    <ul class="rubric">
+      <li>Potvrdenie problému, 205 odpovedí, piliere, prvé vizuály.</li>
+    </ul>
+    <p><strong>Čo sme robili, no už s tým nebudeme pokračovať?</strong></p>
+    <ul class="rubric">
+      <li>Veľké kolo čistého výskumu bez paralelnej stavby webu; nekonečné varianty identity bez väzby na obrazovky.</li>
+    </ul>
+    <p><strong>Čo sme nerobili, ale mali by sme?</strong></p>
+    <ul class="rubric">
+      <li>Viac krátkych kvalitatívnych rozhovorov (napr. tretiaci) — kapacita išla na web.</li>
+    </ul>
+
+    <h3>Predstavenie druhej iterácie MVP (rovnako ako sekcia MVP do decembra)</h3>
+    <p>Druhé MVP = <strong>web ako výstup</strong>: špecifikácia, obsah, vizuál, implementácia (Next.js, Sanity, Netlify). Môže ísť o staging a schválenie vedením; doména a verejný launch = často <strong>next steps</strong> pre školu.</p>
+
+    <div class="figure figure--tall">
+      <div class="figure-label">Screenshot webu — landing / staging</div>
+    </div>
+    <div class="figure" style="min-height:36mm;margin-top:6px">
+      <div class="figure-label">Výrez — špecifikácia alebo obsahový dokument</div>
+    </div>
+    <ul class="rubric">
+      <li>Z časti: stránky podľa IA, CMS schémy, komponenty, texty.</li>
+      <li>Náročné: zladiť technické minimum s očakávaním školy (povinné info, externisti).</li>
+    </ul>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 12 — Druhá iterácia — strana 2: user testing -->
+  <section class="page">
+    <h3>Výsledky user testingu a feedbacku (cca 2 grafy)</h3>
+    <div class="figure figure--pair">
+      <div class="cell">Graf 1 — úspešnosť úloh</div>
+      <div class="cell">Graf 2 — spokojnosť alebo SUS</div>
+    </div>
+    <ul class="rubric">
+      <li>Čo sme robili: úlohové testy / dotazník (doplňte dátum, metódu, počet testerov).</li>
+      <li>Čo ukazujú: kde sa ľudia strácajú v navigácii; celková použiteľnosť.</li>
+      <li>Čo ste sa dozvedeli od userov / klientov: doplniť podľa výsledkov.</li>
+      <li>Pre projekt: podklad na úpravu menu alebo hero.</li>
+    </ul>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 13 — Druhá iterácia — strana 3: KPI marec -->
+  <section class="page">
+    <h3>Vyhodnotenie KPI — marec</h3>
+    <p style="font-size:9.5pt">Tabuľka <strong>identická</strong> s UPP a s prezentáciou. Položky závislé od školy (doména, dátum launchu) = <strong>next steps</strong>, nie „nesplnené“ bez vysvetlenia.</p>
+    <div class="figure figure--tall">
+      <div class="figure-label">Miesto na tabuľku KPI marec (text z UPP alebo export ako obrázok)</div>
+    </div>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 14 — Výsledky projektu — strana 1 z 3 (KPI marec) -->
+  <section class="page" id="vysledky">
+    <h2>Výsledky projektu</h2>
+    <p class="scope">Povinný rozsah: cca 3 strany (táto sekcia = 3 strany: KPI marec + lessons + doplnenie)</p>
+
+    <h3>Vyhodnotenie KPI v marci (rovnako ako v sekcii MVP december)</h3>
+    <p>Finálny stav voči KPI z <em>Updated Project Proposal</em>: čo je hotové, čo rozpracované, čo v odovzdávacom balíku (kód, dokumentácia, návod na obsah, checklist pre administratívu). Tabuľka a opis podľa skutočného stavu k termínu odovzdania a podľa Demo Day / prezentácie.</p>
+
+    <div class="figure figure--tall">
+      <div class="figure-label">Tabuľka KPI marec (zhodná s UPP — vložte export alebo prepíšte bunky)</div>
+      <div class="figure-hint">Ak máte tabuľku len v dokumente, skopírujte ju sem alebo vložte ako obrázok.</div>
+    </div>
+    <ul class="rubric">
+      <li>Čo ukazuje: stav výstupov voči plánu v marci.</li>
+      <li>Pre projekt: čo ostáva na školu (doména, schválenie textov, role redaktorov).</li>
+    </ul>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 15 — Výsledky projektu — strana 2 z 3 (lessons learned celkové) -->
+  <section class="page">
+    <h2>Výsledky projektu <span style="font-weight:400;color:#7a7770;font-size:10pt">(pokračovanie)</span></h2>
+
+    <h3>Lessons learned — celkové</h3>
+    <p><strong>Čo sa nám na druhom MVP podarilo?</strong></p>
+    <ul class="rubric">
+      <li>Presun k hmotnému webu, čitateľná štruktúra, udržateľná správa obsahu v CMS.</li>
+    </ul>
+    <p><strong>Čo sme robili, no už by sme s tým nepokračovali?</strong></p>
+    <ul class="rubric">
+      <li>Spoliehať sa, že komunita sama začne chodiť na web bez komunikácie zvnútra.</li>
+    </ul>
+    <p><strong>Čo sme nerobili, ale mali sme?</strong></p>
+    <ul class="rubric">
+      <li>Viac študentských rozhovorov, skoršie formálne úlohové testovanie.</li>
+    </ul>
+    <p><strong>Čo by sme spravili inak pri viac času alebo zdrojov?</strong></p>
+    <ul class="rubric">
+      <li>Ťažisko na webe posunúť skôr v roku — viac iterácií podľa testov.</li>
+    </ul>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 16 — Výsledky projektu — strana 3 z 3 (vizuál / diagram / zhrnutie) -->
+  <section class="page">
+    <h2>Výsledky projektu <span style="font-weight:400;color:#7a7770;font-size:10pt">(pokračovanie)</span></h2>
+    <h3>Voliteľný vizuál k výsledku projektu</h3>
+    <p style="font-size:9.5pt">Miesto na diagram architektúry, screenshot finálneho stagingu alebo prehľad odovzdávaných súborov — podľa toho, čo chcete vizuálne zdôrazniť pri hodnotení.</p>
+    <div class="figure figure--tall">
+      <div class="figure-label">Obrázok — diagram / screenshot / prehľad výstupov (voliteľné)</div>
+    </div>
+    <ul class="rubric">
+      <li>Čo ukazuje: stav riešenia na konci projektu.</li>
+      <li>Pre učiteľa Y4P: rýchla orientácia v tom, čo konkrétne odovdzávate.</li>
+    </ul>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 16 — Záver (0,5 strany) -->
+  <section class="page" id="zaver">
+    <h2>Záver</h2>
+    <p class="scope">Povinný rozsah: cca 0,5 strany — dve vety o každej sekcii + next steps</p>
+
+    <p><strong>Úvod</strong> — Projekt spája techniku a kreatívu s potrebou školy; cieľom je web zodpovedajúci Lýceu pri prvom kontakte.</p>
+    <p><strong>Analýza problému</strong> — 205 respondentov potvrdilo medzeru medzi vnútorným a vonkajším obrazom a slabé využívanie webu; určili sme piliere obsahu.</p>
+    <p><strong>Návrh riešenia</strong> — Next.js, Sanity, Netlify a jasná architektúra; KPI v súlade s Updated Project Proposal.</p>
+    <p><strong>MVP (december)</strong> — dáta, piliere, prvé vizuály; niektoré KPI podľa UPP nemuseli byť splnené (napr. workshop); respondentov sme výrazne prekročili.</p>
+    <p><strong>Druhá iterácia (marec)</strong> — špecifikácia, obsah, funkčný smer webu, spätná väzba vedenia; dokončenie závisí aj od školy.</p>
+    <p><strong>Výsledky projektu</strong> — odovzdanie kódu, dokumentácie a next steps; prínosom sú aj proces a nástroje pre školu.</p>
+
+    <p><strong>Roadmap / next steps</strong> (ak na projekte budete ďalej pracovať): prevádzkové nasadenie (doména, účty Netlify/Sanity/GitHub), schválenie textov vedením, komunikácia spustenia k rodičom a uchádzačom — detaily v dokumente pre administratívu.</p>
+
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+  <!-- 17 — Zdroje -->
+  <section class="page" id="zdroje">
+    <h2>Zdroje</h2>
+    <p style="font-size:9.5pt">V Google Docs použite poznámky pod čiarou; čísla generuje dokument.</p>
+    <div class="footnotes">
+      <p><sup>1</sup> Krug, S.: <em>Don’t Make Me Think, Revisited</em>, New Riders, 2014.</p>
+      <p><sup>2</sup> Norman, D. A.: <em>The Design of Everyday Things</em> (rev. vyd.), Basic Books, 2013.</p>
+      <p><sup>3</sup> Nielsen Norman Group: <em>Which UX Research Methods When?</em> — [online], cit. [doplňte dátum a URL].</p>
+      <p><sup>4</sup> Kasíková, M. a kol.: <em>Školská pedagogika</em>. Bratislava: IRIS, 2008.</p>
+    </div>
+    <footer class="page-footer"><span>SOŠ Lýceum C. S. Lewisa</span><span>12.4.2026</span></footer>
+  </section>
+
+</body>
+</html>

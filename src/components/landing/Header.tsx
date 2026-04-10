@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { prijimackyPages } from "@/data/prijimacky-nav";
 import { preStudentovPages } from "@/data/pre-studentov-nav";
+import { CONTENT_SHELL_CLASS } from "@/lib/content-shell";
 
 const navStart = [
   { href: "/#tri-piliere", label: "O škole" },
@@ -19,7 +20,7 @@ const navAfterPrijimacky = [
   { href: "/dod", label: "DOD" },
 ] as const;
 
-const SHELL = "mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8";
+const SHELL = CONTENT_SHELL_CLASS;
 
 const linkClassDesktop =
   "whitespace-nowrap text-[clamp(15px,0.9rem+0.35vw,17px)] text-brand-fg1 no-underline decoration-2 underline-offset-4 hover:underline";
