@@ -122,7 +122,7 @@ export type TeamMember = {
 export const teamMembers: TeamMember[] = [
   {
     id: "fabrici",
-    name: "Zuzka Mikloš Fabrici",
+    name: "Zuzana Mikloš Fabrici",
     role: "Riaditeľka",
     bioBefore:
       "Študovala učiteľstvo angličtiny a nemčiny, pracovala v korporáciách, učila vo firmách, jazykovkách, v Nemecku a v Narnii, kde viedla jazykový department a akademický pilier. So študentmi sa zapájala do programov rozvíjajúcich podnikavosť.",

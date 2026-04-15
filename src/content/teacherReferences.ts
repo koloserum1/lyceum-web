@@ -19,7 +19,7 @@ function quoteFromMember(m: TeamMember): string {
 
 /**
  * Cesty k fotkám v `public/teachers/`.
- * Predvolene `{id}.jpg` (napr. fabrici.jpg = Zuzka Mikloš Fabrici).
+ * Predvolene `{id}.jpg` (napr. fabrici.jpg = Zuzana Mikloš Fabrici).
  * Ak máš iný názov súboru, doplníš ho sem.
  */
 const TEACHER_IMAGE_FILE: Record<string, string> = {
